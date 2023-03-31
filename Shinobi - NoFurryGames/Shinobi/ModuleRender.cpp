@@ -50,7 +50,7 @@ bool ModuleRender::Init()
 update_status ModuleRender::PreUpdate()
 {
 	//Set the color used for drawing operations
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 115, 66, 148, 255);
 
 	//Clear rendering target
 	SDL_RenderClear(renderer);
