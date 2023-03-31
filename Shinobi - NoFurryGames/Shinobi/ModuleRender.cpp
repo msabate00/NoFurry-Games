@@ -1,4 +1,6 @@
 #include "ModuleRender.h"
+#include <string> 
+#include <iostream>
 
 #include "Application.h"
 
@@ -9,6 +11,8 @@
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
+
+using namespace std;
 
 ModuleRender::ModuleRender() : Module()
 {
@@ -78,13 +82,13 @@ update_status ModuleRender::Update()
 	}
 
 	//Automover la camara
-
-
-
-	/*if (App->player->position.x - camera.x > SCREEN_WIDTH - 30) {
-		camera.x = App->player->position.x;
-	}*/
-
+	if ((App->player->position.x * 2 - SCREEN_WIDTH) -100 > camera.x) {
+		camera.x += cameraSpeed;
+	}
+	if ((App->player->position.x * 2 - SCREEN_WIDTH) + 200 < camera.x) {
+		camera.x -= cameraSpeed;
+	}
+	//cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
 
 
 
