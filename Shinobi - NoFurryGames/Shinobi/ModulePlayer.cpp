@@ -12,7 +12,7 @@
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
-	position.y = 220;
+	position.y = 210;
 
 	// idle animation (arcade sprite sheet)
 	idleAnim.PushBack({7, 14, 60, 90});

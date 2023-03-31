@@ -5,6 +5,7 @@
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -71,6 +72,20 @@ update_status ModuleRender::Update()
 	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 		camera.x += cameraSpeed;
 	if (camera.x > 1536) camera.x = 1536;
+
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
+		App->godMode = !App->godMode;
+	}
+
+	//Automover la camara
+
+
+
+	/*if (App->player->position.x - camera.x > SCREEN_WIDTH - 30) {
+		camera.x = App->player->position.x;
+	}*/
+
+
 
 
 	return update_status::UPDATE_CONTINUE;
