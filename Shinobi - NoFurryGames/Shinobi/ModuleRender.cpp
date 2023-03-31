@@ -5,7 +5,6 @@
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
-#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -23,7 +22,7 @@ ModuleRender::~ModuleRender()
 bool ModuleRender::Init()
 {
 	LOG("Creating Renderer context");
-	bool ret = true;	
+	bool ret = true;
 	Uint32 flags = 0;
 
 	if (VSYNC == true)
@@ -58,26 +57,21 @@ update_status ModuleRender::Update()
 {
 	//Handle positive vertical movement
 	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
-		camera.y += cameraSpeed;
+		camera.y -= cameraSpeed;
 
 	//Handle negative vertical movement
 	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-		camera.y -= cameraSpeed;
+		camera.y += cameraSpeed;
 
 	// TODO 1: Handle horizontal movement of the camera
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
 		camera.x -= cameraSpeed;
-	}
+	if (camera.x < 0) camera.x = 0;
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 		camera.x += cameraSpeed;
-	}
+	if (camera.x > 1536) camera.x = 1536;
 
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
-		App->godMode = !App->godMode;
-	}
-
-	
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -106,11 +100,11 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 {
 	bool ret = true;
 
-	SDL_Rect rect {
-		(int)(camera.x * speed) + x * SCREEN_SIZE,
-		(int)(camera.y * speed) + y * SCREEN_SIZE,
+	SDL_Rect rect{
+		(int)(-camera.x * speed) + x * SCREEN_SIZE,
+		(int)(-camera.y * speed) + y * SCREEN_SIZE,
 		0, 0 };
-	
+
 	if (section != nullptr)
 	{
 		rect.w = section->w;
@@ -130,12 +124,10 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
-	
 	if (App->godMode) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderDrawRect(renderer, &rect);
 	}
-	
 
 	return ret;
 }
