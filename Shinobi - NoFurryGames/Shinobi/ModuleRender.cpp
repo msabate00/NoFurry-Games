@@ -5,6 +5,7 @@
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -72,6 +73,12 @@ update_status ModuleRender::Update()
 		camera.x += cameraSpeed;
 	}
 
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
+		App->godMode = !App->godMode;
+	}
+
+	
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -123,6 +130,12 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
+	
+	if (App->godMode) {
+		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+		SDL_RenderDrawRect(renderer, &rect);
+	}
+	
 
 	return ret;
 }

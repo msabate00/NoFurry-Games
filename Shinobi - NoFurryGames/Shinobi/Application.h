@@ -37,6 +37,8 @@ public:
 	// An array to store all modules
 	Module* modules[NUM_MODULES];
 
+	bool godMode = false;
+
 	// All the modules stored individually
 	ModuleWindow* window = nullptr;
 	ModuleInput* input = nullptr;

@@ -52,7 +52,7 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	texture = App->textures->Load("Assets/ryu.png"); // arcade version
+	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
 	return ret;
 }
