@@ -60,7 +60,7 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
-	//Aplica la gravedad
+	//Aplica la gravedad a su altura
 	position.y += GRAVITY;
 
 	
@@ -69,25 +69,26 @@ update_status ModulePlayer::Update()
 	//Reset the currentAnimation back to idle before updating the logic
 	currentAnimation = &idleAnim;
 
+	//MOVERSE A LA DERECHA
 	if(App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
 		currentAnimation = &forwardAnim;
 		position.x += speed;
 	}
 
-	// TODO 4: Make ryu walk backwards with the correct animations
+	//MOVERSE A LA IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
 	{
 		currentAnimation = &backwardAnim;
 		position.x -= speed;
 	}
 
+	//MECANICA DEL SALTO
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
 		
 		isJumping = true;
 		currJumpForce = jumpForce;
 	}
-
 	if (isJumping) {
 		position.y -= currJumpForce;
 		currJumpForce -= 0.25f * GRAVITY;
@@ -98,6 +99,7 @@ update_status ModulePlayer::Update()
 
 	currentAnimation->Update();
 
+	//SI LLEGA AL NIVEL DEL SUELO, PONE SU ALTURA A ESE NIVEL, Y LE PERMITE VOLVER A SALTAR
 	if (position.y >= FLOOR_LEVEL) {
 		position.y = FLOOR_LEVEL;
 		isJumping = false;
