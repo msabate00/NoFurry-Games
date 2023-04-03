@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleScene.h"
 #include "ModuleRender.h"
+#include "ModuleParticles.h"
 #include "SDL/include/SDL_timer.h"
 
 Application::Application()
@@ -22,6 +23,7 @@ Application::Application()
 	modules[4] = player = new ModulePlayer();
 
 	modules[5] = render = new ModuleRender();
+	modules[6] = particles = new ModuleParticles();
 }
 
 Application::~Application()
@@ -64,6 +66,7 @@ update_status Application::Update()
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->Update();
+	
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->PostUpdate();

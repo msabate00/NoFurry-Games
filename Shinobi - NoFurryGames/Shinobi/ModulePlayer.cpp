@@ -4,8 +4,13 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleParticles.h"
 
 #include "SDL/include/SDL_scancode.h"
+
+#include <iostream>
+
+using namespace std;
 
 // Street Fighter reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -93,6 +98,13 @@ update_status ModulePlayer::Update()
 		position.y -= currJumpForce;
 		currJumpForce -= 0.25f * GRAVITY;
 
+	}
+
+
+	//ATAQUE SHURIKEN
+	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+
+		App->particles->AddParticle(App->particles->shuriken, position.x + 10, position.y - 25, 1);
 	}
 
 	
