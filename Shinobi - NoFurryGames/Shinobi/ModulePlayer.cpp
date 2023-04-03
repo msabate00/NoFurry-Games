@@ -83,22 +83,16 @@ update_status ModulePlayer::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
-		position.y -= jumpForce;
+		
 		isJumping = true;
+		currJumpForce = jumpForce;
 	}
 
-	/*if (isJumping) {
-		position.y += currJumpForce * App->deltaTime;
+	if (isJumping) {
+		position.y -= currJumpForce;
+		currJumpForce -= 0.25f * GRAVITY;
 
-		if (currJumpForce > maxFallSpeed) {
-			jumpForce -= App->deltaTime * GRAVITY;
-		}
-		else
-		{
-			currJumpForce = maxFallSpeed;
-		}
-
-	}*/
+	}
 
 	
 

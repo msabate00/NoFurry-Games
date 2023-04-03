@@ -32,6 +32,6 @@ typedef unsigned int uint;
 
 //GAME THINGS
 #define FLOOR_LEVEL SCREEN_HEIGHT-9
-#define GRAVITY 1;
+#define GRAVITY 0.5;
 
 #endif // __GLOBALS_H__
