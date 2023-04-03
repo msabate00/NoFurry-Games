@@ -12,32 +12,33 @@
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
-	position.y = 210;
+	position.y = FLOOR_LEVEL;
 
 	// idle animation (arcade sprite sheet)
-	idleAnim.PushBack({7, 14, 60, 90});
-	idleAnim.PushBack({95, 15, 60, 89});
-	idleAnim.PushBack({184, 14, 60, 90});
-	idleAnim.PushBack({276, 11, 60, 93});
-	idleAnim.PushBack({366, 12, 60, 92});
+	idleAnim.PushBack({80, 114, 33, 58});
+	//idleAnim.PushBack({95, 15, 60, 89});
+	//idleAnim.PushBack({184, 14, 60, 90});
+	//idleAnim.PushBack({276, 11, 60, 93});
+	//idleAnim.PushBack({366, 12, 60, 92});
 	idleAnim.speed = 0.2f;
 
 	// walk forward animation (arcade sprite sheet)
-	forwardAnim.PushBack({9, 136, 53, 83});
-	forwardAnim.PushBack({78, 131, 60, 88});
-	forwardAnim.PushBack({162, 128, 64, 92});
-	forwardAnim.PushBack({259, 128, 63, 90});
-	forwardAnim.PushBack({352, 128, 54, 91});
-	forwardAnim.PushBack({432, 131, 50, 89});
+	forwardAnim.PushBack({ 80, 114, 33, 58 });
+	//forwardAnim.PushBack({78, 131, 60, 88});
+	//forwardAnim.PushBack({162, 128, 64, 92});
+	//forwardAnim.PushBack({259, 128, 63, 90});
+	//forwardAnim.PushBack({352, 128, 54, 91});
+	//forwardAnim.PushBack({432, 131, 50, 89});
 	forwardAnim.speed = 0.1f;
 
 	// TODO 4: Make ryu walk backwards with the correct animations
-	backwardAnim.PushBack({ 432, 131, 50, 89 });
-	backwardAnim.PushBack({ 352, 128, 54, 91 });
+	backwardAnim.PushBack({ 80, 114, 33, 58 });
+	
+	/*backwardAnim.PushBack({352, 128, 54, 91});
 	backwardAnim.PushBack({ 259, 128, 63, 90 });
 	backwardAnim.PushBack({ 162, 128, 64, 92 });
 	backwardAnim.PushBack({ 78, 131, 60, 88 });
-	backwardAnim.PushBack({ 9, 136, 53, 83 });
+	backwardAnim.PushBack({ 9, 136, 53, 83 });*/
 	backwardAnim.speed = 0.1f;
 }
 
@@ -59,6 +60,12 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
+	//Aplica la gravedad
+	position.y += GRAVITY;
+
+	
+
+
 	//Reset the currentAnimation back to idle before updating the logic
 	currentAnimation = &idleAnim;
 
@@ -75,7 +82,32 @@ update_status ModulePlayer::Update()
 		position.x -= speed;
 	}
 
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+		position.y -= jumpForce;
+		isJumping = true;
+	}
+
+	/*if (isJumping) {
+		position.y += currJumpForce * App->deltaTime;
+
+		if (currJumpForce > maxFallSpeed) {
+			jumpForce -= App->deltaTime * GRAVITY;
+		}
+		else
+		{
+			currJumpForce = maxFallSpeed;
+		}
+
+	}*/
+
+	
+
 	currentAnimation->Update();
+
+	if (position.y >= FLOOR_LEVEL) {
+		position.y = FLOOR_LEVEL;
+		isJumping = false;
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }

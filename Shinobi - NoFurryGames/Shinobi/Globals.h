@@ -30,4 +30,8 @@ typedef unsigned int uint;
 #define WIN_RESIZABLE 0
 #define VSYNC 1
 
+//GAME THINGS
+#define FLOOR_LEVEL SCREEN_HEIGHT-9
+#define GRAVITY 1;
+
 #endif // __GLOBALS_H__

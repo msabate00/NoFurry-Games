@@ -35,6 +35,12 @@ public:
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
+	int jumpForce = 70;
+	int currJumpForce = 0;
+	int maxFallSpeed = -5;
+	bool isJumping = false;
+	
+
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
 	

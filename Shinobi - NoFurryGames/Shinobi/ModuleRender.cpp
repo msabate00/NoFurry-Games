@@ -150,3 +150,43 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 
 	return ret;
 }
+
+/*
+void ModuleRender::flipSurface(SDL_Surface *flipped) {
+	//Pointer to the soon to be flipped surface
+	//SDL_Surface* flipped = NULL;
+
+	
+	flipped = SDL_CreateRGBSurface(SDL_SWSURFACE, flipped->w, flipped->h, flipped->format->BitsPerPixel, flipped->format->Rmask, flipped->format->Gmask, flipped->format->Bmask, flipped->format->Amask);
+	//Go through columns
+	for (int x = 0, rx = flipped->w - 1; x < flipped->w; x++, rx--)
+	{
+		//Go through rows
+		for (int y = 0, ry = flipped->h - 1; y < flipped->h; y++, ry--)
+		{
+			//Get pixel
+			Uint32 pixel = get_pixel32(flipped, x, y);
+			put_pixel32(flipped, rx, y, pixel);
+			
+		}
+	}
+	//return flipped;
+}
+
+Uint32 get_pixel32(SDL_Surface* surface, int x, int y)
+{
+	//Convert the pixels to 32 bit
+	Uint32* pixels = (Uint32*)surface->pixels;
+
+	//Get the requested pixel
+	return pixels[(y * surface->w) + x];
+}
+
+void put_pixel32(SDL_Surface* surface, int x, int y, Uint32 pixel)
+{
+	//Convert the pixels to 32 bit
+	Uint32* pixels = (Uint32*)surface->pixels;
+
+	//Set the pixel
+	pixels[(y * surface->w) + x] = pixel;
+}*/

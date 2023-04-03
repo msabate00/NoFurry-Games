@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleScene.h"
 #include "ModuleRender.h"
+#include "SDL/include/SDL_timer.h"
 
 Application::Application()
 {
@@ -51,6 +52,12 @@ bool Application::Init()
 update_status Application::Update()
 {
 	update_status ret = update_status::UPDATE_CONTINUE;
+
+	LAST = NOW;
+	NOW = SDL_GetPerformanceCounter();
+	deltaTime = (double)((NOW - LAST) * 1000 / (double)SDL_GetPerformanceFrequency());
+
+
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->PreUpdate();

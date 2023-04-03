@@ -2,6 +2,7 @@
 #define __APPLICATION_H__
 
 #include "Globals.h"
+#include "SDL/include/SDL_timer.h"
 
 #define NUM_MODULES 6
 
@@ -15,6 +16,10 @@ class ModuleRender;
 
 class Application
 {
+
+private:
+	Uint64 NOW = SDL_GetPerformanceCounter();
+	Uint64 LAST = 0;
 
 public:
 
@@ -38,6 +43,8 @@ public:
 	Module* modules[NUM_MODULES];
 
 	bool godMode = false;
+	double deltaTime = 0;
+
 
 	// All the modules stored individually
 	ModuleWindow* window = nullptr;
