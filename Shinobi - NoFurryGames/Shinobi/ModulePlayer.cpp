@@ -89,7 +89,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//MECANICA DEL SALTO
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		
 		isJumping = true;
 		currJumpForce = jumpForce;
