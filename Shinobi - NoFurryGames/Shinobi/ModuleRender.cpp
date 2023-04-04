@@ -94,7 +94,7 @@ update_status ModuleRender::Update()
 
 	
 
-	cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
+	//cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
 
 
 

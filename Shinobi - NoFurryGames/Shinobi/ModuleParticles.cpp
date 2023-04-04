@@ -108,7 +108,6 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			//cout << particle->position.x << " | " << particle->position.y << endl;;
 			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
