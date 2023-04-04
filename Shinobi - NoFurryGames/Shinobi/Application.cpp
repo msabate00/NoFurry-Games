@@ -22,8 +22,9 @@ Application::Application()
 	modules[3] = scene = new ModuleScene();
 	modules[4] = player = new ModulePlayer();
 
-	modules[5] = render = new ModuleRender();
-	modules[6] = particles = new ModuleParticles();
+	
+	modules[5] = particles = new ModuleParticles();
+	modules[6] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 }
 
 Application::~Application()

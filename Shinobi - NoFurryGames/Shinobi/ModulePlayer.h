@@ -39,6 +39,8 @@ public:
 	float currJumpForce = 0;
 	float maxFallSpeed = -5;
 	bool isJumping = false;
+
+	bool facingRight = true;
 	
 
 	// The player spritesheet loaded into an SDL_Texture

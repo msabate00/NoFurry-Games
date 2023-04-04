@@ -46,11 +46,17 @@ bool ModuleParticles::Start()
 	laser.lifetime = 5;
 	laser.anim.speed = 0.3f;
 	*/
-	shuriken.anim.PushBack({109, 294, 11, 6});
-	shuriken.anim.loop = true;
-	shuriken.anim.speed = 0.3f;
-	shuriken.lifetime = 0;
-	shuriken.speed = iPoint(0, 0);
+	shurikenR.anim.PushBack({109, 294, 11, 6});
+	shurikenR.anim.loop = true;
+	shurikenR.anim.speed = 0.3f;
+	shurikenR.lifetime = 0;
+	shurikenR.speed = iPoint(2, 0);
+
+	shurikenL.anim.PushBack({ 109, 294, 11, 6 });
+	shurikenL.anim.loop = true;
+	shurikenL.anim.speed = 0.3f;
+	shurikenL.lifetime = 0;
+	shurikenL.speed = iPoint(-2, 0);
 
 
 
@@ -102,7 +108,7 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			cout << particle->position.x << " | " << particle->position.y << endl;;
+			//cout << particle->position.x << " | " << particle->position.y << endl;;
 			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}

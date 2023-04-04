@@ -79,6 +79,7 @@ update_status ModulePlayer::Update()
 	{
 		currentAnimation = &forwardAnim;
 		position.x += speed;
+		facingRight = true;
 	}
 
 	//MOVERSE A LA IZQUIERDA
@@ -86,6 +87,7 @@ update_status ModulePlayer::Update()
 	{
 		currentAnimation = &backwardAnim;
 		position.x -= speed;
+		facingRight = false;
 	}
 
 	//MECANICA DEL SALTO
@@ -104,9 +106,12 @@ update_status ModulePlayer::Update()
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
 
-		App->particles->AddParticle(App->particles->shuriken, position.x + 10, position.y - 25, 1);
+		if (facingRight) {
+			App->particles->AddParticle(App->particles->shurikenR, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, 0);
+		}else{
+			App->particles->AddParticle(App->particles->shurikenL, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, 0);
+		}
 	}
-
 	
 
 	currentAnimation->Update();

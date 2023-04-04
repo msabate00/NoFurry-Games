@@ -60,7 +60,8 @@ public:
 	//Template particle for a laser
 	Particle laser;
 
-	Particle shuriken;
+	Particle shurikenR;
+	Particle shurikenL;
 
 };
 

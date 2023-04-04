@@ -60,6 +60,15 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()
 {
+
+	//Automover la camara
+	if ((App->player->position.x * 2 - SCREEN_WIDTH) - 100 > camera.x) {
+		camera.x += cameraSpeed;
+	}
+	if ((App->player->position.x * 2 - SCREEN_WIDTH) + 200 < camera.x) {
+		camera.x -= cameraSpeed;
+	}
+
 	//Handle positive vertical movement
 	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
 		camera.y -= cameraSpeed;
@@ -71,24 +80,21 @@ update_status ModuleRender::Update()
 	// TODO 1: Handle horizontal movement of the camera
 	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
 		camera.x -= cameraSpeed;
-	if (camera.x < 0) camera.x = 0;
+	if (camera.x < 0) camera.x = 0;			//LIMITES CAMARA
 
 	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
 		camera.x += cameraSpeed;
-	if (camera.x > 1536) camera.x = 1536;
+	if (camera.x > 3324) camera.x = 3324;	//LIMITES CAMARA
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
 		App->godMode = !App->godMode;
 	}
 
-	//Automover la camara
-	if ((App->player->position.x * 2 - SCREEN_WIDTH) -100 > camera.x) {
-		camera.x += cameraSpeed;
-	}
-	if ((App->player->position.x * 2 - SCREEN_WIDTH) + 200 < camera.x) {
-		camera.x -= cameraSpeed;
-	}
-	//cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
+	
+
+	
+
+	cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
 
 
 
@@ -147,6 +153,8 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderDrawRect(renderer, &rect);
 	}
+
+	
 
 	return ret;
 }
