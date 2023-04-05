@@ -54,6 +54,9 @@ public:
 	Animation idleAnim;
 	Animation forwardAnim;
 	Animation backwardAnim;
+	Animation crouched_idleAnim;
+	Animation crouched_forwardAnim;
+	Animation crouched_AttackAnim;
 };
 
 #endif //!__MODULE_PLAYER_H__

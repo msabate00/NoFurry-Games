@@ -45,6 +45,10 @@ ModulePlayer::ModulePlayer()
 	backwardAnim.PushBack({ 78, 131, 60, 88 });
 	backwardAnim.PushBack({ 9, 136, 53, 83 });*/
 	backwardAnim.speed = 0.1f;
+
+
+	crouched_idleAnim.PushBack({16, 212, 34, 33});
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -89,6 +93,11 @@ update_status ModulePlayer::Update()
 		position.x -= speed;
 		facingRight = false;
 	}
+
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+		currentAnimation = &crouched_idleAnim;
+	}
+
 
 	//MECANICA DEL SALTO
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
