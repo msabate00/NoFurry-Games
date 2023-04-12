@@ -20,25 +20,32 @@ ModulePlayer::ModulePlayer()
 	position.y = FLOOR_LEVEL;
 
 	// idle animation (arcade sprite sheet)
-	idleAnim.PushBack({80, 114, 33, 58});
-	//idleAnim.PushBack({95, 15, 60, 89});
-	//idleAnim.PushBack({184, 14, 60, 90});
-	//idleAnim.PushBack({276, 11, 60, 93});
-	//idleAnim.PushBack({366, 12, 60, 92});
+	idleAnim.PushBack({ 220, 112, 39, 60 });
+
 	idleAnim.speed = 0.2f;
 
 	// walk forward animation (arcade sprite sheet)
-	forwardAnim.PushBack({ 80, 114, 33, 58 });
-	//forwardAnim.PushBack({78, 131, 60, 88});
-	//forwardAnim.PushBack({162, 128, 64, 92});
-	//forwardAnim.PushBack({259, 128, 63, 90});
-	//forwardAnim.PushBack({352, 128, 54, 91});
-	//forwardAnim.PushBack({432, 131, 50, 89});
+	forwardAnim.PushBack({ 10, 112, 39, 60 });
+	forwardAnim.PushBack({ 52, 112, 39, 60 });
+	forwardAnim.PushBack({ 94, 112, 39, 60 });
+	forwardAnim.PushBack({ 136, 112, 39, 60 });
+	forwardAnim.PushBack({ 178, 112, 39, 60 });
+	forwardAnim.PushBack({ 220, 112, 39, 60 });
+
+
+
 	forwardAnim.speed = 0.1f;
 
 	// TODO 4: Make ryu walk backwards with the correct animations
-	backwardAnim.PushBack({ 80, 114, 33, 58 });
-	
+	backwardAnim.PushBack({ 10, 112, 39, 60 });
+	backwardAnim.PushBack({ 52, 112, 39, 60 });
+	backwardAnim.PushBack({ 94, 112, 39, 60 });
+	backwardAnim.PushBack({ 136, 112, 39, 60 });
+	backwardAnim.PushBack({ 178, 112, 39, 60 });
+	backwardAnim.PushBack({ 220, 112, 39, 60 });
+
+	//backwardAnim.PushBack({ 80, 114, 33, 58 });
+
 	/*backwardAnim.PushBack({352, 128, 54, 91});
 	backwardAnim.PushBack({ 259, 128, 63, 90 });
 	backwardAnim.PushBack({ 162, 128, 64, 92 });
@@ -47,7 +54,7 @@ ModulePlayer::ModulePlayer()
 	backwardAnim.speed = 0.1f;
 
 
-	crouched_idleAnim.PushBack({16, 212, 34, 33});
+	crouched_idleAnim.PushBack({ 16, 212, 34, 33 });
 
 }
 
@@ -72,14 +79,14 @@ update_status ModulePlayer::Update()
 	//Aplica la gravedad a su altura
 	position.y += GRAVITY;
 
-	
+
 
 
 	//Reset the currentAnimation back to idle before updating the logic
 	currentAnimation = &idleAnim;
 
 	//MOVERSE A LA DERECHA
-	if(App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
 		currentAnimation = &forwardAnim;
 		position.x += speed;
@@ -101,7 +108,7 @@ update_status ModulePlayer::Update()
 
 	//MECANICA DEL SALTO
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
-		
+
 		isJumping = true;
 		currJumpForce = jumpForce;
 	}
@@ -117,11 +124,12 @@ update_status ModulePlayer::Update()
 
 		if (facingRight) {
 			App->particles->AddParticle(App->particles->shurikenR, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, 0);
-		}else{
+		}
+		else {
 			App->particles->AddParticle(App->particles->shurikenL, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, 0);
 		}
 	}
-	
+
 
 	currentAnimation->Update();
 
