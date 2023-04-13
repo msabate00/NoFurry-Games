@@ -10,6 +10,9 @@
 #include "ModuleParticles.h"
 #include "SDL/include/SDL_timer.h"
 
+#include <iostream>
+using namespace std;
+
 Application::Application()
 {
 	// The order in which the modules are added is very important.
@@ -55,6 +58,7 @@ bool Application::Init()
 update_status Application::Update()
 {
 	update_status ret = update_status::UPDATE_CONTINUE;
+	
 
 	LAST = NOW;
 	NOW = SDL_GetPerformanceCounter();
@@ -71,6 +75,12 @@ update_status Application::Update()
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->PostUpdate();
+
+
+	
+
+	// Cap to 60 FPS
+	SDL_Delay(16.666f);
 
 	return ret;
 }
