@@ -94,8 +94,8 @@ update_status ModuleScene::Update()
 update_status ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(stageBackgroundTexture, 0, 0, &background, 0.75f); // Edificios del fondo
-	App->render->Blit(stageTexture, 0, -125, &ground, 1.0f); // Suelo y eso
+	App->render->Blit(stageBackgroundTexture, 0, 0, SDL_FLIP_NONE,&background, 0.75f); // Edificios del fondo
+	App->render->Blit(stageTexture, 0, -125, SDL_FLIP_NONE,&ground, 1.0f); // Suelo y eso
 
 
 

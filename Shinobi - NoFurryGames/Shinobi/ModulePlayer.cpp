@@ -153,11 +153,11 @@ update_status ModulePlayer::PostUpdate()
 {
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	if(facingRight) {
-		App->render->Blit(texture, position.x, position.y - rect.h, &rect);
+		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_NONE,&rect);
 		
 	}
 	else {
-		App->render->Blit(texture, position.x, position.y - rect.h, &rect, SDL_FLIP_HORIZONTAL);
+		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_HORIZONTAL,&rect);
 	}
 
 	
