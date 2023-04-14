@@ -4,15 +4,17 @@
 #include "Globals.h"
 #include "SDL/include/SDL_timer.h"
 
-#define NUM_MODULES 7
+#define NUM_MODULES 8
 
 class Module;
 class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
+//class ModuleAudio;
 class ModulePlayer;
 class ModuleScene;
 class ModuleParticles;
+class ModuleCollisions;
 class ModuleRender;
 
 
@@ -55,10 +57,14 @@ public:
 
 	ModulePlayer* player = nullptr;
 	ModuleScene* scene = nullptr;
+	ModuleParticles* particles = nullptr;
+	ModuleCollisions* collisions = nullptr;
+
+
 
 	ModuleRender* render = nullptr;
 
-	ModuleParticles* particles = nullptr;
+	
 };
 
 // Global var made extern for Application ---

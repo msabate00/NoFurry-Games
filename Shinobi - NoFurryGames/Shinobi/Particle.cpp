@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include "Collider.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -40,6 +41,10 @@ bool Particle::Update()
 		// Update the position in the screen
 		position.x += speed.x;
 		position.y += speed.y;
+
+		if (collider != nullptr)
+			collider->SetPos(position.x, position.y);
+
 	}
 
 	return ret;

@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
 
@@ -71,6 +72,8 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
+	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER);
+
 	return ret;
 }
 
@@ -118,6 +121,9 @@ update_status ModulePlayer::Update()
 
 	}
 
+	collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+	collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+
 
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
@@ -148,4 +154,10 @@ update_status ModulePlayer::PostUpdate()
 	App->render->Blit(texture, position.x, position.y - rect.h, &rect);
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+{
+	// TODO 5: Detect collision with a wall. If so, destroy the player.
+
 }

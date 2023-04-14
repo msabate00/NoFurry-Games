@@ -4,7 +4,7 @@
 
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-
+#include "ModuleCollisions.h"
 #include "SDL/include/SDL_timer.h"
 
 #include <iostream>;
@@ -79,6 +79,22 @@ bool ModuleParticles::CleanUp()
 
 	return true;
 }
+
+
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		// Always destroy particles that collide
+		if (particles[i] != nullptr && particles[i]->collider == c1)
+		{
+			delete particles[i];
+			particles[i] = nullptr;
+			break;
+		}
+	}
+}
+
 
 update_status ModuleParticles::Update()
 {

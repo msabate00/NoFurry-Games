@@ -11,6 +11,12 @@ void Collider::SetPos(int x, int y)
 	rect.y = y;
 }
 
+void Collider::SetSize(int w, int h) {
+	rect.w = w;
+	rect.h = h;
+}
+
+
 bool Collider::Intersects(const SDL_Rect& r) const
 {
 	// TODO 1:	Return true if there is an overlap

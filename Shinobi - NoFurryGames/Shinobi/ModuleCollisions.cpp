@@ -96,15 +96,15 @@ update_status ModuleCollisions::PreUpdate()
 
 update_status ModuleCollisions::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN)
-		debug = !debug;
+	/*if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN)
+		debug = !debug;*/
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModuleCollisions::PostUpdate()
 {
-	if (debug)
+	if (App->godMode)
 		DebugDraw();
 
 	return update_status::UPDATE_CONTINUE;

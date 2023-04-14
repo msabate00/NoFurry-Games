@@ -28,6 +28,10 @@ public:
 	// Performs the render call of the player sprite
 	update_status PostUpdate() override;
 
+	// Collision callback, called when the player intersects with another collider
+	void OnCollision(Collider* c1, Collider* c2) override;
+
+
 public:
 	// Position of the player in the map
 	iPoint position;
@@ -57,6 +61,10 @@ public:
 	Animation crouched_idleAnim;
 	Animation crouched_forwardAnim;
 	Animation crouched_AttackAnim;
+
+	// The player's collider
+	Collider* collider = nullptr;
+
 };
 
 #endif //!__MODULE_PLAYER_H__

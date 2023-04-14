@@ -4,6 +4,8 @@
 #include "Animation.h"
 #include "p2Point.h"
 
+struct Collider;
+
 struct Particle
 {
 public:
@@ -28,6 +30,9 @@ public:
 	// A set of rectangle sprites
 	Animation anim;
 
+	// The particle's collider
+	Collider* collider = nullptr;
+
 	// Defines wether the particle is alive or not
 	// Particles will be set to not alive until "spawnTime" is reached
 	bool isAlive = false;
@@ -38,6 +43,8 @@ public:
 
 	// Defines the total amount of frames during which the particle will be active
 	uint lifetime = 0;
+
+
 };
 
 #endif //__PARTICLE_H__

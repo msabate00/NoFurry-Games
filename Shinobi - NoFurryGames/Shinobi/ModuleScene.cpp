@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleCollisions.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -61,6 +62,12 @@ bool ModuleScene::Start()
 
 	stageTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
 	stageBackgroundTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_fondo.png");
+
+
+	// Colliders ---
+	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
+
+
 
 	return ret;
 }
