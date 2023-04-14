@@ -121,9 +121,14 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, float speed, SDL_RendererFlip flip)
 {
 	bool ret = true;
+
+	if (flip == SDL_FLIP_HORIZONTAL) {
+		cout << "FLIPPED" << endl;
+	}
+
 
 	SDL_Rect rect{
 		(int)(-camera.x * speed) + x * SCREEN_SIZE,
@@ -146,7 +151,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 
 	//Para el flip
 	SDL_Point center{ rect.w / 2, rect.h / 2 };
-	if (SDL_RenderCopyEx(renderer, texture, section, &rect, 0, &center, SDL_FLIP_HORIZONTAL) != 0)
+	if (SDL_RenderCopyEx(renderer, texture, section, &rect, 0, &center, flip) != 0)
 
 	//Sin el flip
 	//if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)

@@ -8,6 +8,7 @@
 #include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
+#include "SDL/include/SDL_render.h"
 
 #include <iostream>
 
@@ -151,8 +152,15 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate()
 {
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	App->render->Blit(texture, position.x, position.y - rect.h, &rect);
+	if(facingRight) {
+		App->render->Blit(texture, position.x, position.y - rect.h, &rect);
+		
+	}
+	else {
+		App->render->Blit(texture, position.x, position.y - rect.h, &rect, SDL_FLIP_HORIZONTAL);
+	}
 
+	
 	return update_status::UPDATE_CONTINUE;
 }
 
