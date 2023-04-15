@@ -66,7 +66,7 @@
     <ClInclude Include="Source\p2Point.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleAudio.h">
+    <ClInclude Include="Source\ModuleAudio.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,7 +101,7 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleAudio.cpp">
+    <ClCompile Include="Source\ModuleAudio.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
   </ItemGroup>

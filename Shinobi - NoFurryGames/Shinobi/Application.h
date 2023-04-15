@@ -4,13 +4,13 @@
 #include "Globals.h"
 #include "SDL/include/SDL_timer.h"
 
-#define NUM_MODULES 8
+#define NUM_MODULES 9
 
 class Module;
 class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
-//class ModuleAudio;
+class ModuleAudio;
 class ModulePlayer;
 class ModuleScene;
 class ModuleParticles;
@@ -59,6 +59,7 @@ public:
 	ModuleScene* scene = nullptr;
 	ModuleParticles* particles = nullptr;
 	ModuleCollisions* collisions = nullptr;
+	ModuleAudio* audio = nullptr;
 
 
 

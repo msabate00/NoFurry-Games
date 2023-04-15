@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Application.h" />
     <ClInclude Include="Source\Globals.h" />
     <ClInclude Include="Source\MemLeaks.h" />
     <ClInclude Include="Source\Module.h" />
+    <ClInclude Include="Source\ModuleAudio.h" />
     <ClInclude Include="Source\ModuleInput.h" />
     <ClInclude Include="Source\ModulePlayer.h" />
     <ClInclude Include="Source\ModuleRender.h" />
@@ -155,11 +155,11 @@
     <ClInclude Include="Source\p2Point.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Globals.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Module.cpp" />
+    <ClCompile Include="Source\ModuleAudio.cpp" />
     <ClCompile Include="Source\ModuleInput.cpp" />
     <ClCompile Include="Source\ModulePlayer.cpp" />
     <ClCompile Include="Source\ModuleRender.cpp" />
