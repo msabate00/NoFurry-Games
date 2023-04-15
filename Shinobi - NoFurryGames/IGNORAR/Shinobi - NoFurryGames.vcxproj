@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Application.h" />
@@ -154,6 +155,7 @@
     <ClInclude Include="Source\p2Point.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="Source\Application.cpp" />
     <ClCompile Include="Source\Globals.cpp" />
     <ClCompile Include="Source\Main.cpp" />

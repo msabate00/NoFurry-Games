@@ -12,6 +12,7 @@ class ModuleTextures;
 class ModulePlayer;
 class ModuleScene;
 class ModuleRender;
+class ModuleAudio;
 
 class Application
 {
