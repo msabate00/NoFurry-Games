@@ -8,6 +8,8 @@
 #define DEFAULT_MUSIC_FADE_TIME 2.0f
 #define MAX_FX 200
 
+#define SPACE_SOUND_ID 0
+
 class ModuleAudio : public Module
 {
 public:

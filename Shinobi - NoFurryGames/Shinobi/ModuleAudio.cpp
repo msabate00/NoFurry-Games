@@ -1,9 +1,10 @@
 #include "Globals.h"
 #include "ModuleAudio.h"
 #include "Application.h"
-
+#include "ModuleInput.h"
 #include "SDL/include/SDL.h"
 #include "SDL_mixer/include/SDL_mixer.h"
+#include <stdio.h>
 
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
@@ -127,6 +128,9 @@ uint ModuleAudio::LoadFx(const char* path)
 	uint ret = 0;
 	Mix_Chunk* chunk = Mix_LoadWAV(path);
 
+	uint space_fx = LoadFx("Game/Assets/Audio/Effects/main character/Jump.wav");
+
+
 	if (chunk == nullptr)
 	{
 		LOG("Cannot load wav %s. Mix_GetError(): %s", path, Mix_GetError());
@@ -136,6 +140,9 @@ uint ModuleAudio::LoadFx(const char* path)
 		fx[last_fx] = chunk;
 		ret = last_fx++;
 	}
+
+	int soundID = Mix_PlayChannel(-1, chunk, 0);
+
 
 	return ret;
 }
@@ -160,11 +167,15 @@ bool ModuleAudio::PlayFx(uint id, int repeat)
 {
 	bool ret = false;
 
-	if (fx[id] != nullptr)
+	if (id == SPACE_SOUND_ID && App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
+	{
+	}
+	else if (fx[id] != nullptr)
 	{
 		Mix_PlayChannel(-1, fx[id], repeat);
 		ret = true;
 	}
+
 
 	return ret;
 }
