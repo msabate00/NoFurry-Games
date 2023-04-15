@@ -5,6 +5,8 @@
 #include "SDL/include/SDL.h"
 #include "SDL_mixer/include/SDL_mixer.h"
 
+#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
+
 ModuleAudio::ModuleAudio()
 {
 	for (uint i = 0; i < MAX_FX; ++i)
@@ -20,7 +22,7 @@ bool ModuleAudio::Init()
 {
 	LOG("Loading Audio Mixer");
 	bool ret = true;
-	SDL_Init(0);
+	//SDL_Init(0);
 
 	if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{

@@ -32,9 +32,9 @@ Application::Application()
 	
 	modules[6] = collisions = new ModuleCollisions();
 
-	modules[7] = audio = new ModuleAudio();
+	modules[8] = audio = new ModuleAudio();
 	
-	modules[8] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[7] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 }
 
 Application::~Application()
