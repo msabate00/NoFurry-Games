@@ -65,7 +65,7 @@ bool ModuleScene::Start()
 
 
 	// Colliders ---
-	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, SCREEN_HEIGHT-9, 3930, 9 }, Collider::Type::WALL);
 
 
 
@@ -75,17 +75,6 @@ bool ModuleScene::Start()
 update_status ModuleScene::Update()
 {
 	flag.Update();
-	
-
-	if (shipUp) {
-		shipY -= shipSpeed;
-		if (shipY <= -28) shipUp = false;
-	}
-	else {
-		shipY += shipSpeed;
-		if (shipY >= -25) shipUp = true;
-	}
-	girl.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
