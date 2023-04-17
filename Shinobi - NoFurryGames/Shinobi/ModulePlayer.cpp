@@ -38,24 +38,6 @@ ModulePlayer::ModulePlayer()
 
 	forwardAnim.speed = 0.1f;
 
-	// TODO 4: Make ryu walk backwards with the correct animations
-	backwardAnim.PushBack({ 10, 112, 39, 60 });
-	backwardAnim.PushBack({ 52, 112, 39, 60 });
-	backwardAnim.PushBack({ 94, 112, 39, 60 });
-	backwardAnim.PushBack({ 136, 112, 39, 60 });
-	backwardAnim.PushBack({ 178, 112, 39, 60 });
-	backwardAnim.PushBack({ 220, 112, 39, 60 });
-
-	//backwardAnim.PushBack({ 80, 114, 33, 58 });
-
-	/*backwardAnim.PushBack({352, 128, 54, 91});
-	backwardAnim.PushBack({ 259, 128, 63, 90 });
-	backwardAnim.PushBack({ 162, 128, 64, 92 });
-	backwardAnim.PushBack({ 78, 131, 60, 88 });
-	backwardAnim.PushBack({ 9, 136, 53, 83 });*/
-	backwardAnim.speed = 0.1f;
-
-
 	crouched_idleAnim.PushBack({ 16, 212, 34, 33 });
 
 }
@@ -81,8 +63,17 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 	//Aplica la gravedad a su altura
-	position.y += GRAVITY;
+	//position.y += GRAVITY;
+	currJumpForce += -0.25f * GRAVITY;
+	float grav = GRAVITY;
+	if (currJumpForce < -0.25f * grav) {
+		isJumping = true;
+	}
 
+	//cout << currJumpForce << endl;
+
+	position.y -= currJumpForce;
+	
 
 
 
@@ -100,7 +91,7 @@ update_status ModulePlayer::Update()
 	//MOVERSE A LA IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
 	{
-		currentAnimation = &backwardAnim;
+		currentAnimation = &forwardAnim;
 		position.x -= speed;
 		facingRight = false;
 	}
@@ -112,15 +103,14 @@ update_status ModulePlayer::Update()
 
 	//MECANICA DEL SALTO
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
-
 		isJumping = true;
 		currJumpForce = jumpForce;
 	}
-	if (isJumping) {
+	/*if (isJumping) {
 		position.y -= currJumpForce;
 		currJumpForce -= 0.25f * GRAVITY;
 
-	}
+	}*/
 
 	collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
 	collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
@@ -142,10 +132,10 @@ update_status ModulePlayer::Update()
 
 	//SI LLEGA AL NIVEL DEL SUELO, PONE SU ALTURA A ESE NIVEL, Y LE PERMITE VOLVER A SALTAR
 
-	if (position.y >= FLOOR_LEVEL) {
+	/*if (position.y >= FLOOR_LEVEL) {
 		position.y = FLOOR_LEVEL;
 		isJumping = false;
-	}
+	}*/
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -171,9 +161,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
 
-		cout << "Caja x: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi x: " << position.y << endl;
+		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
 
-		cout << "holiwi" << endl;
+		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
 			//NO SE PUEDE MOVER PARA LA DERECHA
 			position.x -= speed;
@@ -182,9 +172,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			//NO SE PUEDE MOVER PARA LA IZQUIERDA
 			position.x += speed;
 		}
-		if (c2->GetRect().y+2 >= position.y){
-			position.y -= GRAVITY;
+		if (c2->GetRect().y+1 >= position.y + currJumpForce && currJumpForce<=0){ //COLISION DEBAJO
+			position.y = c2->GetRect().y+1;
+			currJumpForce = 0;
+			isJumping = false;
 		}
+		
 
 
 		//App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);

@@ -20,6 +20,14 @@ void Collider::SetSize(int w, int h) {
 	rect.h = h;
 }
 
+void Collider::SetActive(bool active) {
+	this->active = active;
+}
+bool Collider::GetActive() {
+	return this->active;
+}
+
+
 
 bool Collider::Intersects(const SDL_Rect& r) const
 {
@@ -28,3 +36,4 @@ bool Collider::Intersects(const SDL_Rect& r) const
 		rect.y < r.y + r.h &&
 		rect.h + rect.y > r.y);
 }
+

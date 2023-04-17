@@ -21,13 +21,6 @@ ModuleScene::ModuleScene()
 	background.w = 768;
 	background.h = 176;
 
-	
-
-
-
-	
-
-
 
 }
 
@@ -53,6 +46,9 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({173, 183-32, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({183, 183-32-32, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({193, 183-32-32-32, 32, 32}, Collider::Type::WALL);
 
 	//Enemies ---
 	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
