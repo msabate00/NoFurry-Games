@@ -73,7 +73,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
-	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER);
+	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -155,7 +155,6 @@ update_status ModulePlayer::PostUpdate()
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	if(facingRight) {
 		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_NONE,&rect);
-		
 	}
 	else {
 		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_HORIZONTAL,&rect);
@@ -167,8 +166,27 @@ update_status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && c2->type == Collider::Type::WALL)
+
+	
+	if (c1 == collider && c2->type == Collider::WALL)
 	{
+
+		cout << "Caja x: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi x: " << position.y << endl;
+
+		cout << "holiwi" << endl;
+		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
+			//NO SE PUEDE MOVER PARA LA DERECHA
+			position.x -= speed;
+		}
+		if (c2->GetRect().x + c2->GetRect().w-1 <= position.x && c2->GetRect().y+2 <= position.y) {
+			//NO SE PUEDE MOVER PARA LA IZQUIERDA
+			position.x += speed;
+		}
+		if (c2->GetRect().y+2 >= position.y){
+			position.y -= GRAVITY;
+		}
+
+
 		//App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
 		//App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
 		//App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE, 40);

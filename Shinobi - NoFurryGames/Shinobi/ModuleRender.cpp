@@ -62,44 +62,43 @@ update_status ModuleRender::Update()
 {
 
 	//Automover la camara
-	/*if ((App->player->position.x * 2 - SCREEN_WIDTH) - 100 > camera.x) {
-		camera.x += App->player->speed*2;
-	}
-	if ((App->player->position.x * 2 - SCREEN_WIDTH) + 200 < camera.x) {
-		camera.x -= App->player->speed*2;
-	}*/
 
-	if ((App->player->position.x * SCREEN_SIZE)+ App->player->currentAnimation->GetCurrentFrame().w/2  >= camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
+	if ((App->player->position.x * SCREEN_SIZE) + 
+		App->player->currentAnimation->GetCurrentFrame().w / 2 >= camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
 		camera.x += cameraSpeed;
 	}
-	if ((App->player->position.x * SCREEN_SIZE) + App->player->currentAnimation->GetCurrentFrame().w / 2 <= camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
+	if ((App->player->position.x * SCREEN_SIZE) +
+		App->player->currentAnimation->GetCurrentFrame().w / 2 <= camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
 		camera.x -= cameraSpeed;
 	}
-
 	
-	//Handle positive vertical movement
+	if (App->godMode) {
 	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
 		camera.y -= cameraSpeed;
 
-	//Handle negative vertical movement
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-		camera.y += cameraSpeed;
+	
+		if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
+			camera.y += cameraSpeed;
 
-	// TODO 1: Handle horizontal movement of the camera
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
-		camera.x -= cameraSpeed;
-	if (camera.x < 0) camera.x = 0;			//LIMITES CAMARA
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
-		camera.x += cameraSpeed;
-	if (camera.x > 3324) camera.x = 3324;	//LIMITES CAMARA
+		if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
+			camera.x -= cameraSpeed;
+
+
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
+			camera.x += cameraSpeed;
+	}
+	else {
+
+		if (camera.x > 3324) camera.x = 3324;	//LIMITES CAMARA
+		if (camera.x < 0) camera.x = 0;			//LIMITES CAMARA
+	}
 	
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
 		App->godMode = !App->godMode;
 	}
 	
 	
-
 	
 
 	//cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;

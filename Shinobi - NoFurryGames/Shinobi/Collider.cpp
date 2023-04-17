@@ -11,6 +11,10 @@ void Collider::SetPos(int x, int y)
 	rect.y = y;
 }
 
+SDL_Rect Collider::GetRect() {
+	return rect;
+}
+
 void Collider::SetSize(int w, int h) {
 	rect.w = w;
 	rect.h = h;
