@@ -9,6 +9,7 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
+#include "ModuleEnemies.h"
 #include "ModuleAudio.h"
 #include "SDL/include/SDL_timer.h"
 
@@ -33,8 +34,10 @@ Application::Application()
 	modules[6] = collisions = new ModuleCollisions();
 
 	modules[8] = audio = new ModuleAudio();
+	//modules[9] = enemy = new ModuleEnemies();
 	
 	modules[7] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+
 }
 
 Application::~Application()

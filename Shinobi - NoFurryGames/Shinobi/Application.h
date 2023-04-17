@@ -16,6 +16,7 @@ class ModuleScene;
 class ModuleParticles;
 class ModuleCollisions;
 class ModuleRender;
+class ModuleEnemies;
 
 
 class Application
@@ -60,6 +61,7 @@ public:
 	ModuleParticles* particles = nullptr;
 	ModuleCollisions* collisions = nullptr;
 	ModuleAudio* audio = nullptr;
+	ModuleEnemies* enemy = nullptr;
 
 
 

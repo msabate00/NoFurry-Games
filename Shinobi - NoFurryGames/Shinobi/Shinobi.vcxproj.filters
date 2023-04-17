@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Modules\Gameplay">
       <UniqueIdentifier>{12b0351d-3098-468f-aee6-541864803265}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Enemies">
+      <UniqueIdentifier>{c7d9730c-f6d7-4f37-a79d-43c6c4cac02c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -77,6 +80,15 @@
     </ClCompile>
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Basic.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +142,15 @@
     </ClInclude>
     <ClInclude Include="ModuleAudio.h">
       <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Basic.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

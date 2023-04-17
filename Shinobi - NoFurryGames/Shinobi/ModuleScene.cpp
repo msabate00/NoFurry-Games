@@ -67,6 +67,11 @@ bool ModuleScene::Start()
 	// Colliders ---
 	App->collisions->AddCollider({ 0, SCREEN_HEIGHT-9, 3930, 9 }, Collider::Type::WALL);
 
+	//Enemies ---
+	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 625, 80);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 640, 80);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 665, 80);*/
 
 
 	return ret;
