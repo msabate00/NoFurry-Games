@@ -64,9 +64,9 @@ update_status ModulePlayer::Update()
 {
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
-	currJumpForce += -0.25f * GRAVITY;
+	currJumpForce += -GRAVITY;
 	float grav = GRAVITY;
-	if (currJumpForce < -0.25f * grav) {
+	if (currJumpForce < -grav) {
 		isJumping = true;
 	}
 

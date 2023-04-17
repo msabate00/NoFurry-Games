@@ -45,10 +45,14 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({1405, 183, 96, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({1405, 151, 32, 32}, Collider::Type::WALL);
+	/*App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({173, 183-32, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({183, 183-32-32, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({193, 183-32-32-32, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({193, 183-32-32-32, 32, 32}, Collider::Type::WALL);*/
+
+
 
 	//Enemies ---
 	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
@@ -71,7 +75,7 @@ update_status ModuleScene::Update()
 update_status ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(stageBackgroundTexture, 0, 0, SDL_FLIP_NONE,&background, 0.75f); // Edificios del fondo
+	App->render->Blit(stageBackgroundTexture, 0, 0, SDL_FLIP_NONE,&background, 0.35f); // Edificios del fondo
 	App->render->Blit(stageTexture, 0, -125, SDL_FLIP_NONE,&ground, 1.0f); // Suelo y eso
 
 	return update_status::UPDATE_CONTINUE;

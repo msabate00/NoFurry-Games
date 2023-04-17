@@ -90,7 +90,7 @@ update_status ModuleRender::Update()
 	}
 	else {
 
-		if (camera.x > 3324) camera.x = 3324;	//LIMITES CAMARA
+		if (camera.x > (2046*SCREEN_SIZE)-(SCREEN_WIDTH*SCREEN_SIZE)) camera.x = (2046 * SCREEN_SIZE) - (SCREEN_WIDTH * SCREEN_SIZE);	//LIMITES CAMARA
 		if (camera.x < 0) camera.x = 0;			//LIMITES CAMARA
 	}
 	

@@ -39,7 +39,7 @@ public:
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
-	float jumpForce = 3.5f;
+	float jumpForce = 4.8f;
 	float currJumpForce = 0;
 	float maxFallSpeed = -5;
 	bool isJumping = false;
