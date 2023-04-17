@@ -21,28 +21,11 @@ ModuleScene::ModuleScene()
 	background.w = 768;
 	background.h = 176;
 
-	// flag animation
-	flag.PushBack({848, 208, 40, 40});
-	flag.PushBack({848, 256, 40, 40});
-	flag.PushBack({848, 304, 40, 40});
-	flag.speed = 0.08f;
+	
 
 
-	/*ship.PushBack({0,0, 540, 200});
-	ship.PushBack({0,2, 540, 200});
-	ship.speed = 0.02;*/
 
-	ship.x = 0;
-	ship.y = 0;
-	ship.w = 540;
-	ship.h = 200;
-
-
-	girl.PushBack({624, 15, 33, 57});
-	girl.PushBack({624, 79, 33, 57});
-	girl.PushBack({624, 143, 33, 57});
-	girl.PushBack({624, 79, 33, 57 });
-	girl.speed = 0.1f;
+	
 
 
 
@@ -66,6 +49,10 @@ bool ModuleScene::Start()
 
 	// Colliders ---
 	App->collisions->AddCollider({ 0, SCREEN_HEIGHT-9, 3930, 9 }, Collider::Type::WALL);
+	App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
 
 	//Enemies ---
 	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
@@ -90,21 +77,6 @@ update_status ModuleScene::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(stageBackgroundTexture, 0, 0, SDL_FLIP_NONE,&background, 0.75f); // Edificios del fondo
 	App->render->Blit(stageTexture, 0, -125, SDL_FLIP_NONE,&ground, 1.0f); // Suelo y eso
-
-
-
-
-	//App->render->Blit(stageTexture, 560, 8, &(flag.GetCurrentFrame()), 0.75f); // flag animation
-
-	/*// TODO 2: Draw the ship from the sprite sheet with some parallax effect
-	App->render->Blit(stageTexture, -10, shipY, &ship, 0.85);
-
-	// TODO 3: Animate the girl on the ship (see sprite sheet)
-	App->render->Blit(stageTexture, 190, shipY + 128, &(girl.GetCurrentFrame()), 0.85);**/
-
-
-	
-	//App->render->Blit(stageTexture, 0, 170, &ground);
 
 	return update_status::UPDATE_CONTINUE;
 }
