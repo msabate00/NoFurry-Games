@@ -33,6 +33,7 @@ public:
 	SDL_Texture* stageTexture = nullptr;
 	SDL_Texture* stageBackgroundTexture = nullptr;
 	
+	
 	// The sprite rectangle for the ground
 	SDL_Rect ground;
 

@@ -8,9 +8,13 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
+#include "ModuleScene.h"
+
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
+#include "SDL/include/SDL.h"
+#include "SDL_image/include/SDL_image.h"
 
 using namespace std;
 
@@ -42,6 +46,10 @@ bool ModuleRender::Init()
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
+	SkillIcon = App->textures->Load("Assets/Sprites/Player/Player.png");
+
+	
+
 
 	return ret;
 }
@@ -110,8 +118,19 @@ update_status ModuleRender::Update()
 
 update_status ModuleRender::PostUpdate()
 {
+
+
+
+	SDL_Rect rect = { 168,59,17,14 };
+
+	bool sur = App->render->Blit(SkillIcon, SCREEN_WIDTH-50, SCREEN_HEIGHT -50, SDL_FLIP_NONE, &rect, 0);
+	if (!sur) {
+		cout << "error" << endl;
+	}
+
 	//Update the screen
 	SDL_RenderPresent(renderer);
+
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -191,4 +210,6 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 
 	return ret;
 }
+
+
 
