@@ -46,13 +46,19 @@ bool ModuleParticles::Start()
 	laser.lifetime = 5;
 	laser.anim.speed = 0.3f;
 	*/
-	shurikenR.anim.PushBack({109, 294, 11, 6});
+
+	shurikenR.anim.PushBack({103, 292, 13, 10});
+	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
+	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
+
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
 	shurikenR.lifetime = 0;
 	shurikenR.speed = iPoint(2, 0);
 
-	shurikenL.anim.PushBack({ 109, 294, 11, 6 });
+	shurikenR.anim.PushBack({ 103, 292, 13, 10 });
+	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
+	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
 	shurikenL.anim.loop = true;
 	shurikenL.anim.speed = 0.3f;
 	shurikenL.lifetime = 0;
