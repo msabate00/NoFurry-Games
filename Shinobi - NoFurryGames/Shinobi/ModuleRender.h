@@ -4,7 +4,8 @@
 #include "Module.h"
 #include "SDL/include/SDL_Rect.h"
 #include "SDL/include/SDL_render.h"
-
+#include <vector>
+#include <iostream>
 struct SDL_Texture;
 struct SDL_Renderer;
 
@@ -48,7 +49,14 @@ public:
 
 	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, float speed = 1.0f);
 
-
+	//Print Class
+	void printSkillIcon();
+	void printHostageIcon(int);
+	void printLifeIcon(int);
+	
+	void printNum(int num,SDL_Texture* texture);
+	//void printNum(vector<int> digits, SDL_Texture* texture);
+	
 	
 
 	//void flipSurface(SDL_Surface *flipped);
@@ -58,13 +66,20 @@ public:
 	// Rendering context used for any rendering action
 	SDL_Renderer* renderer = nullptr;
 	SDL_Texture* SkillIcon = nullptr;
+	SDL_Texture* HostageIcon = nullptr;
+	SDL_Texture* LifeIcon = nullptr;
+	SDL_Texture* LetraNum = nullptr;
+
 	// A rectangle that represents the camera section
 	// Sprites will be rendered to the screen depending on the camera position
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	// The speed at which the camera will be moving
 	int cameraSpeed = 3;
+	int hostage_num = 3;
+	int life_num = 2;
 
+	int Texture_num = 100000;
 };
 
 #endif //__MODULE_RENDER_H__
