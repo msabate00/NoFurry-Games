@@ -54,9 +54,13 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
+
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
 	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
+	//auido
+
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
 
