@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
+#include "ModuleAudio.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
@@ -57,6 +58,8 @@ bool ModulePlayer::Start()
 
 	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
 
+	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
+
 	return ret;
 }
 
@@ -105,6 +108,8 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
+		App->audio->PlayFx(saltarFX);
+		
 	}
 	/*if (isJumping) {
 		position.y -= currJumpForce;

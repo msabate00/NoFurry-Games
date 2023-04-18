@@ -65,6 +65,9 @@ public:
 	// The player's collider
 	Collider* collider = nullptr;
 
+	// Sounds Effects 
+	uint saltarFX = 0;
+
 };
 
 #endif //!__MODULE_PLAYER_H__

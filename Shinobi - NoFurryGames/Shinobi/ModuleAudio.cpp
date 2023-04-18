@@ -1,37 +1,35 @@
-#include "Globals.h"
 #include "ModuleAudio.h"
+
 #include "Application.h"
-#include "ModuleInput.h"
+
 #include "SDL/include/SDL.h"
 #include "SDL_mixer/include/SDL_mixer.h"
-#include <stdio.h>
-
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
 ModuleAudio::ModuleAudio()
 {
 	for (uint i = 0; i < MAX_FX; ++i)
-		fx[i] = nullptr;
+		soundFx[i] = nullptr;
 }
 
-// Destructor
 ModuleAudio::~ModuleAudio()
-{}
+{
 
-// Called before render is available
+}
+
 bool ModuleAudio::Init()
 {
 	LOG("Loading Audio Mixer");
 	bool ret = true;
-	//SDL_Init(0);
 
+	//Initialize audio subsystem
 	if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0)
 	{
 		LOG("SDL_INIT_AUDIO could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
-	// load support for the OGG format
+	//Load support for OGG format
 	int flags = MIX_INIT_OGG;
 	int init = Mix_Init(flags);
 
@@ -62,16 +60,18 @@ bool ModuleAudio::CleanUp()
 	}
 
 	for (uint i = 0; i < MAX_FX; ++i)
-		if (fx[i] != nullptr)
-			Mix_FreeChunk(fx[i]);
+	{
+		if (soundFx[i] != nullptr)
+			Mix_FreeChunk(soundFx[i]);
+	}
 
 	Mix_CloseAudio();
 	Mix_Quit();
 	SDL_QuitSubSystem(SDL_INIT_AUDIO);
+
 	return true;
 }
 
-// Play a music file
 bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 {
 	bool ret = true;
@@ -80,6 +80,7 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 	{
 		if (fade_time > 0.0f)
 		{
+			// Warning: This call blocks the execution until fade out is done
 			Mix_FadeOutMusic((int)(fade_time * 1000.0f));
 		}
 		else
@@ -87,7 +88,6 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 			Mix_HaltMusic();
 		}
 
-		// this call blocks until fade out is done
 		Mix_FreeMusic(music);
 	}
 
@@ -122,14 +122,10 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 	return ret;
 }
 
-// Load WAV
 uint ModuleAudio::LoadFx(const char* path)
 {
 	uint ret = 0;
 	Mix_Chunk* chunk = Mix_LoadWAV(path);
-
-	uint space_fx = LoadFx("Game/Assets/Audio/Effects/main character/Jump.wav");
-
 
 	if (chunk == nullptr)
 	{
@@ -137,45 +133,28 @@ uint ModuleAudio::LoadFx(const char* path)
 	}
 	else
 	{
-		fx[last_fx] = chunk;
-		ret = last_fx++;
-	}
-
-	int soundID = Mix_PlayChannel(-1, chunk, 0);
-
-
-	return ret;
-}
-
-// UnLoad WAV
-bool ModuleAudio::UnLoadFx(uint id)
-{
-	bool ret = false;
-
-	if (fx[id] != nullptr)
-	{
-		Mix_FreeChunk(fx[id]);
-		fx[id] = nullptr;
-		ret = true;
+		for (ret = 0; ret < MAX_FX; ++ret)
+		{
+			if (soundFx[ret] == nullptr)
+			{
+				soundFx[ret] = chunk;
+				break;
+			}
+		}
 	}
 
 	return ret;
 }
 
-// Play WAV
-bool ModuleAudio::PlayFx(uint id, int repeat)
+bool ModuleAudio::PlayFx(uint index, int repeat)
 {
 	bool ret = false;
 
-	if (id == SPACE_SOUND_ID && App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
+	if (soundFx[index] != nullptr)
 	{
-	}
-	else if (fx[id] != nullptr)
-	{
-		Mix_PlayChannel(-1, fx[id], repeat);
+		Mix_PlayChannel(-1, soundFx[index], repeat);
 		ret = true;
 	}
-
 
 	return ret;
 }
