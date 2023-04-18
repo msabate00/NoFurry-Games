@@ -41,17 +41,39 @@ bool ModuleScene::Start()
 
 
 	// Colliders ---
-	App->collisions->AddCollider({ 0, SCREEN_HEIGHT-9, 3930, 9 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, SCREEN_HEIGHT-9, 2046, 9 }, Collider::Type::WALL);
+
+	//Cajas
 	App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({1405, 183, 96, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({1405, 151, 32, 32}, Collider::Type::WALL);
+
+	//Para testear saltos
 	/*App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({173, 183-32, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({183, 183-32-32, 32, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({193, 183-32-32-32, 32, 32}, Collider::Type::WALL);*/
 
+	//SueloArriba
+	secondFloor = App->collisions->AddCollider({ 0, 103, 2046, 9 }, Collider::Type::WALL);
+	//Paredes Arriba
+	App->collisions->AddCollider({ 80, 0, 16, 103 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1086, 0, 16, 103 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1278, 0, 16, 103 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1949, 0, 16, 103 }, Collider::Type::WALL);
+
+	//Cajas arriba
+	App->collisions->AddCollider({ 544, 196-125, 32, 32 }, Collider::Type::WALL);
+
+
+	//Limites jugador
+	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
+
+	secondFloor->active = false;
+	
 
 
 	//Enemies ---
@@ -66,8 +88,6 @@ bool ModuleScene::Start()
 
 update_status ModuleScene::Update()
 {
-	flag.Update();
-
 	return update_status::UPDATE_CONTINUE;
 }
 

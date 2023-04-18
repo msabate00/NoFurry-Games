@@ -27,26 +27,6 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png");
 
-	// Explosion particle
-	/*explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
-	*/
-	// TODO 2:	Create the template for a new particle "laser"
-	//			Remember: not all the code goes here!
-	//			Follow the example with the "explosion" particle
-	/*laser.anim.PushBack({104, 171, 80, 14});
-	laser.anim.PushBack({ 185, 170, 80, 16 });
-	laser.speed = iPoint(5, 0);
-	laser.lifetime = 5;
-	laser.anim.speed = 0.3f;
-	*/
-
 	shurikenR.anim.PushBack({103, 292, 13, 10});
 	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
 	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
@@ -56,9 +36,9 @@ bool ModuleParticles::Start()
 	shurikenR.lifetime = 0;
 	shurikenR.speed = iPoint(2, 0);
 
-	shurikenR.anim.PushBack({ 103, 292, 13, 10 });
-	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
-	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
+	shurikenL.anim.PushBack({ 103, 292, 13, 10 });
+	shurikenL.anim.PushBack({ 120, 292, 13, 10 });
+	shurikenL.anim.PushBack({ 137, 292, 13, 10 });
 	shurikenL.anim.loop = true;
 	shurikenL.anim.speed = 0.3f;
 	shurikenL.lifetime = 0;

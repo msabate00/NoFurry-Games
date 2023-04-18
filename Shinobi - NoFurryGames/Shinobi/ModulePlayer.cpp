@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleScene.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -17,59 +18,51 @@ using namespace std;
 
 // Street Fighter reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
+int frameContador = 0;
+
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
 	position.y = FLOOR_LEVEL;
 
-	// idle animation (arcade sprite sheet)
+	// idle animation
 	idleAnim.PushBack({ 220, 112, 39, 60 });
-
 	idleAnim.speed = 0.2f;
 
-	// walk forward animation (arcade sprite sheet)
+	// walk forward animation
 	forwardAnim.PushBack({ 10, 112, 39, 60 });
 	forwardAnim.PushBack({ 52, 112, 39, 60 });
 	forwardAnim.PushBack({ 94, 112, 39, 60 });
 	forwardAnim.PushBack({ 136, 112, 39, 60 });
 	forwardAnim.PushBack({ 178, 112, 39, 60 });
 	forwardAnim.PushBack({ 220, 112, 39, 60 });
-
-
-
 	forwardAnim.speed = 0.1f;
 
+	// crouched idle anim
 	crouched_idleAnim.PushBack({ 11, 210, 39, 36 });
-
 	crouched_idleAnim.speed = 0.2f;
 
-
+	//crouched forward anim
 	crouched_forwardAnim.PushBack({ 160, 210, 46, 36 });
 	crouched_forwardAnim.PushBack({ 210, 210, 46, 36 });
 	crouched_forwardAnim.PushBack({ 260, 210, 46, 36 });
-
 	crouched_forwardAnim.speed = 0.1f;
 
-
-
+	//crouched attack anim
 	crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
 	crouched_AttackAnim.PushBack({ 717, 210, 52, 36 });
-
-
 	crouched_AttackAnim.speed = 0.1f;
 
+	//jump anim
 	jumpAnim.PushBack({ 10, 357, 33, 58 });
 	jumpAnim.PushBack({ 47, 357, 33, 58 });
 	jumpAnim.PushBack({ 84, 357, 33, 58 });
+	jumpAnim.speed = 0.035f;
 
-
-	jumpAnim.speed = 1.f;
-
+	//attack shuriken Anim
 	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-
-
 	attack_shurikenAnim.speed = 1.f;
 }
 
@@ -117,6 +110,40 @@ update_status ModulePlayer::Update()
 	//Reset the currentAnimation back to idle before updating the logic
 	currentAnimation = &idleAnim;
 
+
+
+
+
+	//CAMBIANDO DE ALTURA
+	if (isChangingFloor) {
+		frameContador++;
+		currentAnimation = &jumpAnim;
+	}
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT && !isJumping && !isChangingFloor) {
+		//App->scene->secondFloor->active = !App->scene->secondFloor->active;
+		currJumpForce = jumpForce * 1.6;
+		
+		isChangingFloor = true;
+		frameContador = 0;
+	}
+	if (isChangingFloor) {
+
+
+		if (frameContador >= 30) {
+			App->scene->secondFloor->active = !App->scene->secondFloor->active;
+		}
+		if (frameContador >= 70) {
+			isChangingFloor = false;
+		}
+
+		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+		currentAnimation->Update();
+		return update_status::UPDATE_CONTINUE;
+	}
+
+
+
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
@@ -136,33 +163,24 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
 		currentAnimation = &crouched_idleAnim;
 
-		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT) {
+		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
 			currentAnimation = &crouched_forwardAnim;
-			
 		}
-
-		if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
-			currentAnimation = &crouched_forwardAnim;
-			
-		}
-
 	}
 
-
 	//MECANICA DEL SALTO
+	if (isJumping) {
+		currentAnimation = &jumpAnim;
+	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
 		App->audio->PlayFx(saltarFX);
 		currentAnimation = &jumpAnim;
-
-		
 	}
-	/*if (isJumping) {
-		position.y -= currJumpForce;
-		currJumpForce -= 0.25f * GRAVITY;
 
-	}*/
+	
+
 
 	collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
 	collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
@@ -184,13 +202,6 @@ update_status ModulePlayer::Update()
 
 	currentAnimation->Update();
 
-	//SI LLEGA AL NIVEL DEL SUELO, PONE SU ALTURA A ESE NIVEL, Y LE PERMITE VOLVER A SALTAR
-
-	/*if (position.y >= FLOOR_LEVEL) {
-		position.y = FLOOR_LEVEL;
-		isJumping = false;
-	}*/
-
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -211,11 +222,11 @@ update_status ModulePlayer::PostUpdate()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 
-	
+	if (!c2->active) { return; }
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
 
-		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
+		cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
 
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
@@ -230,6 +241,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			position.y = c2->GetRect().y+1;
 			currJumpForce = 0;
 			isJumping = false;
+			jumpAnim.Reset();
+			
 		}
 		
 

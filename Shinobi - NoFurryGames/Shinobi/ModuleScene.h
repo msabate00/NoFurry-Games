@@ -40,17 +40,9 @@ public:
 	// The sprite section for the background
 	SDL_Rect background;
 
-	// Ship
-	SDL_Rect ship;
-	float shipY = -25;
-	bool shipUp = false;
-	float shipSpeed = 0.1f;
-	//Animation ship;
+	Collider* secondFloor;
 
-	// The different sprite sections for the flag
-	Animation flag;
-
-	Animation girl;
+	
 
 
 	

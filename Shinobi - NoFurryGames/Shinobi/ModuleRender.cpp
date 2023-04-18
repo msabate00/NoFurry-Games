@@ -73,11 +73,11 @@ update_status ModuleRender::Update()
 
 	if ((App->player->position.x * SCREEN_SIZE) + 
 		App->player->currentAnimation->GetCurrentFrame().w / 2 >= camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
-		camera.x += cameraSpeed;
+		camera.x += App->player->speed * SCREEN_SIZE;
 	}
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 <= camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
-		camera.x -= cameraSpeed;
+		camera.x -= App->player->speed * SCREEN_SIZE;
 	}
 	
 	if (App->godMode) {
