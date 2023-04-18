@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
+#include "ModuleAudio.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
@@ -38,8 +39,38 @@ ModulePlayer::ModulePlayer()
 
 	forwardAnim.speed = 0.1f;
 
-	crouched_idleAnim.PushBack({ 16, 212, 34, 33 });
+	crouched_idleAnim.PushBack({ 11, 210, 39, 36 });
 
+	crouched_idleAnim.speed = 0.2f;
+
+
+	crouched_forwardAnim.PushBack({ 160, 210, 46, 36 });
+	crouched_forwardAnim.PushBack({ 210, 210, 46, 36 });
+	crouched_forwardAnim.PushBack({ 260, 210, 46, 36 });
+
+	crouched_forwardAnim.speed = 0.1f;
+
+
+
+	crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
+	crouched_AttackAnim.PushBack({ 717, 210, 52, 36 });
+
+
+	crouched_AttackAnim.speed = 0.1f;
+
+	jumpAnim.PushBack({ 10, 357, 33, 58 });
+	jumpAnim.PushBack({ 47, 357, 33, 58 });
+	jumpAnim.PushBack({ 84, 357, 33, 58 });
+
+
+	jumpAnim.speed = 1.f;
+
+	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+
+
+	attack_shurikenAnim.speed = 1.f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -53,9 +84,15 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
+
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
 	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
+	//auido
+
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
+
+	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
 
 	return ret;
 }
@@ -98,6 +135,17 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
 		currentAnimation = &crouched_idleAnim;
+
+		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT) {
+			currentAnimation = &crouched_forwardAnim;
+			
+		}
+
+		if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
+			currentAnimation = &crouched_forwardAnim;
+			
+		}
+
 	}
 
 
@@ -105,6 +153,10 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
+		App->audio->PlayFx(saltarFX);
+		currentAnimation = &jumpAnim;
+
+		
 	}
 	/*if (isJumping) {
 		position.y -= currJumpForce;
@@ -121,9 +173,11 @@ update_status ModulePlayer::Update()
 
 		if (facingRight) {
 			App->particles->AddParticle(App->particles->shurikenR, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, Collider::Type::PLAYER_SHOT,0);
+
 		}
 		else {
 			App->particles->AddParticle(App->particles->shurikenL, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, Collider::Type::PLAYER_SHOT,0);
+
 		}
 	}
 

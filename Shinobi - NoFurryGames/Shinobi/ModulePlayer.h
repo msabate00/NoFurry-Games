@@ -61,9 +61,14 @@ public:
 	Animation crouched_idleAnim;
 	Animation crouched_forwardAnim;
 	Animation crouched_AttackAnim;
+	Animation jumpAnim;
+	Animation attack_shurikenAnim;
 
 	// The player's collider
 	Collider* collider = nullptr;
+
+	// Sounds Effects 
+	uint saltarFX = 0;
 
 };
 
