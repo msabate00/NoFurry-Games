@@ -79,7 +79,7 @@ public:
 	int hostage_num = 3;
 	int life_num = 2;
 
-	int Texture_num = 100000;
+	int texture_num = 0;
 };
 
 #endif //__MODULE_RENDER_H__

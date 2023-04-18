@@ -128,7 +128,8 @@ update_status ModuleRender::PostUpdate()
 	printHostageIcon(hostage_num);
 	printLifeIcon(life_num);
 
-	printNum(Texture_num,LetraNum);
+	texture_num++;
+	printNum(texture_num,LetraNum);
 
 	//Update the screen
 	SDL_RenderPresent(renderer);
