@@ -276,3 +276,25 @@ void ModuleRender::printNum(int number, SDL_Texture* LetraNum) {
 
 }
 
+
+/*std::vector<int> ModuleRender::getDigits(int number) {
+	std::vector<int> digits;
+
+	// 处理特殊情况
+	if (number == 0) {
+		digits.push_back(0);
+		return digits;
+	}
+
+	// 分解数字
+	while (number != 0) {
+		int digit = number % 10;
+		digits.push_back(digit);
+		number /= 10;
+	}
+
+	// 反转数字，使得各位数字的顺序正确
+	std::reverse(digits.begin(), digits.end());
+
+	return digits;
+}*/
