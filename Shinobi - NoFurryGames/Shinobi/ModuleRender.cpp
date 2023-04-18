@@ -2,8 +2,9 @@
 #include <string> 
 #include <iostream>
 #include <vector>
-
 #include "Application.h"
+#include <chrono>
+#include <thread>
 
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
@@ -16,6 +17,8 @@
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL.h"
 #include "SDL_image/include/SDL_image.h"
+
+
 
 using namespace std;
 
@@ -49,9 +52,14 @@ bool ModuleRender::Init()
 	}
 
 	//SkillIcon = App->textures->Load("Assets/Sprites/Player/Player.png");
-	SkillIcon = App->textures->Load("Assets/Interface/Rojo.png");
-	HostageIcon = App->textures->Load("Assets/Interface/rescate.png");
-	LifeIcon = App->textures->Load("Assets/Interface/vida.png");
+	SkillIcon = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Rojo.png");
+	HostageIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/rescate.png");
+	LifeIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/vida.png");
+	SA = App->textures->Load("Assets/Interface/Color_use/Yellow/SA.png");
+	VE = App->textures->Load("Assets/Interface/Color_use/Yellow/VE.png");
+	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
+
+	start_time = time(nullptr);
 
 
 	return ret;
@@ -110,10 +118,9 @@ update_status ModuleRender::Update()
 	}
 	
 	
-	
+	int elapsed_time = updateTimer(start_time);
 
 	//cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
-
 
 
 	return update_status::UPDATE_CONTINUE;
@@ -127,9 +134,14 @@ update_status ModuleRender::PostUpdate()
 	printSkillIcon();
 	printHostageIcon(hostage_num);
 	printLifeIcon(life_num);
+	
 
-	texture_num++;
-	printNum(texture_num,LetraNum);
+
+	printNum(getDigits(texture_num),LetraNum);
+
+	printTime(getTimeString(elapsed_time).c_str(),Time);
+
+
 
 	//Update the screen
 	SDL_RenderPresent(renderer);
@@ -236,6 +248,8 @@ void ModuleRender::printHostageIcon(int hostage) {
 		IconPosition -= 8;
 	}
 
+	App->render->Blit(SA, SCREEN_WIDTH - 376, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+	App->render->Blit(VE, SCREEN_WIDTH - 360, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
 }
 void ModuleRender::printLifeIcon(int life) {
 	
@@ -250,26 +264,13 @@ void ModuleRender::printLifeIcon(int life) {
 }
 
 
-void ModuleRender::printNum(int number, SDL_Texture* LetraNum) {
-
-	std::vector<int> digits;
-
-	if (number == 0) {
-		digits.push_back(0);
-	}
-
-	while (number != 0) {
-		int digit = number % 10;
-		digits.push_back(digit);
-		number /= 10;
-	}
-	std::reverse(digits.begin(), digits.end());
+void ModuleRender::printNum(std::vector<int> number, SDL_Texture* LetraNum) {
 
 	int IconPosition = 250;
-	for (int i = 0; i < digits.size(); i++)
+	for (int i = 0; i < number.size(); i++)
 	{
-		std::string filename = "Assets/Interface/Red/Rojo_Numeros/Rojo_" + std::to_string(digits[i]) + ".png";
-		SDL_Texture* LetraNum = App->textures->Load(filename.c_str());
+		std::string filename = "Assets/Interface/Color_use/Red/Rojo_Numeros/Rojo_" + std::to_string(number[i]) + ".png";
+		LetraNum = App->textures->Load(filename.c_str());
 
 		App->render->Blit(LetraNum, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
 		IconPosition -= 16;
@@ -277,3 +278,72 @@ void ModuleRender::printNum(int number, SDL_Texture* LetraNum) {
 
 }
 
+void ModuleRender::printTime(std::string time_string, SDL_Texture* Time) {
+
+	int IconPosition = 70;
+	int elapsed_time = updateTimer(start_time);
+	time_string = getTimeString(elapsed_time);
+	std::vector<int> time_vector;
+	for (char c : time_string) {
+		if (isdigit(c)) {
+			time_vector.push_back(c - '0');
+		}
+	}
+	//App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
+
+	for (int i = 0; i < time_vector.size(); i++)
+	{
+		std::string filename = "Assets/Interface/Color_use/Yellow/Yellow_Numeros/Yellow_" + std::to_string(time_vector[i]) + ".png";
+		SDL_Texture* Time = App->textures->Load(filename.c_str());
+		App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+		IconPosition -= 16;
+		if (IconPosition == 54) {
+			App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+			IconPosition -= 16;
+		}
+		//cout << IconPosition << endl;
+	}
+	//App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
+
+}
+
+int ModuleRender::updateTimer(time_t start_time) {
+	time_t current_time = time(nullptr);
+	int elapsed_seconds = difftime(current_time, start_time);
+	return elapsed_seconds;
+}
+
+std::string ModuleRender::getTimeString(int elapsed_time) {
+	int minutes = elapsed_time / 60;
+	int seconds = elapsed_time % 60;
+	std::string time_string = std::to_string(minutes) + ":";
+
+	if (seconds < 10) {
+		time_string += "0";
+	}
+	time_string += std::to_string(seconds);
+
+	return time_string;
+}
+
+
+
+std::vector<int> ModuleRender::getDigits(int number) {
+	std::vector<int> digits;
+
+	if (number == 0) {
+		digits.push_back(0);
+		return digits;
+	}
+
+	while (number != 0) {
+		int digit = number % 10;
+		digits.push_back(digit);
+		number /= 10;
+	}
+
+	std::reverse(digits.begin(), digits.end());
+
+	return digits;
+
+}

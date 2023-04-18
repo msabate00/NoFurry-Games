@@ -233,7 +233,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
 
-		cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
+		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
 
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {

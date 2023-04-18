@@ -53,11 +53,15 @@ public:
 	void printSkillIcon();
 	void printHostageIcon(int);
 	void printLifeIcon(int);
-	
-	void printNum(int num,SDL_Texture* texture);
-	//void printNum(vector<int> digits, SDL_Texture* texture);
-	
-	
+	void printNum(std::vector<int> num,SDL_Texture* texture);
+	void printTime(std::string time, SDL_Texture* texture);
+
+
+	std::vector<int> getDigits(int number);
+
+	int updateTimer(time_t start_time);
+	std::string getTimeString(int elapsed_seconds);
+
 
 	//void flipSurface(SDL_Surface *flipped);
 
@@ -69,17 +73,25 @@ public:
 	SDL_Texture* HostageIcon = nullptr;
 	SDL_Texture* LifeIcon = nullptr;
 	SDL_Texture* LetraNum = nullptr;
-
+	SDL_Texture* SA = nullptr;
+	SDL_Texture* VE = nullptr;
+	SDL_Texture* Time = nullptr;
+	SDL_Texture* dosPunt = nullptr;
 	// A rectangle that represents the camera section
 	// Sprites will be rendered to the screen depending on the camera position
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	// The speed at which the camera will be moving
+
+
 	int cameraSpeed = 3;
 	int hostage_num = 3;
 	int life_num = 2;
+	int texture_num = 123456789;
 
-	int texture_num = 0;
+	int elapsed_time;
+	time_t start_time;
+	std::string time_string;
 };
 
 #endif //__MODULE_RENDER_H__
