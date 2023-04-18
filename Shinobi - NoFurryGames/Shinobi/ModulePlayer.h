@@ -64,6 +64,7 @@ public:
 	Animation crouched_AttackAnim;
 	Animation jumpAnim;
 	Animation attack_shurikenAnim;
+	Animation watching_UpAnimation;
 
 	// The player's collider
 	Collider* collider = nullptr;

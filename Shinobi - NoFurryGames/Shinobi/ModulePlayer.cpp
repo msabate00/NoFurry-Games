@@ -64,6 +64,9 @@ ModulePlayer::ModulePlayer()
 	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	attack_shurikenAnim.speed = 1.f;
+
+	watching_UpAnimation.PushBack({120, 735, 47, 51});
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -166,6 +169,10 @@ update_status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
 			currentAnimation = &crouched_forwardAnim;
 		}
+	}
+
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT) {
+		currentAnimation = &watching_UpAnimation;
 	}
 
 	//MECANICA DEL SALTO
