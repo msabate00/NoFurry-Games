@@ -301,6 +301,10 @@ void ModuleRender::printTime(std::string time_string, SDL_Texture* Time) {
 			App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
 			IconPosition -= 16;
 		}
+			
+		string time_string = getTimeString(elapsed_time);
+		cout << "Remaining time: " << time_string << endl;
+
 		//cout << IconPosition << endl;
 	}
 	//App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
@@ -312,10 +316,29 @@ int ModuleRender::updateTimer(time_t start_time) {
 	int elapsed_seconds = difftime(current_time, start_time);
 	return elapsed_seconds;
 }
-
+//Suma tiempo
+/*
 std::string ModuleRender::getTimeString(int elapsed_time) {
 	int minutes = elapsed_time / 60;
 	int seconds = elapsed_time % 60;
+	std::string time_string = std::to_string(minutes) + ":";
+
+	if (seconds < 10) {
+		time_string += "0";
+	}
+	time_string += std::to_string(seconds);
+
+	return time_string;
+}*/
+
+//Resta tiempo , int total_time
+std::string ModuleRender::getTimeString(int elapsed_time) {
+	int remaining_seconds = total_time - elapsed_time;
+	if (remaining_seconds < 0) {
+		remaining_seconds = 0;
+	}
+	int minutes = remaining_seconds / 60;
+	int seconds = remaining_seconds % 60;
 	std::string time_string = std::to_string(minutes) + ":";
 
 	if (seconds < 10) {
