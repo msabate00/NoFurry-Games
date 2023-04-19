@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
+#include "ModuleAudio.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -74,7 +75,8 @@ bool ModuleScene::Start()
 
 	secondFloor->active = false;
 	
-
+	//Musica
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	//Enemies ---
 	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
