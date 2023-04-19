@@ -46,6 +46,17 @@ public:
 	bool isChangingFloor = false;
 
 	bool facingRight = true;
+
+	enum STATE {
+		NONE = -1,
+		IDLE,
+		MOVING,
+		ATTACKING,
+		JUMPING,
+		LONG_JUMP,
+
+		DYING
+	};
 	
 
 	// The player spritesheet loaded into an SDL_Texture
