@@ -9,7 +9,7 @@ Enemy_Basic::Enemy_Basic(int x, int y) : Enemy(x, y)
 	walkBasic.speed = 0.2f;
 
 	currentAnim = &walkBasic;
-
+	
 	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemy);
 }
 

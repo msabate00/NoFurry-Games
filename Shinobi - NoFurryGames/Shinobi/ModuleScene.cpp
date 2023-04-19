@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
+#include "ModuleEnemies.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -79,10 +80,7 @@ bool ModuleScene::Start()
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	//Enemies ---
-	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 625, 80);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 640, 80);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 665, 80);*/
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 666, 287);
 
 
 	return ret;

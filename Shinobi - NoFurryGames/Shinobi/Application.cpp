@@ -34,9 +34,9 @@ Application::Application()
 	modules[6] = collisions = new ModuleCollisions();
 
 	modules[7] = audio = new ModuleAudio();
-	//modules[9] = enemy = new ModuleEnemies();
+	modules[8] = enemy = new ModuleEnemies();
 	
-	modules[8] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[9] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 
