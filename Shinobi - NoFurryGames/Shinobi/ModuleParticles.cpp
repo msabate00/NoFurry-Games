@@ -34,7 +34,7 @@ bool ModuleParticles::Start()
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
 	shurikenR.lifetime = 0;
-	shurikenR.speed = iPoint(2, 0);
+	shurikenR.speed = iPoint(4, 0);
 
 	shurikenL.anim.PushBack({ 103, 292, 13, 10 });
 	shurikenL.anim.PushBack({ 120, 292, 13, 10 });
@@ -42,7 +42,7 @@ bool ModuleParticles::Start()
 	shurikenL.anim.loop = true;
 	shurikenL.anim.speed = 0.3f;
 	shurikenL.lifetime = 0;
-	shurikenL.speed = iPoint(-2, 0);
+	shurikenL.speed = iPoint(-4, 0);
 
 
 

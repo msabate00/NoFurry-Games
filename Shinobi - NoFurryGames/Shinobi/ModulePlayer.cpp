@@ -30,31 +30,31 @@ ModulePlayer::ModulePlayer()
 	///////////////////////
 	
 	// idle animation
-	idleAnim.PushBack({ 220, 112, 46, 60 });
+	idleAnim.PushBack({ 281, 112, 46, 60 });
 	idleAnim.speed = 0.2f;
 
 	// walk forward animation
-	forwardAnim.PushBack({ 10, 112, 46, 60 });
-	forwardAnim.PushBack({ 52, 112, 46, 60 });
-	forwardAnim.PushBack({ 94, 112, 46, 60 });
-	forwardAnim.PushBack({ 136, 112, 46, 60 });
-	forwardAnim.PushBack({ 178, 112, 46, 60 });
-	forwardAnim.PushBack({ 220, 112, 46, 60 });
+	forwardAnim.PushBack({ 11, 112, 46, 60 });
+	forwardAnim.PushBack({ 65, 112, 46, 60 });
+	forwardAnim.PushBack({ 119, 112, 46, 60 });
+	forwardAnim.PushBack({ 173, 112, 46, 60 });
+	forwardAnim.PushBack({ 227, 112, 46, 60 });
+	forwardAnim.PushBack({ 281, 112, 46, 60 });
 	forwardAnim.speed = 0.1f;
 
 	// crouched idle anim
-	crouched_idleAnim.PushBack({ 11, 210, 39, 36 });
+	crouched_idleAnim.PushBack({ 270, 211, 51, 36 });
 	crouched_idleAnim.speed = 0.2f;
 
 	//crouched forward anim
-	crouched_forwardAnim.PushBack({ 160, 210, 46, 36 });
-	crouched_forwardAnim.PushBack({ 210, 210, 46, 36 });
-	crouched_forwardAnim.PushBack({ 260, 210, 46, 36 });
+	crouched_forwardAnim.PushBack({ 158, 211, 51, 36 });
+	crouched_forwardAnim.PushBack({ 214, 211, 51, 36 });
+	crouched_forwardAnim.PushBack({ 270, 211, 51, 36 });
 	crouched_forwardAnim.speed = 0.1f;
 
 	//crouched attack anim
 	//crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
-	crouched_AttackAnim.PushBack({ 717, 210, 52, 36 });
+	crouched_AttackAnim.PushBack({ 744, 211, 51, 36 });
 	crouched_AttackAnim.speed = 0.2f;
 	crouched_AttackAnim.loop = false;
 
@@ -65,10 +65,10 @@ ModulePlayer::ModulePlayer()
 	jumpAnim.speed = 0.035f;
 
 	//attack shuriken Anim
-	attack_shurikenAnim.PushBack({ 11, 267, 46, 58 });
+	attack_shurikenAnim.PushBack({ 14, 267, 46, 60 });
 	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.speed = 0.15f;
+	attack_shurikenAnim.speed = 0.1f;
 	attack_shurikenAnim.loop = false;
 
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
