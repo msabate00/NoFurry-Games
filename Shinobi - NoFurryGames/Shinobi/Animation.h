@@ -26,6 +26,7 @@ public:
 	void Reset()
 	{
 		currentFrame = 0;
+		loopCount = 0;
 	}
 
 	bool HasFinished()

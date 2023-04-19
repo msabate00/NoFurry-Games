@@ -49,9 +49,10 @@ ModulePlayer::ModulePlayer()
 	crouched_forwardAnim.speed = 0.1f;
 
 	//crouched attack anim
-	crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
+	//crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
 	crouched_AttackAnim.PushBack({ 717, 210, 52, 36 });
-	crouched_AttackAnim.speed = 0.1f;
+	crouched_AttackAnim.speed = 0.2f;
+	crouched_AttackAnim.loop = false;
 
 	//jump anim
 	jumpAnim.PushBack({ 10, 357, 33, 58 });
@@ -60,10 +61,11 @@ ModulePlayer::ModulePlayer()
 	jumpAnim.speed = 0.035f;
 
 	//attack shuriken Anim
-	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.speed = 1.f;
+	attack_shurikenAnim.PushBack({ 10, 285, 46, 58 });
+	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+	attack_shurikenAnim.speed = 0.15f;
+	attack_shurikenAnim.loop = false;
 
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
 
@@ -85,8 +87,6 @@ bool ModulePlayer::Start()
 
 	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
 	//auido
-
-	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
 
@@ -146,6 +146,36 @@ update_status ModulePlayer::Update()
 	}
 
 
+	cout << attack_shurikenAnim.HasFinished() << endl;
+
+	if (isAttacking) {
+		currentAnimation = &attack_shurikenAnim;
+		if (currentAnimation->HasFinished()) {
+			isAttacking = false;
+			currentAnimation->Reset();
+		}
+		else {
+			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			currentAnimation->Update();
+			return update_status::UPDATE_CONTINUE;
+		}
+	}
+
+	if (isCrouchedAttacking) {
+		currentAnimation = &crouched_AttackAnim;
+		if (currentAnimation->HasFinished()) {
+			isCrouchedAttacking = false;
+			currentAnimation->Reset();
+		}
+		else {
+			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			currentAnimation->Update();
+			return update_status::UPDATE_CONTINUE;
+		}
+	}
+
 
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
@@ -195,14 +225,20 @@ update_status ModulePlayer::Update()
 
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+			isCrouchedAttacking = true;
+		}
+		else
+		{
+			isAttacking = true;
+		}
+		
 
 		if (facingRight) {
-			App->particles->AddParticle(App->particles->shurikenR, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, Collider::Type::PLAYER_SHOT,0);
-
+			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
 		}
 		else {
-			App->particles->AddParticle(App->particles->shurikenL, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, Collider::Type::PLAYER_SHOT,0);
-
+			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
 		}
 	}
 
