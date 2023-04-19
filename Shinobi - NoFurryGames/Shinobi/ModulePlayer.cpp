@@ -25,17 +25,21 @@ ModulePlayer::ModulePlayer()
 	position.x = 100;
 	position.y = FLOOR_LEVEL;
 
+	///////////////////////
+	//    ANIMACIONES    //
+	///////////////////////
+	
 	// idle animation
-	idleAnim.PushBack({ 220, 112, 39, 60 });
+	idleAnim.PushBack({ 220, 112, 46, 60 });
 	idleAnim.speed = 0.2f;
 
 	// walk forward animation
-	forwardAnim.PushBack({ 10, 112, 39, 60 });
-	forwardAnim.PushBack({ 52, 112, 39, 60 });
-	forwardAnim.PushBack({ 94, 112, 39, 60 });
-	forwardAnim.PushBack({ 136, 112, 39, 60 });
-	forwardAnim.PushBack({ 178, 112, 39, 60 });
-	forwardAnim.PushBack({ 220, 112, 39, 60 });
+	forwardAnim.PushBack({ 10, 112, 46, 60 });
+	forwardAnim.PushBack({ 52, 112, 46, 60 });
+	forwardAnim.PushBack({ 94, 112, 46, 60 });
+	forwardAnim.PushBack({ 136, 112, 46, 60 });
+	forwardAnim.PushBack({ 178, 112, 46, 60 });
+	forwardAnim.PushBack({ 220, 112, 46, 60 });
 	forwardAnim.speed = 0.1f;
 
 	// crouched idle anim
@@ -61,13 +65,17 @@ ModulePlayer::ModulePlayer()
 	jumpAnim.speed = 0.035f;
 
 	//attack shuriken Anim
-	attack_shurikenAnim.PushBack({ 10, 285, 46, 58 });
+	attack_shurikenAnim.PushBack({ 11, 267, 46, 58 });
 	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
 	attack_shurikenAnim.speed = 0.15f;
 	attack_shurikenAnim.loop = false;
 
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
+
+
+
+	
 
 }
 
@@ -86,9 +94,12 @@ bool ModulePlayer::Start()
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
 	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
-	//auido
-
+	
+	///////////////////////
+	//      SONIDOS      //
+	///////////////////////
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
+	
 
 	return ret;
 }
