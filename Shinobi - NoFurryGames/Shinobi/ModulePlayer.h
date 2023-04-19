@@ -44,6 +44,7 @@ public:
 	float maxFallSpeed = -5;
 	bool isJumping = false;
 	bool isChangingFloor = false;
+	bool isAttacking = false;
 
 	bool facingRight = true;
 

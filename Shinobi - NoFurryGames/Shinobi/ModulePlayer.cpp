@@ -60,10 +60,11 @@ ModulePlayer::ModulePlayer()
 	jumpAnim.speed = 0.035f;
 
 	//attack shuriken Anim
-	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
-	attack_shurikenAnim.speed = 1.f;
+	attack_shurikenAnim.PushBack({ 10, 285, 46, 58 });
+	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
+	attack_shurikenAnim.speed = 0.15f;
+	attack_shurikenAnim.loop = false;
 
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
 
@@ -146,6 +147,22 @@ update_status ModulePlayer::Update()
 	}
 
 
+	cout << attack_shurikenAnim.HasFinished() << endl;
+
+	if (isAttacking) {
+		currentAnimation = &attack_shurikenAnim;
+		if (currentAnimation->HasFinished()) {
+			isAttacking = false;
+			currentAnimation->Reset();
+		}
+		else {
+			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			currentAnimation->Update();
+			return update_status::UPDATE_CONTINUE;
+		}
+	}
+
 
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
@@ -195,13 +212,14 @@ update_status ModulePlayer::Update()
 
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+		isAttacking = true;
 
 		if (facingRight) {
-			App->particles->AddParticle(App->particles->shurikenR, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, Collider::Type::PLAYER_SHOT,0);
+			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
 
 		}
 		else {
-			App->particles->AddParticle(App->particles->shurikenL, position.x + currentAnimation->GetCurrentFrame().w / 2, position.y - currentAnimation->GetCurrentFrame().h / 2, Collider::Type::PLAYER_SHOT,0);
+			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
 
 		}
 	}
