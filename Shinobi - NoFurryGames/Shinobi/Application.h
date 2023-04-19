@@ -4,7 +4,7 @@
 #include "Globals.h"
 #include "SDL/include/SDL_timer.h"
 
-#define NUM_MODULES 9
+#define NUM_MODULES 10
 
 class Module;
 class ModuleWindow;

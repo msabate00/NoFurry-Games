@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
+#include "ModuleEnemies.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -77,10 +78,7 @@ bool ModuleScene::Start()
 
 
 	//Enemies ---
-	/*App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 600, 80);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 625, 80);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 640, 80);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 665, 80);*/
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 666, 287);
 
 
 	return ret;

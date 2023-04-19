@@ -90,6 +90,9 @@
     <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
