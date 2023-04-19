@@ -157,7 +157,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	cout << attack_shurikenAnim.HasFinished() << endl;
+	
 
 	if (isAttacking) {
 		currentAnimation = &attack_shurikenAnim;

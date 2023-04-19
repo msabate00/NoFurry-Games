@@ -8,9 +8,11 @@
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
+#include <iostream>
 
 #define SPAWN_MARGIN 50
 
+using namespace std;
 
 ModuleEnemies::ModuleEnemies()
 {
@@ -25,6 +27,8 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
+	
+
 	texture = App->textures->Load("Assets/SpriteSheet_EnemyBasic.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
@@ -103,7 +107,7 @@ void ModuleEnemies::HandleEnemiesSpawn()
 			// Spawn a new enemy if the screen has reached a spawn position
 			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
 			{
-				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
+				//cout << "Spawning enemy at: " << spawnQueue[i].x* SCREEN_SIZE << endl;
 
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue

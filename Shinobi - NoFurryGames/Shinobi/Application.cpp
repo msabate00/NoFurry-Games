@@ -30,11 +30,11 @@ Application::Application()
 
 	
 	modules[5] = particles = new ModuleParticles();
-	
-	modules[6] = collisions = new ModuleCollisions();
+	modules[6] = enemy = new ModuleEnemies();
+	modules[7] = collisions = new ModuleCollisions();
 
-	modules[7] = audio = new ModuleAudio();
-	modules[8] = enemy = new ModuleEnemies();
+	modules[8] = audio = new ModuleAudio();
+	
 	
 	modules[9] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 

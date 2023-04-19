@@ -7,6 +7,10 @@
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
 
+#include <iostream>
+ 
+using namespace std;
+
 Enemy::Enemy(int x, int y) : position(x, y)
 {
 	spawnPos = position;
@@ -34,8 +38,11 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	if (currentAnim != nullptr)
-		App->render->Blit(texture, position.x, position.y, SDL_FLIP_NONE , &(currentAnim->GetCurrentFrame()));
+	
+	if (currentAnim != nullptr) {
+		
+		App->render->Blit(texture, position.x, position.y, SDL_FLIP_NONE, &(currentAnim->GetCurrentFrame()));
+	}
 }
 
 void Enemy::OnCollision(Collider* collider)

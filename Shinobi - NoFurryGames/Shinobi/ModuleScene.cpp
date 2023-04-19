@@ -80,8 +80,8 @@ bool ModuleScene::Start()
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	//Enemies ---
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 666, 287);
-
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 20, FLOOR_LEVEL-10);
+	
 
 
 	return ret;
