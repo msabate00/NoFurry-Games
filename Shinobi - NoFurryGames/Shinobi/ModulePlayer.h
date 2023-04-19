@@ -45,6 +45,7 @@ public:
 	bool isJumping = false;
 	bool isChangingFloor = false;
 	bool isAttacking = false;
+	bool isCrouchedAttacking = false;
 
 	bool facingRight = true;
 

@@ -49,9 +49,10 @@ ModulePlayer::ModulePlayer()
 	crouched_forwardAnim.speed = 0.1f;
 
 	//crouched attack anim
-	crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
+	//crouched_AttackAnim.PushBack({ 661, 210, 52, 36 });
 	crouched_AttackAnim.PushBack({ 717, 210, 52, 36 });
-	crouched_AttackAnim.speed = 0.1f;
+	crouched_AttackAnim.speed = 0.2f;
+	crouched_AttackAnim.loop = false;
 
 	//jump anim
 	jumpAnim.PushBack({ 10, 357, 33, 58 });
@@ -163,6 +164,20 @@ update_status ModulePlayer::Update()
 		}
 	}
 
+	if (isCrouchedAttacking) {
+		currentAnimation = &crouched_AttackAnim;
+		if (currentAnimation->HasFinished()) {
+			isCrouchedAttacking = false;
+			currentAnimation->Reset();
+		}
+		else {
+			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			currentAnimation->Update();
+			return update_status::UPDATE_CONTINUE;
+		}
+	}
+
 
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
@@ -212,15 +227,20 @@ update_status ModulePlayer::Update()
 
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
-		isAttacking = true;
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+			isCrouchedAttacking = true;
+		}
+		else
+		{
+			isAttacking = true;
+		}
+		
 
 		if (facingRight) {
 			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
-
 		}
 		else {
 			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
-
 		}
 	}
 
