@@ -231,7 +231,7 @@ void ModuleRender::printSkillIcon() {
 
 	bool sur = App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT-16, SDL_FLIP_NONE, nullptr, 0);
 	if (!sur) {
-		cout << "error" << endl;
+		//cout << "error" << endl;
 	}
 
 
@@ -303,7 +303,7 @@ void ModuleRender::printTime(std::string time_string, SDL_Texture* Time) {
 		}
 			
 		string time_string = getTimeString(elapsed_time);
-		cout << "Remaining time: " << time_string << endl;
+		//cout << "Remaining time: " << time_string << endl;
 
 		//cout << IconPosition << endl;
 	}

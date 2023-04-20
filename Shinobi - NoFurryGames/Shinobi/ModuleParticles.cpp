@@ -33,7 +33,7 @@ bool ModuleParticles::Start()
 
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
-	shurikenR.lifetime = 0;
+	shurikenR.lifetime = 60;
 	shurikenR.speed = iPoint(4, 0);
 
 	shurikenL.anim.PushBack({ 103, 292, 13, 10 });
@@ -41,8 +41,13 @@ bool ModuleParticles::Start()
 	shurikenL.anim.PushBack({ 137, 292, 13, 10 });
 	shurikenL.anim.loop = true;
 	shurikenL.anim.speed = 0.3f;
-	shurikenL.lifetime = 0;
+	shurikenL.lifetime = 60;
 	shurikenL.speed = iPoint(-4, 0);
+
+
+	shurikenDying.anim.PushBack({});
+	shurikenDying.anim.loop = false;
+	shurikenDying.speed = iPoint(0, 0);
 
 
 
@@ -74,6 +79,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
+			particles[i]->collider->pendingToDelete = true;
 			delete particles[i];
 			particles[i] = nullptr;
 			break;
@@ -93,6 +99,7 @@ update_status ModuleParticles::Update()
 		// Call particle Update. If it has reached its lifetime, destroy it
 		if(particle->Update() == false)
 		{
+			particle->collider->pendingToDelete = true;
 			delete particle;
 			particles[i] = nullptr;
 		}
@@ -124,6 +131,10 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 	p->position.y = y;						
+
+	//Adding the particle's collider
+	if (colliderType != Collider::Type::NONE)
+		p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
 
 	particles[lastParticle++] = p;
 	lastParticle %= MAX_ACTIVE_PARTICLES;

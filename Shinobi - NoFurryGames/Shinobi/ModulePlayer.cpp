@@ -119,8 +119,6 @@ update_status ModulePlayer::Update()
 	position.y -= currJumpForce;
 	
 
-
-
 	//Reset the currentAnimation back to idle before updating the logic
 	currentAnimation = &idleAnim;
 
@@ -129,7 +127,46 @@ update_status ModulePlayer::Update()
 
 
 	//CAMBIANDO DE ALTURA
-	if (isChangingFloor) {
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT && !isJumping && !isChangingFloorF1 && !isChangingFloorF2) {
+		//App->scene->secondFloor->active = !App->scene->secondFloor->active;
+		currJumpForce = jumpForce * 1.6;
+
+		isChangingFloorF1 = true;
+		frameContador = 0;
+	}
+
+	if (isChangingFloorF1 || isChangingFloorF2) {
+		if (isChangingFloorF1) {
+			currentAnimation = &jumpAnim;
+			position.y -= 0.5f;
+			if (position.y <= 95) {
+				isChangingFloorF1 = false;
+				isChangingFloorF2 = true;
+				currJumpForce = jumpForce / 2;
+				App->scene->secondFloor->active = !App->scene->secondFloor->active;
+			}
+		}
+		if (isChangingFloorF2) {
+			currentAnimation = &jumpAnim;
+
+			if (positionBefore.y == position.y && position.y > 95) {
+				isChangingFloorF2 = false;
+			}
+
+			positionBefore.y = position.y;
+		}
+		
+		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+
+		currentAnimation->Update();
+
+		return update_status::UPDATE_CONTINUE;
+
+	}
+
+
+	/*if (isChangingFloor) {
 		frameContador++;
 		currentAnimation = &jumpAnim;
 	}
@@ -141,21 +178,19 @@ update_status ModulePlayer::Update()
 		frameContador = 0;
 	}
 	if (isChangingFloor) {
-
-
 		if (frameContador >= 30) {
 			App->scene->secondFloor->active = !App->scene->secondFloor->active;
 		}
 		if (frameContador >= 70) {
 			isChangingFloor = false;
 		}
-
+		
 		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h); 
 		currentAnimation->Update();
 		return update_status::UPDATE_CONTINUE;
 	}
-
+	*/
 
 	
 
@@ -279,37 +314,30 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (!c2->active) { return; }
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
+		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().w << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
 
-		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().h << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
-
+		if(c2->GetRect().y <= 103){ 
+		//ta arriba	
+		}
+		else {
+			//ta abajo
+			App->scene->secondFloor->active = false;
+		}
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
 			//NO SE PUEDE MOVER PARA LA DERECHA
 			position.x -= speed;
-		}
-		if (c2->GetRect().x + c2->GetRect().w-1 <= position.x && c2->GetRect().y+2 <= position.y) {
-			//NO SE PUEDE MOVER PARA LA IZQUIERDA
+		}else
+		if (c2->GetRect().x + c2->GetRect().w+1 >= position.x && c2->GetRect().y+2 <= position.y) {
 			position.x += speed;
 		}
-		if (c2->GetRect().y+1 >= position.y + currJumpForce && currJumpForce<=0){ //COLISION DEBAJO
+		if (c2->GetRect().y+1 >= position.y + currJumpForce && currJumpForce<=0){ //COLISION arriba
 			position.y = c2->GetRect().y+1;
 			currJumpForce = 0;
 			isJumping = false;
 			jumpAnim.Reset();
 			
-		}
-		
-
-
-		//App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
-		//App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
-		//App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE, 40);
-		//App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
-		//App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
-
-		//App->audio->PlayFx(explosionFx);
-
-		
+		}	
 	}
 
 }

@@ -68,6 +68,7 @@ public:
 
 	Particle shurikenR;
 	Particle shurikenL;
+	Particle shurikenDying;
 
 };
 

@@ -35,6 +35,7 @@ public:
 public:
 	// Position of the player in the map
 	iPoint position;
+	iPoint positionBefore;
 
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
@@ -43,7 +44,8 @@ public:
 	float currJumpForce = 0;
 	float maxFallSpeed = -5;
 	bool isJumping = false;
-	bool isChangingFloor = false;
+	bool isChangingFloorF1 = false;
+	bool isChangingFloorF2 = false;
 	bool isAttacking = false;
 	bool isCrouchedAttacking = false;
 
@@ -78,6 +80,11 @@ public:
 	Animation jumpAnim;
 	Animation attack_shurikenAnim;
 	Animation watching_UpAnimation;
+
+	Animation bigJumpUpUpAnim;		//ANIMACION PARA HACER EL CAMBIO DE PLATAFORMA CUANDO SUBE
+	Animation bigJumpUpDownAnim;	//ANIMACION PARA HACER EL CAMBIO DE PLATAFORMA, CUANDO ESTA EN SU PUNTO MAXIMO Y CAE
+	Animation bigJumpDownUpAnim;	//ANIMACION PARA EL CAMBIO DE PLATAFORMA, DE LA DE ARRIBA A LA DE ABAJO, LA PARTE DE SUBIR
+	Animation bigJumpDownDownAnim;	//ANIMACION PARA EL CAMBIO DE PLATAFORMA, DE LA DE ARRIBA A LA DE ABAJO, LA PARTE DE BAJAR
 
 	// The player's collider
 	Collider* collider = nullptr;
