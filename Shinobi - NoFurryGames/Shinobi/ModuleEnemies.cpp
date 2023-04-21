@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
@@ -29,7 +30,7 @@ bool ModuleEnemies::Start()
 {
 	
 
-	texture = App->textures->Load("Assets/SpriteSheet_EnemyBasic.png");
+	texture = App->textures->Load("Assets/Sprites/EnemyBasic/SpriteSheet_EnemyBasic.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
@@ -157,6 +158,12 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
+
+	if (c2 == App->player->collider)
+	{
+		return;
+	}
+
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)

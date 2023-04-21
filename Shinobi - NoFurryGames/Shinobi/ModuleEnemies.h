@@ -60,6 +60,12 @@ public:
 	// Destroys any enemies that have moved outside the camera limits
 	void HandleEnemiesDespawn();
 
+	// The enemy's collider
+	Collider* collider = nullptr;
+
+	// A flag to detect when the enemy has been destroyed
+	bool destroyed = false;
+
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);

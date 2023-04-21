@@ -8,20 +8,24 @@ using namespace std;
 
 Enemy_Basic::Enemy_Basic(int x, int y) : Enemy(x, y)
 {
-	walkBasic.PushBack({ 5,6,35,60 });
-	walkBasic.speed = 0.2f;
-	walkBasic.loop = true;
+	walkBasic.PushBack({ 11, 12,35,64 });
+	walkBasic.PushBack({ 52, 12,35,64 });
+	walkBasic.PushBack({ 93, 12,35,64 });
 
-	currentAnim = &walkBasic;
+	walkBasic.speed = 0.1f;
+	//walkBasic.loop = true;
+
+	path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
 	
-	collider = App->collisions->AddCollider({ 0, 0, 35, 60 }, Collider::Type::ENEMY, (Module*)App->enemy);
+	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
 }
 
 void Enemy_Basic::Update()
 {
-
-	waveRatio += waveRatioSpeed;
-
+	path.Update();
+	position = spawnPos + path.GetRelativePosition();
+	currentAnim = path.GetCurrentAnimation();
+	
 	//position.y = spawnPos.y + (waveHeight * sinf(waveRatio));
 	//position.x -= 1;
 

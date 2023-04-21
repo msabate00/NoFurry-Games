@@ -340,4 +340,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}	
 	}
 
+	if (c1 == collider && c2->type == Collider::ENEMY && destroyed == false)
+	{
+		destroyed = true;
+	}
+
 }

@@ -89,6 +89,9 @@ public:
 	// The player's collider
 	Collider* collider = nullptr;
 
+	// A flag to detect when the player has been destroyed
+	bool destroyed = false;
+
 	// Sounds Effects 
 	uint saltarFX = 0;
 
