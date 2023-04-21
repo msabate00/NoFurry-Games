@@ -102,6 +102,7 @@ bool ModulePlayer::Start()
 	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
 	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
 	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
+	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
 	return ret;
 }
 
@@ -259,7 +260,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
-		App->audio->PlayFx(saltarFX);
+		
 		currentAnimation = &jumpAnim;
 	}
 
