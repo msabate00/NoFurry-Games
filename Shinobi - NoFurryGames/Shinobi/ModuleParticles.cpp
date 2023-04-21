@@ -80,6 +80,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
 			particles[i]->collider->pendingToDelete = true;
+			
 			delete particles[i];
 			particles[i] = nullptr;
 			break;
