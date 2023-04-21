@@ -111,8 +111,9 @@ bool ModulePlayer::Start()
 	//      SONIDOS      //
 	///////////////////////
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
-	
-
+	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
+	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
+	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
 	return ret;
 }
 
@@ -284,8 +285,11 @@ update_status ModulePlayer::Update()
 
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+		App->audio->PlayFx(shurikenAtaqueFX);
+
 		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
 			isCrouchedAttacking = true;
+			App->audio->PlayFx(shurikenAtaqueFX);
 		}
 		else
 		{
@@ -295,6 +299,7 @@ update_status ModulePlayer::Update()
 
 		if (facingRight) {
 			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
+			App->audio->PlayFx(ataqueFX);
 		}
 		else {
 			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);

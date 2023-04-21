@@ -90,7 +90,10 @@ public:
 
 	// Sounds Effects 
 	uint saltarFX = 0;
-
+	uint saltarPlataformaFX = 0;
+	uint shurikenAtaqueFX = 0;
+	uint ataqueFX = 0;
+	//uint saltarFX = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__
