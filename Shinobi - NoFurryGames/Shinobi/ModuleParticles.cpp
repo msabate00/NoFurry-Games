@@ -45,8 +45,13 @@ bool ModuleParticles::Start()
 	shurikenL.speed = iPoint(-4, 0);
 
 
-	shurikenDying.anim.PushBack({});
+	shurikenDying.anim.PushBack({ 378, 328, 15, 15});
+	shurikenDying.anim.PushBack({ 399, 328, 15, 15 });
+	shurikenDying.anim.PushBack({ 420, 328, 15, 15 });
+
 	shurikenDying.anim.loop = false;
+	shurikenDying.anim.speed = 0.5f;
+
 	shurikenDying.speed = iPoint(0, 0);
 
 
@@ -79,7 +84,14 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			particles[i]->collider->pendingToDelete = true;
+			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT) {
+				
+				//currentAnimation = &shurikenDying;
+				//App->render->Blit(texture, particles[i]->position.x, particles[i]->position.y, SDL_FLIP_NONE, &(particles[i]->shurikenDying.anim));
+				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y, Collider::Type::NONE);
+				particles[i]->collider->pendingToDelete = true;
+			}
+			
 			delete particles[i];
 			particles[i] = nullptr;
 			break;
@@ -99,7 +111,7 @@ update_status ModuleParticles::Update()
 		// Call particle Update. If it has reached its lifetime, destroy it
 		if(particle->Update() == false)
 		{
-			particle->collider->pendingToDelete = true;
+			//particle->collider->pendingToDelete = true;
 			delete particle;
 			particles[i] = nullptr;
 		}
