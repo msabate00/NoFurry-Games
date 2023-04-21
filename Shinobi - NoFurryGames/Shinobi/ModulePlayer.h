@@ -80,11 +80,10 @@ public:
 	Animation jumpAnim;
 	Animation attack_shurikenAnim;
 	Animation watching_UpAnimation;
+	Animation bigJumpUpUpAnim;		
+	Animation bigJumpDownUpAnim;
 
-	Animation bigJumpUpUpAnim;		//ANIMACION PARA HACER EL CAMBIO DE PLATAFORMA CUANDO SUBE
-	Animation bigJumpUpDownAnim;	//ANIMACION PARA HACER EL CAMBIO DE PLATAFORMA, CUANDO ESTA EN SU PUNTO MAXIMO Y CAE
-	Animation bigJumpDownUpAnim;	//ANIMACION PARA EL CAMBIO DE PLATAFORMA, DE LA DE ARRIBA A LA DE ABAJO, LA PARTE DE SUBIR
-	Animation bigJumpDownDownAnim;	//ANIMACION PARA EL CAMBIO DE PLATAFORMA, DE LA DE ARRIBA A LA DE ABAJO, LA PARTE DE BAJAR
+
 
 	// The player's collider
 	Collider* collider = nullptr;

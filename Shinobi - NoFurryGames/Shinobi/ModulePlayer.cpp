@@ -74,8 +74,20 @@ ModulePlayer::ModulePlayer()
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
 
 
+	
+	bigJumpUpUpAnim.PushBack({ 171, 735, 47, 51 });
+	bigJumpUpUpAnim.PushBack({ 222, 735, 47, 51 });
+
+	bigJumpUpUpAnim.speed = 0.15f;
+	bigJumpUpUpAnim.loop = false;
 
 	
+
+	bigJumpDownUpAnim.PushBack({ 303, 744, 39, 42 });
+	bigJumpDownUpAnim.PushBack({ 346, 744, 39, 42 });
+
+	bigJumpDownUpAnim.speed = 0.15f;
+	bigJumpDownUpAnim.loop = false;
 
 }
 
@@ -132,14 +144,15 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT && !isJumping && !isChangingFloorF1 && !isChangingFloorF2) {
 		//App->scene->secondFloor->active = !App->scene->secondFloor->active;
 		currJumpForce = jumpForce * 1.6;
-
+		currentAnimation = &bigJumpUpUpAnim;
 		isChangingFloorF1 = true;
 		frameContador = 0;
 	}
 
 	if (isChangingFloorF1 || isChangingFloorF2) {
+		currentAnimation = &bigJumpUpUpAnim;
 		if (isChangingFloorF1) {
-			currentAnimation = &jumpAnim;
+			
 			position.y -= 0.5f;
 			if (position.y <= 95) {
 				isChangingFloorF1 = false;
@@ -149,7 +162,7 @@ update_status ModulePlayer::Update()
 			}
 		}
 		if (isChangingFloorF2) {
-			currentAnimation = &jumpAnim;
+			//currentAnimation = &bigJumpUpDownAnim;
 
 			if (positionBefore.y == position.y && position.y > 95) {
 				isChangingFloorF2 = false;
