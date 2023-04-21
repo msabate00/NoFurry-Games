@@ -74,8 +74,20 @@ ModulePlayer::ModulePlayer()
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
 
 
+	
+	bigJumpUpUpAnim.PushBack({ 171, 735, 47, 51 });
+	bigJumpUpUpAnim.PushBack({ 222, 735, 47, 51 });
+
+	bigJumpUpUpAnim.speed = 0.15f;
+	bigJumpUpUpAnim.loop = false;
 
 	
+
+	bigJumpDownUpAnim.PushBack({ 303, 744, 39, 42 });
+	bigJumpDownUpAnim.PushBack({ 346, 744, 39, 42 });
+
+	bigJumpDownUpAnim.speed = 0.15f;
+	bigJumpDownUpAnim.loop = false;
 
 }
 
@@ -99,8 +111,10 @@ bool ModulePlayer::Start()
 	//      SONIDOS      //
 	///////////////////////
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
-	
-
+	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
+	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
+	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
+	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
 	return ret;
 }
 
@@ -130,14 +144,15 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT && !isJumping && !isChangingFloorF1 && !isChangingFloorF2) {
 		//App->scene->secondFloor->active = !App->scene->secondFloor->active;
 		currJumpForce = jumpForce * 1.6;
-
+		currentAnimation = &bigJumpUpUpAnim;
 		isChangingFloorF1 = true;
 		frameContador = 0;
 	}
 
 	if (isChangingFloorF1 || isChangingFloorF2) {
+		currentAnimation = &bigJumpUpUpAnim;
 		if (isChangingFloorF1) {
-			currentAnimation = &jumpAnim;
+			
 			position.y -= 0.5f;
 			if (position.y <= 95) {
 				isChangingFloorF1 = false;
@@ -147,7 +162,7 @@ update_status ModulePlayer::Update()
 			}
 		}
 		if (isChangingFloorF2) {
-			currentAnimation = &jumpAnim;
+			//currentAnimation = &bigJumpUpDownAnim;
 
 			if (positionBefore.y == position.y && position.y > 95) {
 				isChangingFloorF2 = false;
@@ -258,7 +273,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
-		App->audio->PlayFx(saltarFX);
+		
 		currentAnimation = &jumpAnim;
 	}
 
@@ -271,8 +286,11 @@ update_status ModulePlayer::Update()
 
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+		App->audio->PlayFx(shurikenAtaqueFX);
+
 		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
 			isCrouchedAttacking = true;
+			App->audio->PlayFx(shurikenAtaqueFX);
 		}
 		else
 		{
@@ -282,6 +300,7 @@ update_status ModulePlayer::Update()
 
 		if (facingRight) {
 			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
+			App->audio->PlayFx(ataqueFX);
 		}
 		else {
 			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
