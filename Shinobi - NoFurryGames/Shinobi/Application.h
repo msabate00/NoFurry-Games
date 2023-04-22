@@ -12,7 +12,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
-class ModuleScene;
+class ModuleScene_Level1;
 class ModuleScene_MainMenu;
 class ModuleParticles;
 class ModuleCollisions;
@@ -59,7 +59,7 @@ public:
 	ModuleTextures* textures = nullptr;
 
 	ModulePlayer* player = nullptr;
-	ModuleScene* scene = nullptr;
+	ModuleScene_Level1* scene = nullptr;
 	ModuleScene_MainMenu* scene_MainMenu = nullptr;
 
 	ModuleParticles* particles = nullptr;

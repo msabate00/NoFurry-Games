@@ -5,7 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
-#include "ModuleScene.h"
+#include "ModuleScene_Level1.h"
 #include "ModuleScene_MainMenu.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -27,7 +27,7 @@ Application::Application()
 	modules[1] =	input =				new ModuleInput(true);
 	modules[2] =	textures =			new ModuleTextures(true);
 	modules[3] =	scene_MainMenu =	new ModuleScene_MainMenu(true);
-	modules[4] =	scene =				new ModuleScene(false);		//off
+	modules[4] =	scene =				new ModuleScene_Level1(false);		//off
 	modules[5] =	player =			new ModulePlayer(false);		//off
 	modules[6] =	particles =			new ModuleParticles(true);
 	modules[7] =	enemy =				new ModuleEnemies(false);	//off

@@ -44,6 +44,7 @@ update_status ModuleScene_MainMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
 	}
+	
 
 	return update_status::UPDATE_CONTINUE;
 }

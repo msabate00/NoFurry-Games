@@ -1,4 +1,4 @@
-#include "ModuleScene.h"
+#include "ModuleScene_Level1.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -12,7 +12,7 @@
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
+ModuleScene_Level1::ModuleScene_Level1(bool startEnabled) : Module(startEnabled)
 {
 	// ground
 	ground.x = 0;
@@ -29,13 +29,13 @@ ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
 
 }
 
-ModuleScene::~ModuleScene()
+ModuleScene_Level1::~ModuleScene_Level1()
 {
 
 }
 
 // Load assets
-bool ModuleScene::Start()
+bool ModuleScene_Level1::Start()
 {
 	LOG("Loading background assets");
 
@@ -92,13 +92,13 @@ bool ModuleScene::Start()
 	return ret;
 }
 
-update_status ModuleScene::Update()
+update_status ModuleScene_Level1::Update()
 {
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status ModuleScene::PostUpdate()
+update_status ModuleScene_Level1::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(stageBackgroundTexture, 0, 0, SDL_FLIP_NONE,&background, 0.35f); // Edificios del fondo

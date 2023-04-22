@@ -6,14 +6,14 @@
 
 struct SDL_Texture;
 
-class ModuleScene : public Module
+class ModuleScene_Level1 : public Module
 {
 public:
 	//Constructor
-	ModuleScene(bool startEnabled);
+	ModuleScene_Level1(bool startEnabled);
 
 	//Destructor
-	~ModuleScene();
+	~ModuleScene_Level1();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
