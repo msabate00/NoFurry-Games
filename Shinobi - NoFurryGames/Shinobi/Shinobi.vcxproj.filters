@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Modules\Gameplay\Scenes">
       <UniqueIdentifier>{a9541449-ce38-4e91-b53b-0821afd34b87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes\Extras">
+      <UniqueIdentifier>{cd2c9007-4d67-4463-a065-87693c0bdadb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -101,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="ModuleScene_Level1.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleScene_Level1_SecondFloor.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="ModuleScene_MainMenu.h">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene_Level1_SecondFloor.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

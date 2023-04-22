@@ -1,5 +1,6 @@
 #include "ModuleScene_Level1.h"
 
+#include "ModuleScene_Level1_SecondFloor.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -62,22 +63,19 @@ bool ModuleScene_Level1::Start()
 	App->collisions->AddCollider({193, 183-32-32-32, 32, 32}, Collider::Type::WALL);*/
 
 	//SueloArriba
-	secondFloor = App->collisions->AddCollider({ 0, 103, 2046, 9 }, Collider::Type::WALL);
+	//secondFloor = App->collisions->AddCollider({ 0, 103, 2046, 9 }, Collider::Type::WALL);
 	//Paredes Arriba
-	App->collisions->AddCollider({ 80, 0, 16, 103 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 1086, 0, 16, 103 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 1278, 0, 16, 103 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 1949, 0, 16, 103 }, Collider::Type::WALL);
-
+	
+	
 	//Cajas arriba
-	App->collisions->AddCollider({ 544, 196-125, 32, 32 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 544, 196-125, 32, 32 }, Collider::Type::WALL);
 
 
 	//Limites jugador
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 
-	secondFloor->active = false;
+	//secondFloor->active = false;
 	
 	//Musicadddd
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
@@ -88,6 +86,7 @@ bool ModuleScene_Level1::Start()
 	
 	App->player->Enable();
 	App->enemy->Enable();
+	//App->scene_Level1_SecondFloor->Enable();
 
 	return ret;
 }

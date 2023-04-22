@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -161,7 +162,9 @@ update_status ModulePlayer::Update()
 				isChangingFloorF1 = false;
 				isChangingFloorF2 = true;
 				currJumpForce = jumpForce / 2;
-				App->scene->secondFloor->active = !App->scene->secondFloor->active;
+				//App->scene_Level1->secondFloor->active = !App->scene_Level1->secondFloor->active;
+				(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				//App->scene_Level1_SecondFloor->Disable();
 			}
 		}
 		if (isChangingFloorF2) {
@@ -354,7 +357,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 		else {
 			//ta abajo
-			App->scene->secondFloor->active = false;
+			//App->scene_Level1->secondFloor->active = false;
+			App->scene_Level1_SecondFloor->Disable();
 		}
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {

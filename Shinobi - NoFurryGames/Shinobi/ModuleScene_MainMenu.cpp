@@ -42,7 +42,7 @@ update_status ModuleScene_MainMenu::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 90);
 	}
 	
 

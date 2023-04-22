@@ -1,19 +1,20 @@
-#ifndef __MODULE_SCENE_H__
-#define __MODULE_SCENE_H__
+#ifndef __MODULE_SCENE_SECONDFLOOR_H__
+#define __MODULE_SCENE_SECONDFLOOR_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
+struct Collider;
 
-class ModuleScene_Level1 : public Module
+class ModuleScene_Level1_SecondFloor : public Module
 {
 public:
 	//Constructor
-	ModuleScene_Level1(bool startEnabled);
+	ModuleScene_Level1_SecondFloor(bool startEnabled);
 
 	//Destructor
-	~ModuleScene_Level1();
+	~ModuleScene_Level1_SecondFloor();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -27,25 +28,12 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+	bool CleanUp();
+
+
 public:
-	
-	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* stageTexture = nullptr;
-	SDL_Texture* stageBackgroundTexture = nullptr;
-	
-	
-	// The sprite rectangle for the ground
-	SDL_Rect ground;
 
-	// The sprite section for the background
-	SDL_Rect background;
-
-	//Collider* secondFloor;
-
-	
-
-
-	
+	Collider* collisions[7];
 
 };
 

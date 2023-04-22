@@ -6,6 +6,7 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_MainMenu.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -23,18 +24,19 @@ Application::Application()
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
-	modules[0] =	window =			new ModuleWindow(true);
-	modules[1] =	input =				new ModuleInput(true);
-	modules[2] =	textures =			new ModuleTextures(true);
-	modules[3] =	scene_MainMenu =	new ModuleScene_MainMenu(true);
-	modules[4] =	scene =				new ModuleScene_Level1(false);		//off
-	modules[5] =	player =			new ModulePlayer(false);		//off
-	modules[6] =	particles =			new ModuleParticles(true);
-	modules[7] =	enemy =				new ModuleEnemies(false);	//off
-	modules[8] =	collisions =		new ModuleCollisions(true);
-	modules[9] =	audio =				new ModuleAudio(true);
-	modules[10] = fade = new ModuleFadeToBlack(true);
-	modules[11] =	render =			new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[0] =	window =					new ModuleWindow(true);
+	modules[1] =	input =						new ModuleInput(true);
+	modules[2] =	textures =					new ModuleTextures(true);
+	modules[3] =	scene_MainMenu =			new ModuleScene_MainMenu(true);
+	modules[4] =	scene_Level1 =				new ModuleScene_Level1(false);				//off
+	modules[5] =	scene_Level1_SecondFloor =	new ModuleScene_Level1_SecondFloor(false);	//off
+	modules[6] =	player =					new ModulePlayer(false);					//off
+	modules[7] =	particles =					new ModuleParticles(true);
+	modules[8] =	enemy =						new ModuleEnemies(false);					//off
+	modules[9] =	collisions =				new ModuleCollisions(true);
+	modules[10] =	audio =						new ModuleAudio(true);
+	modules[11] =	fade =						new ModuleFadeToBlack(true);
+	modules[12] =	render =					new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 
