@@ -6,11 +6,13 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleScene.h"
+#include "ModuleScene_MainMenu.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModuleAudio.h"
+#include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_timer.h"
 
 #include <iostream>
@@ -21,22 +23,18 @@ Application::Application()
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
-	modules[0] = window = new ModuleWindow(true);
-	modules[1] = input = new ModuleInput(true);
-	modules[2] = textures = new ModuleTextures(true);
-
-	modules[3] = scene = new ModuleScene(true);
-	modules[4] = player = new ModulePlayer(true);
-
-	
-	modules[5] = particles = new ModuleParticles(true);
-	modules[6] = enemy = new ModuleEnemies(true);
-	modules[7] = collisions = new ModuleCollisions(true);
-
-	modules[8] = audio = new ModuleAudio(true);
-	
-	
-	modules[9] = render = new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[0] =	window =			new ModuleWindow(true);
+	modules[1] =	input =				new ModuleInput(true);
+	modules[2] =	textures =			new ModuleTextures(true);
+	modules[3] =	scene_MainMenu =	new ModuleScene_MainMenu(true);
+	modules[4] =	scene =				new ModuleScene(false);		//off
+	modules[5] =	player =			new ModulePlayer(false);		//off
+	modules[6] =	particles =			new ModuleParticles(true);
+	modules[7] =	enemy =				new ModuleEnemies(false);	//off
+	modules[8] =	collisions =		new ModuleCollisions(true);
+	modules[9] =	audio =				new ModuleAudio(true);
+	modules[10] = fade = new ModuleFadeToBlack(true);
+	modules[11] =	render =			new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 
@@ -55,12 +53,13 @@ bool Application::Init()
 {
 	bool ret = true;
 
+	// All modules (active and disabled) will be initialized
 	for (int i = 0; i < NUM_MODULES && ret; ++i)
 		ret = modules[i]->Init();
 
-	//By now we will consider that all modules are always active
+	// Only active modules will be 'started'
 	for (int i = 0; i < NUM_MODULES && ret; ++i)
-		ret = modules[i]->Start();
+		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	return ret;
 }
@@ -77,14 +76,13 @@ update_status Application::Update()
 
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->PreUpdate();
+		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate() : update_status::UPDATE_CONTINUE;
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->Update();
-	
+		ret = modules[i]->IsEnabled() ? modules[i]->Update() : update_status::UPDATE_CONTINUE;
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->PostUpdate();
+		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : update_status::UPDATE_CONTINUE;
 
 
 	
@@ -100,7 +98,7 @@ bool Application::CleanUp()
 	bool ret = true;
 
 	for (int i = NUM_MODULES - 1; i >= 0 && ret; --i)
-		ret = modules[i]->CleanUp();
+		ret = modules[i]->IsEnabled() ? modules[i]->CleanUp() : true;
 
 	return ret;
 }

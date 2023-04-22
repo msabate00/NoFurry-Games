@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Entities\Enemies">
       <UniqueIdentifier>{c7d9730c-f6d7-4f37-a79d-43c6c4cac02c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes">
+      <UniqueIdentifier>{a9541449-ce38-4e91-b53b-0821afd34b87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -50,9 +53,6 @@
     </ClCompile>
     <ClCompile Include="Particle.cpp">
       <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleScene.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
@@ -96,6 +96,12 @@
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleScene_MainMenu.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleScene.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -118,9 +124,6 @@
     </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Source Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleScene.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
@@ -163,6 +166,12 @@
     </ClInclude>
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene_MainMenu.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

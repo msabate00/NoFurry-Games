@@ -82,6 +82,7 @@ update_status ModuleRender::Update()
 
 	//Automover la camara
 
+	/*
 	if ((App->player->position.x * SCREEN_SIZE) + 
 		App->player->currentAnimation->GetCurrentFrame().w / 2 >= camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
 		camera.x += App->player->speed * SCREEN_SIZE;
@@ -89,7 +90,7 @@ update_status ModuleRender::Update()
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 <= camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
 		camera.x -= App->player->speed * SCREEN_SIZE;
-	}
+	}*/
 	
 	if (App->godMode) {
 	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
@@ -165,7 +166,7 @@ bool ModuleRender::CleanUp()
 bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip flip, SDL_Rect* section, float speed)
 {
 	bool ret = true;
-
+	
 	SDL_Rect rect{
 		(int)(-camera.x * speed) + x * SCREEN_SIZE,
 		(int)(-camera.y * speed) + y * SCREEN_SIZE,

@@ -6,6 +6,9 @@
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
+#include "ModulePlayer.h"
+#include "ModuleInput.h"
+#include "ModuleFadeToBlack.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -83,7 +86,8 @@ bool ModuleScene::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 320, FLOOR_LEVEL - 64); //Enemigo básico 1
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 365, FLOOR_LEVEL - 64); //Enemigo básico 2
 	
-
+	App->player->Enable();
+	App->enemy->Enable();
 
 	return ret;
 }

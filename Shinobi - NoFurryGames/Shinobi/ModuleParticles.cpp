@@ -27,10 +27,11 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png");
 
+	
 	shurikenR.anim.PushBack({103, 292, 13, 10});
 	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
 	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
-
+	
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
 	shurikenR.lifetime = 60;
@@ -54,7 +55,7 @@ bool ModuleParticles::Start()
 
 	shurikenDying.speed = iPoint(0, 0);
 
-
+	
 
 	return true;
 }
@@ -102,6 +103,8 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 
 update_status ModuleParticles::Update()
 {
+
+	
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* particle = particles[i];
@@ -116,7 +119,7 @@ update_status ModuleParticles::Update()
 			particles[i] = nullptr;
 		}
 	}
-
+	
 	return update_status::UPDATE_CONTINUE;
 }
 

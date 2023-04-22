@@ -115,6 +115,9 @@ bool ModulePlayer::Start()
 	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
 	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
 	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
+
+	currentAnimation = &idleAnim;
+
 	return ret;
 }
 
@@ -315,6 +318,17 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
+
+	if ((App->player->position.x * SCREEN_SIZE) +
+		App->player->currentAnimation->GetCurrentFrame().w / 2 >= App->render->camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
+		App->render->camera.x += App->player->speed * SCREEN_SIZE;
+	}
+	if ((App->player->position.x * SCREEN_SIZE) +
+		App->player->currentAnimation->GetCurrentFrame().w / 2 <= App->render->camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
+		App->render->camera.x -= App->player->speed * SCREEN_SIZE;
+	}
+
+
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	if(facingRight) {
 		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_NONE,&rect);
