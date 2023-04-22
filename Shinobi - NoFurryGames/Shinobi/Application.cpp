@@ -21,22 +21,22 @@ Application::Application()
 	// The order in which the modules are added is very important.
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
-	modules[0] = window = new ModuleWindow();
-	modules[1] = input = new ModuleInput();
-	modules[2] = textures = new ModuleTextures();
+	modules[0] = window = new ModuleWindow(true);
+	modules[1] = input = new ModuleInput(true);
+	modules[2] = textures = new ModuleTextures(true);
 
-	modules[3] = scene = new ModuleScene();
-	modules[4] = player = new ModulePlayer();
+	modules[3] = scene = new ModuleScene(true);
+	modules[4] = player = new ModulePlayer(true);
 
 	
-	modules[5] = particles = new ModuleParticles();
-	modules[6] = enemy = new ModuleEnemies();
-	modules[7] = collisions = new ModuleCollisions();
+	modules[5] = particles = new ModuleParticles(true);
+	modules[6] = enemy = new ModuleEnemies(true);
+	modules[7] = collisions = new ModuleCollisions(true);
 
-	modules[8] = audio = new ModuleAudio();
+	modules[8] = audio = new ModuleAudio(true);
 	
 	
-	modules[9] = render = new ModuleRender(); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[9] = render = new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 

@@ -20,7 +20,7 @@ using namespace std;
 
 int frameContador = 0;
 
-ModulePlayer::ModulePlayer()
+ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	position.x = 100;
 	position.y = FLOOR_LEVEL;
