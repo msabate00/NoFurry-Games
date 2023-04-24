@@ -73,22 +73,19 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	attack_shurikenAnim.loop = false;
 
 	watching_UpAnimation.PushBack({120, 735, 47, 51});
+	watching_DownAnimation.PushBack({ 303, 744, 39, 42 }); 
 
 
 	
-	bigJumpUpUpAnim.PushBack({ 171, 735, 47, 51 });
-	bigJumpUpUpAnim.PushBack({ 222, 735, 47, 51 });
+	bigJumpUpAnim.PushBack({ 171, 735, 47, 51 });
+	bigJumpUpAnim.PushBack({ 222, 735, 47, 51 });
+	bigJumpUpAnim.speed = 0.15f;
+	bigJumpUpAnim.loop = false;
 
-	bigJumpUpUpAnim.speed = 0.15f;
-	bigJumpUpUpAnim.loop = false;
+	bigJumpDownAnim.PushBack({ 346, 744, 39, 42 });
+	bigJumpDownAnim.speed = 0.15f;
+	bigJumpDownAnim.loop = false;
 
-	
-
-	bigJumpDownUpAnim.PushBack({ 303, 744, 39, 42 });
-	bigJumpDownUpAnim.PushBack({ 346, 744, 39, 42 });
-
-	bigJumpDownUpAnim.speed = 0.15f;
-	bigJumpDownUpAnim.loop = false;
 
 }
 
@@ -145,16 +142,34 @@ update_status ModulePlayer::Update()
 
 
 	//CAMBIANDO DE ALTURA
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT && !isJumping && !isChangingFloorF1 && !isChangingFloorF2) {
-		//App->scene->secondFloor->active = !App->scene->secondFloor->active;
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN &&
+		App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT &&
+		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y > 110) {
+		
 		currJumpForce = jumpForce * 1.6;
-		currentAnimation = &bigJumpUpUpAnim;
+		currentAnimation = &bigJumpUpAnim;
+		currentJumpAnim = &bigJumpUpAnim;
 		isChangingFloorF1 = true;
 		frameContador = 0;
+
+		
+	}
+
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN &&
+		App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT &&
+		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y <= 110) {
+		
+		currJumpForce = jumpForce * 1.6;
+		currentAnimation = &bigJumpDownAnim;
+		currentJumpAnim = &bigJumpDownAnim;
+		isChangingFloorF1 = true;
+		frameContador = 0;
+
+		cout << "AAAAAAAAA" << endl;
 	}
 
 	if (isChangingFloorF1 || isChangingFloorF2) {
-		currentAnimation = &bigJumpUpUpAnim;
+		currentAnimation = currentJumpAnim;
 		if (isChangingFloorF1) {
 			
 			position.y -= 0.5f;
@@ -187,31 +202,6 @@ update_status ModulePlayer::Update()
 	}
 
 
-	/*if (isChangingFloor) {
-		frameContador++;
-		currentAnimation = &jumpAnim;
-	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT && !isJumping && !isChangingFloor) {
-		//App->scene->secondFloor->active = !App->scene->secondFloor->active;
-		currJumpForce = jumpForce * 1.6;
-		
-		isChangingFloor = true;
-		frameContador = 0;
-	}
-	if (isChangingFloor) {
-		if (frameContador >= 30) {
-			App->scene->secondFloor->active = !App->scene->secondFloor->active;
-		}
-		if (frameContador >= 70) {
-			isChangingFloor = false;
-		}
-		
-		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h); 
-		currentAnimation->Update();
-		return update_status::UPDATE_CONTINUE;
-	}
-	*/
 
 	
 
@@ -262,6 +252,11 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
 		currentAnimation = &crouched_idleAnim;
+
+		if (position.y <= 110) {
+			currentAnimation = &watching_DownAnimation;
+		}
+
 
 		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
 			currentAnimation = &crouched_forwardAnim;
