@@ -9,6 +9,9 @@
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
+#include "Collider.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleEnemies.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
@@ -119,6 +122,10 @@ bool ModulePlayer::Start()
 
 	currentAnimation = &idleAnim;
 
+	destroyed = false;
+
+	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+
 	return ret;
 }
 
@@ -141,7 +148,20 @@ update_status ModulePlayer::Update()
 	currentAnimation = &idleAnim;
 
 
+	if (destroyed) {
+		//PLAY ANIMACION MORIR;
+		currentAnimation = &jumpAnim;
+		currJumpForce = jumpForce;
+		
+		destroyedCountdown--;
+		if (destroyedCountdown <= 0) 
+		{
+			App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+		}
 
+
+		return update_status::UPDATE_CONTINUE;
+	}
 
 
 	//CAMBIANDO DE ALTURA
@@ -316,7 +336,6 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-
 	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
@@ -343,6 +362,8 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_HORIZONTAL,&rect);
 	}
 
+
+	
 	
 	return update_status::UPDATE_CONTINUE;
 }
@@ -380,8 +401,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}	
 	}
 
-	if (c1 == collider && c2->type == Collider::ENEMY && destroyed == false)
+	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed)
 	{
+		
 		destroyed = true;
 	}
 

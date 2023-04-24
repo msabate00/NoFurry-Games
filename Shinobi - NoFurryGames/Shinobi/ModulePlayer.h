@@ -6,6 +6,7 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
+struct Collider;
 
 class ModulePlayer : public Module
 {
@@ -90,6 +91,9 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
+
+	// A countdown to when the player gets destroyed. After a while, the game exits
+	uint destroyedCountdown = 120;
 
 	// Sounds Effects 
 	uint saltarFX = 0;
