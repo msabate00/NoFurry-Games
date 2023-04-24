@@ -16,6 +16,7 @@ public:
 	void Update() override;
 
 	bool saved = false;
+	bool check = false;
 
 private:
 	

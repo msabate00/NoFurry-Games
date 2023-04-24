@@ -42,6 +42,10 @@ void Hostage::Update()
 		currentAnim = &IdleHostage;
 	}
 	else {
+		if (!check) {
+			position.y -= 20;
+			check = true;
+		}
 		position.y--;
 		currentAnim = &SaveHostage;
 	}
