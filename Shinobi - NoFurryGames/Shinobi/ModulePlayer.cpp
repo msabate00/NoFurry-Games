@@ -89,6 +89,15 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	bigJumpDownAnim.loop = false;
 
 
+	DeathAnim.PushBack({ 67, 651, 41, 43 });
+	DeathAnim.PushBack({ 112, 651, 41, 43 });
+	DeathAnim.PushBack({ 157, 672, 72, 22 });
+	DeathAnim.PushBack({ 233, 672, 72, 22 });
+	DeathAnim.loop = false;
+
+
+	DeathAnim.speed = 0.1f;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -161,8 +170,10 @@ update_status ModulePlayer::Update()
 
 	if (destroyed) {
 		//PLAY ANIMACION MORIR;
-		currentAnimation = &jumpAnim;
-		currJumpForce = jumpForce;
+
+
+		currentAnimation = &DeathAnim;
+		
 		
 		destroyedCountdown--;
 		if (destroyedCountdown <= 0) 
@@ -170,7 +181,7 @@ update_status ModulePlayer::Update()
 			App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
 		}
 
-
+		currentAnimation->Update();
 		return update_status::UPDATE_CONTINUE;
 	}
 
@@ -199,7 +210,6 @@ update_status ModulePlayer::Update()
 		isChangingFloorF1 = true;
 		frameContador = 0;
 
-		cout << "AAAAAAAAA" << endl;
 	}
 
 	if (isChangingFloorF1 || isChangingFloorF2) {
@@ -268,6 +278,10 @@ update_status ModulePlayer::Update()
 	}
 
 
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT) {
+		currentAnimation = &watching_UpAnimation;
+	}
+
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
@@ -297,9 +311,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT) {
-		currentAnimation = &watching_UpAnimation;
-	}
+	
 
 	//MECANICA DEL SALTO
 	if (isJumping) {
@@ -341,6 +353,18 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
 		}
 	}
+
+
+
+	if (App->input->keys[SDL_SCANCODE_R] == KEY_DOWN) {
+		
+		destroyed = true;
+
+	}
+
+
+
+
 
 	currentAnimation->Update();
 
@@ -409,7 +433,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed)
 	{
-		
+
 		destroyed = true;
 	}
 

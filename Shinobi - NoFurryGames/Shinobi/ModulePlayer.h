@@ -87,6 +87,7 @@ public:
 	Animation watching_DownAnimation;
 	Animation bigJumpUpAnim;		
 	Animation bigJumpDownAnim;
+	Animation DeathAnim;
 
 
 

@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Modules\Gameplay\Scenes\Extras">
       <UniqueIdentifier>{cd2c9007-4d67-4463-a065-87693c0bdadb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Hostage">
+      <UniqueIdentifier>{34c466c3-1309-47b5-b190-6589a4eca015}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="ModuleScene_Level1_SecondFloor.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
+    </ClCompile>
+    <ClCompile Include="Hostage.cpp">
+      <Filter>Source Files\Entities\Hostage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="ModuleScene_Level1_SecondFloor.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
+    </ClInclude>
+    <ClInclude Include="Hostage.h">
+      <Filter>Source Files\Entities\Hostage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
