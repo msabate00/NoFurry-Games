@@ -7,8 +7,10 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleInput.h"
+#include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
+
 
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
@@ -34,8 +36,10 @@ bool ModuleScene_MainMenu::Start()
 	stageTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
 	stageBackgroundTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_fondo.png");
 
+	
+	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
 	//Musicadddd
-	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
+	//App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	return ret;
 }
@@ -45,6 +49,7 @@ update_status ModuleScene_MainMenu::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 90);
+		App->audio->PlayFx(monedaFX);
 	}
 	
 
