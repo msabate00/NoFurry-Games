@@ -13,6 +13,16 @@ Enemy_Basic::Enemy_Basic(int x, int y) : Enemy(x, y)
 	walkBasic.PushBack({ 93, 12,35,64 });
 
 	walkBasic.speed = 0.1f;
+
+	//muerte
+	DeathBasic.PushBack({ 22, 92, 30, 54 });
+	DeathBasic.PushBack({ 59, 108, 65, 26 });
+	DeathBasic.PushBack({ 131, 108, 65, 26 });
+
+	DeathBasic.speed = 0.1f;
+
+
+	
 	//walkBasic.loop = true;
 
 	path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);

@@ -70,6 +70,7 @@ public:
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
+	Animation* currentJumpAnim = nullptr;
 
 	// A set of animations
 	Animation idleAnim;
@@ -81,8 +82,9 @@ public:
 	Animation jumpAnim;
 	Animation attack_shurikenAnim;
 	Animation watching_UpAnimation;
-	Animation bigJumpUpUpAnim;		
-	Animation bigJumpDownUpAnim;
+	Animation watching_DownAnimation;
+	Animation bigJumpUpAnim;		
+	Animation bigJumpDownAnim;
 
 
 
@@ -101,6 +103,7 @@ public:
 	uint shurikenAtaqueFX = 0;
 	uint ataqueFX = 0;
 	uint morirFX = 0;
+
 
 };
 
