@@ -34,7 +34,6 @@ bool ModuleScene_MainMenu::Start()
 	//Musicadddd
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
-
 	return ret;
 }
 
