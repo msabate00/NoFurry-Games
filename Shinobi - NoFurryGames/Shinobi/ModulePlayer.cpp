@@ -26,8 +26,7 @@ int frameContador = 0;
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
-	position.x = 100;
-	position.y = FLOOR_LEVEL;
+	
 
 	///////////////////////
 	//    ANIMACIONES    //
@@ -106,7 +105,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png"); // arcade version
 
-	collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
+	//collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
 	
 	///////////////////////
 	//      SONIDOS      //
@@ -122,6 +121,21 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+
+	position.x = 100;
+	position.y = FLOOR_LEVEL;
+
+	currJumpForce = 0;
+	destroyedCountdown = 120;
+
+	isJumping = false;
+	isChangingFloorF1 = false;
+	isChangingFloorF2 = false;
+	isAttacking = false;
+	isCrouchedAttacking = false;
+
+	facingRight = true;
+
 
 	return ret;
 }
@@ -399,4 +413,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		destroyed = true;
 	}
 
+}
+
+bool ModulePlayer::CleanUp() {
+
+	
+	
+
+	collider->pendingToDelete = true;
+
+	return true;
 }

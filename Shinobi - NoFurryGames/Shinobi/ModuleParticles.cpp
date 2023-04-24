@@ -114,7 +114,10 @@ update_status ModuleParticles::Update()
 		// Call particle Update. If it has reached its lifetime, destroy it
 		if(particle->Update() == false)
 		{
-			//particle->collider->pendingToDelete = true;
+			if (particle->collider != nullptr) {
+				particle->collider->pendingToDelete = true;
+			}
+			
 			delete particle;
 			particles[i] = nullptr;
 		}

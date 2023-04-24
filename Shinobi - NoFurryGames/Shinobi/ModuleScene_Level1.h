@@ -4,6 +4,10 @@
 #include "Module.h"
 #include "Animation.h"
 
+#include <stack>
+
+using namespace std;
+
 struct SDL_Texture;
 
 class ModuleScene_Level1 : public Module
@@ -27,6 +31,8 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+	bool CleanUp();
+
 public:
 	
 	// The scene sprite sheet loaded into an SDL_Texture
@@ -41,7 +47,8 @@ public:
 	SDL_Rect background;
 
 	//Collider* secondFloor;
-
+	// create a stack of integers
+	stack<Collider*> colliders;
 	
 
 

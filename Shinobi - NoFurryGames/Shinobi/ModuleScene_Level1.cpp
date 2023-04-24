@@ -47,14 +47,14 @@ bool ModuleScene_Level1::Start()
 
 
 	// Colliders ---
-	App->collisions->AddCollider({ 0, SCREEN_HEIGHT-9, 2046, 9 }, Collider::Type::WALL);
+	colliders.push(App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 2046, 9 }, Collider::Type::WALL));
 
 	//Cajas
-	App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({1405, 183, 96, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({1405, 151, 32, 32}, Collider::Type::WALL);
+	colliders.push(App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({1405, 183, 96, 32}, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({1405, 151, 32, 32}, Collider::Type::WALL));
 
 	//Para testear saltos
 	/*App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
@@ -72,8 +72,8 @@ bool ModuleScene_Level1::Start()
 
 
 	//Limites jugador
-	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
+	colliders.push(App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL));
 
 	//secondFloor->active = false;
 	
@@ -104,4 +104,18 @@ update_status ModuleScene_Level1::PostUpdate()
 	App->render->Blit(stageTexture, 0, -125, SDL_FLIP_NONE,&ground, 1.0f); // Suelo y eso
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool ModuleScene_Level1::CleanUp()
+{
+
+
+	while (!colliders.empty()) {
+		colliders.top()->pendingToDelete = true;
+		colliders.pop();
+	}
+
+	App->player->Disable();
+	App->enemy->Disable();
+	return true;
 }

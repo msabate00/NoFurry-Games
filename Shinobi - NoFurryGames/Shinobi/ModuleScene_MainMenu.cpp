@@ -38,7 +38,8 @@ bool ModuleScene_MainMenu::Start()
 	textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
 	textureBackground = App->textures->Load("Assets/Interface/Menu/fondo.png");
 	
-	
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	
 	
 	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
