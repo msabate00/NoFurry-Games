@@ -98,6 +98,7 @@ public:
 	uint ataqueFX = 0;
 	uint morirFX = 0;
 
+
 };
 
 #endif //!__MODULE_PLAYER_H__

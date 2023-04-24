@@ -244,12 +244,6 @@ update_status ModulePlayer::Update()
 	}
 
 
-	
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT) {
-		currentAnimation = &watching_UpAnimation;
-
-	}
-
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
@@ -274,7 +268,10 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT) {
+		currentAnimation = &watching_UpAnimation;
+	}
+
 	//MECANICA DEL SALTO
 	if (isJumping) {
 		currentAnimation = &jumpAnim;

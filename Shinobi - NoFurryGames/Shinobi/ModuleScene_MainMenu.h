@@ -42,7 +42,7 @@ public:
 
 	Collider* secondFloor;
 
-
+	uint monedaFX = 0;
 
 
 
