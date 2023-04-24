@@ -21,6 +21,8 @@ Hostage::Hostage(int x, int y) : Enemy(x, y)
 	SaveHostage.PushBack({ 647, 297, 25, 51 });
 	SaveHostage.PushBack({ 678, 297, 25, 51 });
 	SaveHostage.PushBack({ 709, 297, 25, 51 });
+	SaveHostage.PushBack({ 0, 0, 0, 0 });
+	SaveHostage.loop = false;
 
 
 	SaveHostage.speed = 0.1f;
@@ -30,17 +32,19 @@ Hostage::Hostage(int x, int y) : Enemy(x, y)
 	//walkBasic.loop = true;
 
 
-	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
+	collider = App->collisions->AddCollider({ 0, 0,  25, 29 }, Collider::Type::HOSTAGE, (Module*)App->enemy);
 }
 
 void Hostage::Update()
 {
-	path.Update();
-	position = spawnPos + path.GetRelativePosition();
-	currentAnim = path.GetCurrentAnimation();
-
-	//position.y = spawnPos.y + (waveHeight * sinf(waveRatio));
-	//position.x -= 1;
+	
+	if (!saved) {
+		currentAnim = &IdleHostage;
+	}
+	else {
+		position.y--;
+		currentAnim = &SaveHostage;
+	}
 
 	Enemy::Update();
 }

@@ -56,20 +56,6 @@ bool ModuleScene_Level1::Start()
 	colliders.push(App->collisions->AddCollider({1405, 183, 96, 32}, Collider::Type::WALL));
 	colliders.push(App->collisions->AddCollider({1405, 151, 32, 32}, Collider::Type::WALL));
 
-	//Para testear saltos
-	/*App->collisions->AddCollider({163, 183, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({173, 183-32, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({183, 183-32-32, 32, 32}, Collider::Type::WALL);
-	App->collisions->AddCollider({193, 183-32-32-32, 32, 32}, Collider::Type::WALL);*/
-
-	//SueloArriba
-	//secondFloor = App->collisions->AddCollider({ 0, 103, 2046, 9 }, Collider::Type::WALL);
-	//Paredes Arriba
-	
-	
-	//Cajas arriba
-	//App->collisions->AddCollider({ 544, 196-125, 32, 32 }, Collider::Type::WALL);
-
 
 	//Limites jugador
 	colliders.push(App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL));
@@ -83,6 +69,9 @@ bool ModuleScene_Level1::Start()
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 320, FLOOR_LEVEL - 64); //Enemigo básico 1
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 365, FLOOR_LEVEL - 64); //Enemigo básico 2
+
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 500, FLOOR_LEVEL - 26);
+
 	
 	App->player->Enable();
 	App->enemy->Enable();

@@ -6,9 +6,12 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
+#include "ModuleCollisions.h"
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
+#include "Hostage.h"
+
 #include <iostream>
 
 #define SPAWN_MARGIN 50
@@ -30,7 +33,7 @@ bool ModuleEnemies::Start()
 {
 	
 
-	texture = App->textures->Load("Assets/Sprites/EnemyBasic/SpriteSheet_EnemyBasic.png");
+	texture = App->textures->Load("Assets/Sprites/SpriteSheet_Enemies.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
@@ -148,6 +151,11 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			case ENEMY_TYPE::BASIC:
 				enemies[i] = new Enemy_Basic(info.x, info.y);
 				break;
+
+			case ENEMY_TYPE::HOSTAGE:
+				enemies[i] = new Hostage(info.x, info.y);
+				break;
+
 			}
 			enemies[i]->texture = texture;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
@@ -159,10 +167,28 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 
-	if (c2 == App->player->collider)
+	if (c2 == App->player->collider && c1->type== Collider::Type::ENEMY)
 	{
 		return;
 	}
+
+
+	if (c2 == App->player->collider && c1->type == Collider::Type::HOSTAGE)
+	{
+		for (uint i = 0; i < MAX_ENEMIES; ++i)
+		{
+			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			{
+				//enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+				((Hostage*)enemies[i])->saved = true;
+
+				break;
+			}
+		}
+	}
+
+	
+
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -170,9 +196,11 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 
-			delete enemies[i];
-			enemies[i] = nullptr;
-			break;
+			if ( c1->type == Collider::Type::ENEMY) {
+				delete enemies[i];
+				enemies[i] = nullptr;
+				break;
+			}
 		}
 	}
 }

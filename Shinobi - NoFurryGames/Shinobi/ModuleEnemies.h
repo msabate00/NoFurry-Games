@@ -10,6 +10,7 @@
 enum class ENEMY_TYPE
 {
 	NO_TYPE,
+	HOSTAGE,
 	BASIC,
 };
 
@@ -21,6 +22,8 @@ struct EnemySpawnpoint
 
 class Enemy;
 struct SDL_Texture;
+struct Collider;
+
 
 class ModuleEnemies : public Module
 {
