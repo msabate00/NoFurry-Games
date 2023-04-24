@@ -30,8 +30,13 @@ public:
 public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* stageTexture = nullptr;
-	SDL_Texture* stageBackgroundTexture = nullptr;
+	
+
+	SDL_Texture* textureBackground = nullptr;
+	SDL_Texture* textureBackground2 = nullptr;
+
+	Animation* currentAnimation = nullptr;
+	Animation eyesAnimation;
 
 
 	// The sprite rectangle for the ground

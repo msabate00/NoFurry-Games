@@ -15,8 +15,11 @@
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
 {
-	
-
+	eyesAnimation.PushBack({200, 200, SCREEN_WIDTH, SCREEN_HEIGHT });
+	eyesAnimation.PushBack({200, 704, SCREEN_WIDTH, SCREEN_HEIGHT });
+	eyesAnimation.loop = true;
+	eyesAnimation.speed = 0.04f;
+	background = { 200,200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 
 }
@@ -32,10 +35,11 @@ bool ModuleScene_MainMenu::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-
-	stageTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
-	stageBackgroundTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_fondo.png");
-
+	textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
+	textureBackground = App->textures->Load("Assets/Interface/Menu/fondo.png");
+	
+	
+	
 	
 	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
 	//Musicadddd
@@ -46,12 +50,15 @@ bool ModuleScene_MainMenu::Start()
 
 update_status ModuleScene_MainMenu::Update()
 {
+
+	currentAnimation = &eyesAnimation;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 90);
 		App->audio->PlayFx(monedaFX);
 	}
 	
+	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -59,9 +66,10 @@ update_status ModuleScene_MainMenu::Update()
 // Update: draw background
 update_status ModuleScene_MainMenu::PostUpdate()
 {
-	// Draw everything --------------------------------------
-	App->render->Blit(stageBackgroundTexture, 0, 0, SDL_FLIP_NONE, &background, 0.35f); // Edificios del fondo
-	App->render->Blit(stageTexture, 0, -125, SDL_FLIP_NONE, &ground, 1.0f); // Suelo y eso
+	
+	App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
+	App->render->Blit(textureBackground, 0, 0, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
