@@ -53,8 +53,8 @@ bool ModuleScene_Level1::Start()
 	colliders.push(App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL));
 	colliders.push(App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL));
 	colliders.push(App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({1405, 183, 96, 32}, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({1405, 151, 32, 32}, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({1437, 183, 64, 32}, Collider::Type::WALL));
+	colliders.push(App->collisions->AddCollider({1405, 151, 32, 64}, Collider::Type::WALL));
 
 
 	//Limites jugador
