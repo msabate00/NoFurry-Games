@@ -29,8 +29,8 @@ Application::Application()
 	modules[2] =	textures =					new ModuleTextures(true);
 	modules[3] =	scene_MainMenu =			new ModuleScene_MainMenu(true);
 	modules[4] =	scene_Level1 =				new ModuleScene_Level1(false);				//off
-	modules[5] =	scene_Level1_SecondFloor =	new ModuleScene_Level1_SecondFloor(false);	//off
-	modules[6] =	player =					new ModulePlayer(false);					//off
+	modules[5] =	player =					new ModulePlayer(false);					//off
+	modules[6] = scene_Level1_SecondFloor = new ModuleScene_Level1_SecondFloor(false);	//off
 	modules[7] =	particles =					new ModuleParticles(true);
 	modules[8] =	enemy =						new ModuleEnemies(false);					//off
 	modules[9] =	collisions =				new ModuleCollisions(true);

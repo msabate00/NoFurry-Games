@@ -217,7 +217,7 @@ update_status ModulePlayer::Update()
 		if (isChangingFloorF1) {
 			
 			position.y -= 0.5f;
-			if (position.y <= 95) {
+			if (position.y <= 85) {
 				isChangingFloorF1 = false;
 				isChangingFloorF2 = true;
 				currJumpForce = jumpForce / 2;
@@ -229,7 +229,7 @@ update_status ModulePlayer::Update()
 		if (isChangingFloorF2) {
 			//currentAnimation = &bigJumpUpDownAnim;
 
-			if (positionBefore.y == position.y && position.y > 95) {
+			if (positionBefore.y == position.y && position.y > 85) {
 				isChangingFloorF2 = false;
 			}
 
@@ -351,6 +351,7 @@ update_status ModulePlayer::Update()
 		}
 		else {
 			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
+			App->audio->PlayFx(ataqueFX);
 		}
 	}
 

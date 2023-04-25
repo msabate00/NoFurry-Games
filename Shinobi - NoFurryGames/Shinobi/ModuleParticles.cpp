@@ -34,7 +34,7 @@ bool ModuleParticles::Start()
 	
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
-	shurikenR.lifetime = 60;
+	shurikenR.lifetime = 80;
 	shurikenR.speed = iPoint(4, 0);
 
 	shurikenL.anim.PushBack({ 103, 292, 13, 10 });
@@ -42,7 +42,7 @@ bool ModuleParticles::Start()
 	shurikenL.anim.PushBack({ 137, 292, 13, 10 });
 	shurikenL.anim.loop = true;
 	shurikenL.anim.speed = 0.3f;
-	shurikenL.lifetime = 60;
+	shurikenL.lifetime = 80;
 	shurikenL.speed = iPoint(-4, 0);
 
 
@@ -89,7 +89,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				
 				//currentAnimation = &shurikenDying;
 				//App->render->Blit(texture, particles[i]->position.x, particles[i]->position.y, SDL_FLIP_NONE, &(particles[i]->shurikenDying.anim));
-				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y, Collider::Type::NONE);
+				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y-3, Collider::Type::NONE);
 				particles[i]->collider->pendingToDelete = true;
 			}
 			

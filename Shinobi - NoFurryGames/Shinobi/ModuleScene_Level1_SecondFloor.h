@@ -35,6 +35,10 @@ public:
 
 	Collider* collisions[7];
 
+	SDL_Texture* up_level_fenceTexture = nullptr;
+	SDL_Rect up_level_fenceRect;
+
+
 };
 
 #endif

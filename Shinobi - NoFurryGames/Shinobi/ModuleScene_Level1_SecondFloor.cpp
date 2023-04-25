@@ -14,7 +14,11 @@
 
 ModuleScene_Level1_SecondFloor::ModuleScene_Level1_SecondFloor(bool startEnabled) : Module(startEnabled)
 {
-	
+	// ground
+	up_level_fenceRect.x = 96;
+	up_level_fenceRect.y = 204;
+	up_level_fenceRect.w = 1950;
+	up_level_fenceRect.h = 28;
 }
 
 ModuleScene_Level1_SecondFloor::~ModuleScene_Level1_SecondFloor()
@@ -26,6 +30,7 @@ ModuleScene_Level1_SecondFloor::~ModuleScene_Level1_SecondFloor()
 bool ModuleScene_Level1_SecondFloor::Start()
 {
 	LOG("Loading background assets");
+	up_level_fenceTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
 
 	bool ret = true;
 
@@ -55,7 +60,7 @@ update_status ModuleScene_Level1_SecondFloor::Update()
 // Update: draw background
 update_status ModuleScene_Level1_SecondFloor::PostUpdate()
 {
-
+	App->render->Blit(up_level_fenceTexture, 96, 79, SDL_FLIP_NONE, &up_level_fenceRect, 1.0f); // Suelo y eso
 	return update_status::UPDATE_CONTINUE;
 }
 
