@@ -27,6 +27,9 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+
+
+
 public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
@@ -34,6 +37,10 @@ public:
 
 	SDL_Texture* textureBackground = nullptr;
 	SDL_Texture* textureBackground2 = nullptr;
+
+	/*SDL_Texture* textureBackgroundResized;
+	SDL_Texture* texture;
+	SDL_Texture* GetResizedTexture(SDL_Texture* texture, int width, int height);*/
 
 	Animation* currentAnimation = nullptr;
 	Animation eyesAnimation;
