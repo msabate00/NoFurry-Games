@@ -46,12 +46,14 @@ bool ModuleScene_MainMenu::Start()
 	//Musicadddd
 	//App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
+
+	Letra = App->textures->Load("Assets/Interface/Letra/Letra.png");
 	return ret;
 }
 
 update_status ModuleScene_MainMenu::Update()
 {
-
+	
 	currentAnimation = &eyesAnimation;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
@@ -60,6 +62,8 @@ update_status ModuleScene_MainMenu::Update()
 	}
 	
 	currentAnimation->Update();
+	
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -71,11 +75,20 @@ update_status ModuleScene_MainMenu::PostUpdate()
 
 	App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	App->render->Blit(textureBackground, 0, 0, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
+
+	printLetra();
 	
 
 	return update_status::UPDATE_CONTINUE;
 }
 
+
+void ModuleScene_MainMenu::printLetra() {
+
+
+		App->render->Blit(Letra, SCREEN_WIDTH - 200 , SCREEN_HEIGHT - 100 , SDL_FLIP_NONE, nullptr, 10);
+
+}
 
 /*SDL_Texture* GetResizedTexture(SDL_Texture* texture, int width, int height)
 {

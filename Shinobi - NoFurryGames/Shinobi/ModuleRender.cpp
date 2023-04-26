@@ -52,7 +52,7 @@ bool ModuleRender::Init()
 	}
 
 	//SkillIcon = App->textures->Load("Assets/Sprites/Player/Player.png");
-	SkillIcon = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Rojo.png");
+	/*SkillIcon = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Rojo.png");
 	HostageIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/rescate.png");
 	LifeIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/vida.png");
 	SA = App->textures->Load("Assets/Interface/Color_use/Yellow/SA.png");
@@ -60,7 +60,7 @@ bool ModuleRender::Init()
 	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
 
 	start_time = time(nullptr);
-
+	*/
 
 	return ret;
 }
@@ -119,7 +119,7 @@ update_status ModuleRender::Update()
 	}
 	
 	
-	int elapsed_time = updateTimer(start_time);
+	//int elapsed_time = updateTimer(start_time);
 
 	//cout << "PosiCam: " << camera.x << " PosiPlayer: " << App->player->position.x << endl;
 
@@ -132,7 +132,7 @@ update_status ModuleRender::PostUpdate()
 
 
 	//PrintaIcon
-	printSkillIcon();
+	/*printSkillIcon();
 	printHostageIcon(hostage_num);
 	printLifeIcon(life_num);
 	
@@ -142,7 +142,7 @@ update_status ModuleRender::PostUpdate()
 
 	printTime(getTimeString(elapsed_time).c_str(),Time);
 
-
+	*/
 
 	//Update the screen
 	SDL_RenderPresent(renderer);
@@ -226,7 +226,7 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 
 	return ret;
 }
-
+/*
 void ModuleRender::printSkillIcon() {
 	SDL_Rect rect = { 168,59,17,14 };
 
@@ -317,7 +317,7 @@ int ModuleRender::updateTimer(time_t start_time) {
 	int elapsed_seconds = difftime(current_time, start_time);
 	return elapsed_seconds;
 }
-//Suma tiempo
+//Suma tiempo*/
 /*
 std::string ModuleRender::getTimeString(int elapsed_time) {
 	int minutes = elapsed_time / 60;
@@ -331,7 +331,7 @@ std::string ModuleRender::getTimeString(int elapsed_time) {
 
 	return time_string;
 }*/
-
+/*
 //Resta tiempo , int total_time
 std::string ModuleRender::getTimeString(int elapsed_time) {
 	int remaining_seconds = total_time - elapsed_time;
@@ -371,3 +371,4 @@ std::vector<int> ModuleRender::getDigits(int number) {
 	return digits;
 
 }
+*/

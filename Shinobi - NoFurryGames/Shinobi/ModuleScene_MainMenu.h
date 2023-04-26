@@ -28,7 +28,7 @@ public:
 	update_status PostUpdate();
 
 
-
+	void printLetra();
 
 public:
 
@@ -44,6 +44,8 @@ public:
 
 	Animation* currentAnimation = nullptr;
 	Animation eyesAnimation;
+
+	SDL_Texture* Letra = nullptr;
 
 
 	// The sprite rectangle for the ground

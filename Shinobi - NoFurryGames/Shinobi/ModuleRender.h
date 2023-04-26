@@ -49,7 +49,7 @@ public:
 
 	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, float speed = 1.0f);
 
-	//Print Class
+	/*//Print Class
 	void printSkillIcon();
 	void printHostageIcon(int);
 	void printLifeIcon(int);
@@ -62,13 +62,14 @@ public:
 	int updateTimer(time_t start_time);
 	std::string getTimeString(int elapsed_seconds);
 
-
+	*/
 	//void flipSurface(SDL_Surface *flipped);
 
 
 public:
 	// Rendering context used for any rendering action
 	SDL_Renderer* renderer = nullptr;
+	/*
 	SDL_Texture* SkillIcon = nullptr;
 	SDL_Texture* HostageIcon = nullptr;
 	SDL_Texture* LifeIcon = nullptr;
@@ -77,6 +78,7 @@ public:
 	SDL_Texture* VE = nullptr;
 	SDL_Texture* Time = nullptr;
 	SDL_Texture* dosPunt = nullptr;
+	*/
 	// A rectangle that represents the camera section
 	// Sprites will be rendered to the screen depending on the camera position
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -85,6 +87,7 @@ public:
 
 
 	int cameraSpeed = 3;
+	/*
 	int hostage_num = 3;
 	int life_num = 2;
 	int texture_num = 123456789;
@@ -93,7 +96,7 @@ public:
 	time_t start_time;
 	int total_time = 20;
 	std::string time_string;
-
+	*/
 };
 
 #endif //__MODULE_RENDER_H__
