@@ -93,6 +93,7 @@ public:
 	time_t start_time;
 	int total_time = 20;
 	std::string time_string;
+
 };
 
 #endif //__MODULE_RENDER_H__

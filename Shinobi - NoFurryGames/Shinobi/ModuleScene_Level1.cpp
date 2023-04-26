@@ -47,19 +47,19 @@ bool ModuleScene_Level1::Start()
 
 
 	// Colliders ---
-	colliders.push(App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 2046, 9 }, Collider::Type::WALL));
+	App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 2046, 9 }, Collider::Type::WALL);
 
 	//Cajas
-	colliders.push(App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({1437, 183, 64, 32}, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({1405, 151, 32, 64}, Collider::Type::WALL));
+	App->collisions->AddCollider({416, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({703, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({863, 183, 32, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({1437, 183, 64, 32}, Collider::Type::WALL);
+	App->collisions->AddCollider({1405, 151, 32, 64}, Collider::Type::WALL);
 
 
 	//Limites jugador
-	colliders.push(App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL));
-	colliders.push(App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL));
+	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 
 	//secondFloor->active = false;
 	
@@ -75,6 +75,7 @@ bool ModuleScene_Level1::Start()
 	
 	App->player->Enable();
 	App->enemy->Enable();
+	App->collisions->Enable();
 	//App->scene_Level1_SecondFloor->Enable();
 
 	return ret;
@@ -98,13 +99,9 @@ update_status ModuleScene_Level1::PostUpdate()
 bool ModuleScene_Level1::CleanUp()
 {
 
-
-	while (!colliders.empty()) {
-		colliders.top()->pendingToDelete = true;
-		colliders.pop();
-	}
-
 	App->player->Disable();
 	App->enemy->Disable();
+	App->collisions->Disable();
+
 	return true;
 }
