@@ -15,6 +15,8 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	bool destroyed = false;
+
 private:
 	// The position (as ratio) in the wave at a specific moment
 	float waveRatio = 0.0f;

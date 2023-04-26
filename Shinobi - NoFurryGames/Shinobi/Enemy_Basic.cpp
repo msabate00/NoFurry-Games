@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleEnemies.h"
 #include <iostream>
 
 using namespace std;
@@ -38,6 +39,13 @@ void Enemy_Basic::Update()
 	
 	//position.y = spawnPos.y + (waveHeight * sinf(waveRatio));
 	//position.x -= 1;
+
+	
+	
+	if (destroyed == true)
+	{
+		currentAnim = &DeathBasic;
+	}
 
 	Enemy::Update();
 }
