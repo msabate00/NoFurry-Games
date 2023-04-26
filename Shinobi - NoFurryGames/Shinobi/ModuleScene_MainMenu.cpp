@@ -14,8 +14,8 @@
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
 {
-	eyesAnimation.PushBack({200, 200, SCREEN_WIDTH, SCREEN_HEIGHT });
-	eyesAnimation.PushBack({200, 704, SCREEN_WIDTH, SCREEN_HEIGHT });
+	eyesAnimation.PushBack({0, 0, SCREEN_WIDTH, SCREEN_HEIGHT });
+	eyesAnimation.PushBack({0, 231, SCREEN_WIDTH, SCREEN_HEIGHT });
 	eyesAnimation.loop = true;
 	eyesAnimation.speed = 0.04f;
 	background = { 200,200, SCREEN_WIDTH, SCREEN_HEIGHT };
