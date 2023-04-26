@@ -3,6 +3,8 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include <vector>
+#include <iostream>
 
 struct SDL_Texture;
 
@@ -28,7 +30,9 @@ public:
 	update_status PostUpdate();
 
 
-	void printLetra();
+	void printLetra(std::vector<int> num, SDL_Texture* texture);
+	void printIconC();
+	void printNom();
 
 public:
 
@@ -46,7 +50,8 @@ public:
 	Animation eyesAnimation;
 
 	SDL_Texture* Letra = nullptr;
-
+	SDL_Texture* LogoMedio = nullptr;
+	SDL_Texture* LogoC = nullptr;
 
 	// The sprite rectangle for the ground
 	SDL_Rect ground;
@@ -60,7 +65,11 @@ public:
 	uint monedaFX = 0;
 
 
-
+	SDL_Texture* LetraYear = nullptr;
+	SDL_Texture* LetraIconC = nullptr;
+	SDL_Texture* LetraNom = nullptr;
+	int texture_Year = 1987;
+	bool NameColor = true;
 
 };
 

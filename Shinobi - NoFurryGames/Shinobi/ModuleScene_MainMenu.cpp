@@ -8,8 +8,13 @@
 #include "ModuleEnemies.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
+#include "ModuleScene_Level1.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
+
+#include <string> 
+#include <vector>
+#include <iostream>
 
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
@@ -48,6 +53,8 @@ bool ModuleScene_MainMenu::Start()
 
 
 	Letra = App->textures->Load("Assets/Interface/Letra/Letra.png");
+	LogoMedio = App->textures->Load("Assets/Interface/Color_use/White/Sega.png");
+
 	return ret;
 }
 
@@ -76,19 +83,70 @@ update_status ModuleScene_MainMenu::PostUpdate()
 	App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	App->render->Blit(textureBackground, 0, 0, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
 
-	printLetra();
-	
-
+	printLetra(App->scene_Level1->getDigits(texture_Year), LetraYear);
+	printIconC();
+	printNom();
+	App->render->Blit(Letra, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
+	//App->render->Blit(LogoMedio, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
 	return update_status::UPDATE_CONTINUE;
 }
 
 
-void ModuleScene_MainMenu::printLetra() {
+void ModuleScene_MainMenu::printLetra(std::vector<int> number, SDL_Texture* LetraNum) {
 
+	int IconPosition = 70;
+	for (int i = 0; i < number.size(); i++)
+	{
+		std::string filename = "Assets/Interface/Color_use/White/White_Numeros/White_" + std::to_string(number[i]) + ".png";
+		LetraNum = App->textures->Load(filename.c_str());
 
-		App->render->Blit(Letra, SCREEN_WIDTH - 200 , SCREEN_HEIGHT - 100 , SDL_FLIP_NONE, nullptr, 10);
+		App->render->Blit(LetraNum, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+		IconPosition -= 16;
+	}
+	
+}
+
+void ModuleScene_MainMenu::printIconC() {
+
+	int IconPosition = 150;
+	for (int i = 0; i < 5; i++)
+	{
+		std::string filename = "Assets/Interface/Color_use/White/Icon/White_" + std::to_string(i) + ".png";
+		LetraIconC = App->textures->Load(filename.c_str());
+
+		App->render->Blit(LetraIconC, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+		IconPosition -= 16;
+	}
 
 }
+
+void ModuleScene_MainMenu::printNom() {
+	
+	int IconPosition = 250;
+	
+		if (NameColor) {
+			for (int i = 0; i < 7; i++)
+			{
+			std::string filename = "Assets/Interface/Color_use/Red/Shinobi/Rojo_" + std::to_string(i) + ".png";
+			LetraNom = App->textures->Load(filename.c_str());
+			App->render->Blit(LetraNom, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+			IconPosition -= 16;
+			}
+			NameColor = false;
+		}else{
+			for (int i = 0; i < 7; i++)
+			{
+			std::string filename = "Assets/Interface/Color_use/White/Shinobi/White_" + std::to_string(i) + ".png";
+			LetraNom = App->textures->Load(filename.c_str());
+			App->render->Blit(LetraNom, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+			IconPosition -= 16;
+			}
+			NameColor = true;
+		}
+		SDL_Delay(500);
+}
+
+
 
 /*SDL_Texture* GetResizedTexture(SDL_Texture* texture, int width, int height)
 {
