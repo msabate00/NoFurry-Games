@@ -167,21 +167,23 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 
+	//CUANDO COLISIONA CON EL JUGADOR
 	if (c2 == App->player->collider && c1->type== Collider::Type::ENEMY)
 	{
 		return;
 	}
 
 
+	//PARA EL HOSTAGE
 	if (c2 == App->player->collider && c1->type == Collider::Type::HOSTAGE)
 	{
 		for (uint i = 0; i < MAX_ENEMIES; ++i)
 		{
-			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && !((Hostage*)enemies[i])->saved)
 			{
 				//enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 				((Hostage*)enemies[i])->saved = true;
-
+				return;
 				break;
 			}
 		}
@@ -189,7 +191,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 
 	
 
-
+	//RESTO DE COLISIONES
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)

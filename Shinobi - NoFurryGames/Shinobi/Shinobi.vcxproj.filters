@@ -114,6 +114,9 @@
     <ClCompile Include="Hostage.cpp">
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleScene_Level1_SecondFloor_Enemies.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="Hostage.h">
       <Filter>Source Files\Entities\Hostage</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene_Level1_SecondFloor_Enemies.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

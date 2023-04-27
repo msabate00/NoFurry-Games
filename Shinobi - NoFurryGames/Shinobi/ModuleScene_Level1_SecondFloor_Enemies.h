@@ -1,4 +1,4 @@
-#ifndef __MODULE_SCENE_SECONDFLOOR_H__
+#ifndef __MODULE_SCENE_SECONDFLOOR_ENEMIES_H__
 #define __MODULE_SCENE_SECONDFLOOR_H__
 
 #include "Module.h"
@@ -7,14 +7,14 @@
 struct SDL_Texture;
 struct Collider;
 
-class ModuleScene_Level1_SecondFloor : public Module
+class ModuleScene_Level1_SecondFloor_Enemies : public Module
 {
 public:
 	//Constructor
-	ModuleScene_Level1_SecondFloor(bool startEnabled);
+	ModuleScene_Level1_SecondFloor_Enemies(bool startEnabled);
 
 	//Destructor
-	~ModuleScene_Level1_SecondFloor();
+	~ModuleScene_Level1_SecondFloor_Enemies();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -32,8 +32,6 @@ public:
 
 
 public:
-
-	Collider* collisions[7];
 
 	SDL_Texture* up_level_fenceTexture = nullptr;
 	SDL_Rect up_level_fence1Rect;
