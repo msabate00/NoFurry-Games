@@ -83,9 +83,9 @@ update_status ModuleScene_MainMenu::PostUpdate()
 	App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	App->render->Blit(textureBackground, 0, 0, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
 
-	printLetra(App->scene_Level1->getDigits(texture_Year), LetraYear);
-	printIconC();
-	printNom();
+	//printLetra(App->scene_Level1->getDigits(texture_Year), LetraYear);
+	//printIconC();
+	//printNom();
 	App->render->Blit(Letra, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
 	//App->render->Blit(LogoMedio, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
 	return update_status::UPDATE_CONTINUE;
