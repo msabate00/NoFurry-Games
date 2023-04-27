@@ -77,11 +77,11 @@ public:
 	// A set of animations
 	Animation idleAnim;
 	Animation forwardAnim;
-	Animation backwardAnim;
 	Animation crouched_idleAnim;
 	Animation crouched_forwardAnim;
 	Animation crouched_AttackAnim;
 	Animation jumpAnim;
+	Animation jumpAttackAnim;
 	Animation attack_shurikenAnim;
 	Animation watching_UpAnimation;
 	Animation watching_DownAnimation;
@@ -89,7 +89,15 @@ public:
 	Animation bigJumpDownAnim;
 	Animation DeathAnim;
 
-
+	Animation PistolaidleAnim;
+	Animation PistolaforwardAnim;
+	Animation Pistolacrouched_idleAnim;
+	Animation Pistolacrouched_forwardAnim;
+	Animation Pistolacrouched_AttackAnim;
+	Animation PistolajumpAnim;
+	Animation PistolajumpAttackAnim;
+	Animation PistolaattackAnim;
+	
 
 	// The player's collider
 	Collider* collider = nullptr;

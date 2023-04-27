@@ -13,6 +13,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 
+#include "Hostage.h"
+
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
 
@@ -67,6 +69,14 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	jumpAnim.PushBack({ 84, 357, 33, 58 });
 	jumpAnim.speed = 0.035f;
 
+	jumpAttackAnim.PushBack({ 190, 357, 49, 59 });
+	jumpAttackAnim.PushBack({ 243, 357, 49, 59 });
+
+	jumpAttackAnim.speed = 0.1f;
+	jumpAttackAnim.loop = false;
+
+
+
 	//attack shuriken Anim
 	attack_shurikenAnim.PushBack({ 14, 267, 46, 60 });
 	//attack_shurikenAnim.PushBack({ 84, 357, 33, 58 });
@@ -97,6 +107,49 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 
 	DeathAnim.speed = 0.1f;
+
+
+
+	
+//Anim Pistola
+	PistolaidleAnim.PushBack({ 485, 112, 35, 60 });
+	PistolaidleAnim.speed = 0.2f;
+
+
+	PistolaforwardAnim.PushBack({ 407, 112, 35, 60 });
+	PistolaforwardAnim.PushBack({ 446, 112, 35, 60 });
+	PistolaforwardAnim.PushBack({ 485, 112, 35, 60 });
+	PistolaforwardAnim.PushBack({ 524, 112, 35, 60 });
+	PistolaforwardAnim.PushBack({ 563, 112, 35, 60 });
+	PistolaforwardAnim.PushBack({ 602, 112, 35, 60 });
+	PistolaforwardAnim.speed = 0.1f;
+
+	Pistolacrouched_idleAnim.PushBack({ 506, 210, 42, 36 });
+	Pistolacrouched_idleAnim.speed = 0.2f;
+
+	Pistolacrouched_forwardAnim.PushBack({ 329, 210, 49, 36 });
+	Pistolacrouched_forwardAnim.PushBack({ 382, 210, 49, 36 });
+	Pistolacrouched_forwardAnim.PushBack({ 435, 210, 49, 36 });
+	Pistolacrouched_forwardAnim.speed = 0.1f;
+
+
+	Pistolacrouched_AttackAnim.PushBack({ 506, 210, 42, 36 });
+	Pistolacrouched_AttackAnim.speed = 0.2f;
+	Pistolacrouched_AttackAnim.loop = false;
+
+
+	PistolajumpAnim.PushBack({ 423, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 501, 357, 35, 58 });
+	PistolajumpAnim.speed = 0.035f;
+
+	PistolajumpAttackAnim.PushBack({ 672, 357, 43, 58 });
+	PistolajumpAttackAnim.speed = 0.1f;
+	PistolajumpAttackAnim.loop = false;
+
+	PistolaattackAnim.PushBack({ 212, 268, 31, 57 });
+	PistolaattackAnim.speed = 0.1f;
+	PistolaattackAnim.loop = false;
 
 }
 
@@ -164,7 +217,9 @@ update_status ModulePlayer::Update()
 	position.y -= currJumpForce;
 	
 
+	
 	//Reset the currentAnimation back to idle before updating the logic
+	
 	currentAnimation = &idleAnim;
 
 
@@ -250,7 +305,14 @@ update_status ModulePlayer::Update()
 	
 
 	if (isAttacking) {
-		currentAnimation = &attack_shurikenAnim;
+		if (isJumping) {
+			currentAnimation = &jumpAttackAnim;
+		}
+		else {
+			currentAnimation = &attack_shurikenAnim;
+		}
+
+		
 		if (currentAnimation->HasFinished()) {
 			isAttacking = false;
 			currentAnimation->Reset();
@@ -322,6 +384,9 @@ update_status ModulePlayer::Update()
 		currJumpForce = jumpForce;
 		
 		currentAnimation = &jumpAnim;
+
+		
+
 	}
 
 	

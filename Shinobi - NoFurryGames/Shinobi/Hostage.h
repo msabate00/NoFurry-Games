@@ -15,6 +15,7 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	bool pistola = false;
 	bool saved = false;
 	bool check = false;
 
