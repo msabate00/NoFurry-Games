@@ -1,6 +1,7 @@
 #include "ModuleScene_Level1.h"
 
 #include "ModuleScene_Level1_SecondFloor.h"
+#include "ModuleScene_Level1_SecondFloor_Enemies.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -81,6 +82,7 @@ bool ModuleScene_Level1::Start()
 	App->player->Enable();
 	App->enemy->Enable();
 	App->collisions->Enable();
+	App->scene_Level1_SecondFloor_Enemies->Enable();
 	//App->scene_Level1_SecondFloor->Enable();
 
 

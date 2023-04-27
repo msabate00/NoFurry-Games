@@ -204,6 +204,9 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
+
+	cout << position.y << endl;
+
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
 	currJumpForce += -GRAVITY;
@@ -284,7 +287,7 @@ update_status ModulePlayer::Update()
 		if (isChangingFloorF2) {
 			//currentAnimation = &bigJumpUpDownAnim;
 
-			if (positionBefore.y == position.y && position.y > 85) {
+			if (positionBefore.y == position.y && position.y >= 72) {
 				isChangingFloorF2 = false;
 			}
 
