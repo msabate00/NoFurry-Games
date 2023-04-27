@@ -15,7 +15,7 @@
 #include <string> 
 #include <vector>
 #include <iostream>
-
+#include <cmath>
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
 {
@@ -83,16 +83,18 @@ update_status ModuleScene_MainMenu::PostUpdate()
 	App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	App->render->Blit(textureBackground, 0, 0, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
 
-	//printLetra(App->scene_Level1->getDigits(texture_Year), LetraYear);
-	//printIconC();
-	//printNom();
-	App->render->Blit(Letra, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
+	printYear(App->scene_Level1->getDigits(texture_Year), LetraYear);
+	printIconC();
+	printNom();
+	
+	
+	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 10);
 	//App->render->Blit(LogoMedio, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
 	return update_status::UPDATE_CONTINUE;
 }
 
 
-void ModuleScene_MainMenu::printLetra(std::vector<int> number, SDL_Texture* LetraNum) {
+void ModuleScene_MainMenu::printYear(std::vector<int> number, SDL_Texture* LetraNum) {
 
 	int IconPosition = 70;
 	for (int i = 0; i < number.size(); i++)
@@ -143,10 +145,36 @@ void ModuleScene_MainMenu::printNom() {
 			}
 			NameColor = true;
 		}
-		SDL_Delay(500);
+		
 }
 
 
+double ModuleScene_MainMenu::letraGetX(){
+	if (letraY > 79 && letraY < 83 && letraX > 164 && letraX < 169) {
+		//cout << "X yes" << endl;
+		letraX = 168;
+	}else{
+	letraX = CENTER_X + A * sin(angle * M_PI / 270.0);
+	angle += ROTATION_SPEED;
+	A = A - 0.7;
+	//cout << "X: " << letraX << endl;
+	}
+	return letraX;
+}
+double ModuleScene_MainMenu::letraGetY() {
+	if (letraY > 79 && letraY < 83 && letraX > 164 && letraX < 169) {
+		//cout << "Y yes" << endl;
+		letraY = 80;
+	}
+	else {
+	letraY = CENTER_Y + B * cos(angle * M_PI / 270.0);
+	angle += ROTATION_SPEED;
+	B = B - 0.6,5;
+	//cout << "Y: " << letraY << endl;
+	}
+	
+	return letraY;
+}
 
 /*SDL_Texture* GetResizedTexture(SDL_Texture* texture, int width, int height)
 {
