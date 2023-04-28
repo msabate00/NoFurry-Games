@@ -3,6 +3,7 @@
 #include "Application.h"
 
 #include "ModuleTextures.h"
+#include "ModulePlayer.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
 #include "SDL/include/SDL_timer.h"
@@ -31,7 +32,6 @@ bool ModuleParticles::Start()
 	shurikenR.anim.PushBack({103, 292, 13, 10});
 	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
 	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
-	
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
 	shurikenR.lifetime = 80;
@@ -49,12 +49,69 @@ bool ModuleParticles::Start()
 	shurikenDying.anim.PushBack({ 378, 328, 15, 15});
 	shurikenDying.anim.PushBack({ 399, 328, 15, 15 });
 	shurikenDying.anim.PushBack({ 420, 328, 15, 15 });
-
 	shurikenDying.anim.loop = false;
 	shurikenDying.anim.speed = 0.5f;
-
 	shurikenDying.speed = iPoint(0, 0);
 
+
+
+	bulletR.anim.PushBack({ 279, 297, 14, 7 });
+	bulletR.anim.PushBack({ 297, 297, 14, 7 });
+	bulletR.anim.PushBack({ 315, 297, 14, 7 });
+	bulletR.anim.loop = true;
+	bulletR.anim.speed = 0.3f;
+	bulletR.lifetime = 80;
+	bulletR.speed = iPoint(4, 0);
+
+	bulletL.anim.PushBack({ 279, 297, 14, 7 });
+	bulletL.anim.PushBack({ 297, 297, 14, 7 });
+	bulletL.anim.PushBack({ 315, 297, 14, 7 });
+	bulletL.anim.loop = true;
+	bulletL.anim.speed = 0.3f;
+	bulletL.lifetime = 80;
+	bulletL.speed = iPoint(-4, 0);
+
+
+	bulletDying.anim.PushBack({ 475, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 520, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 565, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 610, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 655, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 700, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 745, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 790, 302, 41, 41 });
+	bulletDying.anim.loop = false;
+	bulletDying.anim.speed = 0.5f;
+	bulletDying.speed = iPoint(0, 0);
+
+
+
+
+
+
+	bonus200.anim.PushBack({ 28,2095,38,17 });
+	bonus200.anim.loop = false;
+	bonus200.anim.speed = 0.5f;
+	bonus200.speed = iPoint(0, -1);
+	bonus200.lifetime = 60;
+
+	bonus500.anim.PushBack({76,2095,38,17});
+	bonus500.anim.loop = false;
+	bonus500.anim.speed = 0.5f;
+	bonus500.speed = iPoint(0, -1);
+	bonus500.lifetime = 60;
+
+	bonus1000.anim.PushBack({ 122,2095,47,17 });
+	bonus1000.anim.loop = false;
+	bonus1000.anim.speed = 0.5f;
+	bonus1000.speed = iPoint(0, -1);
+	bonus1000.lifetime = 60;
+
+	bonusGun.anim.PushBack({ 49,2095,228,19 });
+	bonusGun.anim.loop = false;
+	bonusGun.anim.speed = 0.5f;
+	bonusGun.speed = iPoint(0, -1);
+	bonusGun.lifetime = 60;
 	
 
 	return true;
@@ -85,11 +142,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT) {
-				
-				//currentAnimation = &shurikenDying;
-				//App->render->Blit(texture, particles[i]->position.x, particles[i]->position.y, SDL_FLIP_NONE, &(particles[i]->shurikenDying.anim));
+			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && !App->player->holdingGun) {
 				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y-3, Collider::Type::NONE);
+				particles[i]->collider->pendingToDelete = true;
+			}
+			else if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && App->player->holdingGun) {
+				App->particles->AddParticle(bulletDying, particles[i]->position.x-10, particles[i]->position.y - 14, Collider::Type::PLAYER_SHOT);
 				particles[i]->collider->pendingToDelete = true;
 			}
 			

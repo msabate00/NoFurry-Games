@@ -101,6 +101,27 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
 	return ret;
 }
 
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points)
+{
+	bool ret = false;
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (spawnQueue[i].type == ENEMY_TYPE::NO_TYPE)
+		{
+			spawnQueue[i].type = type;
+			spawnQueue[i].x = x;
+			spawnQueue[i].y = y;
+			spawnQueue[i].gun = gun;
+			spawnQueue[i].points = points;
+			ret = true;
+			break;
+		}
+	}
+
+	return ret;
+}
+
 void ModuleEnemies::HandleEnemiesSpawn()
 {
 	// Iterate all the enemies queue
@@ -153,7 +174,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:
-				enemies[i] = new Hostage(info.x, info.y);
+				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points);
 				break;
 
 			}
@@ -183,6 +204,13 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			{
 				//enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 				((Hostage*)enemies[i])->saved = true;
+				if (((Hostage*)enemies[i])->gun) {
+					//Mostrar particula bonus gun
+					App->player->holdingGun = true;
+				}
+				
+
+
 				return;
 				break;
 			}
@@ -198,11 +226,44 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 
-			if ( c1->type == Collider::Type::ENEMY) {
+			if (c1->type == Collider::Type::ENEMY)
+			{
 				destroyed = true;
-				delete enemies[i];
+				
+				if (destroyed == true)
+				{
+					destroyedCountdown--;
+
+					if (destroyedCountdown <= 0)
+					{
+						delete enemies[i];
+						cout << "Eliminado" << endl;
+						enemies[i] = nullptr;
+						cout << "Hola" << endl;
+						break;
+					}
+				}
+
+				/*delete enemies[i];
+				cout << "Eliminado" << endl;
 				enemies[i] = nullptr;
-				break;
+				cout << "Hola" << endl;
+				break;*/
+
+				/*if (App->enemy->destroyed == true)
+				{
+					destroyedCountdown--;
+
+					if (destroyedCountdown <= 0)
+					{
+						destroyed = false;
+					}
+				}*/
+				
+				
+				/*delete enemies[i];
+				enemies[i] = nullptr;
+				break;*/
 			}
 		}
 	}

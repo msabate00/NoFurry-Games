@@ -2,12 +2,18 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleParticles.h"
+#include "ModuleScene_Level1.h"
 #include <iostream>
 
 using namespace std;
 
-Hostage::Hostage(int x, int y) : Enemy(x, y)
+Hostage::Hostage(int x, int y, bool gun, int points) : Enemy(x, y)
 {
+
+	this->gun = gun;
+	this->points = points;
+
 	IdleHostage.PushBack({ 616, 259,25,29 });
 	IdleHostage.PushBack({ 647, 259,25,29 });
 	IdleHostage.PushBack({ 678, 259,25,29 });
@@ -26,8 +32,6 @@ Hostage::Hostage(int x, int y) : Enemy(x, y)
 
 
 	SaveHostage.speed = 0.1f;
-
-
 
 	//walkBasic.loop = true;
 
@@ -50,6 +54,44 @@ void Hostage::Update()
 		currentAnim = &SaveHostage;
 	}
 
+	if (saved && !check2) {
+		
+		switch (points)
+		{
+			case 0:
+				App->particles->AddParticle(App->particles->bonusGun, position.x, position.y, Collider::Type::NONE);
+				break;
+			case 200:
+				App->particles->AddParticle(App->particles->bonus200, position.x, position.y, Collider::Type::NONE);
+				App->scene_Level1->texture_num += 200;
+				break;
+			case 500:
+				App->particles->AddParticle(App->particles->bonus500, position.x, position.y, Collider::Type::NONE);
+				App->scene_Level1->texture_num += 500;
+				break;
+			case 1000:
+				App->particles->AddParticle(App->particles->bonus1000, position.x, position.y, Collider::Type::NONE);
+				App->scene_Level1->texture_num += 1000;
+				break;
+		}
+		check2 = true;
+	}
+
 	Enemy::Update();
+}
+
+
+int Hostage::getPoints() {
+	return this->points;
+}
+void Hostage::setPoints(int points) {
+	this->points = points;
+}
+bool Hostage::getGun() {
+
+	return gun;
+}
+void Hostage::setGun(bool gun) {
+	this->gun = gun;
 }
 

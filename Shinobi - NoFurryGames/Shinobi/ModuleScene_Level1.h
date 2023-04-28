@@ -80,7 +80,7 @@ public:
 
 	int hostage_num = 3;
 	int life_num = 2;
-	int texture_num = 123456789;
+	int texture_num = 0;
 
 	int elapsed_time;
 	time_t start_time;
