@@ -3,6 +3,7 @@
 #include "Application.h"
 
 #include "ModuleTextures.h"
+#include "ModulePlayer.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
 #include "SDL/include/SDL_timer.h"
@@ -141,11 +142,12 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT) {
-				
-				//currentAnimation = &shurikenDying;
-				//App->render->Blit(texture, particles[i]->position.x, particles[i]->position.y, SDL_FLIP_NONE, &(particles[i]->shurikenDying.anim));
+			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && !App->player->holdingGun) {
 				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y-3, Collider::Type::NONE);
+				particles[i]->collider->pendingToDelete = true;
+			}
+			else if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && App->player->holdingGun) {
+				App->particles->AddParticle(bulletDying, particles[i]->position.x, particles[i]->position.y - 3, Collider::Type::NONE);
 				particles[i]->collider->pendingToDelete = true;
 			}
 			

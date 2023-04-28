@@ -467,12 +467,24 @@ update_status ModulePlayer::Update()
 		
 
 		if (facingRight) {
-			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
-			App->audio->PlayFx(ataqueFX);
+			if (!holdingGun) {
+				App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+				App->audio->PlayFx(ataqueFX);
+			}
+			else {
+				App->particles->AddParticle(App->particles->bulletR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+
+			}
 		}
 		else {
-			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
-			App->audio->PlayFx(ataqueFX);
+			if (!holdingGun) {
+				App->particles->AddParticle(App->particles->shurikenL, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+				App->audio->PlayFx(ataqueFX);
+			}
+			else {
+				App->particles->AddParticle(App->particles->bulletL, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+
+			}
 		}
 	}
 
