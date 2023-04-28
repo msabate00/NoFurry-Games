@@ -31,7 +31,6 @@ bool ModuleParticles::Start()
 	shurikenR.anim.PushBack({103, 292, 13, 10});
 	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
 	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
-	
 	shurikenR.anim.loop = true;
 	shurikenR.anim.speed = 0.3f;
 	shurikenR.lifetime = 80;
@@ -49,12 +48,34 @@ bool ModuleParticles::Start()
 	shurikenDying.anim.PushBack({ 378, 328, 15, 15});
 	shurikenDying.anim.PushBack({ 399, 328, 15, 15 });
 	shurikenDying.anim.PushBack({ 420, 328, 15, 15 });
-
 	shurikenDying.anim.loop = false;
 	shurikenDying.anim.speed = 0.5f;
-
 	shurikenDying.speed = iPoint(0, 0);
 
+
+	bonus200.anim.PushBack({});
+	bonus200.anim.loop = false;
+	bonus200.anim.speed = 0.5f;
+	bonus200.speed = iPoint(0, -1);
+	bonus200.lifetime = 60;
+
+	bonus500.anim.PushBack({});
+	bonus500.anim.loop = false;
+	bonus500.anim.speed = 0.5f;
+	bonus500.speed = iPoint(0, -1);
+	bonus500.lifetime = 60;
+
+	bonus1000.anim.PushBack({});
+	bonus1000.anim.loop = false;
+	bonus1000.anim.speed = 0.5f;
+	bonus1000.speed = iPoint(0, -1);
+	bonus1000.lifetime = 60;
+
+	bonusGun.anim.PushBack({});
+	bonusGun.anim.loop = false;
+	bonusGun.anim.speed = 0.5f;
+	bonusGun.speed = iPoint(0, -1);
+	bonusGun.lifetime = 60;
 	
 
 	return true;

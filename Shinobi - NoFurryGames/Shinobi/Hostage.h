@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "Path.h"
 
+struct Collider;
+
 class Hostage : public Enemy
 {
 public:

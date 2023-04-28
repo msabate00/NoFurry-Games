@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleParticles.h"
 #include <iostream>
 
 using namespace std;
@@ -46,6 +47,24 @@ void Hostage::Update()
 		}
 		position.y--;
 		currentAnim = &SaveHostage;
+	}
+
+	if (currentAnim->HasFinished()) {
+		switch (points)
+		{
+			case 0:
+				App->particles->AddParticle(App->particles->bonusGun, position.x, position.y, Collider::Type::NONE);
+				break;
+			case 200:
+				App->particles->AddParticle(App->particles->bonus200, position.x, position.y, Collider::Type::NONE);
+				break;
+			case 500:
+				App->particles->AddParticle(App->particles->bonus500, position.x, position.y, Collider::Type::NONE);
+				break;
+			case 1000:
+				App->particles->AddParticle(App->particles->bonus1000, position.x, position.y, Collider::Type::NONE);
+				break;
+		}
 	}
 
 	Enemy::Update();

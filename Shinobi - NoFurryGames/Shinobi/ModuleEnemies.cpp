@@ -202,6 +202,11 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			{
 				//enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 				((Hostage*)enemies[i])->saved = true;
+				if (((Hostage*)enemies[i])->gun) {
+					//Mostrar particula bonus gun
+					App->player->holdingGun = true;
+				}
+				/*
 				switch (((Hostage*)enemies[i])->points) {
 					case 200:
 						//Mostrar particula puntuacion 200
@@ -218,7 +223,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 							App->player->holdingGun = true;
 						}
 						break;
-				}
+				}*/
 
 
 				return;

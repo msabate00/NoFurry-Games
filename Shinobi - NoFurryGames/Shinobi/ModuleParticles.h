@@ -60,15 +60,15 @@ private:
 	uint lastParticle = 0;
 
 public:
-	//Template particle for an explosion
-	Particle explosion;
-
-	//Template particle for a laser
-	Particle laser;
-
+	
 	Particle shurikenR;
 	Particle shurikenL;
 	Particle shurikenDying;
+
+	Particle bonus200;
+	Particle bonus500;
+	Particle bonus1000;
+	Particle bonusGun;
 
 };
 
