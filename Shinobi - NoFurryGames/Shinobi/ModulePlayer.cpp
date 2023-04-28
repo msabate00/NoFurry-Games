@@ -205,7 +205,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 
-	cout << position.y << endl;
+	
 
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;

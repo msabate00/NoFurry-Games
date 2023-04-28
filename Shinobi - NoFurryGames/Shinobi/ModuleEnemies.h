@@ -18,6 +18,8 @@ struct EnemySpawnpoint
 {
 	ENEMY_TYPE type = ENEMY_TYPE::NO_TYPE;
 	int x, y;
+	bool gun;
+	int points;
 };
 
 class Enemy;

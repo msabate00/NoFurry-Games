@@ -112,6 +112,8 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
+			spawnQueue[i].gun = gun;
+			spawnQueue[i].points = points;
 			ret = true;
 			break;
 		}
@@ -172,7 +174,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:
-				enemies[i] = new Hostage(info.x, info.y);
+				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points);
 				break;
 
 			}
@@ -206,24 +208,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					//Mostrar particula bonus gun
 					App->player->holdingGun = true;
 				}
-				/*
-				switch (((Hostage*)enemies[i])->points) {
-					case 200:
-						//Mostrar particula puntuacion 200
-						break;
-					case 500:
-						//Mostrar particula puntuacion 500
-						break;
-					case 1000:
-						//Mostrar particula puntuacion 1000
-						break;
-					case 0:
-						if (((Hostage*)enemies[i])->gun) {
-							//Mostrar particula bonus gun
-							App->player->holdingGun = true;
-						}
-						break;
-				}*/
+				
 
 
 				return;
