@@ -3,12 +3,17 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
+#include "ModuleScene_Level1.h"
 #include <iostream>
 
 using namespace std;
 
-Hostage::Hostage(int x, int y) : Enemy(x, y)
+Hostage::Hostage(int x, int y, bool gun, int points) : Enemy(x, y)
 {
+
+	this->gun = gun;
+	this->points = points;
+
 	IdleHostage.PushBack({ 616, 259,25,29 });
 	IdleHostage.PushBack({ 647, 259,25,29 });
 	IdleHostage.PushBack({ 678, 259,25,29 });
@@ -49,7 +54,8 @@ void Hostage::Update()
 		currentAnim = &SaveHostage;
 	}
 
-	if (currentAnim->HasFinished()) {
+	if (saved && !check2) {
+		
 		switch (points)
 		{
 			case 0:
@@ -57,14 +63,18 @@ void Hostage::Update()
 				break;
 			case 200:
 				App->particles->AddParticle(App->particles->bonus200, position.x, position.y, Collider::Type::NONE);
+				App->scene_Level1->texture_num += 200;
 				break;
 			case 500:
 				App->particles->AddParticle(App->particles->bonus500, position.x, position.y, Collider::Type::NONE);
+				App->scene_Level1->texture_num += 500;
 				break;
 			case 1000:
 				App->particles->AddParticle(App->particles->bonus1000, position.x, position.y, Collider::Type::NONE);
+				App->scene_Level1->texture_num += 1000;
 				break;
 		}
+		check2 = true;
 	}
 
 	Enemy::Update();
