@@ -20,8 +20,14 @@
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
 {
-	eyesAnimation.PushBack({0, 0, SCREEN_WIDTH, SCREEN_HEIGHT });
-	eyesAnimation.PushBack({0, 231, SCREEN_WIDTH, SCREEN_HEIGHT });
+	eyesAnimation.PushBack({ 350, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	eyesAnimation.PushBack({ 19, 44, SCREEN_WIDTH, SCREEN_HEIGHT }); //izquierda
+	eyesAnimation.PushBack({ 350, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	eyesAnimation.PushBack({ 350, 44, SCREEN_WIDTH, SCREEN_HEIGHT }); //derecha
+	eyesAnimation.PushBack({ 350, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	eyesAnimation.PushBack({ 19, 504, SCREEN_WIDTH, SCREEN_HEIGHT }); //Brilli
+	eyesAnimation.PushBack({19, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Brilli2
+	
 	eyesAnimation.loop = true;
 	eyesAnimation.speed = 0.04f;
 	background = { 200,200, SCREEN_WIDTH, SCREEN_HEIGHT };
