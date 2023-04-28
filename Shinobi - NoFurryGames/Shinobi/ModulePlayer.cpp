@@ -403,8 +403,11 @@ update_status ModulePlayer::Update()
 			currentAnimation = &Pistolacrouched_idleAnim;
 		}
 
-		if (position.y <= 110) {
+		if (position.y <= 110 && !holdingGun) {
 			currentAnimation = &watching_DownAnimation;
+
+		} else if (position.y <= 110 && holdingGun) {
+			currentAnimation = &Pistolacrouched_idleAnim;
 		}
 
 
