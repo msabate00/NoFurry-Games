@@ -33,12 +33,14 @@ public:
 	void printYear(std::vector<int> num, SDL_Texture* texture);
 	void printIconC();
 	void printNom();
+	void printLetra();
 	double letraGetX();
 	double letraGetY();
 
 public:
 
 	// The scene sprite sheet loaded into an SDL_Texture
+	
 	
 
 	SDL_Texture* textureBackground = nullptr;
@@ -76,12 +78,13 @@ public:
 
 	double letraX = 0;//SCREEN_WIDTH - 400
 	double letraY = 0;//SCREEN_HEIGHT - 200
-	double CENTER_X = SCREEN_WIDTH - 200;
-	double CENTER_Y = SCREEN_HEIGHT - 150;
+	double CENTER_X = SCREEN_WIDTH - 240;
+	double CENTER_Y = SCREEN_HEIGHT - 200;
 	double A = 200;
 	double B = 200;
 	double angle = 0;
 	double ROTATION_SPEED = 6;
+	int sumapix = 0;
 };
 
 #endif

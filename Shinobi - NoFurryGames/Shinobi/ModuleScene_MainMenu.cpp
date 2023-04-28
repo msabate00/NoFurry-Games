@@ -12,6 +12,7 @@
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
 
+#include "SDL/include/SDL.h"
 #include <string> 
 #include <vector>
 #include <iostream>
@@ -87,11 +88,18 @@ update_status ModuleScene_MainMenu::PostUpdate()
 	printIconC();
 	printNom();
 	
+	printLetra();
 	
-	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 10);
 	//App->render->Blit(LogoMedio, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 10);
 	return update_status::UPDATE_CONTINUE;
 }
+void ModuleScene_MainMenu::printLetra() {
+	
+	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 0);
+
+}
+
+
 
 
 void ModuleScene_MainMenu::printYear(std::vector<int> number, SDL_Texture* LetraNum) {
@@ -150,27 +158,27 @@ void ModuleScene_MainMenu::printNom() {
 
 
 double ModuleScene_MainMenu::letraGetX(){
-	if (letraY > 79 && letraY < 83 && letraX > 164 && letraX < 169) {
+	if (letraY > 32 && letraY < 36 && letraX > 146 && letraX < 150) {
 		//cout << "X yes" << endl;
-		letraX = 168;
+		letraX = 148;
 	}else{
 	letraX = CENTER_X + A * sin(angle * M_PI / 270.0);
 	angle += ROTATION_SPEED;
 	A = A - 0.7;
-	//cout << "X: " << letraX << endl;
+	cout << "X: " << letraX << endl;
 	}
 	return letraX;
 }
 double ModuleScene_MainMenu::letraGetY() {
-	if (letraY > 79 && letraY < 83 && letraX > 164 && letraX < 169) {
+	if (letraY > 32 && letraY < 36 && letraX > 146 && letraX < 150) {
 		//cout << "Y yes" << endl;
-		letraY = 80;
+		letraY = 34;
 	}
 	else {
 	letraY = CENTER_Y + B * cos(angle * M_PI / 270.0);
 	angle += ROTATION_SPEED;
 	B = B - 0.6,5;
-	//cout << "Y: " << letraY << endl;
+	cout << "Y: " << letraY << endl;
 	}
 	
 	return letraY;
