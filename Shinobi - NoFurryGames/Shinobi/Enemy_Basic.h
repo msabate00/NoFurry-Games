@@ -17,6 +17,12 @@ public:
 
 	bool destroyed = false;
 
+	iPoint position;
+
+	bool goingToPlayer = true;
+	bool facingRight = false;
+	bool facingLeft = true;
+
 private:
 	// The position (as ratio) in the wave at a specific moment
 	float waveRatio = 0.0f;
@@ -30,13 +36,13 @@ private:
 	// The total height of the wave
 	int waveHeight = 15;
 
-	// A set of steps that define the position in the screen
-	// And an animation for each step
-	Path path;
+	int speed = 1;
+
+	int destroyedCountdown = 30;
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	Animation walkBasic, walkBack;
+	Animation walkBasic, walkBack, staticAnim;
 	Animation DeathBasic;
 
 };

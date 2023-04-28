@@ -198,7 +198,8 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 
-			if ( c1->type == Collider::Type::ENEMY) {
+			if ( c1->type == Collider::Type::ENEMY) 
+			{
 				destroyed = true;
 				delete enemies[i];
 				enemies[i] = nullptr;

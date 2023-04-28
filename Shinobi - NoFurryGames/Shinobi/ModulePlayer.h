@@ -54,7 +54,8 @@ public:
 
 	bool facingRight = true;
 
-	enum STATE {
+	enum STATE 
+	{
 		NONE = -1,
 		IDLE,
 		MOVING,

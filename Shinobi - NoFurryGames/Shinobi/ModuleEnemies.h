@@ -69,6 +69,8 @@ public:
 	// A flag to detect when the enemy has been destroyed
 	bool destroyed = false;
 
+	int destroyedCountdown = 30;
+
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);
