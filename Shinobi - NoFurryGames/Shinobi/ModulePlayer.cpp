@@ -222,9 +222,12 @@ update_status ModulePlayer::Update()
 
 	
 	//Reset the currentAnimation back to idle before updating the logic
-	
-	currentAnimation = &idleAnim;
-
+	if (!holdingGun) {
+		currentAnimation = &idleAnim;
+	}
+	else {
+		currentAnimation = &PistolaidleAnim;
+	}
 
 	if (destroyed) {
 		//PLAY ANIMACION MORIR;
@@ -309,10 +312,23 @@ update_status ModulePlayer::Update()
 
 	if (isAttacking) {
 		if (isJumping) {
-			currentAnimation = &jumpAttackAnim;
+			if (!holdingGun) {
+				currentAnimation = &jumpAttackAnim;
+			}
+			else
+			{
+				currentAnimation = &PistolajumpAttackAnim;
+			}
+
 		}
 		else {
-			currentAnimation = &attack_shurikenAnim;
+			if (!holdingGun) {
+				currentAnimation = &attack_shurikenAnim;
+			}
+			else
+			{
+				currentAnimation = &PistolaattackAnim;
+			}
 		}
 
 		
@@ -329,7 +345,11 @@ update_status ModulePlayer::Update()
 	}
 
 	if (isCrouchedAttacking) {
-		currentAnimation = &crouched_AttackAnim;
+		if (!holdingGun) {
+			currentAnimation = &crouched_AttackAnim;
+		}else{
+			currentAnimation = &Pistolacrouched_AttackAnim;
+		}
 		if (currentAnimation->HasFinished()) {
 			isCrouchedAttacking = false;
 			currentAnimation->Reset();
@@ -350,7 +370,13 @@ update_status ModulePlayer::Update()
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
-		currentAnimation = &forwardAnim;
+		if (!holdingGun) {
+			currentAnimation = &forwardAnim;
+		}
+		else {
+			currentAnimation = &PistolaforwardAnim;
+		}
+		
 		position.x += speed;
 		facingRight = true;
 	}
@@ -358,13 +384,24 @@ update_status ModulePlayer::Update()
 	//MOVERSE A LA IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
 	{
-		currentAnimation = &forwardAnim;
+		if (!holdingGun) {
+			currentAnimation = &forwardAnim;
+		}
+		else {
+			currentAnimation = &PistolaforwardAnim;
+		}
+
 		position.x -= speed;
 		facingRight = false;
 	}
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
-		currentAnimation = &crouched_idleAnim;
+		if (!holdingGun) {
+			currentAnimation = &crouched_idleAnim;
+		}
+		else {
+			currentAnimation = &Pistolacrouched_idleAnim;
+		}
 
 		if (position.y <= 110) {
 			currentAnimation = &watching_DownAnimation;
@@ -372,7 +409,13 @@ update_status ModulePlayer::Update()
 
 
 		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
-			currentAnimation = &crouched_forwardAnim;
+			
+			if (!holdingGun) {
+				currentAnimation = &crouched_forwardAnim;
+			}
+			else {
+				currentAnimation = &Pistolacrouched_forwardAnim;
+			}
 		}
 	}
 
@@ -380,13 +423,23 @@ update_status ModulePlayer::Update()
 
 	//MECANICA DEL SALTO
 	if (isJumping) {
-		currentAnimation = &jumpAnim;
+		if (!holdingGun) {
+			currentAnimation = &jumpAnim;
+		}
+		else {
+			currentAnimation = &PistolajumpAnim;
+		}
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
 		
-		currentAnimation = &jumpAnim;
+		if (!holdingGun) {
+			currentAnimation = &jumpAnim;
+		}
+		else {
+			currentAnimation = &PistolajumpAnim;
+		}
 
 		
 
