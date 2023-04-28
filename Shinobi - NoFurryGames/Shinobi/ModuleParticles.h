@@ -65,6 +65,10 @@ public:
 	Particle shurikenL;
 	Particle shurikenDying;
 
+	Particle bulletR;
+	Particle bulletL;
+	Particle bulletDying;
+
 	Particle bonus200;
 	Particle bonus500;
 	Particle bonus1000;
