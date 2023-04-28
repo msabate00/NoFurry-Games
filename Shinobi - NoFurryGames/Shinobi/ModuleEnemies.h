@@ -18,6 +18,8 @@ struct EnemySpawnpoint
 {
 	ENEMY_TYPE type = ENEMY_TYPE::NO_TYPE;
 	int x, y;
+	bool gun;
+	int points;
 };
 
 class Enemy;
@@ -56,6 +58,7 @@ public:
 
 	// Add an enemy into the queue to be spawned later
 	bool AddEnemy(ENEMY_TYPE type, int x, int y);
+	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points);
 
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();

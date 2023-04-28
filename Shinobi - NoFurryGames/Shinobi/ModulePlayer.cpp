@@ -205,7 +205,7 @@ bool ModulePlayer::Start()
 update_status ModulePlayer::Update()
 {
 
-	cout << position.y << endl;
+	
 
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
@@ -222,9 +222,12 @@ update_status ModulePlayer::Update()
 
 	
 	//Reset the currentAnimation back to idle before updating the logic
-	
-	currentAnimation = &idleAnim;
-
+	if (!holdingGun) {
+		currentAnimation = &idleAnim;
+	}
+	else {
+		currentAnimation = &PistolaidleAnim;
+	}
 
 	if (destroyed) {
 		//PLAY ANIMACION MORIR;
@@ -309,10 +312,23 @@ update_status ModulePlayer::Update()
 
 	if (isAttacking) {
 		if (isJumping) {
-			currentAnimation = &jumpAttackAnim;
+			if (!holdingGun) {
+				currentAnimation = &jumpAttackAnim;
+			}
+			else
+			{
+				currentAnimation = &PistolajumpAttackAnim;
+			}
+
 		}
 		else {
-			currentAnimation = &attack_shurikenAnim;
+			if (!holdingGun) {
+				currentAnimation = &attack_shurikenAnim;
+			}
+			else
+			{
+				currentAnimation = &PistolaattackAnim;
+			}
 		}
 
 		
@@ -329,7 +345,11 @@ update_status ModulePlayer::Update()
 	}
 
 	if (isCrouchedAttacking) {
-		currentAnimation = &crouched_AttackAnim;
+		if (!holdingGun) {
+			currentAnimation = &crouched_AttackAnim;
+		}else{
+			currentAnimation = &Pistolacrouched_AttackAnim;
+		}
 		if (currentAnimation->HasFinished()) {
 			isCrouchedAttacking = false;
 			currentAnimation->Reset();
@@ -350,7 +370,13 @@ update_status ModulePlayer::Update()
 	//MOVERSE A LA DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 	{
-		currentAnimation = &forwardAnim;
+		if (!holdingGun) {
+			currentAnimation = &forwardAnim;
+		}
+		else {
+			currentAnimation = &PistolaforwardAnim;
+		}
+		
 		position.x += speed;
 		facingRight = true;
 	}
@@ -358,21 +384,41 @@ update_status ModulePlayer::Update()
 	//MOVERSE A LA IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
 	{
-		currentAnimation = &forwardAnim;
+		if (!holdingGun) {
+			currentAnimation = &forwardAnim;
+		}
+		else {
+			currentAnimation = &PistolaforwardAnim;
+		}
+
 		position.x -= speed;
 		facingRight = false;
 	}
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
-		currentAnimation = &crouched_idleAnim;
+		if (!holdingGun) {
+			currentAnimation = &crouched_idleAnim;
+		}
+		else {
+			currentAnimation = &Pistolacrouched_idleAnim;
+		}
 
-		if (position.y <= 110) {
+		if (position.y <= 110 && !holdingGun) {
 			currentAnimation = &watching_DownAnimation;
+
+		} else if (position.y <= 110 && holdingGun) {
+			currentAnimation = &Pistolacrouched_idleAnim;
 		}
 
 
 		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
-			currentAnimation = &crouched_forwardAnim;
+			
+			if (!holdingGun) {
+				currentAnimation = &crouched_forwardAnim;
+			}
+			else {
+				currentAnimation = &Pistolacrouched_forwardAnim;
+			}
 		}
 	}
 
@@ -380,13 +426,23 @@ update_status ModulePlayer::Update()
 
 	//MECANICA DEL SALTO
 	if (isJumping) {
-		currentAnimation = &jumpAnim;
+		if (!holdingGun) {
+			currentAnimation = &jumpAnim;
+		}
+		else {
+			currentAnimation = &PistolajumpAnim;
+		}
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		isJumping = true;
 		currJumpForce = jumpForce;
 		
-		currentAnimation = &jumpAnim;
+		if (!holdingGun) {
+			currentAnimation = &jumpAnim;
+		}
+		else {
+			currentAnimation = &PistolajumpAnim;
+		}
 
 		
 
@@ -414,12 +470,24 @@ update_status ModulePlayer::Update()
 		
 
 		if (facingRight) {
-			App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
-			App->audio->PlayFx(ataqueFX);
+			if (!holdingGun) {
+				App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+				App->audio->PlayFx(ataqueFX);
+			}
+			else {
+				App->particles->AddParticle(App->particles->bulletR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+
+			}
 		}
 		else {
-			App->particles->AddParticle(App->particles->shurikenL, position.x , position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT,0);
-			App->audio->PlayFx(ataqueFX);
+			if (!holdingGun) {
+				App->particles->AddParticle(App->particles->shurikenL, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+				App->audio->PlayFx(ataqueFX);
+			}
+			else {
+				App->particles->AddParticle(App->particles->bulletL, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
+
+			}
 		}
 	}
 
@@ -502,7 +570,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed)
 	{
-
+		holdingGun = false;
 		destroyed = true;
 	}
 

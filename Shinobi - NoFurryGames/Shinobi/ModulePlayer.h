@@ -54,8 +54,9 @@ public:
 
 	bool facingRight = true;
 
-	enum STATE 
-	{
+	bool holdingGun = false;
+
+	enum STATE {
 		NONE = -1,
 		IDLE,
 		MOVING,
