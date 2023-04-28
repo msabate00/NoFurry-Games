@@ -1,6 +1,7 @@
 #include "ModuleFadeToBlack.h"
 
 #include "Application.h"
+#include "ModuleTextures.h"
 #include "ModuleRender.h"
 
 #include "SDL/include/SDL_render.h"
@@ -8,6 +9,25 @@
 ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 {
 	screenRect = { 0, 0, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE };
+
+
+
+	fadeIn.PushBack({0, 0, 320, 242});
+	fadeIn.PushBack({0,242, 320, 242 });
+	fadeIn.PushBack({0, 242+242, 320, 242 });
+	fadeIn.PushBack({0, 242+242+242, 320, 242 });
+	fadeIn.speed = 0.3f;
+	fadeIn.loop = false;
+
+	fadeOut.PushBack({ 0, 242 + 242 + 242, 320, 242 });
+	fadeOut.PushBack({ 0, 242 + 242, 320, 242 });
+	fadeOut.PushBack({ 0,242, 320, 242 });
+	fadeOut.PushBack({ 0, 0, 320, 242 });	
+	fadeOut.speed = 0.3f;
+	fadeOut.loop = false;
+
+
+
 }
 
 ModuleFadeToBlack::~ModuleFadeToBlack()
@@ -18,6 +38,8 @@ ModuleFadeToBlack::~ModuleFadeToBlack()
 bool ModuleFadeToBlack::Start()
 {
 	LOG("Preparing Fade Screen");
+
+	fadeInOut_texture = App->textures->Load("Assets/Interface/Menu/fade.png");
 
 	// Enable blending mode for transparency
 	SDL_SetRenderDrawBlendMode(App->render->renderer, SDL_BLENDMODE_BLEND);
@@ -31,6 +53,8 @@ update_status ModuleFadeToBlack::Update()
 
 	if (currentStep == Fade_Step::TO_BLACK)
 	{
+		fadeOut.Reset();
+		currentAnimation = &fadeIn;
 		++frameCount;
 		if (frameCount >= maxFadeFrames)
 		{
@@ -43,12 +67,16 @@ update_status ModuleFadeToBlack::Update()
 	}
 	else
 	{
+		fadeIn.Reset();
+		currentAnimation = &fadeOut;
 		--frameCount;
 		if (frameCount <= 0)
 		{
 			currentStep = Fade_Step::NONE;
 		}
 	}
+
+	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -60,9 +88,15 @@ update_status ModuleFadeToBlack::PostUpdate()
 
 	float fadeRatio = (float)frameCount / (float)maxFadeFrames;
 
+	
+
 	// Render the black square with alpha on the screen
 	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(fadeRatio * 255.0f));
 	SDL_RenderFillRect(App->render->renderer, &screenRect);
+
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	App->render->Blit(fadeInOut_texture, 0, 0, SDL_FLIP_NONE, &rect);
+	App->render->Blit(fadeInOut_texture, 320, 0, SDL_FLIP_NONE, &rect);
 
 	return update_status::UPDATE_CONTINUE;
 }

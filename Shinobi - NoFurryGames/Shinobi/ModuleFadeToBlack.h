@@ -2,7 +2,10 @@
 #define __MODULEFADETOBLACK_H__
 
 #include "Module.h"
+#include "Animation.h"
 #include "SDL\include\SDL_rect.h"
+
+struct SDL_Texture;
 
 class ModuleFadeToBlack : public Module
 {
@@ -49,6 +52,13 @@ private:
 	// The modules that should be switched after the first step
 	Module* moduleToEnable = nullptr;
 	Module* moduleToDisable = nullptr;
+
+
+	SDL_Texture* fadeInOut_texture;
+	Animation fadeIn;
+	Animation fadeOut;
+	Animation* currentAnimation = nullptr;
+
 };
 
 #endif //__MODULEFADETOBLACK_H__
