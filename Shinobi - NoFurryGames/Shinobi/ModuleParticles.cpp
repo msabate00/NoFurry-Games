@@ -147,7 +147,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				particles[i]->collider->pendingToDelete = true;
 			}
 			else if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && App->player->holdingGun) {
-				App->particles->AddParticle(bulletDying, particles[i]->position.x-10, particles[i]->position.y - 14, Collider::Type::PLAYER_SHOT);
+				App->particles->AddParticle(bulletDying, particles[i]->position.x-10, particles[i]->position.y - 14, Collider::Type::NONE);
 				particles[i]->collider->pendingToDelete = true;
 			}
 			

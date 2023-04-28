@@ -500,7 +500,9 @@ update_status ModulePlayer::Update()
 	}
 
 
-
+	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN) {
+		holdingGun = !holdingGun;
+	}
 
 
 	currentAnimation->Update();
