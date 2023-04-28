@@ -22,6 +22,7 @@ public:
 	bool goingToPlayer = true;
 	bool facingRight = false;
 	bool facingLeft = true;
+	int points = 100;
 
 private:
 	// The position (as ratio) in the wave at a specific moment

@@ -16,6 +16,7 @@
 
 #include <iostream>
 
+
 #define SPAWN_MARGIN 50
 
 using namespace std;
@@ -194,8 +195,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 
+
 	//CUANDO COLISIONA CON EL JUGADOR
-	if (c2 == App->player->collider && c1->type== Collider::Type::ENEMY)
+	if (c2 == App->player->collider && c1->type == Collider::Type::ENEMY)
 	{
 		return;
 	}
@@ -214,7 +216,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 					//Mostrar particula bonus gun
 					App->player->holdingGun = true;
 				}
-				
+
 
 
 				return;
@@ -223,7 +225,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
-	
+
 
 	//RESTO DE COLISIONES
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -232,45 +234,48 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 
-			if (c1->type == Collider::Type::ENEMY)
-			{
-				destroyed = true;
-				
-				if (destroyed == true)
-				{
-					destroyedCountdown--;
-
-					if (destroyedCountdown <= 0)
-					{
-						delete enemies[i];
-						cout << "Eliminado" << endl;
-						enemies[i] = nullptr;
-						cout << "Hola" << endl;
-						break;
-					}
-				}
-
-				/*delete enemies[i];
-				cout << "Eliminado" << endl;
-				enemies[i] = nullptr;
-				cout << "Hola" << endl;
-				break;*/
-
-				/*if (App->enemy->destroyed == true)
-				{
-					destroyedCountdown--;
-
-					if (destroyedCountdown <= 0)
-					{
-						destroyed = false;
-					}
-				}*/
-				
-				
-				/*delete enemies[i];
-				enemies[i] = nullptr;
-				break;*/
-			}
+			// Configure el temporizador para eliminar el enemigo después de unos segundos
+			// enemies[i]->timeToDestroy = currentTime + 2.0f; // Por ejemplo, esperar 2 segundos antes de eliminar
+			break;
 		}
 	}
+	//	delete enemies[i];
+	//	cout << "Eliminado" << endl;
+	//	enemies[i] = nullptr;
+	//	cout << "Hola" << endl;
+	//	break;
+	//	
+
+	//	/*if (destroyedCountdown <= 0)
+	//	{
+	//		delete enemies[i];
+	//		cout << "Eliminado" << endl;
+	//		enemies[i] = nullptr;
+	//		cout << "Hola" << endl;
+	//		break;
+	//	}*/
+	//}
+
+	///*delete enemies[i];
+	//cout << "Eliminado" << endl;
+	//enemies[i] = nullptr;
+	//cout << "Hola" << endl;
+	//break;*/
+
+	///*if (App->enemy->destroyed == true)
+	//{
+	//	destroyedCountdown--;
+
+	//	if (destroyedCountdown <= 0)
+	//	{
+	//		destroyed = false;
+	//	}
+	//}*/
+	//
+	//
+	///*delete enemies[i];
+	//enemies[i] = nullptr;
+	//break;*/
 }
+		
+	

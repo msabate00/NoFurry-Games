@@ -171,7 +171,7 @@ double ModuleScene_MainMenu::letraGetX(){
 	letraX = CENTER_X + A * sin(angle * M_PI / 270.0);
 	angle += ROTATION_SPEED;
 	A = A - 0.7;
-	cout << "X: " << letraX << endl;
+	//cout << "X: " << letraX << endl;
 	}
 	return letraX;
 }
@@ -184,7 +184,7 @@ double ModuleScene_MainMenu::letraGetY() {
 	letraY = CENTER_Y + B * cos(angle * M_PI / 270.0);
 	angle += ROTATION_SPEED;
 	B = B - 0.6,5;
-	cout << "Y: " << letraY << endl;
+	//cout << "Y: " << letraY << endl;
 	}
 	
 	return letraY;

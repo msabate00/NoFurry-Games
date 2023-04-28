@@ -37,10 +37,10 @@ Enemy_Basic::Enemy_Basic(int x, int y) : Enemy(x, y)
 
 void Enemy_Basic::Update()
 {
-	if (App->enemy->destroyed == false)
+	if (destroyed == false)
 	{
 		currentAnim = &walkBasic;
-		position.x += speed;
+		position.x -= speed;
 		facingLeft = true;
 	}
 
