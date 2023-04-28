@@ -11,6 +11,8 @@
 #include "Enemy.h"
 #include "Enemy_Basic.h"
 #include "Hostage.h"
+#include "EnemyBrownShield.h"
+
 
 #include <iostream>
 
@@ -171,6 +173,10 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			{
 			case ENEMY_TYPE::BASIC:
 				enemies[i] = new Enemy_Basic(info.x, info.y);
+				break;
+
+			case ENEMY_TYPE::BROWNSHIELD:
+				enemies[i] = new EnemyBrownShield(info.x, info.y);
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:

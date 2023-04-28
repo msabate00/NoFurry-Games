@@ -22,6 +22,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyBrownShield.cpp" />
     <ClCompile Include="Enemy_Basic.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Hostage.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyBrownShield.h" />
     <ClInclude Include="Enemy_Basic.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Hostage.h" />

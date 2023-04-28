@@ -117,6 +117,9 @@
     <ClCompile Include="ModuleScene_Level1_SecondFloor_Enemies.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyBrownShield.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -196,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="ModuleScene_Level1_SecondFloor_Enemies.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Extras</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBrownShield.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

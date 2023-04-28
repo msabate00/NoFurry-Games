@@ -107,7 +107,7 @@ bool ModuleParticles::Start()
 	bonus1000.speed = iPoint(0, -1);
 	bonus1000.lifetime = 60;
 
-	bonusGun.anim.PushBack({ 49,2095,228,19 });
+	bonusGun.anim.PushBack({ 179,2095,49,19 });
 	bonusGun.anim.loop = false;
 	bonusGun.anim.speed = 0.5f;
 	bonusGun.speed = iPoint(0, -1);

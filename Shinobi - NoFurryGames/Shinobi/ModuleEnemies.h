@@ -12,6 +12,7 @@ enum class ENEMY_TYPE
 	NO_TYPE,
 	HOSTAGE,
 	BASIC,
+	BROWNSHIELD,
 };
 
 struct EnemySpawnpoint
