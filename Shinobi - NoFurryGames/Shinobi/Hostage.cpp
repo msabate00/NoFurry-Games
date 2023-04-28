@@ -74,6 +74,7 @@ void Hostage::Update()
 				App->scene_Level1->texture_num += 1000;
 				break;
 		}
+		App->scene_Level1->hostage_num--;
 		check2 = true;
 	}
 

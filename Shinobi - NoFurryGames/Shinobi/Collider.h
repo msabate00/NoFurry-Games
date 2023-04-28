@@ -16,7 +16,7 @@ struct Collider
 		PLAYER_SHOT,
 		ENEMY_SHOT,
 		HOSTAGE,
-
+		CHANGE_LEVEL,
 
 		MAX
 	};

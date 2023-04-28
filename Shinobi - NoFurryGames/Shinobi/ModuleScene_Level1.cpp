@@ -67,6 +67,10 @@ bool ModuleScene_Level1::Start()
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 
+	//Cambio nivel
+	finalLevel = App->collisions->AddCollider({ 2040, 0, 16, SCREEN_HEIGHT }, Collider::Type::CHANGE_LEVEL);
+	finalLevel->active = false;
+
 	//secondFloor->active = false;
 	
 	//Musicadddd
@@ -101,6 +105,11 @@ bool ModuleScene_Level1::Start()
 
 update_status ModuleScene_Level1::Update()
 {
+
+	if (hostage_num <= 0) {
+		finalLevel->active = true;
+	}
+
 	int elapsed_time = updateTimer(start_time);
 	return update_status::UPDATE_CONTINUE;
 }
@@ -131,7 +140,7 @@ bool ModuleScene_Level1::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->collisions->Disable();
-
+	App->scene_Level1_SecondFloor_Enemies->Disable();
 	return true;
 }
 

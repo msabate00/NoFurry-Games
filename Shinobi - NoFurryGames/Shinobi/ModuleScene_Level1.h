@@ -66,6 +66,9 @@ public:
 	//Collider* secondFloor;
 	// create a stack of integers
 	stack<Collider*> colliders;
+	Collider* finalLevel;
+
+	
 
 	SDL_Texture* SkillIcon = nullptr;
 	SDL_Texture* HostageIcon = nullptr;
@@ -78,7 +81,7 @@ public:
 	
 
 
-	int hostage_num = 3;
+	int hostage_num = 4;
 	int life_num = 2;
 	int texture_num = 0;
 
