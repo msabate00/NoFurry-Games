@@ -226,11 +226,44 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 
-			if ( c1->type == Collider::Type::ENEMY) {
+			if (c1->type == Collider::Type::ENEMY)
+			{
 				destroyed = true;
-				delete enemies[i];
+				
+				if (destroyed == true)
+				{
+					destroyedCountdown--;
+
+					if (destroyedCountdown <= 0)
+					{
+						delete enemies[i];
+						cout << "Eliminado" << endl;
+						enemies[i] = nullptr;
+						cout << "Hola" << endl;
+						break;
+					}
+				}
+
+				/*delete enemies[i];
+				cout << "Eliminado" << endl;
 				enemies[i] = nullptr;
-				break;
+				cout << "Hola" << endl;
+				break;*/
+
+				/*if (App->enemy->destroyed == true)
+				{
+					destroyedCountdown--;
+
+					if (destroyedCountdown <= 0)
+					{
+						destroyed = false;
+					}
+				}*/
+				
+				
+				/*delete enemies[i];
+				enemies[i] = nullptr;
+				break;*/
 			}
 		}
 	}
