@@ -101,6 +101,25 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
 	return ret;
 }
 
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points)
+{
+	bool ret = false;
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (spawnQueue[i].type == ENEMY_TYPE::NO_TYPE)
+		{
+			spawnQueue[i].type = type;
+			spawnQueue[i].x = x;
+			spawnQueue[i].y = y;
+			ret = true;
+			break;
+		}
+	}
+
+	return ret;
+}
+
 void ModuleEnemies::HandleEnemiesSpawn()
 {
 	// Iterate all the enemies queue
@@ -183,6 +202,25 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			{
 				//enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 				((Hostage*)enemies[i])->saved = true;
+				switch (((Hostage*)enemies[i])->points) {
+					case 200:
+						//Mostrar particula puntuacion 200
+						break;
+					case 500:
+						//Mostrar particula puntuacion 500
+						break;
+					case 1000:
+						//Mostrar particula puntuacion 1000
+						break;
+					case 0:
+						if (((Hostage*)enemies[i])->gun) {
+							//Mostrar particula bonus gun
+							App->player->holdingGun = true;
+						}
+						break;
+				}
+
+
 				return;
 				break;
 			}

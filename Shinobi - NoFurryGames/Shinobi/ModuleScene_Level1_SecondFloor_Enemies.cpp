@@ -44,11 +44,10 @@ bool ModuleScene_Level1_SecondFloor_Enemies::Start()
 	up_level_fenceTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
 
 
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26);
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 700, FLOOR_LEVEL - 141);
-
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1000, FLOOR_LEVEL - 141);
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1550, FLOOR_LEVEL - 141);
+	//Hostage
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 700, FLOOR_LEVEL - 141, true, 0);
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1000, FLOOR_LEVEL - 141, false, 500);
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1550, FLOOR_LEVEL - 141, false, 1000);
 
 
 	bool ret = true;
