@@ -52,7 +52,7 @@ void Enemy_Basic::Update()
 			if (destroyedCountdown <= 0) 
 			{
 				currentAnim = &walkBasic;
-				destroyed = false;
+				App->enemy->destroyed = false;
 			}
 	}
 
