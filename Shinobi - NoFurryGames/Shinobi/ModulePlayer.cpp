@@ -502,7 +502,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed)
 	{
-
+		holdingGun = false;
 		destroyed = true;
 	}
 

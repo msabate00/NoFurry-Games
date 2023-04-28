@@ -15,9 +15,15 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	bool pistola = false;
+	bool gun = false;
+	int points = 0;
 	bool saved = false;
 	bool check = false;
+
+	int getPoints();
+	void setPoints(int points);
+	bool getGun();
+	void setGun(bool gun);
 
 private:
 	

@@ -27,8 +27,6 @@ Hostage::Hostage(int x, int y) : Enemy(x, y)
 
 	SaveHostage.speed = 0.1f;
 
-
-
 	//walkBasic.loop = true;
 
 
@@ -51,5 +49,20 @@ void Hostage::Update()
 	}
 
 	Enemy::Update();
+}
+
+
+int Hostage::getPoints() {
+	return this->points;
+}
+void Hostage::setPoints(int points) {
+	this->points = points;
+}
+bool Hostage::getGun() {
+
+	return gun;
+}
+void Hostage::setGun(bool gun) {
+	this->gun = gun;
 }
 

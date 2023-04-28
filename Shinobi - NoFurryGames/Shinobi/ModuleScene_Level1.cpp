@@ -76,7 +76,8 @@ bool ModuleScene_Level1::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 320, FLOOR_LEVEL - 64); //Enemigo básico 1
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 365, FLOOR_LEVEL - 64); //Enemigo básico 2
 
-	
+	//Hostage
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200);
 
 	
 	App->player->Enable();
