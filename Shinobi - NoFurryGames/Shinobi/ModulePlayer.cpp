@@ -239,7 +239,12 @@ update_status ModulePlayer::Update()
 		destroyedCountdown--;
 		if (destroyedCountdown <= 0) 
 		{
-			App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+			if (App->scene_Level1->life_num <= 0) {
+				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+			}
+			else {
+				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level1, 60);
+			}
 		}
 
 		currentAnimation->Update();
@@ -574,6 +579,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		holdingGun = false;
 		destroyed = true;
+		App->scene_Level1->life_num--;
 	}
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
