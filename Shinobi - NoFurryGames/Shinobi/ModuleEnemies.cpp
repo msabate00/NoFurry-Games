@@ -239,8 +239,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 
-
-
 	//RESTO DE COLISIONES
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -248,11 +246,16 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 
-			// Configure el temporizador para eliminar el enemigo después de unos segundos
-			// enemies[i]->timeToDestroy = currentTime + 2.0f; // Por ejemplo, esperar 2 segundos antes de eliminar
+			delete enemies[i];
+			enemies[i] = nullptr;
+			destroyed = true;
 			break;
 		}
 	}
+
+
+
+
 	//	delete enemies[i];
 	//	cout << "Eliminado" << endl;
 	//	enemies[i] = nullptr;

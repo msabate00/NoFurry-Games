@@ -35,6 +35,8 @@ public:
 	float timeToDestroy;
 	bool secondFloor;
 
+	bool SetHasReceivedDamage = false;
+
 public:
 	// The current position in the world
 	iPoint position;

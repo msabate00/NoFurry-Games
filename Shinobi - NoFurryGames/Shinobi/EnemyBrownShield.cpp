@@ -45,7 +45,7 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 void EnemyBrownShield::Update()
 {
 
-	if (App->enemy->destroyed == false)
+	if (!destroyed)
 	{
 		currentAnim = &idleBrown;
 		facingLeft = true;

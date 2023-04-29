@@ -39,7 +39,7 @@ private:
 	// The total height of the wave
 	int waveHeight = 15;
 
-	int speed = 1;
+	int speed = 2;
 
 	int destroyedCountdown = 30;
 

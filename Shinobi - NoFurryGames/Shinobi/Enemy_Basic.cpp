@@ -39,12 +39,13 @@ void Enemy_Basic::Update()
 {
 	if (destroyed == false)
 	{
+		cout << "Se deberia mover" << endl;
 		currentAnim = &walkBasic;
-		position.x -= speed;
+		position.y -= 2;
 		facingLeft = true;
 	}
 
-	if (App->enemy->destroyed == true)
+	/*if (App->enemy->destroyed == true)
 	{
 		currentAnim = &DeathBasic;
 		destroyedCountdown--;
@@ -54,7 +55,7 @@ void Enemy_Basic::Update()
 				currentAnim = &walkBasic;
 				App->enemy->destroyed = false;
 			}
-	}
+	}*/
 
 	Enemy::Update();
 }

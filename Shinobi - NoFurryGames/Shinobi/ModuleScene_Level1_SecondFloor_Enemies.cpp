@@ -10,6 +10,10 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
+#include <iostream>
+using namespace std;
+
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleScene_Level1_SecondFloor_Enemies::ModuleScene_Level1_SecondFloor_Enemies(bool startEnabled) : Module(startEnabled)
