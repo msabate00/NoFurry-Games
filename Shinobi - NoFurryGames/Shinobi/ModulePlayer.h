@@ -56,16 +56,8 @@ public:
 
 	bool holdingGun = false;
 
-	enum STATE {
-		NONE = -1,
-		IDLE,
-		MOVING,
-		ATTACKING,
-		JUMPING,
-		LONG_JUMP,
+	bool isSecondFloor = false;
 
-		DYING
-	};
 	
 
 	// The player spritesheet loaded into an SDL_Texture

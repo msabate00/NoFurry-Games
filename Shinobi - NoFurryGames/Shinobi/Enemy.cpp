@@ -11,9 +11,10 @@
  
 using namespace std;
 
-Enemy::Enemy(int x, int y) : position(x, y)
+Enemy::Enemy(int x, int y, bool secondFloor) : position(x, y)
 {
 	spawnPos = position;
+	this->secondFloor = secondFloor;
 }
 
 Enemy::~Enemy()

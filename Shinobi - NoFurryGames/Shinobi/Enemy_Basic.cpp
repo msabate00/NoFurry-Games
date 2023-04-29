@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Enemy_Basic::Enemy_Basic(int x, int y) : Enemy(x, y)
+Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
 	walkBasic.PushBack({ 11, 12,35,64 });
 	walkBasic.PushBack({ 52, 12,35,64 });

@@ -9,7 +9,7 @@ class EnemyBrownShield : public Enemy
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
-	EnemyBrownShield(int x, int y);
+	EnemyBrownShield(int x, int y, bool secondFloor);
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
@@ -22,6 +22,7 @@ public:
 	bool goingToPlayer = true;
 	bool facingRight = false;
 	bool facingLeft = true;
+	bool secondFloor = false;
 	int points = 100;
 
 

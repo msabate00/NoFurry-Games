@@ -8,7 +8,7 @@
 
 using namespace std;
 
-Hostage::Hostage(int x, int y, bool gun, int points) : Enemy(x, y)
+Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor) : Enemy(x, y, secondFloor)
 {
 
 	this->gun = gun;

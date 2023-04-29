@@ -197,6 +197,7 @@ bool ModulePlayer::Start()
 	isCrouchedAttacking = false;
 
 	facingRight = true;
+	isSecondFloor = false;
 
 
 	return ret;
@@ -552,11 +553,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		if(c2->GetRect().y <= 103){ 
 		//ta arriba	
+			isSecondFloor = true;
 		}
 		else {
 			//ta abajo
 			//App->scene_Level1->secondFloor->active = false;
 			App->scene_Level1_SecondFloor->Disable();
+			isSecondFloor = false;
 		}
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
@@ -577,6 +580,22 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed)
 	{
+
+		for(uint i = 0; i<MAX_ENEMIES; i++){
+		
+			if (App->enemy->getEnemy(i) != nullptr && App->enemy->getEnemy(i)->GetCollider() == c2) {
+				if (App->enemy->getEnemy(i)->secondFloor != isSecondFloor) {
+					return;
+				}
+				else {
+					break;
+				}
+				
+			}
+		
+		}
+
+
 		holdingGun = false;
 		destroyed = true;
 		App->scene_Level1->life_num--;

@@ -85,7 +85,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor)
 {
 	bool ret = false;
 
@@ -96,6 +96,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
+			spawnQueue[i].secondFloor = secondFloor;
 			ret = true;
 			break;
 		}
@@ -104,7 +105,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
 	return ret;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor)
 {
 	bool ret = false;
 
@@ -117,6 +118,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points
 			spawnQueue[i].y = y;
 			spawnQueue[i].gun = gun;
 			spawnQueue[i].points = points;
+			spawnQueue[i].secondFloor = secondFloor;
 			ret = true;
 			break;
 		}
@@ -173,15 +175,15 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			switch (info.type)
 			{
 			case ENEMY_TYPE::BASIC:
-				enemies[i] = new Enemy_Basic(info.x, info.y);
+				enemies[i] = new Enemy_Basic(info.x, info.y, info.secondFloor);
 				break;
 
 			case ENEMY_TYPE::BROWNSHIELD:
-				enemies[i] = new EnemyBrownShield(info.x, info.y);
+				enemies[i] = new EnemyBrownShield(info.x, info.y, info.secondFloor);
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:
-				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points);
+				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor);
 				break;
 
 			}
@@ -201,6 +203,18 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		return;
 	}
+
+
+	//IGNORAR LA COLISION SI EL JUGADOR ESTA EN OTRA ALTURA
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && enemies[i]->secondFloor != App->player->isSecondFloor)
+		{
+			cout << "Player: " << App->player->isSecondFloor << " ENTIDAD: " << enemies[i]->secondFloor << endl;
+			return; //sale de las coisiones. ESTO DARA PROBLEMAS YA QUE SI SE TIENE QUE CHOCAR CON UNA PARED PERO UENO
+		}
+	}
+
 
 
 	//PARA EL HOSTAGE
@@ -276,6 +290,10 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	///*delete enemies[i];
 	//enemies[i] = nullptr;
 	//break;*/
+}
+
+Enemy* ModuleEnemies::getEnemy(int i) {
+	return enemies[i];
 }
 		
 	

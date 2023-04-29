@@ -9,7 +9,7 @@
 
 using namespace std;
 
-EnemyBrownShield::EnemyBrownShield(int x, int y) : Enemy(x, y)
+EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
 	
 	
@@ -34,6 +34,8 @@ EnemyBrownShield::EnemyBrownShield(int x, int y) : Enemy(x, y)
 	deathBrown.PushBack({ 514, 153, 44, 20 });
 	deathBrown.loop = false;
 	deathBrown.speed = 0.1f;
+
+
 
 
 
