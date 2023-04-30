@@ -4,6 +4,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleAudio.h"
 #include <iostream>
 
 using namespace std;
@@ -35,6 +36,7 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor) : Enemy(x
 
 	//walkBasic.loop = true;
 
+	SalvadoFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/Rescue.wav");
 
 	collider = App->collisions->AddCollider({ 0, 0,  25, 29 }, Collider::Type::HOSTAGE, (Module*)App->enemy);
 }
@@ -52,6 +54,7 @@ void Hostage::Update()
 		}
 		position.y--;
 		currentAnim = &SaveHostage;
+		App->audio->PlayFx(SalvadoFX);
 	}
 
 	if (saved && !check2) {

@@ -235,7 +235,7 @@ update_status ModulePlayer::Update()
 
 
 		currentAnimation = &DeathAnim;
-		
+		App->audio->PlayFx(morirFX);
 		
 		destroyedCountdown--;
 		if (destroyedCountdown <= 0) 
@@ -258,11 +258,14 @@ update_status ModulePlayer::Update()
 		App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT &&
 		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y > 110) {
 		
+
+		App->audio->PlayFx(saltarPlataformaFX);
 		currJumpForce = jumpForce * 1.6;
 		currentAnimation = &bigJumpUpAnim;
 		currentJumpAnim = &bigJumpUpAnim;
 		isChangingFloorF1 = true;
 		frameContador = 0;
+
 
 		
 	}
@@ -271,6 +274,8 @@ update_status ModulePlayer::Update()
 		App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT &&
 		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y <= 110) {
 		
+		
+		App->audio->PlayFx(saltarPlataformaFX);
 		currJumpForce = jumpForce * 1.6;
 		currentAnimation = &bigJumpDownAnim;
 		currentJumpAnim = &bigJumpDownAnim;
