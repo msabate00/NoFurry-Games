@@ -445,6 +445,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
+		App->audio->PlayFx(saltarFX);
 		isJumping = true;
 		currJumpForce = jumpForce;
 		
@@ -483,21 +484,17 @@ update_status ModulePlayer::Update()
 		if (facingRight) {
 			if (!holdingGun) {
 				App->particles->AddParticle(App->particles->shurikenR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
-				App->audio->PlayFx(ataqueFX);
 			}
 			else {
 				App->particles->AddParticle(App->particles->bulletR, position.x + 46, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
-
 			}
 		}
 		else {
 			if (!holdingGun) {
 				App->particles->AddParticle(App->particles->shurikenL, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
-				App->audio->PlayFx(ataqueFX);
 			}
 			else {
 				App->particles->AddParticle(App->particles->bulletL, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::PLAYER_SHOT, 0);
-
 			}
 		}
 	}
