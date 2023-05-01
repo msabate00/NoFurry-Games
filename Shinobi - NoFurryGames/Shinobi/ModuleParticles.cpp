@@ -5,7 +5,9 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
+#include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
+#include "Enemy.h"
 #include "SDL/include/SDL_timer.h"
 
 #include <iostream>;
@@ -142,6 +144,21 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
+
+			if (c2->type == Collider::Type::ENEMY) {
+				for (uint i = 0; i < MAX_ENEMIES; i++){
+					if (App->enemy->getEnemy(i) != nullptr && c2 == App->enemy->getEnemy(i)->GetCollider()) {
+						if (App->enemy->getEnemy(i)->secondFloor != App->player->isSecondFloor) {
+							return;
+						}
+						break;
+					}
+				}
+				
+
+
+			}
+
 			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && !App->player->holdingGun) {
 				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y-3, Collider::Type::NONE);
 				particles[i]->collider->pendingToDelete = true;
