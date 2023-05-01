@@ -137,7 +137,7 @@ void ModuleEnemies::HandleEnemiesSpawn()
 			// Spawn a new enemy if the screen has reached a spawn position
 			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
 			{
-				//cout << "Spawning enemy at: " << spawnQueue[i].x* SCREEN_SIZE << endl;
+				
 
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
@@ -210,7 +210,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && enemies[i]->secondFloor != App->player->isSecondFloor)
 		{
-			cout << "Player: " << App->player->isSecondFloor << " ENTIDAD: " << enemies[i]->secondFloor << endl;
+			
 			return; //sale de las coisiones. ESTO DARA PROBLEMAS YA QUE SI SE TIENE QUE CHOCAR CON UNA PARED PERO UENO
 		}
 	}
@@ -245,10 +245,10 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
-			delete enemies[i];
-			enemies[i] = nullptr;
-			destroyed = true;
+			
+			//delete enemies[i];
+			//enemies[i] = nullptr;
+			//destroyed = true;
 			break;
 		}
 	}

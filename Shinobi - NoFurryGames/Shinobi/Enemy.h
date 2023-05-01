@@ -35,7 +35,7 @@ public:
 	float timeToDestroy;
 	bool secondFloor;
 
-	bool SetHasReceivedDamage = false;
+	bool setHasReceivedDamage = false;
 
 public:
 	// The current position in the world

@@ -20,13 +20,13 @@
 
 ModuleScene_MainMenu::ModuleScene_MainMenu(bool startEnabled) : Module(startEnabled)
 {
-	eyesAnimation.PushBack({ 350, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
-	eyesAnimation.PushBack({ 19, 44, SCREEN_WIDTH, SCREEN_HEIGHT }); //izquierda
-	eyesAnimation.PushBack({ 350, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
-	eyesAnimation.PushBack({ 350, 44, SCREEN_WIDTH, SCREEN_HEIGHT }); //derecha
-	eyesAnimation.PushBack({ 350, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
-	eyesAnimation.PushBack({ 19, 504, SCREEN_WIDTH, SCREEN_HEIGHT }); //Brilli
-	eyesAnimation.PushBack({19, 274, SCREEN_WIDTH, SCREEN_HEIGHT }); //Brilli2
+	eyesAnimation.PushBack({ 0, 448, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	eyesAnimation.PushBack({ 0, 896, SCREEN_WIDTH, SCREEN_HEIGHT }); //izquierda
+	eyesAnimation.PushBack({ 0, 448, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	eyesAnimation.PushBack({ 0, 672, SCREEN_WIDTH, SCREEN_HEIGHT }); //derecha
+	eyesAnimation.PushBack({ 0, 448, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	eyesAnimation.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Brilli
+	eyesAnimation.PushBack({ 0, 224, SCREEN_WIDTH, SCREEN_HEIGHT }); //Brilli2
 	
 	eyesAnimation.loop = true;
 	eyesAnimation.speed = 0.04f;
@@ -46,8 +46,8 @@ bool ModuleScene_MainMenu::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-	textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
-	textureBackground = App->textures->Load("Assets/Interface/Menu/fondo.png");
+	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
+	textureBackground = App->textures->Load("Assets/Interface/Menu/background.png");
 
 	
 	App->render->camera.x = 0;
@@ -92,7 +92,7 @@ update_status ModuleScene_MainMenu::PostUpdate()
 {
 
 
-	App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
+	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	App->render->Blit(textureBackground, 0, 0, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
 
 	printYear();
