@@ -101,7 +101,7 @@ bool ModuleScene_Level1::Start()
 	start_time = time(nullptr);
 
 	//Musicadddd
-	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 0.0f);		
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 0.0f);
 
 	return ret;
 }
