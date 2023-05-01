@@ -596,8 +596,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			}
 		
 		}
-
-
 		holdingGun = false;
 		destroyed = true;
 		App->scene_Level1->life_num--;
