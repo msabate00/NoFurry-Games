@@ -23,6 +23,10 @@ public:
 	bool moveToDie = false;
 	int points = 100;
 
+
+	iPoint diePos;
+
+
 private:
 	// The position (as ratio) in the wave at a specific moment
 	float waveRatio = 0.0f;

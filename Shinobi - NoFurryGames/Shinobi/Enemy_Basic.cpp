@@ -47,14 +47,12 @@ void Enemy_Basic::Update()
 
 	if (this->setHasReceivedDamage) {
 		if (!moveToDie) {
-			position.y = (position.y + currentAnim->GetCurrentFrame().h);
-		}
-		currentAnim = &DeathBasic;
-		currentAnim->Update();
-		if (!moveToDie) {
-			position.y = (position.y - 26);
+			diePos = { position.x, position.y+currentAnim->GetCurrentFrame().h };
 			moveToDie = true;
 		}
+		currentAnim = &DeathBasic;
+		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
+
 		if (currentAnim->HasFinished()) {
 			//HACER QUE DESAPAREZCA
 		}
