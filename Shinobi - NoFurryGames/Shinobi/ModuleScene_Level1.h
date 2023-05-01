@@ -35,7 +35,6 @@ public:
 
 	bool CleanUp();
 
-
 	//Print Class
 	void printSkillIcon();
 	void printHostageIcon(int);
@@ -88,7 +87,6 @@ public:
 	time_t start_time;
 	int total_time = 20;
 	std::string time_string;
-	
 	
 	//Canbiar Color SHINOBI
 	float timer = 0.0f;

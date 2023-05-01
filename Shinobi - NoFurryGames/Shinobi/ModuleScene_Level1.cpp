@@ -15,6 +15,8 @@
 #include <string> 
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <thread>
 #include "Hostage.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
@@ -73,8 +75,6 @@ bool ModuleScene_Level1::Start()
 
 	//secondFloor->active = false;
 	
-	//Musicadddd
-	//App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 320, FLOOR_LEVEL - 64); //Enemigo básico 1
@@ -100,6 +100,9 @@ bool ModuleScene_Level1::Start()
 
 	start_time = time(nullptr);
 
+	//Musicadddd
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 0.0f);		
+
 	return ret;
 }
 
@@ -111,7 +114,10 @@ update_status ModuleScene_Level1::Update()
 	}
 
 	int elapsed_time = updateTimer(start_time);
+
 	return update_status::UPDATE_CONTINUE;
+
+
 }
 
 // Update: draw background
