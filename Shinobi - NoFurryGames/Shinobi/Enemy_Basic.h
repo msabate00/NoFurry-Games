@@ -44,10 +44,13 @@ private:
 
 	int destroyedCountdown = 30;
 
+	int distanceBetween;
+	int distanceToAttack = 3;
+
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation walkBasic, walkBack, staticAnim;
-	Animation DeathBasic;
+	Animation DeathBasic, Disapear;
 
 };
 

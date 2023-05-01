@@ -25,6 +25,14 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	DeathBasic.speed = 0.1f;
 	DeathBasic.loop = false;
 
+	Disapear.PushBack({ 0,0,0,0 });
+
+	//ANIMACIÓN ESTÁTICA
+	staticAnim.PushBack({ 11, 12,35,64 });
+	staticAnim.PushBack({ 52, 12,35,64 });
+	staticAnim.PushBack({ 93, 12,35,64 });
+	staticAnim.speed = 0.1f;
+
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
 	
 	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
@@ -45,24 +53,36 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 void Enemy_Basic::Update()
 {
 
-	if (this->setHasReceivedDamage) {
-		if (!moveToDie) {
+	if (this->setHasReceivedDamage) 
+	{
+		if (!moveToDie) 
+		{
 			diePos = { position.x, position.y+currentAnim->GetCurrentFrame().h };
 			moveToDie = true;
 		}
 		currentAnim = &DeathBasic;
 		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
 
-		if (currentAnim->HasFinished()) {
-			//HACER QUE DESAPAREZCA
+		if (currentAnim->HasFinished()) 
+		{
+			currentAnim = &Disapear;
 		}
 	}
-	else {
+	else 
+	{
 
 		currentAnim = &walkBasic;
-
+		position.x -= 2;
+		facingLeft = true;
 
 	}
+	
+	if (App->player->destroyed == true)
+	{
+		currentAnim = &staticAnim;
+		position.x += 2;
+	}
+
 
 	/*if (destroyed == false)
 	{
