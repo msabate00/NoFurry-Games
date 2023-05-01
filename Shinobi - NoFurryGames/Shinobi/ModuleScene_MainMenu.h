@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include <vector>
 #include <iostream>
+#include <string> 
 
 struct SDL_Texture;
 
@@ -36,6 +37,7 @@ public:
 	void printLetra();
 	double letraGetX();
 	double letraGetY();
+
 
 public:
 
@@ -85,12 +87,28 @@ public:
 	double A = 200;
 	double B = 200;
 	double angle = 0;
-	double ROTATION_SPEED = 6;
+	const double ROTATION_SPEED = 6;
 	int sumapix = 0;
 
 	//Canbiar Color SHINOBI
 	float timer = 0.0f;
 	const float switchTime = 100.0f; // Tiempo Cambiar Color
+
+	struct ren {
+		SDL_Texture* texture; // ³µÏáÌùÍ¼
+		int x, y; // ³µÏá×ø±ê
+		ren* next;
+	};
+
+	ren* head = nullptr;
+
+	std::vector<ren> renletra;
+
+	const int CAR_WIDTH = 10;
+	const int CAR_HEIGHT = 0;
+	const int CAR_OFFSET = 1;
+
+		
 };
 
 #endif

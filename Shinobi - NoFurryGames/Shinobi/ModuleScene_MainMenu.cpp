@@ -59,7 +59,7 @@ bool ModuleScene_MainMenu::Start()
 	//App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
 
-	Letra = App->textures->Load("Assets/Interface/Letra/Letra.png");
+	
 	LogoMedio = App->textures->Load("Assets/Interface/Color_use/White/Sega.png");
 
 	LetraNomRed = App->textures->Load("Assets/Interface/Color_use/Red/Shinobi/SHINOBI.png");
@@ -82,7 +82,7 @@ update_status ModuleScene_MainMenu::Update()
 	
 	currentAnimation->Update();
 	
-	
+
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -98,17 +98,27 @@ update_status ModuleScene_MainMenu::PostUpdate()
 	printYear();
 	printIconC();
 	printNom();
-	
 	printLetra();
 	
-	App->render->Blit(LogoMedio, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 50, SDL_FLIP_NONE, nullptr, 10);
+
+
+	App->render->Blit(LogoMedio, SCREEN_WIDTH - 225, SCREEN_HEIGHT - 50, SDL_FLIP_NONE, nullptr, 10);
 	return update_status::UPDATE_CONTINUE;
 }
+
+
+
 void ModuleScene_MainMenu::printLetra() {
+
+	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
+	Letra = App->textures->Load(filename.c_str());
 	
 	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 0);
 
 }
+
+
+
 
 
 
@@ -170,6 +180,7 @@ void ModuleScene_MainMenu::printNom() {
 
 
 
+
 double ModuleScene_MainMenu::letraGetX(){
 	if (letraY > 32 && letraY < 36 && letraX > 146 && letraX < 150) {
 		//cout << "X yes" << endl;
@@ -196,6 +207,7 @@ double ModuleScene_MainMenu::letraGetY() {
 	
 	return letraY;
 }
+
 
 /*SDL_Texture* GetResizedTexture(SDL_Texture* texture, int width, int height)
 {
