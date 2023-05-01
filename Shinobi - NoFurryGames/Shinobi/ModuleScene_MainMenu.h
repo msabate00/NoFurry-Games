@@ -75,7 +75,7 @@ public:
 	int texture_Year = 1987;
 	bool NameColor = true;
 
-
+	//PrintaLetra ÈÌ
 	double letraX = 0;//SCREEN_WIDTH - 400
 	double letraY = 0;//SCREEN_HEIGHT - 200
 	double CENTER_X = SCREEN_WIDTH - 240;
@@ -85,6 +85,10 @@ public:
 	double angle = 0;
 	double ROTATION_SPEED = 6;
 	int sumapix = 0;
+
+	//Canbiar Color SHINOBI
+	float timer = 0.0f;
+	const float switchTime = 100.0f; // Tiempo Cambiar Color
 };
 
 #endif

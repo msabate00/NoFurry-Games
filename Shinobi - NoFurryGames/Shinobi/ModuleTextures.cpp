@@ -88,3 +88,5 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 
 	return texture;
 }
+
+

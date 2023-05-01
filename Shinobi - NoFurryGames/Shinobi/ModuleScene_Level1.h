@@ -42,7 +42,7 @@ public:
 	void printLifeIcon(int);
 	void printNum(std::vector<int> num, SDL_Texture* texture);
 	void printTime(std::string time, SDL_Texture* texture);
-
+	void printPlayer1();
 
 	std::vector<int> getDigits(int number);
 
@@ -78,7 +78,7 @@ public:
 	SDL_Texture* VE = nullptr;
 	SDL_Texture* Time = nullptr;
 	SDL_Texture* dosPunt = nullptr;
-	
+	SDL_Texture* Player1 = nullptr;
 
 
 	int hostage_num = 4;
@@ -90,7 +90,11 @@ public:
 	int total_time = 20;
 	std::string time_string;
 	
-
+	
+	//Canbiar Color SHINOBI
+	float timer = 0.0f;
+	const float switchTime = 250.0f; // Tiempo Cambiar Color
+	bool NameColor = true;
 };
 
 #endif

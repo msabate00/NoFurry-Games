@@ -137,30 +137,40 @@ void ModuleScene_MainMenu::printIconC() {
 }
 
 void ModuleScene_MainMenu::printNom() {
-	
+
+
 	int IconPosition = 250;
+	timer += App->deltaTime;
+
 	
 		if (NameColor) {
-			for (int i = 0; i < 7; i++)
-			{
-			std::string filename = "Assets/Interface/Color_use/Red/Shinobi/Rojo_" + std::to_string(i) + ".png";
-			LetraNom = App->textures->Load(filename.c_str());
-			App->render->Blit(LetraNom, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
-			IconPosition -= 16;
+			for (int i = 0; i < 7; i++) {
+				std::string filename = "Assets/Interface/Color_use/Red/Shinobi/Rojo_" + std::to_string(i) + ".png";
+				LetraNom = App->textures->Load(filename.c_str());
+				App->render->Blit(LetraNom, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+				IconPosition -= 16;
 			}
+			if (timer >= switchTime) {
 			NameColor = false;
-		}else{
-			for (int i = 0; i < 7; i++)
-			{
-			std::string filename = "Assets/Interface/Color_use/White/Shinobi/White_" + std::to_string(i) + ".png";
-			LetraNom = App->textures->Load(filename.c_str());
-			App->render->Blit(LetraNom, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
-			IconPosition -= 16;
+			timer = 0.0f; // Reset Tiempo Contador
 			}
-			NameColor = true;
+		}
+		else {
+			for (int i = 0; i < 7; i++) {
+				std::string filename = "Assets/Interface/Color_use/White/Shinobi/White_" + std::to_string(i) + ".png";
+				LetraNom = App->textures->Load(filename.c_str());
+				App->render->Blit(LetraNom, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+				IconPosition -= 16;
+			}
+			if (timer >= switchTime) {
+				NameColor = true;
+				timer = 0.0f; // Reset Tiempo Contador
+			}
 		}
 		
+	
 }
+
 
 
 double ModuleScene_MainMenu::letraGetX(){

@@ -49,6 +49,8 @@ public:
 
 	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, float speed = 1.0f);
 
+
+
 	/*//Print Class
 	void printSkillIcon();
 	void printHostageIcon(int);
@@ -64,6 +66,7 @@ public:
 
 	*/
 	//void flipSurface(SDL_Surface *flipped);
+
 
 
 public:

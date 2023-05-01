@@ -131,7 +131,7 @@ update_status ModuleScene_Level1::PostUpdate()
 	printNum(getDigits(texture_num), LetraNum);
 
 	printTime(getTimeString(elapsed_time).c_str(), Time);
-
+	printPlayer1();
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -146,6 +146,39 @@ bool ModuleScene_Level1::CleanUp()
 }
 
 
+
+void ModuleScene_Level1::printPlayer1() {
+
+	int IconPosition = 360;
+	timer += App->deltaTime;
+	if (NameColor) {
+		for (int i = 0; i < 2; i++)
+		{
+			std::string filename = "Assets/Interface/Color_use/Player/Azul_" + std::to_string(i) + ".png";
+			Player1 = App->textures->Load(filename.c_str());
+			App->render->Blit(Player1, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
+			IconPosition -= 16;
+		}
+		if (timer >= switchTime) {
+			NameColor = false;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	else {
+		for (int i = 0; i < 2; i++)
+		{
+			std::string filename = "Assets/Interface/Color_use/Player/Blanco_" + std::to_string(i) + ".png";
+			Player1 = App->textures->Load(filename.c_str());
+			App->render->Blit(Player1, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
+			IconPosition -= 16;
+		}
+		if (timer >= switchTime) {
+			NameColor = true;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+
+}
 
 
 
