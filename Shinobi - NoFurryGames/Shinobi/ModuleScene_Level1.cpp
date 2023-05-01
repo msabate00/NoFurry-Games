@@ -95,8 +95,7 @@ bool ModuleScene_Level1::Start()
 	SkillIcon = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Rojo.png");
 	HostageIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/rescate.png");
 	LifeIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/vida.png");
-	SA = App->textures->Load("Assets/Interface/Color_use/Yellow/SA.png");
-	VE = App->textures->Load("Assets/Interface/Color_use/Yellow/VE.png");
+	save = App->textures->Load("Assets/Interface/Color_use/Yellow/SAVE.png");
 	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
 
 	start_time = time(nullptr);
@@ -204,8 +203,8 @@ void ModuleScene_Level1::printHostageIcon(int hostage) {
 		IconPosition -= 8;
 	}
 
-	App->render->Blit(SA, SCREEN_WIDTH - 376, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-	App->render->Blit(VE, SCREEN_WIDTH - 360, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+	App->render->Blit(save, SCREEN_WIDTH - 356, SCREEN_HEIGHT - 15, SDL_FLIP_NONE, nullptr, 0);
+
 }
 void ModuleScene_Level1::printLifeIcon(int life) {
 

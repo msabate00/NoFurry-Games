@@ -30,7 +30,7 @@ public:
 	update_status PostUpdate();
 
 
-	void printYear(std::vector<int> num, SDL_Texture* texture);
+	void printYear();
 	void printIconC();
 	void printNom();
 	void printLetra();
@@ -56,6 +56,7 @@ public:
 	SDL_Texture* Letra = nullptr;
 	SDL_Texture* LogoMedio = nullptr;
 	SDL_Texture* LogoC = nullptr;
+	
 
 	// The sprite rectangle for the ground
 	SDL_Rect ground;
@@ -71,7 +72,8 @@ public:
 
 	SDL_Texture* LetraYear = nullptr;
 	SDL_Texture* LetraIconC = nullptr;
-	SDL_Texture* LetraNom = nullptr;
+	SDL_Texture* LetraNomRed = nullptr;
+	SDL_Texture* LetraNomWhite = nullptr;
 	int texture_Year = 1987;
 	bool NameColor = true;
 

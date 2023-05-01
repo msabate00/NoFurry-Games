@@ -74,8 +74,7 @@ public:
 	SDL_Texture* HostageIcon = nullptr;
 	SDL_Texture* LifeIcon = nullptr;
 	SDL_Texture* LetraNum = nullptr;
-	SDL_Texture* SA = nullptr;
-	SDL_Texture* VE = nullptr;
+	SDL_Texture* save = nullptr;
 	SDL_Texture* Time = nullptr;
 	SDL_Texture* dosPunt = nullptr;
 	SDL_Texture* Player1 = nullptr;
