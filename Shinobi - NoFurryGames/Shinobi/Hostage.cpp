@@ -51,10 +51,11 @@ void Hostage::Update()
 		if (!check) {
 			position.y -= 20;
 			check = true;
+			App->audio->PlayFx(SalvadoFX);
 		}
 		position.y--;
 		currentAnim = &SaveHostage;
-		App->audio->PlayFx(SalvadoFX);
+		
 	}
 
 	if (saved && !check2) {

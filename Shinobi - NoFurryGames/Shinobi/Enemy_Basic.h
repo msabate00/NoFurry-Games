@@ -16,14 +16,11 @@ public:
 	void Update() override;
 
 	bool destroyed = false;
-
-	iPoint position;
-
 	bool goingToPlayer = true;
 	bool facingRight = false;
 	bool facingLeft = true;
 	bool secondFloor = false;
-
+	bool moveToDie = false;
 	int points = 100;
 
 private:

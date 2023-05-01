@@ -30,11 +30,15 @@ const Collider* Enemy::GetCollider() const
 
 void Enemy::Update()
 {
+	
+
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
-	if (collider != nullptr)
+	if (collider != nullptr){
 		collider->SetPos(position.x, position.y);
+		collider->SetSize(currentAnim->GetCurrentFrame().w, currentAnim->GetCurrentFrame().h); 
+	}
 }
 
 void Enemy::Draw()
@@ -48,6 +52,10 @@ void Enemy::Draw()
 
 void Enemy::OnCollision(Collider* collider)
 {
+	if (collider->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage) {
+		//c muere
+		this->setHasReceivedDamage = true;
+		App->audio->PlayFx(destroyedFx);
+	}
 	
-	App->audio->PlayFx(destroyedFx);
 }

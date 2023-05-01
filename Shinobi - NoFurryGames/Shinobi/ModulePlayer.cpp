@@ -216,7 +216,7 @@ update_status ModulePlayer::Update()
 		isJumping = true;
 	}
 
-	//cout << currJumpForce << endl;
+	
 
 	position.y -= currJumpForce;
 	
@@ -586,7 +586,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		for(uint i = 0; i<MAX_ENEMIES; i++){
 		
 			if (App->enemy->getEnemy(i) != nullptr && App->enemy->getEnemy(i)->GetCollider() == c2) {
-				if (App->enemy->getEnemy(i)->secondFloor != isSecondFloor) {
+				if (App->enemy->getEnemy(i)->secondFloor != isSecondFloor || App->enemy->getEnemy(i)->setHasReceivedDamage) {
 					return;
 				}
 				else {
