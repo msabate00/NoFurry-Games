@@ -77,13 +77,6 @@ void Enemy_Basic::Update()
 
 	}
 	
-	if (App->player->destroyed == true)
-	{
-		currentAnim = &staticAnim;
-		position.x += 2;
-	}
-
-
 	/*if (destroyed == false)
 	{
 		
