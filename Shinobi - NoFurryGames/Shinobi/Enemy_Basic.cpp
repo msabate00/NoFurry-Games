@@ -17,13 +17,13 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	walkBasic.speed = 0.1f;
 
 	//muerte
-	DeathBasic.PushBack({ 22, 92, 30, 54 });
-	DeathBasic.PushBack({ 59, 108, 65, 26 });
-	DeathBasic.PushBack({ 131, 108, 65, 26 });
-	DeathBasic.PushBack({ 131, 108, 65, 26 });
-	DeathBasic.PushBack({ 131, 108, 65, 26 });
-	DeathBasic.speed = 0.1f;
-	DeathBasic.loop = false;
+	Death.PushBack({ 22, 92, 30, 54 });
+	Death.PushBack({ 59, 108, 65, 26 });
+	Death.PushBack({ 131, 108, 65, 26 });
+	Death.PushBack({ 131, 108, 65, 26 });
+	Death.PushBack({ 131, 108, 65, 26 });
+	Death.speed = 0.1f;
+	Death.loop = false;
 
 	Disapear.PushBack({ 0,0,0,0 });
 
@@ -39,13 +39,14 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 	facingLeft = true;
 	facingRight = false;
-	destroyed = false;
 
 	goingToPlayer = true;
 	facingRight = false;
 	facingLeft = true;
 	secondFloor = false;
 	moveToDie = false;
+
+	points = 100;
 
 	
 }
@@ -60,7 +61,7 @@ void Enemy_Basic::Update()
 			diePos = { position.x, position.y+currentAnim->GetCurrentFrame().h };
 			moveToDie = true;
 		}
-		currentAnim = &DeathBasic;
+		currentAnim = &Death;
 		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
 
 		if (currentAnim->HasFinished()) 

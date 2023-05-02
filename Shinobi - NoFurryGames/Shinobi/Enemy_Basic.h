@@ -15,13 +15,11 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	bool destroyed = false;
 	bool goingToPlayer = true;
 	bool facingRight = false;
 	bool facingLeft = true;
 	bool secondFloor = false;
 	bool moveToDie = false;
-	int points = 100;
 
 
 	iPoint diePos;
@@ -46,11 +44,6 @@ private:
 
 	int distanceBetween;
 	int distanceToAttack = 3;
-
-	// This enemy has one sprite and one frame
-	// We are keeping it an animation for consistency with other enemies
-	Animation walkBasic, walkBack, staticAnim;
-	Animation DeathBasic, Disapear;
 
 };
 

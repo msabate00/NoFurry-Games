@@ -36,10 +36,15 @@ public:
 	bool secondFloor;
 
 	bool setHasReceivedDamage = false;
+	bool moveToDie = false;
+
+	int points;
 
 public:
 	// The current position in the world
 	iPoint position;
+
+	iPoint diePos;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
@@ -50,6 +55,9 @@ public:
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
+
+	Animation walkBasic, walkBack, staticAnim;
+	Animation Death, Disapear;
 
 	// The enemy's collider
 	Collider* collider = nullptr;
