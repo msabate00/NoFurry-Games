@@ -30,15 +30,16 @@ const Collider* Enemy::GetCollider() const
 
 void Enemy::Update()
 {
-	
+
 
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
-	if (collider != nullptr){
+	if (collider != nullptr) {
 		collider->SetPos(position.x, position.y);
-		collider->SetSize(currentAnim->GetCurrentFrame().w, currentAnim->GetCurrentFrame().h); 
+		collider->SetSize(currentAnim->GetCurrentFrame().w, currentAnim->GetCurrentFrame().h);
 	}
+
 }
 
 void Enemy::Draw()

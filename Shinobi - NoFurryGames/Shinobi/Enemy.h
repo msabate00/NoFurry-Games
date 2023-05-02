@@ -36,10 +36,13 @@ public:
 	bool secondFloor;
 
 	bool setHasReceivedDamage = false;
+	bool moveToDie = false;
 
 public:
 	// The current position in the world
 	iPoint position;
+
+	iPoint diePos;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
