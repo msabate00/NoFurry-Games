@@ -48,6 +48,11 @@ bool ModuleScene_Level1::Start()
 {
 	LOG("Loading background assets");
 
+	App->player->Enable();
+	App->enemy->Enable();
+	App->collisions->Enable();
+	App->scene_Level1_SecondFloor_Enemies->Enable();
+
 	bool ret = true;
 
 	stageTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
@@ -85,10 +90,7 @@ bool ModuleScene_Level1::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200);
 
 	
-	App->player->Enable();
-	App->enemy->Enable();
-	App->collisions->Enable();
-	App->scene_Level1_SecondFloor_Enemies->Enable();
+	
 	//App->scene_Level1_SecondFloor->Enable();
 
 
@@ -102,6 +104,10 @@ bool ModuleScene_Level1::Start()
 
 	//Musicadddd
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 0.0f);
+
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
+
 
 	return ret;
 }

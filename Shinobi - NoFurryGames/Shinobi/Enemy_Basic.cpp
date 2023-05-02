@@ -54,26 +54,11 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 void Enemy_Basic::Update()
 {
 
-	if (this->setHasReceivedDamage) 
-	{
-		if (!moveToDie) 
-		{
-			diePos = { position.x, position.y+currentAnim->GetCurrentFrame().h };
-			moveToDie = true;
-		}
-		currentAnim = &Death;
-		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
-
-		if (currentAnim->HasFinished()) 
-		{
-			currentAnim = &Disapear;
-		}
-	}
-	else 
+	if (!this->setHasReceivedDamage) 
 	{
 
 		currentAnim = &walkBasic;
-		position.x -= 2;
+		position.x -= 1;
 		facingLeft = true;
 
 	}
