@@ -29,11 +29,11 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 
 	//muerte
 
-	deathBrown.PushBack({ 414, 108, 44, 65 });
-	deathBrown.PushBack({ 464, 130, 44, 43 });
-	deathBrown.PushBack({ 514, 153, 44, 20 });
-	deathBrown.loop = false;
-	deathBrown.speed = 0.1f;
+	Death.PushBack({ 414, 108, 44, 65 });
+	Death.PushBack({ 464, 130, 44, 43 });
+	Death.PushBack({ 514, 153, 44, 20 });
+	Death.loop = false;
+	Death.speed = 0.1f;
 
 
 
@@ -45,22 +45,27 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 void EnemyBrownShield::Update()
 {
 
-	if (!destroyed)
+	if (this->setHasReceivedDamage)
 	{
+		if (!moveToDie)
+		{
+			diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
+			moveToDie = true;
+		}
+		currentAnim = &Death;
+		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
+
+		if (currentAnim->HasFinished())
+		{
+			currentAnim = &Disapear;
+		}
+	}
+	else
+	{
+
 		currentAnim = &idleBrown;
 		facingLeft = true;
-	}
 
-	if (App->enemy->destroyed == true)
-	{
-		currentAnim = &deathBrown;
-		destroyedCountdown--;
-
-		if (destroyedCountdown <= 0)
-		{
-			currentAnim = &idleBrown;
-			App->enemy->destroyed = false;
-		}
 	}
 
 

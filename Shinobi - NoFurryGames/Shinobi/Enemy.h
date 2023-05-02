@@ -38,6 +38,8 @@ public:
 	bool setHasReceivedDamage = false;
 	bool moveToDie = false;
 
+	int points;
+
 public:
 	// The current position in the world
 	iPoint position;
@@ -53,6 +55,9 @@ public:
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
+
+	Animation walkBasic, walkBack, staticAnim;
+	Animation Death, Disapear;
 
 	// The enemy's collider
 	Collider* collider = nullptr;
