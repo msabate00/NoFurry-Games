@@ -36,6 +36,7 @@
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
+    <ClCompile Include="ModuleScene_Intro.cpp" />
     <ClCompile Include="ModuleScene_Level1.cpp" />
     <ClCompile Include="ModuleScene_Level1_SecondFloor.cpp" />
     <ClCompile Include="ModuleScene_Level1_SecondFloor_Enemies.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
+    <ClInclude Include="ModuleScene_Intro.h" />
     <ClInclude Include="ModuleScene_Level1.h" />
     <ClInclude Include="ModuleScene_Level1_SecondFloor.h" />
     <ClInclude Include="ModuleScene_Level1_SecondFloor_Enemies.h" />

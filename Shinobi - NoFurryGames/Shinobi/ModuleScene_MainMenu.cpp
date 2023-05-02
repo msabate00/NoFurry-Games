@@ -66,14 +66,14 @@ bool ModuleScene_MainMenu::Start()
 	LetraNomWhite = App->textures->Load("Assets/Interface/Color_use/White/Shinobi/SHINOBI.png");
 	LetraIconC = App->textures->Load("Assets/Interface/Color_use/White/Icon/Sega.png");
 	LetraYear = App->textures->Load("Assets/Interface/Color_use/White/Icon/1987.png");
-
+currentAnimation = &eyesAnimation;
 	return ret;
 }
 
 update_status ModuleScene_MainMenu::Update()
 {
+	App->scene_Level1->life_num = 3;
 	
-	currentAnimation = &eyesAnimation;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);

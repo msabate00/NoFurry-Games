@@ -31,6 +31,23 @@ const Collider* Enemy::GetCollider() const
 void Enemy::Update()
 {
 
+	if (setHasReceivedDamage)
+	{
+		if (!moveToDie)
+		{
+			diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
+			moveToDie = true;
+		}
+		currentAnim = &Death;
+		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
+
+		if (currentAnim->HasFinished())
+		{
+			currentAnim = &Disapear;
+		}
+	}
+
+
 
 	if (currentAnim != nullptr)
 		currentAnim->Update();

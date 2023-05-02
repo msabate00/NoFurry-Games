@@ -199,6 +199,9 @@ bool ModulePlayer::Start()
 	facingRight = true;
 	isSecondFloor = false;
 
+	DeathAnim.Reset();
+	currentAnimation = &idleAnim;
+
 
 	return ret;
 }
