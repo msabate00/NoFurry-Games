@@ -2,9 +2,14 @@
 
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModulePlayer.h"
 #include "ModuleRender.h"
 
 #include "SDL/include/SDL_render.h"
+
+#include <iostream>
+
+using namespace std;
 
 ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 {
@@ -76,6 +81,8 @@ update_status ModuleFadeToBlack::Update()
 		}
 	}
 
+	
+
 	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
@@ -83,6 +90,8 @@ update_status ModuleFadeToBlack::Update()
 
 update_status ModuleFadeToBlack::PostUpdate()
 {
+
+	
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return update_status::UPDATE_CONTINUE;
 
@@ -95,8 +104,18 @@ update_status ModuleFadeToBlack::PostUpdate()
 	SDL_RenderFillRect(App->render->renderer, &screenRect);
 
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	App->render->Blit(fadeInOut_texture, 0, 0, SDL_FLIP_NONE, &rect);
-	App->render->Blit(fadeInOut_texture, 320, 0, SDL_FLIP_NONE, &rect);
+
+	
+	if (currentStep == Fade_Step::TO_BLACK) {
+		App->render->Blit(fadeInOut_texture, App->player->position.x - 320, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, App->player->position.x, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, App->player->position.x + 320, 0, SDL_FLIP_NONE, &rect);
+	}
+	else {
+		App->render->Blit(fadeInOut_texture, 0, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, 0 + 320, 0, SDL_FLIP_NONE, &rect);
+	}
+	
 
 	return update_status::UPDATE_CONTINUE;
 }

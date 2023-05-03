@@ -24,10 +24,12 @@ ModuleScene_Intro::ModuleScene_Intro(bool startEnabled) : Module(startEnabled)
 	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
 	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
 	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
 
 
 	backgroundAnim.loop = false;
-	backgroundAnim.speed = 0.04f;
+	backgroundAnim.speed = 0.01f;
 	background = { 200,200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 
@@ -61,7 +63,7 @@ update_status ModuleScene_Intro::Update()
 
 	
 
-	if (currentAnimation->HasFinished()) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Intro2, 20);
 	}
 

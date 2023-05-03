@@ -85,7 +85,7 @@ public:
 
 	int elapsed_time;
 	time_t start_time;
-	int total_time = 20;
+	int total_time = 180;
 	std::string time_string;
 	
 	//Canbiar Color SHINOBI
