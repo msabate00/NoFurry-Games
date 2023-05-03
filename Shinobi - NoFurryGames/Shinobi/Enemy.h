@@ -63,7 +63,7 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
-	Animation walkBasic, staticAnim, jumping;
+	Animation walkBasic, staticAnim, jumping, attackAnim;
 	Animation Death, Disapear;
 
 	// The enemy's collider

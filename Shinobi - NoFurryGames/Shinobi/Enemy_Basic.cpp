@@ -24,7 +24,7 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	jumping.PushBack({ 12, 161,42,65 });
 	jumping.PushBack({ 60, 161,42,65 });
 	jumping.loop = false;
-	jumping.speed = 0.09f;
+	jumping.speed = 0.01f;
 
 	//muerte
 	Death.PushBack({ 22, 92, 30, 54 });
@@ -34,6 +34,15 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	Death.loop = false;
 
 	Disapear.PushBack({ 0,0,0,0 });
+
+	//ataque
+	attackAnim.PushBack({205,13,38,63});
+	attackAnim.PushBack({250,13,38,63});
+	attackAnim.PushBack({243,13,56,63});
+	attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 205,13,38,63 });
+	attackAnim.speed = 1.2f;
+	attackAnim.loop = false;
 
 	//ANIMACIÓN ESTÁTICA
 	staticAnim.PushBack({ 11, 12,35,64 });
@@ -99,12 +108,23 @@ void Enemy_Basic::Update()
 	}
 
 	
-	
-	
-	
-	
-	
-	
+	//// Mecánica de ataque
+
+	//if (facingLeft && position.x > App->player->position.x && position.x < (App->player->position.x + 50))
+	//{
+	//	cout << "debe salir" << endl;
+	//	position.x -= 1;
+	//	currentAnim = &attackAnim;
+
+	//	if (App->player->destroyed)
+	//	{
+	//		position.x += 1;
+	//		currentAnim = &staticAnim;
+	//	}
+
+	//}
+
+
 	// Colisión con las cajas
 	if (boxCollision && !facingLeft)
 	{
