@@ -48,10 +48,11 @@ bool ModuleScene_Level1::Start()
 {
 	LOG("Loading background assets");
 
-	App->player->Enable();
-	App->enemy->Enable();
 	App->collisions->Enable();
 	App->scene_Level1_SecondFloor_Enemies->Enable();
+	App->player->Enable();
+	App->enemy->Enable();
+	
 
 	bool ret = true;
 
@@ -156,11 +157,11 @@ update_status ModuleScene_Level1::PostUpdate()
 
 bool ModuleScene_Level1::CleanUp()
 {
-
-	App->player->Disable();
-	App->enemy->Disable();
 	App->collisions->Disable();
 	App->scene_Level1_SecondFloor_Enemies->Disable();
+	App->player->Disable();
+	App->enemy->Disable();
+	
 	return true;
 }
 
