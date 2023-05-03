@@ -94,15 +94,6 @@ public:
 	float timer = 0.0f;
 	const float switchTime = 100.0f; // Tiempo Cambiar Color
 
-	struct ren {
-		SDL_Texture* texture; // ³µÏáÌùÍ¼
-		int x, y; // ³µÏá×ø±ê
-		ren* next;
-	};
-
-	ren* head = nullptr;
-
-	std::vector<ren> renletra;
 
 	const int CAR_WIDTH = 10;
 	const int CAR_HEIGHT = 0;
