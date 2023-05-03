@@ -40,6 +40,7 @@ public:
 	bool moveToDie = false;
 	bool collidesWithWall = false;
 	bool facingLeft = false;
+	bool killed = false;
 
 	int points;
 
@@ -59,7 +60,7 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
-	Animation walkBasic, staticAnim;
+	Animation walkBasic, staticAnim, jumpingAnim;
 	Animation Death, Disapear;
 
 	// The enemy's collider

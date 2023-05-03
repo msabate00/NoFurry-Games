@@ -74,7 +74,6 @@ public:
 	Collider* collider = nullptr;
 
 	// A flag to detect when the enemy has been destroyed
-	bool destroyed = false;
 	bool enemyDamaged = false;
 	int destroyedCountdown = 30;
 

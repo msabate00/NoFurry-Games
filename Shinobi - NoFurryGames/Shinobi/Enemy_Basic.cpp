@@ -32,8 +32,6 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 	//ANIMACIÓN ESTÁTICA
 	staticAnim.PushBack({ 11, 12,35,64 });
-	staticAnim.PushBack({ 52, 12,35,64 });
-	staticAnim.PushBack({ 93, 12,35,64 });
 	staticAnim.speed = 0.1f;
 
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
@@ -57,51 +55,27 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 void Enemy_Basic::Update()
 {
 
-	if (!this->setHasReceivedDamage) 
+	// Enemigo se queda quieto si el jugador no está en su rango de visión
+	if (position.x - App->player->position.x > 250)
 	{
-
+		currentAnim = &staticAnim;
+		position.x += 0;
+	}
+	// Cuando entra en el rango, se mueve
+	else
+	{
 		currentAnim = &walkBasic;
 		position.x -= 1;
 		facingLeft = true;
-
 	}
+
+	//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
 	if (position.x < App->player->position.x) 
 	{
+		currentAnim = &walkBasic;
 		position.x += 2;
 		facingLeft = false;
-		lookForPlayer = 10;
 	}
-	
-	/*SDL_Rect rect = currentAnim->GetCurrentFrame();
-	if (facingLeft) 
-	{
-		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_NONE, &rect);
-	}
-	else 
-	{
-		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_HORIZONTAL, &rect);
-	}*/
-	
-	/*if (destroyed == false)
-	{
-		
-		currentAnim = &walkBasic;
-		position.y -= 2;
-		facingLeft = true;
-	}*/
-
-	/*if (App->enemy->destroyed == true)
-	{
-		currentAnim = &DeathBasic;
-		destroyedCountdown--;
-
-			if (destroyedCountdown <= 0) 
-			{
-				currentAnim = &walkBasic;
-				App->enemy->destroyed = false;
-			}
-	}*/
-
 
 	Enemy::Update();
 }

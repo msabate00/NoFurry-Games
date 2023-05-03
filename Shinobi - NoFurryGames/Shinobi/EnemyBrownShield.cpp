@@ -4,6 +4,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
+#include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
 #include <iostream>
 
@@ -12,6 +13,10 @@ using namespace std;
 EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
 	
+	
+	walkBasic.PushBack({282, 332, 51, 41});
+	walkBasic.loop = true;
+	walkBasic.speed = 0.1f;
 	
 	idleBrown.PushBack({ 314, 108,44,65 });
 	idleBrown.PushBack({ 364, 108,44,65 });
@@ -67,6 +72,34 @@ void EnemyBrownShield::Update()
 		facingLeft = true;
 
 	}
+
+	if ((position.x - App->player->position.x) <= 80)
+	{
+		currentAnim = &walkBasic;
+		position.x += 1;
+		facingLeft = false;
+	}
+	else currentAnim = &idleBrown;
+	
+
+	/*if (!this->setHasReceivedDamage)
+	{
+		currentAnim = &walkBasic;
+		position.x -= 1;
+		facingLeft = true;
+
+	}
+	if (position.x > App->player->position.x)
+	{
+		position.x += 2;
+		facingLeft = true;
+		lookForPlayer = 10;
+	}
+	else{
+		position.x += 2;
+		facingLeft = false;
+		lookForPlayer = 10;
+	}*/
 
 
 	Enemy::Update();
