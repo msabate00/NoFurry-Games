@@ -70,11 +70,15 @@ void Enemy_Basic::Update()
 	}
 
 	//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
-	if (position.x < App->player->position.x) 
+	if ((position.x+50) < App->player->position.x) 
 	{
 		currentAnim = &walkBasic;
 		position.x += 2;
 		facingLeft = false;
+	}
+	if ((position.x - 50) > App->player->position.x)
+	{
+		facingLeft = true;
 	}
 
 	Enemy::Update();
