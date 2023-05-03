@@ -20,7 +20,6 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 	
 	idleBrown.PushBack({ 314, 108,44,65 });
 	idleBrown.PushBack({ 364, 108,44,65 });
-
 	idleBrown.speed = 0.01f;
 
 	attackBrown.PushBack({ 314, 18,48,73 });
@@ -49,8 +48,43 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 
 void EnemyBrownShield::Update()
 {
+	// Enemigo se queda quieto si el jugador no está en su rango de visión
+	if (position.x - App->player->position.x > 250)
+	{
+		currentAnim = &idleBrown;
+		position.x += 0;
+		facingLeft = true;
+	}
+	// Cuando entra en el rango, se mueve
+	else
+	{
+		currentAnim = &walkBasic;
+		position.x -= 1;
+		facingLeft = true;
+	}
 
-	if (this->setHasReceivedDamage)
+	//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+	if ((position.x + 40) < App->player->position.x)
+	{
+		currentAnim = &walkBasic;
+		position.x += 2;
+		facingLeft = false;
+	}
+
+
+	// Lo siguiente es para que no se mueva al morir
+	if (killed)
+	{
+		position.x += 1;
+	}
+
+	if (killed && !facingLeft)
+	{
+		position.x -= 2;
+	}
+	
+	
+	/*if (this->setHasReceivedDamage)
 	{
 		if (!moveToDie)
 		{
@@ -79,7 +113,7 @@ void EnemyBrownShield::Update()
 		position.x += 1;
 		facingLeft = false;
 	}
-	else currentAnim = &idleBrown;
+	else currentAnim = &idleBrown;*/
 	
 
 	/*if (!this->setHasReceivedDamage)
