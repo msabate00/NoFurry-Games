@@ -2,7 +2,7 @@
 #define __ENEMYBROWNSHIELD__
 
 #include "Enemy.h"
-#include "Path.h"
+
 
 class EnemyBrownShield : public Enemy
 {
@@ -17,7 +17,7 @@ public:
 
 	bool destroyed = false;
 
-	iPoint position;
+	iPoint diePos;
 
 	bool goingToPlayer = true;
 	bool facingRight = false;
@@ -46,7 +46,6 @@ private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation attackBrown;
-	Animation idleBrown;
 
 };
 

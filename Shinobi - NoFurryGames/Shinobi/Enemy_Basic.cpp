@@ -77,6 +77,8 @@ void Enemy_Basic::Update()
 		facingLeft = false;
 	}
 
+	
+
 
 	// Lo siguiente es para que no se mueva al morir
 	if (killed)
@@ -87,6 +89,14 @@ void Enemy_Basic::Update()
 	if (killed && !facingLeft)
 	{
 		position.x -= 2;
+	}
+
+
+
+	if (position.x == App->player->position.x)
+	{
+		position.x += 1;
+		currentAnim = &staticAnim;
 	}
 
 	Enemy::Update();

@@ -13,14 +13,13 @@ using namespace std;
 EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
 	
-	
 	walkBasic.PushBack({282, 332, 51, 41});
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 	
-	idleBrown.PushBack({ 314, 108,44,65 });
-	idleBrown.PushBack({ 364, 108,44,65 });
-	idleBrown.speed = 0.01f;
+	staticAnim.PushBack({ 314, 108,44,65 });
+	staticAnim.PushBack({ 364, 108,44,65 });
+	staticAnim.speed = 0.01f;
 
 	attackBrown.PushBack({ 314, 18,48,73 });
 	attackBrown.PushBack({ 368, 18, 48,73 });
@@ -51,7 +50,7 @@ void EnemyBrownShield::Update()
 	// Enemigo se queda quieto si el jugador no está en su rango de visión
 	if (position.x - App->player->position.x > 250)
 	{
-		currentAnim = &idleBrown;
+		currentAnim = &staticAnim;
 		position.x += 0;
 		facingLeft = true;
 	}
