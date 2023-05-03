@@ -13,13 +13,16 @@ using namespace std;
 EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
 	
-	walkBasic.PushBack({282, 332, 51, 41});
+	walkBasic.PushBack({282, 332, 41, 51});
+	walkBasic.PushBack({ 329, 332, 41, 51 });
+	walkBasic.PushBack({ 376, 332, 41, 51 });
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 	
-	staticAnim.PushBack({ 314, 108,44,65 });
-	staticAnim.PushBack({ 364, 108,44,65 });
-	staticAnim.speed = 0.01f;
+	staticAnim.PushBack({ 509, 258,33,65 });
+	staticAnim.PushBack({ 548, 258,33,65 });
+	staticAnim.loop = true;
+	staticAnim.speed = 0.012f;
 
 	attackBrown.PushBack({ 314, 18,48,73 });
 	attackBrown.PushBack({ 368, 18, 48,73 });
@@ -32,9 +35,9 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 
 	//muerte
 
-	Death.PushBack({ 414, 108, 44, 65 });
-	Death.PushBack({ 464, 130, 44, 43 });
-	Death.PushBack({ 514, 153, 44, 20 });
+	Death.PushBack({ 429, 331, 39, 65 });
+	Death.PushBack({ 474, 331, 39, 65 });
+	Death.PushBack({ 519, 331, 39, 65 });
 	Death.loop = false;
 	Death.speed = 0.1f;
 
@@ -48,7 +51,7 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 void EnemyBrownShield::Update()
 {
 	// Enemigo se queda quieto si el jugador no está en su rango de visión
-	if (position.x - App->player->position.x > 250)
+	if (position.x - App->player->position.x > 100)
 	{
 		currentAnim = &staticAnim;
 		position.x += 0;
@@ -70,9 +73,13 @@ void EnemyBrownShield::Update()
 		facingLeft = false;
 	}
 
-
 	// Lo siguiente es para que no se mueva al morir
 	if (killed)
+	{
+		position.x += 0;
+	}
+	
+	if (killed && currentAnim == &walkBasic)
 	{
 		position.x += 1;
 	}

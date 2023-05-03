@@ -47,6 +47,15 @@ void Enemy::Update()
 		}
 	}
 
+	if (boxCollision)
+	{
+		if (currentAnim->HasFinished())
+		{
+			currentAnim = &walkBasic;
+			position.y += 0;
+		}
+	}
+
 
 
 	if (currentAnim != nullptr)
@@ -88,6 +97,7 @@ void Enemy::OnCollision(Collider* collider)
 		this->setHasReceivedDamage = true;
 		App->audio->PlayFx(destroyedFx);
 	}
+		
 	if (collider->type == Collider::Type::WALL && !collidesWithWall) 
 	{
 		//Cambia de sentido (derecha)

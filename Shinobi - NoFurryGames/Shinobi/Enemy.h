@@ -31,6 +31,8 @@ public:
 	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* collider);
 
+	int getPoints();
+	void setPoints(int points);
 
 	float timeToDestroy;
 	float lookForPlayer = 10;
@@ -41,6 +43,7 @@ public:
 	bool collidesWithWall = false;
 	bool facingLeft = false;
 	bool killed = false;
+	bool boxCollision = false;
 
 	int points;
 
@@ -60,7 +63,7 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
-	Animation walkBasic, staticAnim, jumpingAnim;
+	Animation walkBasic, staticAnim, jumping;
 	Animation Death, Disapear;
 
 	// The enemy's collider

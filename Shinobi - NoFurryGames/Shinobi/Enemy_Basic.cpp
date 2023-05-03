@@ -19,11 +19,16 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
+	//salto
+	jumping.PushBack({ 108, 161,42,65 });
+	jumping.PushBack({ 12, 161,42,65 });
+	jumping.PushBack({ 60, 161,42,65 });
+	jumping.loop = false;
+	jumping.speed = 0.09f;
+
 	//muerte
 	Death.PushBack({ 22, 92, 30, 54 });
 	Death.PushBack({ 59, 108, 65, 26 });
-	Death.PushBack({ 131, 108, 65, 26 });
-	Death.PushBack({ 131, 108, 65, 26 });
 	Death.PushBack({ 131, 108, 65, 26 });
 	Death.speed = 0.1f;
 	Death.loop = false;
@@ -39,7 +44,6 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
 
 	facingLeft = true;
-	facingRight = false;
 
 	goingToPlayer = true;
 	facingRight = false;
@@ -77,9 +81,6 @@ void Enemy_Basic::Update()
 		facingLeft = false;
 	}
 
-	
-
-
 	// Lo siguiente es para que no se mueva al morir
 	if (killed)
 	{
@@ -96,6 +97,31 @@ void Enemy_Basic::Update()
 		position.x += 1;
 		currentAnim = &staticAnim;
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	// Colisión con las cajas
+	if (boxCollision && !facingLeft)
+	{
+		currentAnim = &jumping;
+		position.x -= 2;
+		position.y -= 2;
+
+		/*if (position.y == )*/
+	}
+
+	if (boxCollision)
+	{
+		currentAnim = &jumping;
+		position.x -= 1;
+		position.y -= 2;
+	}
+
 
 	Enemy::Update();
 }

@@ -204,6 +204,19 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		return;
 	}
 
+	if (c2->type == Collider::Type::WALL && c1->type == Collider::Type::ENEMY)
+	{
+		for (uint i = 0; i < MAX_ENEMIES; ++i)
+		{
+			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+			{
+				enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+				enemies[i]->boxCollision = true;
+				break;
+			}
+		}
+	}
+
 
 	//IGNORAR LA COLISION SI EL JUGADOR ESTA EN OTRA ALTURA
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -253,47 +266,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 			break;
 		}
 	}
-
-
-
-
-	//	delete enemies[i];
-	//	cout << "Eliminado" << endl;
-	//	enemies[i] = nullptr;
-	//	cout << "Hola" << endl;
-	//	break;
-	//	
-
-	//	/*if (destroyedCountdown <= 0)
-	//	{
-	//		delete enemies[i];
-	//		cout << "Eliminado" << endl;
-	//		enemies[i] = nullptr;
-	//		cout << "Hola" << endl;
-	//		break;
-	//	}*/
-	//}
-
-	///*delete enemies[i];
-	//cout << "Eliminado" << endl;
-	//enemies[i] = nullptr;
-	//cout << "Hola" << endl;
-	//break;*/
-
-	///*if (App->enemy->destroyed == true)
-	//{
-	//	destroyedCountdown--;
-
-	//	if (destroyedCountdown <= 0)
-	//	{
-	//		destroyed = false;
-	//	}
-	//}*/
-	//
-	//
-	///*delete enemies[i];
-	//enemies[i] = nullptr;
-	//break;*/
 }
 
 Enemy* ModuleEnemies::getEnemy(int i) {

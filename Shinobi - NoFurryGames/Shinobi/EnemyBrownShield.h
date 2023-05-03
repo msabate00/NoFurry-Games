@@ -15,13 +15,9 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	bool destroyed = false;
-
 	iPoint diePos;
 
 	bool goingToPlayer = true;
-	bool facingRight = false;
-	bool facingLeft = true;
 	bool secondFloor = false;
 	int points = 100;
 
