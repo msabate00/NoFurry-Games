@@ -91,8 +91,6 @@ void Enemy_Basic::Update()
 		position.x -= 2;
 	}
 
-
-
 	if (position.x == App->player->position.x)
 	{
 		position.x += 1;
