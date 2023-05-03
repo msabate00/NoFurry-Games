@@ -73,6 +73,7 @@ currentAnimation = &eyesAnimation;
 update_status ModuleScene_MainMenu::Update()
 {
 	App->scene_Level1->life_num = 3;
+	App->scene_Level1->total_time = 180;
 	
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
