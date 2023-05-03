@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleScene_Intro.h"
+#include "ModuleScene_Intro2.h"
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
 #include "ModuleScene_MainMenu.h"
@@ -29,18 +30,19 @@ Application::Application()
 	modules[0] =	window =							new ModuleWindow(true);
 	modules[1] =	input =								new ModuleInput(true);
 	modules[2] =	textures =							new ModuleTextures(true);
-	modules[3] =	scene_Intro =					new ModuleScene_Intro(true);
-	modules[4] =	scene_MainMenu =					new ModuleScene_MainMenu(false);
-	modules[5] =	scene_Level1 =						new ModuleScene_Level1(false);				//off
-	modules[6] =	enemy =								new ModuleEnemies(false);					//off
-	modules[7] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);	//off
-	modules[8] =	player =							new ModulePlayer(false);					//off
-	modules[9] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
-	modules[10] =	particles =							new ModuleParticles(true);
-	modules[11] =	collisions =						new ModuleCollisions(true);
-	modules[12] =	audio =								new ModuleAudio(true);
-	modules[13] =	fade =								new ModuleFadeToBlack(true);
-	modules[14] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[3] =	scene_Intro =						new ModuleScene_Intro(true);
+	modules[4] =	scene_Intro2 =						new ModuleScene_Intro2(false);
+	modules[5] =	scene_MainMenu =					new ModuleScene_MainMenu(false);
+	modules[6] =	scene_Level1 =						new ModuleScene_Level1(false);				//off
+	modules[7] =	enemy =								new ModuleEnemies(false);					//off
+	modules[8] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);	//off
+	modules[9] =	player =							new ModulePlayer(false);					//off
+	modules[10] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
+	modules[11] =	particles =							new ModuleParticles(true);
+	modules[12] =	collisions =						new ModuleCollisions(true);
+	modules[13] =	audio =								new ModuleAudio(true);
+	modules[14] =	fade =								new ModuleFadeToBlack(true);
+	modules[15] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 

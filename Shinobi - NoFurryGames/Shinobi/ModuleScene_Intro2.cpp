@@ -1,4 +1,4 @@
-#include "ModuleScene_Intro.h"
+#include "ModuleScene_Intro2.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -18,8 +18,11 @@
 #include <iostream>
 #include <cmath>
 
-ModuleScene_Intro::ModuleScene_Intro(bool startEnabled) : Module(startEnabled)
+ModuleScene_Intro2::ModuleScene_Intro2(bool startEnabled) : Module(startEnabled)
 {
+	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
+	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
 	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
 	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
 	backgroundAnim.PushBack({ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT }); //Centro
@@ -27,25 +30,25 @@ ModuleScene_Intro::ModuleScene_Intro(bool startEnabled) : Module(startEnabled)
 
 
 	backgroundAnim.loop = false;
-	backgroundAnim.speed = 0.04f;
+	backgroundAnim.speed = 0.01f;
 	background = { 200,200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 
 }
 
-ModuleScene_Intro::~ModuleScene_Intro()
+ModuleScene_Intro2::~ModuleScene_Intro2()
 {
 
 }
 
 // Load assets
-bool ModuleScene_Intro::Start()
+bool ModuleScene_Intro2::Start()
 {
 	LOG("Loading background assets");
 
 	bool ret = true;
 	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
-	textureBackground = App->textures->Load("Assets/Interface/Menu/intro.png");
+	textureBackground = App->textures->Load("Assets/Interface/Menu/intro2.png");
 
 
 	App->render->camera.x = 0;
@@ -56,13 +59,12 @@ bool ModuleScene_Intro::Start()
 	return ret;
 }
 
-update_status ModuleScene_Intro::Update()
+update_status ModuleScene_Intro2::Update()
 {
 
 	
-
-	if (currentAnimation->HasFinished()) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_Intro2, 20);
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 
 	currentAnimation->Update();
@@ -73,7 +75,7 @@ update_status ModuleScene_Intro::Update()
 }
 
 // Update: draw background
-update_status ModuleScene_Intro::PostUpdate()
+update_status ModuleScene_Intro2::PostUpdate()
 {
 
 
