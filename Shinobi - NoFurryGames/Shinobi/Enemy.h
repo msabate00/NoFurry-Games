@@ -33,10 +33,13 @@ public:
 
 
 	float timeToDestroy;
+	float lookForPlayer = 10;
 	bool secondFloor;
 
 	bool setHasReceivedDamage = false;
 	bool moveToDie = false;
+	bool collidesWithWall = false;
+	bool facingLeft = false;
 
 	int points;
 
@@ -56,7 +59,7 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
-	Animation walkBasic, walkBack, staticAnim;
+	Animation walkBasic, staticAnim;
 	Animation Death, Disapear;
 
 	// The enemy's collider

@@ -62,10 +62,23 @@ void Enemy::Update()
 void Enemy::Draw()
 {
 	
-	if (currentAnim != nullptr) {
+	/*if (currentAnim != nullptr) 
+	{
 		
 		App->render->Blit(texture, position.x, position.y, SDL_FLIP_NONE, &(currentAnim->GetCurrentFrame()));
+	}*/
+
+	SDL_Rect rect = currentAnim->GetCurrentFrame();
+	if (facingLeft)
+	{
+		App->render->Blit(texture, position.x, position.y, SDL_FLIP_NONE, &rect);
 	}
+	else
+	{
+		App->render->Blit(texture, position.x, position.y, SDL_FLIP_HORIZONTAL, &rect);
+	}
+
+
 }
 
 void Enemy::OnCollision(Collider* collider)
@@ -74,6 +87,16 @@ void Enemy::OnCollision(Collider* collider)
 		//c muere
 		this->setHasReceivedDamage = true;
 		App->audio->PlayFx(destroyedFx);
+	}
+	if (collider->type == Collider::Type::WALL && !collidesWithWall) 
+	{
+		//Cambia de sentido (derecha)
+		this->collidesWithWall = true;
+	}
+	if (collider->type == Collider::Type::WALL && collidesWithWall)
+	{
+		//Cambia de sentido (izquierda)
+		this->collidesWithWall = false;
 	}
 	
 }

@@ -4,7 +4,10 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleRender.h"
 #include <iostream>
+
+#include "SDL/include/SDL_render.h"
 
 using namespace std;
 
@@ -62,6 +65,22 @@ void Enemy_Basic::Update()
 		facingLeft = true;
 
 	}
+	if (position.x < App->player->position.x) 
+	{
+		position.x += 2;
+		facingLeft = false;
+		lookForPlayer = 10;
+	}
+	
+	/*SDL_Rect rect = currentAnim->GetCurrentFrame();
+	if (facingLeft) 
+	{
+		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_NONE, &rect);
+	}
+	else 
+	{
+		App->render->Blit(texture, position.x, position.y - rect.h, SDL_FLIP_HORIZONTAL, &rect);
+	}*/
 	
 	/*if (destroyed == false)
 	{
@@ -84,11 +103,5 @@ void Enemy_Basic::Update()
 	}*/
 
 
-
-
-	
-
 	Enemy::Update();
 }
-
-

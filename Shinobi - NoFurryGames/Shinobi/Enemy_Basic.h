@@ -17,7 +17,6 @@ public:
 
 	bool goingToPlayer = true;
 	bool facingRight = false;
-	bool facingLeft = true;
 	bool secondFloor = false;
 	bool moveToDie = false;
 
