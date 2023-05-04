@@ -144,6 +144,9 @@
     <ClCompile Include="EnemyPurpleShield.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleScene_Boss1.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -235,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="EnemyPurpleShield.h">
       <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene_Boss1.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

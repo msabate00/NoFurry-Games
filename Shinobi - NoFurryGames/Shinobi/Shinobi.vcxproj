@@ -37,6 +37,7 @@
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
+    <ClCompile Include="ModuleScene_Boss1.cpp" />
     <ClCompile Include="ModuleScene_Intro.cpp" />
     <ClCompile Include="ModuleScene_Intro2.cpp" />
     <ClCompile Include="ModuleScene_Level1.cpp" />
@@ -68,6 +69,7 @@
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
+    <ClInclude Include="ModuleScene_Boss1.h" />
     <ClInclude Include="ModuleScene_Intro.h" />
     <ClInclude Include="ModuleScene_Intro2.h" />
     <ClInclude Include="ModuleScene_Level1.h" />
