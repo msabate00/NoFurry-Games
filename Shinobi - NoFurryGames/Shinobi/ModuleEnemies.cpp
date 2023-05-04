@@ -12,7 +12,7 @@
 #include "Enemy_Basic.h"
 #include "Hostage.h"
 #include "EnemyBrownShield.h"
-
+#include "EnemyPurpleShield.h"
 
 #include <iostream>
 
@@ -180,6 +180,10 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 
 			case ENEMY_TYPE::BROWNSHIELD:
 				enemies[i] = new EnemyBrownShield(info.x, info.y, info.secondFloor);
+				break;
+
+			case ENEMY_TYPE::PURPLESHIELD:
+				enemies[i] = new EnemyPurpleShield(info.x, info.y, info.secondFloor);
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:

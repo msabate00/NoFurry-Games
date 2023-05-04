@@ -141,6 +141,9 @@
     <ClCompile Include="ModuleScene_Intro2.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Intro</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyPurpleShield.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="ModuleScene_Intro2.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPurpleShield.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
