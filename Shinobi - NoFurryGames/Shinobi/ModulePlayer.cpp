@@ -12,7 +12,6 @@
 #include "Collider.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
-
 #include "Hostage.h"
 
 #include "SDL/include/SDL_scancode.h"
@@ -201,7 +200,7 @@ bool ModulePlayer::Start()
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
-
+	
 
 	return ret;
 }
@@ -233,12 +232,20 @@ update_status ModulePlayer::Update()
 		currentAnimation = &PistolaidleAnim;
 	}
 
+	
+
 	if (destroyed) {
 		//PLAY ANIMACION MORIR;
 
 
 		currentAnimation = &DeathAnim;
-		App->audio->PlayFx(morirFX);
+		
+		
+		if (hasPlayedDeathSound == true) {
+			App->audio->PlayFx(morirFX);
+			hasPlayedDeathSound = false;
+		}
+		
 		
 		destroyedCountdown--;
 		if (destroyedCountdown <= 0) 
@@ -250,6 +257,7 @@ update_status ModulePlayer::Update()
 				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level1, 60);
 			}
 		}
+
 
 		currentAnimation->Update();
 		return update_status::UPDATE_CONTINUE;
