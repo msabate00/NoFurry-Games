@@ -45,7 +45,7 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	attackAnim.PushBack({ 143,13,56,63 });
 	attackAnim.PushBack({ 143,13,56,63 });
 	attackAnim.PushBack({ 250,13,38,63 });
-	attackAnim.PushBack({ 205,13,38,63 });
+	attackAnim.PushBack({ 11, 12,35,64 });
 
 
 	/*attackAnim.PushBack({ 250,13,38,63 });
@@ -117,12 +117,16 @@ void Enemy_Basic::Update()
 		}
 
 		//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
-		if ((position.x + 40) < App->player->position.x)
+		if (position.x < App->player->position.x && facingLeft)
 		{
 			currentAnim = &walkBasic;
 			position.x += 2;
 			facingLeft = false;
 		}
+
+		//Si el enemigo está en la misma posición que el jugador, camina random
+		
+		//
 
 		// Lo siguiente es para que no se mueva al morir
 		if (killed)
@@ -133,12 +137,6 @@ void Enemy_Basic::Update()
 		if (killed && !facingLeft)
 		{
 			position.x -= 2;
-		}
-
-		if (position.x == App->player->position.x)
-		{
-			position.x += 1;
-			currentAnim = &staticAnim;
 		}
 	}
 
@@ -164,12 +162,17 @@ void Enemy_Basic::Update()
 		position.y -= 2;
 	}
 
-	if (position.x <= (App->player->position.x + 42) && facingLeft)
+	if (position.x <= (App->player->position.x + 42) && facingLeft && App->player->position.y > position.y)
 	{
 		currentAnim = &attackAnim;
-		position.x += 1;
+		position.x += 0.5;
 	}
 
+	if (facingLeft && App->player->destroyed & App->player->currentAnimation->HasFinished())
+	{
+		facingLeft = false;
+		position.x += 2;
+	}
 	
 	//// Enemigo se queda quieto si el jugador no está en su rango de visión
 	//if (position.x - App->player->position.x > 250)
