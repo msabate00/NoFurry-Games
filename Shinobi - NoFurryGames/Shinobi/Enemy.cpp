@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
+#include "ModuleScene_Level1.h"
 
 #include <iostream>
  
@@ -36,6 +37,7 @@ void Enemy::Update()
 		if (!moveToDie)
 		{
 			diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
+			App->scene_Level1->texture_num += this->points;
 			moveToDie = true;
 		}
 		currentAnim = &Death;
