@@ -261,6 +261,10 @@ update_status ModulePlayer::Update()
 
 
 		currentAnimation->Update();
+		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+
+
 		return update_status::UPDATE_CONTINUE;
 	}
 

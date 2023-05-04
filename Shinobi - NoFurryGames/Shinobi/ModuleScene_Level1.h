@@ -80,6 +80,9 @@ public:
 
 
 	int hostage_num = 4;
+	
+
+
 	int life_num = 2;
 	int texture_num = 0;
 
