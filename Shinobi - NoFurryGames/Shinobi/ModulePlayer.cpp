@@ -173,6 +173,7 @@ bool ModulePlayer::Start()
 	///////////////////////
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
 	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
+	efectoSaltoPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Efecto_SaltoPlataforma.wav");
 	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
 	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
 	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
@@ -271,6 +272,7 @@ update_status ModulePlayer::Update()
 		
 
 		App->audio->PlayFx(saltarPlataformaFX);
+		App->audio->PlayFx(efectoSaltoPlataformaFX);
 		currJumpForce = jumpForce * 1.6;
 		currentAnimation = &bigJumpUpAnim;
 		currentJumpAnim = &bigJumpUpAnim;
@@ -287,6 +289,7 @@ update_status ModulePlayer::Update()
 		
 		
 		App->audio->PlayFx(saltarPlataformaFX);
+		App->audio->PlayFx(efectoSaltoPlataformaFX);
 		currJumpForce = jumpForce * 1.6;
 		currentAnimation = &bigJumpDownAnim;
 		currentJumpAnim = &bigJumpDownAnim;

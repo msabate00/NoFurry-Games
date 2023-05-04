@@ -109,7 +109,7 @@ public:
 	uint shurikenAtaqueFX = 0;
 	uint ataqueFX = 0;
 	uint morirFX = 0;
-
+	uint efectoSaltoPlataformaFX = 0;
 
 };
 
