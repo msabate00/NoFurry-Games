@@ -40,18 +40,14 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 	Death.PushBack({ 519, 331, 39, 65 });
 	Death.loop = false;
 	Death.speed = 0.1f;
-
-
 	
-
-
 	collider = App->collisions->AddCollider({ 0, 0,44,65 }, Collider::Type::ENEMY, (Module*)App->enemy);
 }
 
 void EnemyBrownShield::Update()
 {
 	// Enemigo se queda quieto si el jugador no está en su rango de visión
-	if (position.x - App->player->position.x > 100)
+	if (position.x - App->player->position.x > 150)
 	{
 		currentAnim = &staticAnim;
 		position.x += 0;

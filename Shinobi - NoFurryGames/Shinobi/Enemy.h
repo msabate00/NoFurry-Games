@@ -38,6 +38,11 @@ public:
 	float lookForPlayer = 10;
 	bool secondFloor;
 
+	bool isJumping = false;
+	float jumpSpeed = 0.0f;
+	float jumpHeight = 100.0f;
+	float gravity = 0.2f;
+
 	bool setHasReceivedDamage = false;
 	bool moveToDie = false;
 	bool collidesWithWall = false;
@@ -46,6 +51,8 @@ public:
 	bool boxCollision = false;
 
 	int points;
+
+	
 
 public:
 	// The current position in the world

@@ -56,8 +56,6 @@ void Enemy::Update()
 		}
 	}
 
-
-
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
