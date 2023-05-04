@@ -95,5 +95,44 @@ bool ModuleScene_Level2::CleanUp()
 	return true;
 }
 
+void ModuleScene_Level2::printSkillIcon()
+{
+}
+
+void ModuleScene_Level2::printHostageIcon(int)
+{
+}
+
+void ModuleScene_Level2::printLifeIcon(int)
+{
+}
+
+void ModuleScene_Level2::printNum(std::vector<int> num, SDL_Texture* texture)
+{
+}
+
+void ModuleScene_Level2::printTime(std::string time, SDL_Texture* texture)
+{
+}
+
+void ModuleScene_Level2::printPlayer1()
+{
+}
+
+std::vector<int> ModuleScene_Level2::getDigits(int number)
+{
+	return std::vector<int>();
+}
+
+int ModuleScene_Level2::updateTimer(time_t start_time)
+{
+	return 0;
+}
+
+std::string ModuleScene_Level2::getTimeString(int elapsed_seconds)
+{
+	return std::string();
+}
+
 
 

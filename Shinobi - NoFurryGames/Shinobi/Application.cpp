@@ -41,32 +41,25 @@ Application::Application()
 	modules[5] =	scene_MainMenu =					new ModuleScene_MainMenu(false);
 
 	//Level1
-	modules[6] =	scene_Level1 =						new ModuleScene_Level1(false);				//off
-	modules[7] =	enemy =								new ModuleEnemies(false);					//off
-	modules[8] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);	//off
-	modules[9] =	player =							new ModulePlayer(false);					//off
-	modules[10] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
-	modules[11] =	particles =							new ModuleParticles(true);
-	modules[12] =	collisions =						new ModuleCollisions(true);
-	modules[13] =	audio =								new ModuleAudio(true);
-	modules[14] =	fade =								new ModuleFadeToBlack(true);
-	modules[15] =	scene_Level2 =						new ModuleScene_Level2(false);
-	modules[16] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[6] =	scene_Level1 =						new ModuleScene_Level1(false);				
+	modules[7] =	enemy =								new ModuleEnemies(false);					
+	modules[8] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);	
 
 	//Level 2
+	modules[9] =	scene_Level2 =						new ModuleScene_Level2(false);
 
 	//Level Boss
-	modules[9]	=	scene_Boss1 =							new ModuleScene_Boss1(false);
-	modules[10] =	boss =									new ModuleBoss(false);
+	modules[10]	=	scene_Boss1 =						new ModuleScene_Boss1(false);
+	modules[11] =	boss =								new ModuleBoss(false);
 
 
-	modules[11]	=	player =							new ModulePlayer(false);					//off
-	modules[12] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
-	modules[13] =	particles =							new ModuleParticles(true);
-	modules[14] =	collisions =						new ModuleCollisions(true);
-	modules[15] =	audio =								new ModuleAudio(true);
-	modules[16] =	fade =								new ModuleFadeToBlack(true);
-	modules[17] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[12]	=	player =							new ModulePlayer(false);					//off
+	modules[13] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
+	modules[14] =	particles =							new ModuleParticles(true);
+	modules[15] =	collisions =						new ModuleCollisions(true);
+	modules[16] =	audio =								new ModuleAudio(true);
+	modules[17] =	fade =								new ModuleFadeToBlack(true);
+	modules[18] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 
