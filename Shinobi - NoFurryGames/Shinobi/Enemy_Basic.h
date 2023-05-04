@@ -39,6 +39,8 @@ private:
 
 	int speed = 2;
 
+	int attackCooldown = 30;
+
 	int destroyedCountdown = 30;
 
 	int distanceBetween;

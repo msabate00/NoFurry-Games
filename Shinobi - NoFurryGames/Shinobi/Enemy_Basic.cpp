@@ -39,9 +39,7 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	attackAnim.PushBack({205,13,38,63});
 	attackAnim.PushBack({250,13,38,63});
 	attackAnim.PushBack({243,13,56,63});
-	attackAnim.PushBack({ 250,13,38,63 });
-	attackAnim.PushBack({ 205,13,38,63 });
-	attackAnim.speed = 1.2f;
+	attackAnim.speed = 0.1f;
 	attackAnim.loop = false;
 
 	//ANIMACIÓN ESTÁTICA
@@ -149,6 +147,12 @@ void Enemy_Basic::Update()
 		currentAnim = &jumping;
 		position.x -= 1;
 		position.y -= 2;
+	}
+
+	if (position.x <= (App->player->position.x + 42) && facingLeft)
+	{
+		currentAnim = &attackAnim;
+		position.x += 1;
 	}
 
 	
