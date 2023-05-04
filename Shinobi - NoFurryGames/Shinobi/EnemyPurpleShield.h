@@ -17,6 +17,7 @@ public:
 
 	iPoint diePos;
 
+	float currJumpForce = 0;
 	bool goingToPlayer = true;
 	bool secondFloor = false;
 	int points = 100;

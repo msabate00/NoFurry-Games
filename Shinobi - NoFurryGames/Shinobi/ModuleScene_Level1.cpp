@@ -18,6 +18,7 @@
 #include <chrono>
 #include <thread>
 #include "Hostage.h"
+#include "SDL/include/SDL_scancode.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -96,7 +97,9 @@ bool ModuleScene_Level1::Start()
 
 
 	//Hostage
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200);
+	if (hostageTaken[0] == false) {
+		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200, false, 1);
+	}
 
 	
 	
@@ -127,6 +130,11 @@ update_status ModuleScene_Level1::Update()
 	if (hostage_num <= 0) {
 		finalLevel->active = true;
 	}
+
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+	}
+
 
 	int elapsed_time = updateTimer(start_time);
 

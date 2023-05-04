@@ -84,7 +84,7 @@ void Enemy_Basic::Update()
 	if (boxCollision)
 	{
 		isJumping = true;
-		jumpSpeed = -6.0f;
+		jumpSpeed = -4.0f;
 	}
 
 	if (isJumping)

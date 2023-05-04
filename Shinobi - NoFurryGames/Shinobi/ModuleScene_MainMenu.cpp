@@ -9,6 +9,7 @@
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleScene_Boss1.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
 
@@ -66,7 +67,14 @@ bool ModuleScene_MainMenu::Start()
 	LetraNomWhite = App->textures->Load("Assets/Interface/Color_use/White/Shinobi/SHINOBI.png");
 	LetraIconC = App->textures->Load("Assets/Interface/Color_use/White/Icon/Sega.png");
 	LetraYear = App->textures->Load("Assets/Interface/Color_use/White/Icon/1987.png");
-currentAnimation = &eyesAnimation;
+	currentAnimation = &eyesAnimation;
+
+
+	for (int i = 0; i < 4; i++) {
+		App->scene_Level1->hostageTaken[i] = false;
+	}
+	App->scene_Level1->hostage_num = 4;
+
 	return ret;
 }
 
@@ -79,6 +87,10 @@ update_status ModuleScene_MainMenu::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 		App->audio->PlayFx(monedaFX);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 	
 	currentAnimation->Update();

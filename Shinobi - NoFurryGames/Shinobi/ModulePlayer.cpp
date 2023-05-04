@@ -272,7 +272,7 @@ update_status ModulePlayer::Update()
 	//CAMBIANDO DE ALTURA
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN &&
 		App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT &&
-		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y > 110) {
+		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y > 110 && App->scene_Level1->IsEnabled()) {
 		
 
 		App->audio->PlayFx(saltarPlataformaFX);
@@ -282,14 +282,11 @@ update_status ModulePlayer::Update()
 		currentJumpAnim = &bigJumpUpAnim;
 		isChangingFloorF1 = true;
 		frameContador = 0;
-
-
-		
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN &&
 		App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT &&
-		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y <= 110) {
+		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y <= 110 && App->scene_Level1->IsEnabled()) {
 		
 		
 		App->audio->PlayFx(saltarPlataformaFX);
