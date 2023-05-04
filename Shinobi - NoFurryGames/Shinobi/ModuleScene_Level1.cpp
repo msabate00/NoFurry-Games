@@ -161,6 +161,7 @@ bool ModuleScene_Level1::CleanUp()
 	App->scene_Level1_SecondFloor_Enemies->Disable();
 	App->player->Disable();
 	App->enemy->Disable();
+	App->audio->Disable();
 	
 	return true;
 }

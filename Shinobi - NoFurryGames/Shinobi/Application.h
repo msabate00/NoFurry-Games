@@ -4,7 +4,7 @@
 #include "Globals.h"
 #include "SDL/include/SDL_timer.h"
 
-#define NUM_MODULES 16
+#define NUM_MODULES 17
 
 class Module;
 class ModuleWindow;
@@ -17,6 +17,7 @@ class ModuleScene_Intro2;
 class ModuleScene_Level1;
 class ModuleScene_Level1_SecondFloor;
 class ModuleScene_Level1_SecondFloor_Enemies;
+class ModuleScene_Level2;
 class ModuleScene_MainMenu;
 class ModuleParticles;
 class ModuleCollisions;
@@ -69,6 +70,7 @@ public:
 	ModuleScene_MainMenu* scene_MainMenu = nullptr;
 	ModuleScene_Intro* scene_Intro = nullptr;
 	ModuleScene_Intro2* scene_Intro2 = nullptr;
+	ModuleScene_Level2* scene_Level2 = nullptr;
 
 	ModuleParticles* particles = nullptr;
 	ModuleCollisions* collisions = nullptr;

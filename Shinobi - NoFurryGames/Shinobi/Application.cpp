@@ -10,6 +10,7 @@
 #include "ModuleScene_Intro2.h"
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
+#include "ModuleScene_Level2.h"
 #include "ModuleScene_MainMenu.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
@@ -42,7 +43,8 @@ Application::Application()
 	modules[12] =	collisions =						new ModuleCollisions(true);
 	modules[13] =	audio =								new ModuleAudio(true);
 	modules[14] =	fade =								new ModuleFadeToBlack(true);
-	modules[15] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[15] =	scene_Level2 =						new ModuleScene_Level2(false);
+	modules[16] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 
