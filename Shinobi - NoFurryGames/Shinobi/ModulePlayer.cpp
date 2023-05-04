@@ -282,9 +282,6 @@ update_status ModulePlayer::Update()
 		currentJumpAnim = &bigJumpUpAnim;
 		isChangingFloorF1 = true;
 		frameContador = 0;
-
-
-		
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN &&

@@ -68,6 +68,8 @@ public:
 	Animation legs_WalkForwardAnim;
 	Animation legs_DamageAnim;
 
+	Animation generalDying;
+
 };
 
 
