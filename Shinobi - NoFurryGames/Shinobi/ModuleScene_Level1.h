@@ -80,7 +80,7 @@ public:
 
 
 	int hostage_num = 4;
-	
+	bool hostageTaken[4] = { false };
 
 
 	int life_num = 2;

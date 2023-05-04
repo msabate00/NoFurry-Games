@@ -19,6 +19,7 @@ enum class ENEMY_TYPE
 struct EnemySpawnpoint
 {
 	ENEMY_TYPE type = ENEMY_TYPE::NO_TYPE;
+	int id;
 	int x, y;
 	bool gun;
 	int points;
@@ -61,13 +62,13 @@ public:
 
 	// Add an enemy into the queue to be spawned later
 	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor = false);
-	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor = false);
+	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor = false, int id = -1);
 
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();
 
 	// Destroys any enemies that have moved outside the camera limits
-	void HandleEnemiesDespawn();
+	void HandleEnemiesDespawn(bool all = false);
 
 	Enemy* getEnemy(int i);
 

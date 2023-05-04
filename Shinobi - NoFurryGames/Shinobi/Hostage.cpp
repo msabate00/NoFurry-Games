@@ -9,11 +9,12 @@
 
 using namespace std;
 
-Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor) : Enemy(x, y, secondFloor)
+Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) : Enemy(x, y, secondFloor)
 {
 
 	this->gun = gun;
 	this->points = points;
+	this->id = id;
 
 	IdleHostage.PushBack({ 616, 259,25,29 });
 	IdleHostage.PushBack({ 647, 259,25,29 });
@@ -25,6 +26,7 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor) : Enemy(x
 	IdleHostage.PushBack({ 709, 259,25,29 });
 	IdleHostage.PushBack({ 616, 259,25,29 });
 	IdleHostage.PushBack({ 709, 259,25,29 });
+	
 
 
 

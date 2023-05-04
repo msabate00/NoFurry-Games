@@ -7,6 +7,8 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollisions.h"
+#include "ModuleScene_Level1.h"
+#include "ModuleScene_Level1_SecondFloor_Enemies.h"
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
@@ -105,7 +107,9 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor)
 	return ret;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor)
+
+
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor, int id)
 {
 	bool ret = false;
 
@@ -119,6 +123,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points
 			spawnQueue[i].gun = gun;
 			spawnQueue[i].points = points;
 			spawnQueue[i].secondFloor = secondFloor;
+			spawnQueue[i].id = id;
 			ret = true;
 			break;
 		}
@@ -126,6 +131,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points
 
 	return ret;
 }
+
 
 void ModuleEnemies::HandleEnemiesSpawn()
 {
@@ -146,13 +152,19 @@ void ModuleEnemies::HandleEnemiesSpawn()
 	}
 }
 
-void ModuleEnemies::HandleEnemiesDespawn()
+void ModuleEnemies::HandleEnemiesDespawn(bool all)
 {
 	// Iterate existing enemies
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
 		{
+
+			if (all) {
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
+
 			// Delete the enemy when it has reached the end of the screen
 			/*if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
 			{
@@ -187,7 +199,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:
-				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor);
+				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor, info.id);
 				break;
 
 			}
@@ -241,7 +253,25 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && !((Hostage*)enemies[i])->saved)
 			{
-				//enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+				
+				switch (((Hostage*)enemies[i])->id) {
+					case 1:
+						App->scene_Level1->hostageTaken[0] = true;
+						break;
+					case 2:
+						App->scene_Level1->hostageTaken[1] = true;
+						break;
+					case 3:
+						App->scene_Level1->hostageTaken[2] = true;
+						break;
+					case 4:
+						App->scene_Level1->hostageTaken[3] = true;
+						break;
+				
+				
+				
+				}
+
 				((Hostage*)enemies[i])->saved = true;
 				if (((Hostage*)enemies[i])->gun) {
 					//Mostrar particula bonus gun

@@ -66,7 +66,14 @@ bool ModuleScene_MainMenu::Start()
 	LetraNomWhite = App->textures->Load("Assets/Interface/Color_use/White/Shinobi/SHINOBI.png");
 	LetraIconC = App->textures->Load("Assets/Interface/Color_use/White/Icon/Sega.png");
 	LetraYear = App->textures->Load("Assets/Interface/Color_use/White/Icon/1987.png");
-currentAnimation = &eyesAnimation;
+	currentAnimation = &eyesAnimation;
+
+
+	for (int i = 0; i < 4; i++) {
+		App->scene_Level1->hostageTaken[i] = false;
+	}
+	App->scene_Level1->hostage_num = 4;
+
 	return ret;
 }
 

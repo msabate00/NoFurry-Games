@@ -96,7 +96,9 @@ bool ModuleScene_Level1::Start()
 
 
 	//Hostage
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200);
+	if (hostageTaken[0] == false) {
+		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200, false, 1);
+	}
 
 	
 	
