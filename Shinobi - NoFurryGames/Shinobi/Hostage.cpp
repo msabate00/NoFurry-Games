@@ -18,8 +18,29 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor) : Enemy(x
 	IdleHostage.PushBack({ 616, 259,25,29 });
 	IdleHostage.PushBack({ 647, 259,25,29 });
 	IdleHostage.PushBack({ 678, 259,25,29 });
+	IdleHostage.PushBack({ 647, 259,25,29 });
+	IdleHostage.PushBack({ 678, 259,25,29 });
+	IdleHostage.PushBack({ 647, 259,25,29 });
+	IdleHostage.PushBack({ 616, 259,25,29 });
+	IdleHostage.PushBack({ 709, 259,25,29 });
+	IdleHostage.PushBack({ 616, 259,25,29 });
 	IdleHostage.PushBack({ 709, 259,25,29 });
 
+
+
+
+
+
+	/*IdleHostage.PushBack({ 616, 259,25,29 });
+
+	IdleHostage.PushBack({ 647, 259,25,29 });
+
+	IdleHostage.PushBack({ 678, 259,25,29 });
+
+	IdleHostage.PushBack({ 709, 259,25,29 });
+
+
+	1232321414*/
 
 	IdleHostage.speed = 0.1f;
 

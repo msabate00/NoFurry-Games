@@ -22,7 +22,7 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 	staticAnim.PushBack({ 509, 258,33,65 });
 	staticAnim.PushBack({ 548, 258,33,65 });
 	staticAnim.loop = true;
-	staticAnim.speed = 0.012f;
+	staticAnim.speed = 0.1f;
 
 	attackBrown.PushBack({ 314, 18,48,73 });
 	attackBrown.PushBack({ 368, 18, 48,73 });

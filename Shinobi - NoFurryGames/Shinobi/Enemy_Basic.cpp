@@ -16,13 +16,15 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	walkBasic.PushBack({ 11, 12,35,64 });
 	walkBasic.PushBack({ 52, 12,35,64 });
 	walkBasic.PushBack({ 93, 12,35,64 });
+
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
 	//salto
-	jumping.PushBack({ 108, 161,42,65 });
 	jumping.PushBack({ 12, 161,42,65 });
 	jumping.PushBack({ 60, 161,42,65 });
+	jumping.PushBack({ 108, 161,42,65 });
+
 	jumping.loop = false;
 	jumping.speed = 0.01f;
 
@@ -30,16 +32,29 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	Death.PushBack({ 22, 92, 30, 54 });
 	Death.PushBack({ 59, 108, 65, 26 });
 	Death.PushBack({ 131, 108, 65, 26 });
+
 	Death.speed = 0.1f;
 	Death.loop = false;
 
 	Disapear.PushBack({ 0,0,0,0 });
 
 	//ataque
-	attackAnim.PushBack({205,13,38,63});
-	attackAnim.PushBack({250,13,38,63});
-	attackAnim.PushBack({243,13,56,63});
-	attackAnim.speed = 0.1f;
+
+	attackAnim.PushBack({ 205,13,38,63 });
+	attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 143,13,56,63 });
+	attackAnim.PushBack({ 143,13,56,63 });
+	attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 205,13,38,63 });
+
+
+	/*attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 143,13,56,63 });
+	attackAnim.PushBack({ 143,13,56,63 });
+	attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 205,13,38,63 });*/
+
+	attackAnim.speed = 0.2f;
 	attackAnim.loop = false;
 
 	//ANIMACIÓN ESTÁTICA
