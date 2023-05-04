@@ -10,6 +10,7 @@
 #include "ModulePlayer.h"
 #include "ModuleScene_Boss1.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleBoss.h"
 #include "SDL/include/SDL_scancode.h"
 
 #include "SDL/include/SDL.h"
@@ -48,7 +49,7 @@ bool ModuleScene_Boss1::Start()
 	bool ret = true;
 	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
 	stageTexture = App->textures->Load("Assets/Maps/Boss/NivelBoss_wide_suelo.png");
-	stageBackgroundTexture = App->textures->Load("Assets/Maps/Boss/NivelBoss_wide_fondo");
+	stageBackgroundTexture = App->textures->Load("Assets/Maps/Boss/NivelBoss_wide_fondo.png");
 
 
 	App->render->camera.x = 0;
@@ -56,9 +57,11 @@ bool ModuleScene_Boss1::Start()
 
 	App->collisions->Enable();
 	App->player->Enable();
-	App->enemy->Enable();
+	App->boss->Enable();
 
 	App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 506, 9 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 30, 0, 10, SCREEN_HEIGHT }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 476, 0, 10, SCREEN_HEIGHT }, Collider::Type::WALL);
 
 
 
@@ -80,11 +83,20 @@ update_status ModuleScene_Boss1::PostUpdate()
 
 
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
-	App->render->Blit(stageBackgroundTexture, 0, background.h - 100, SDL_FLIP_NONE, &background, 0.35f); // Edificios del fondo
+	App->render->Blit(stageBackgroundTexture, 0, -100, SDL_FLIP_NONE, &background, 0.35f); // Edificios del fondo
 	App->render->Blit(stageTexture, 0, -56, SDL_FLIP_NONE, &ground, 1.0f); // Suelo y eso
 
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool ModuleScene_Boss1::CleanUp()
+{
+	App->collisions->Disable();
+	App->player->Disable();
+	App->boss->Disable();
+
+	return true;
 }
 
 

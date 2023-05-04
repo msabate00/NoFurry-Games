@@ -10,6 +10,7 @@
 #include "ModuleScene_Intro2.h"
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
+#include "ModuleBoss.h"
 #include "ModuleScene_MainMenu.h"
 #include "ModuleScene_Boss1.h"
 #include "ModuleRender.h"
@@ -43,14 +44,17 @@ Application::Application()
 	//Level 2
 
 	//Level Boss
-	modules[9]	= scene_Boss1 =							new ModuleScene_Boss1(false);
-	modules[10]	=	player =							new ModulePlayer(false);					//off
-	modules[11] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
-	modules[12] =	particles =							new ModuleParticles(true);
-	modules[13] =	collisions =						new ModuleCollisions(true);
-	modules[14] =	audio =								new ModuleAudio(true);
-	modules[15] =	fade =								new ModuleFadeToBlack(true);
-	modules[16] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[9]	=	scene_Boss1 =							new ModuleScene_Boss1(false);
+	modules[10] =	boss =									new ModuleBoss(false);
+
+
+	modules[11]	=	player =							new ModulePlayer(false);					//off
+	modules[12] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
+	modules[13] =	particles =							new ModuleParticles(true);
+	modules[14] =	collisions =						new ModuleCollisions(true);
+	modules[15] =	audio =								new ModuleAudio(true);
+	modules[16] =	fade =								new ModuleFadeToBlack(true);
+	modules[17] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
 
 }
 
