@@ -68,7 +68,8 @@ public:
 	void HandleEnemiesSpawn();
 
 	// Destroys any enemies that have moved outside the camera limits
-	void HandleEnemiesDespawn(bool all = false);
+	void HandleEnemiesDespawn(bool all);
+	void HandleEnemiesDespawnEnemy(Enemy* enemy);
 
 	Enemy* getEnemy(int i);
 

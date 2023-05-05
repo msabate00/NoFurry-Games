@@ -44,7 +44,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	forwardAnim.PushBack({ 173, 112, 46, 60 });
 	forwardAnim.PushBack({ 227, 112, 46, 60 });
 	forwardAnim.PushBack({ 281, 112, 46, 60 });
-	forwardAnim.speed = 0.1f;
+	forwardAnim.speed = 0.17f;
 
 	// crouched idle anim
 	crouched_idleAnim.PushBack({ 270, 211, 51, 36 });
@@ -183,6 +183,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+	rangeCollider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER_RANGE, this);
 
 	position.x = 100;
 	position.y = FLOOR_LEVEL;
@@ -264,8 +265,11 @@ update_status ModulePlayer::Update()
 
 
 		currentAnimation->Update();
-		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+
 
 
 		return update_status::UPDATE_CONTINUE;
@@ -312,7 +316,8 @@ update_status ModulePlayer::Update()
 				isChangingFloorF2 = true;
 				currJumpForce = jumpForce / 2;
 				//App->scene_Level1->secondFloor->active = !App->scene_Level1->secondFloor->active;
-				(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				//(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				App->scene_Level1_SecondFloor->EnabledColliderForPlayer(!App->scene_Level1_SecondFloor->showFence);
 				//App->scene_Level1_SecondFloor->Disable();
 			}
 		}
@@ -326,8 +331,11 @@ update_status ModulePlayer::Update()
 			positionBefore.y = position.y;
 		}
 		
-		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+
 
 		currentAnimation->Update();
 
@@ -341,23 +349,34 @@ update_status ModulePlayer::Update()
 
 	if (isAttacking) {
 		if (isJumping) {
-			if (!holdingGun) {
+			if (enemyInRange) {
+				//ANIMACION DE ATAQUE KATANA EN EL AIRE, A LO MEJOR NO HACER
 				currentAnimation = &jumpAttackAnim;
 			}
-			else
+			else if (!holdingGun) {
+				currentAnimation = &jumpAttackAnim;
+			}
+			else 
 			{
 				currentAnimation = &PistolajumpAttackAnim;
 			}
+			
 
 		}
 		else {
-			if (!holdingGun) {
+
+			if (enemyInRange) {
+				//ANIMACION DE ATAQUE KATANA HACER
+				currentAnimation = &attack_shurikenAnim;
+
+			}else if (!holdingGun) {
 				currentAnimation = &attack_shurikenAnim;
 			}
 			else
 			{
 				currentAnimation = &PistolaattackAnim;
 			}
+			
 		}
 
 		
@@ -366,26 +385,36 @@ update_status ModulePlayer::Update()
 			currentAnimation->Reset();
 		}
 		else {
-			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
 			currentAnimation->Update();
 			return update_status::UPDATE_CONTINUE;
 		}
 	}
 
 	if (isCrouchedAttacking) {
-		if (!holdingGun) {
+
+		if (enemyInRange) {
+			//ANIMACION DE ATAQUE KATANA HACER
+			currentAnimation = &crouched_AttackAnim;
+
+		}else if (!holdingGun) {
 			currentAnimation = &crouched_AttackAnim;
 		}else{
 			currentAnimation = &Pistolacrouched_AttackAnim;
 		}
+		
 		if (currentAnimation->HasFinished()) {
 			isCrouchedAttacking = false;
 			currentAnimation->Reset();
 		}
 		else {
-			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
 			currentAnimation->Update();
 			return update_status::UPDATE_CONTINUE;
 		}
@@ -481,8 +510,10 @@ update_status ModulePlayer::Update()
 	
 
 
-	collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-	collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+	collider->SetPos(position.x+ marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+	collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider*2, currentAnimation->GetCurrentFrame().h);
+	rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+	rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength*2, currentAnimation->GetCurrentFrame().h);
 
 
 	//ATAQUE SHURIKEN
@@ -581,7 +612,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		else {
 			//ta abajo
 			//App->scene_Level1->secondFloor->active = false;
-			App->scene_Level1_SecondFloor->Disable();
+			//App->scene_Level1_SecondFloor->Disable();
+			App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
 			isSecondFloor = false;
 		}
 		
@@ -627,6 +659,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
 
 	}
+
+
+
+
+
+
+	//Colision rango
+	if (c1 == rangeCollider && c2->type == Collider::Type::ENEMY && (c2->GetRect().x > position.x && facingRight) || (c2->GetRect().x < position.x && !facingRight)) {
+
+		enemyInRange = true;
+	}
+	else {
+		enemyInRange = false;
+	}
+
+
+
 
 }
 
