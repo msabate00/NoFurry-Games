@@ -147,6 +147,12 @@
     <ClCompile Include="ModuleScene_Level2.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Level2</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleBoss.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleScene_Boss1.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -241,6 +247,12 @@
     </ClInclude>
     <ClInclude Include="ModuleScene_Level2.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Level2</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene_Boss1.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

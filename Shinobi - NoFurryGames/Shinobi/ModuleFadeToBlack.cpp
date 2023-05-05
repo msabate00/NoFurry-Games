@@ -18,14 +18,14 @@ ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 
 
 	fadeIn.PushBack({0, 0, 320, 242});
-	fadeIn.PushBack({0,242, 320, 242 });
-	fadeIn.PushBack({0, 242+242, 320, 242 });
-	fadeIn.PushBack({0, 242+242+242, 320, 242 });
+	fadeIn.PushBack({0,	242, 320, 242 });
+	fadeIn.PushBack({0, 484, 320, 242 });
+	fadeIn.PushBack({0, 726, 320, 242 });
 	fadeIn.speed = 0.3f;
 	fadeIn.loop = false;
 
-	fadeOut.PushBack({ 0, 242 + 242 + 242, 320, 242 });
-	fadeOut.PushBack({ 0, 242 + 242, 320, 242 });
+	fadeOut.PushBack({ 0, 726, 320, 242 });
+	fadeOut.PushBack({ 0, 484, 320, 242 });
 	fadeOut.PushBack({ 0,242, 320, 242 });
 	fadeOut.PushBack({ 0, 0, 320, 242 });	
 	fadeOut.speed = 0.3f;
@@ -112,6 +112,7 @@ update_status ModuleFadeToBlack::PostUpdate()
 		App->render->Blit(fadeInOut_texture, App->player->position.x + 320, 0, SDL_FLIP_NONE, &rect);
 	}
 	else {
+		App->render->Blit(fadeInOut_texture, 0 - 320, 0, SDL_FLIP_NONE, &rect);
 		App->render->Blit(fadeInOut_texture, 0, 0, SDL_FLIP_NONE, &rect);
 		App->render->Blit(fadeInOut_texture, 0 + 320, 0, SDL_FLIP_NONE, &rect);
 	}
