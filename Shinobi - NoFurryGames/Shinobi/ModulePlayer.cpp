@@ -13,7 +13,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 #include "Hostage.h"
-
+#include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
 
@@ -202,6 +202,9 @@ bool ModulePlayer::Start()
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
 	
+	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz       " };
+	scoreFont = App->fonts->Load("Assets/Interface/Fonts/Rojo.png", lookupTable,3);
+
 
 	return ret;
 }
@@ -555,6 +558,9 @@ update_status ModulePlayer::PostUpdate()
 	}
 
 
+
+
+	//App->fonts->BlitText(SCREEN_WIDTH - 275, SCREEN_HEIGHT - 50, scoreFont, "hola marti xd 123");
 	
 	
 	return update_status::UPDATE_CONTINUE;

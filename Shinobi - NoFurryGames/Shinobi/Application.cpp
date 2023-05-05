@@ -24,6 +24,7 @@
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleFonts.h"
 
 #include <iostream>
 using namespace std;
@@ -60,7 +61,7 @@ Application::Application()
 	modules[16] =	audio =								new ModuleAudio(true);
 	modules[17] =	fade =								new ModuleFadeToBlack(true);
 	modules[18] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
-
+	modules[19] =   fonts =								new ModuleFonts(true);
 }
 
 Application::~Application()

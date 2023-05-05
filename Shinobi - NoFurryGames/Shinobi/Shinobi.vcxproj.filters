@@ -153,6 +153,9 @@
     <ClCompile Include="ModuleScene_Boss1.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="ModuleScene_Boss1.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

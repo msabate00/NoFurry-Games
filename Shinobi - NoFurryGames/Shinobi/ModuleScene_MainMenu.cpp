@@ -148,6 +148,9 @@ void ModuleScene_MainMenu::printYear() {
 	int IconPosition = 50;
 
 	App->render->Blit(LetraYear, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+
+
+
 }
 
 void ModuleScene_MainMenu::printIconC() {
