@@ -64,6 +64,16 @@ public:
 	double deltaTime = 0;
 
 
+	int life_num;
+
+
+	//Fonts
+	int scoreFontRed = -1;
+	int scoreFontBlue = -1;
+	int scoreFontWhite = -1;
+	int scoreFontYellow = -1;
+	char scoreText[10] = { "\0" };
+
 	// All the modules stored individually
 	ModuleWindow* window = nullptr;
 	ModuleInput* input = nullptr;

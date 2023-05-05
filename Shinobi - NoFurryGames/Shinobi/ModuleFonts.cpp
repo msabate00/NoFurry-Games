@@ -124,3 +124,13 @@ void ModuleFonts::BlitText(int x, int y, int font_id, const char* text) const
 		x += spriteRect.w;
 	}
 }
+
+void ModuleFonts::AddFonts(){
+
+	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz       " };
+	App->scoreFontRed = App->fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
+	App->scoreFontBlue = App->fonts->Load("Assets/Interface/Fonts/Blue.png", lookupTable, 3);
+	App->scoreFontWhite = App->fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);
+	App->scoreFontYellow = App->fonts->Load("Assets/Interface/Fonts/Yellow.png", lookupTable, 3);
+
+}

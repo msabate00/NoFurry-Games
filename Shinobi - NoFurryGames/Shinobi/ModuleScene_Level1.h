@@ -39,7 +39,8 @@ public:
 	void printSkillIcon();
 	void printHostageIcon(int);
 	void printLifeIcon(int);
-	void printNum(std::vector<int> num, SDL_Texture* texture);
+	//void printNum(std::vector<int> num, SDL_Texture* texture);
+	void printNum(int point);
 	void printTime(std::string time, SDL_Texture* texture);
 	void printPlayer1();
 
@@ -83,7 +84,7 @@ public:
 	bool hostageTaken[4] = { false };
 
 
-	int life_num = 2;
+	
 	int texture_num = 0;
 
 	int elapsed_time;
@@ -95,6 +96,9 @@ public:
 	float timer = 0.0f;
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	bool NameColor = true;
+
+
+	
 };
 
 #endif
