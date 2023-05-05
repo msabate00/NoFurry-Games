@@ -54,7 +54,7 @@ update_status ModuleEnemies::Update()
 			enemies[i]->Update();
 	}
 
-	HandleEnemiesDespawn();
+	HandleEnemiesDespawn(false);
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -82,6 +82,11 @@ bool ModuleEnemies::CleanUp()
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
+
+		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE) {
+			spawnQueue[i].type = ENEMY_TYPE::NO_TYPE;
+		}
+
 	}
 
 	return true;
@@ -176,6 +181,26 @@ void ModuleEnemies::HandleEnemiesDespawn(bool all)
 		}
 	}
 }
+
+void ModuleEnemies::HandleEnemiesDespawnEnemy(Enemy* enemy)
+{
+	// Iterate existing enemies
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+
+			if (enemies[i]->GetCollider() == enemy->GetCollider()) {
+				delete enemies[i];
+				enemies[i] = nullptr;
+				return;
+			}
+
+		}
+	}
+}
+
+
 
 void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 {

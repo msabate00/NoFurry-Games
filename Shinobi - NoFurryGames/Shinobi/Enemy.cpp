@@ -45,7 +45,10 @@ void Enemy::Update()
 
 		if (currentAnim->HasFinished())
 		{
-			currentAnim = &Disapear;
+			
+			currentAnim = nullptr;
+			App->enemy->HandleEnemiesDespawnEnemy(this);
+			return;
 		}
 	}
 
