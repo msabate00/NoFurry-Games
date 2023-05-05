@@ -28,6 +28,9 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+
+	void EnabledColliderForPlayer(bool active);
+
 	bool CleanUp();
 
 
@@ -39,6 +42,8 @@ public:
 	SDL_Rect up_level_fence1Rect;
 	SDL_Rect up_level_fence2Rect;
 	SDL_Rect up_level_fence3Rect;
+
+	bool showFence = false;
 
 
 };

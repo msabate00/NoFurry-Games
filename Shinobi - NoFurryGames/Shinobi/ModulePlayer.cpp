@@ -309,7 +309,8 @@ update_status ModulePlayer::Update()
 				isChangingFloorF2 = true;
 				currJumpForce = jumpForce / 2;
 				//App->scene_Level1->secondFloor->active = !App->scene_Level1->secondFloor->active;
-				(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				//(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				App->scene_Level1_SecondFloor->EnabledColliderForPlayer(!App->scene_Level1_SecondFloor->showFence);
 				//App->scene_Level1_SecondFloor->Disable();
 			}
 		}
@@ -575,7 +576,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		else {
 			//ta abajo
 			//App->scene_Level1->secondFloor->active = false;
-			App->scene_Level1_SecondFloor->Disable();
+			//App->scene_Level1_SecondFloor->Disable();
+			App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
 			isSecondFloor = false;
 		}
 		

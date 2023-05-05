@@ -10,6 +10,10 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
+#include <iostream>
+
+using namespace std;
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleScene_Level1_SecondFloor::ModuleScene_Level1_SecondFloor(bool startEnabled) : Module(startEnabled)
@@ -62,6 +66,8 @@ bool ModuleScene_Level1_SecondFloor::Start()
 	//Cajas arriba
 	collisions[6] = App->collisions->AddCollider({ 544, 196 - 125, 32, 32 }, Collider::Type::WALL);
 
+	EnabledColliderForPlayer(showFence);
+
 	return ret;
 }
 
@@ -73,17 +79,27 @@ update_status ModuleScene_Level1_SecondFloor::Update()
 // Update: draw background
 update_status ModuleScene_Level1_SecondFloor::PostUpdate()
 {
-	App->render->Blit(up_level_fenceTexture, 96, 79, SDL_FLIP_NONE, &up_level_fence1Rect, 1.0f); // Suelo y eso
-	App->render->Blit(up_level_fenceTexture, 576, 79, SDL_FLIP_NONE, &up_level_fence2Rect, 1.0f); // Suelo y eso
-	App->render->Blit(up_level_fenceTexture, 1293, 79, SDL_FLIP_NONE, &up_level_fence3Rect, 1.0f); // Suelo y eso
+	if (showFence) {
+		App->render->Blit(up_level_fenceTexture, 96, 79, SDL_FLIP_NONE, &up_level_fence1Rect, 1.0f); // Suelo y eso
+		App->render->Blit(up_level_fenceTexture, 576, 79, SDL_FLIP_NONE, &up_level_fence2Rect, 1.0f); // Suelo y eso
+		App->render->Blit(up_level_fenceTexture, 1293, 79, SDL_FLIP_NONE, &up_level_fence3Rect, 1.0f); // Suelo y eso
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
 
+void ModuleScene_Level1_SecondFloor::EnabledColliderForPlayer(bool active)
+{
+	
+	for (int i = 0; i < 6; i++) {
+		collisions[i]->active = active;
+	}
+	showFence = active;
+
+
+}
+
 bool ModuleScene_Level1_SecondFloor::CleanUp()
 {
-	for (Collider* c : collisions){
-		c->pendingToDelete = true;
-	}
 	return true;
 }

@@ -53,7 +53,7 @@ bool ModuleScene_Level1::Start()
 	App->scene_Level1_SecondFloor_Enemies->Enable();
 	App->player->Enable();
 	App->enemy->Enable();
-	
+	App->scene_Level1_SecondFloor->Enable();
 
 	bool ret = true;
 
@@ -166,6 +166,7 @@ update_status ModuleScene_Level1::PostUpdate()
 bool ModuleScene_Level1::CleanUp()
 {
 	App->collisions->Disable();
+	App->scene_Level1_SecondFloor->Disable();
 	App->scene_Level1_SecondFloor_Enemies->Disable();
 	App->player->Disable();
 	App->enemy->Disable();
