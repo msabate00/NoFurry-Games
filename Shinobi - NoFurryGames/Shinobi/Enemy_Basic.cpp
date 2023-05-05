@@ -138,6 +138,20 @@ void Enemy_Basic::Update()
 		{
 			position.x -= 2;
 		}
+
+		// Enemigo se queda quieto si el jugador se queda quieto (Temporal)
+
+		if (position.x == App->player->position.x && facingLeft)
+		{
+			position.x += 1;
+			currentAnim = &staticAnim;
+		}
+		else if (position.x == App->player->position.x && !facingLeft) 
+		{
+			position.x -= 1;
+			currentAnim = &staticAnim;
+		}
+
 	}
 
 	if (boxCollision && !facingLeft)
