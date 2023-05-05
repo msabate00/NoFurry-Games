@@ -58,6 +58,11 @@ public:
 
 	bool isSecondFloor = false;
 
+	bool enemyInRange = false;
+
+	int marginCollider = 10;
+	int rangeLength = 32;
+
 	
 
 	// The player spritesheet loaded into an SDL_Texture
@@ -95,6 +100,7 @@ public:
 
 	// The player's collider
 	Collider* collider = nullptr;
+	Collider* rangeCollider = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
