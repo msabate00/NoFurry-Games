@@ -44,7 +44,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	forwardAnim.PushBack({ 173, 112, 46, 60 });
 	forwardAnim.PushBack({ 227, 112, 46, 60 });
 	forwardAnim.PushBack({ 281, 112, 46, 60 });
-	forwardAnim.speed = 0.1f;
+	forwardAnim.speed = 0.17f;
 
 	// crouched idle anim
 	crouched_idleAnim.PushBack({ 270, 211, 51, 36 });

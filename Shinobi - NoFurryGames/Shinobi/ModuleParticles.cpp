@@ -154,10 +154,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 						break;
 					}
 				}
-				
-
-
 			}
+
+
+			if (!c2->active) { return; } //SI ESA COLISION NO ESTA ACTIVA, IGNORA TODO LO DE ABAJO
+
 
 			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && !App->player->holdingGun) {
 				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y-3, Collider::Type::NONE);

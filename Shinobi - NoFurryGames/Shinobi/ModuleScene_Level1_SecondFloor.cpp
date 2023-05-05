@@ -91,7 +91,7 @@ update_status ModuleScene_Level1_SecondFloor::PostUpdate()
 void ModuleScene_Level1_SecondFloor::EnabledColliderForPlayer(bool active)
 {
 	
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < 7; i++) {
 		collisions[i]->active = active;
 	}
 	showFence = active;
