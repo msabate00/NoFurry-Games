@@ -477,6 +477,12 @@ update_status ModulePlayer::Update()
 			else {
 				currentAnimation = &Pistolacrouched_forwardAnim;
 			}
+			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT) {
+				position.x -= crouchedSpeed;
+			}
+			else {
+				position.x += crouchedSpeed;
+			}
 		}
 	}
 
@@ -572,11 +578,25 @@ update_status ModulePlayer::PostUpdate()
 
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 >= App->render->camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
-		App->render->camera.x += App->player->speed * SCREEN_SIZE;
+
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+			App->render->camera.x += App->player->crouchedSpeed * SCREEN_SIZE;
+		}
+		else {
+			App->render->camera.x += App->player->speed * SCREEN_SIZE;
+		}
+
+		
 	}
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 <= App->render->camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
-		App->render->camera.x -= App->player->speed * SCREEN_SIZE;
+
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+			App->render->camera.x -= App->player->crouchedSpeed * SCREEN_SIZE;
+		}
+		else {
+			App->render->camera.x -= App->player->speed * SCREEN_SIZE;
+		}
 	}
 
 

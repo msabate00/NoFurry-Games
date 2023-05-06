@@ -42,6 +42,7 @@ public:
 
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
+	int crouchedSpeed = 1;
 
 	float jumpForce = 4.8f;
 	float currJumpForce = 0;
