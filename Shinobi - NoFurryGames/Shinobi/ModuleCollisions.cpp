@@ -223,8 +223,8 @@ void ModuleCollisions::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 255, alpha);
 			break;
 
-		case Collider::Type::ENEMY_RANGE:	//el naranjito
-			App->render->DrawQuad(colliders[i]->rect, 255, 165, 0, alpha);
+		case Collider::Type::ENEMY_RANGE:	//rojo clarito
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, 40);
 			break;
 
 		}

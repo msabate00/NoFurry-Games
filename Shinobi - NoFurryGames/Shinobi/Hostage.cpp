@@ -28,7 +28,9 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) :
 	IdleHostage.PushBack({ 709, 259,25,29 });
 	
 
-
+	viewRange = 0;	//Distancia a la que ve el jugador
+	wanderRange = 0;	//Distancia a la que va a estar deambulando alrededor del jugador
+	attackRange = 0;	//Distancia a la que puede atacar al jugador
 
 
 
