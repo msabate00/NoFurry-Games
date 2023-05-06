@@ -21,6 +21,7 @@ ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 	fadeIn.PushBack({0,	242, 320, 242 });
 	fadeIn.PushBack({0, 484, 320, 242 });
 	fadeIn.PushBack({0, 726, 320, 242 });
+	fadeIn.PushBack({0, 726, 320, 242 });
 	fadeIn.speed = 0.3f;
 	fadeIn.loop = false;
 
@@ -28,6 +29,7 @@ ModuleFadeToBlack::ModuleFadeToBlack(bool startEnabled) : Module(startEnabled)
 	fadeOut.PushBack({ 0, 484, 320, 242 });
 	fadeOut.PushBack({ 0,242, 320, 242 });
 	fadeOut.PushBack({ 0, 0, 320, 242 });	
+	fadeOut.PushBack({ 0, 0, 0, 0 });	
 	fadeOut.speed = 0.3f;
 	fadeOut.loop = false;
 
@@ -135,6 +137,7 @@ bool ModuleFadeToBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEna
 		// TODO 1: We need to keep track of the modules received in FadeToBlack(...)
 		this->moduleToDisable = moduleToDisable;
 		this->moduleToEnable = moduleToEnable;
+		App->activeModule = moduleToEnable;
 
 		ret = true;
 	}

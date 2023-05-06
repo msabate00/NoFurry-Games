@@ -70,6 +70,18 @@ update_status ModuleScene_Intro2::Update()
 	currentAnimation->Update();
 
 
+	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
+	}
+
 
 	return update_status::UPDATE_CONTINUE;
 }

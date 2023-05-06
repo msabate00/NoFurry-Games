@@ -253,10 +253,10 @@ update_status ModulePlayer::Update()
 		if (destroyedCountdown <= 0) 
 		{
 			if (App->life_num <= 0) {
-				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 			}
 			else {
-				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level1, 60);
+				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
 			}
 		}
 
@@ -626,15 +626,17 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 		else {
 			//ta abajo
-			App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
-			isSecondFloor = false;
+			if (App->scene_Level1->IsEnabled()) {
+				App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
+				isSecondFloor = false;
+			}
 		}
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
 			//NO SE PUEDE MOVER PARA LA DERECHA
 			position.x -= speed;
-		}else
-		if (c2->GetRect().x + c2->GetRect().w+1 >= position.x && c2->GetRect().y+2 <= position.y) {
+		}else if (c2->GetRect().x + c2->GetRect().w+1 >= position.x && c2->GetRect().y+2 <= position.y) {
+			//NO SE PUEDE MOVER PARA LA IZQUIERDA
 			position.x += speed;
 		}
 		if (c2->GetRect().y+1 >= position.y + currJumpForce && currJumpForce<=0){ //COLISION arriba
@@ -669,7 +671,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
 	
-		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 20);
 
 	}
 

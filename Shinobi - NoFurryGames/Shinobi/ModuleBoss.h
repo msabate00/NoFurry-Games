@@ -44,7 +44,7 @@ public:
 
 
 	iPoint position;
-	int speed = 2;
+	int speed = 1;
 	int life = 3;
 	float inmuneTime = 3;
 	bool facingRight = false;
@@ -69,6 +69,14 @@ public:
 	Animation legs_DamageAnim;
 
 	Animation generalDying;
+
+
+
+
+	Collider* head_Collider;
+	Collider* torso_Collider;
+	Collider* legs_Collider;
+
 
 };
 

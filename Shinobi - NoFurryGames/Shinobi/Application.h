@@ -59,6 +59,7 @@ public:
 public:
 	// An array to store all modules
 	Module* modules[NUM_MODULES];
+	Module* activeModule = nullptr;
 
 	bool godMode = false;
 	double deltaTime = 0;

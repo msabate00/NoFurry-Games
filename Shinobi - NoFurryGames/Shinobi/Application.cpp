@@ -38,6 +38,7 @@ Application::Application()
 	modules[1] =	input =								new ModuleInput(true);
 	modules[2] =	textures =							new ModuleTextures(true);
 	modules[3] =	scene_Intro =						new ModuleScene_Intro(true);
+	activeModule =	scene_Intro;
 	modules[4] =	scene_Intro2 =						new ModuleScene_Intro2(false);
 	modules[5] =	scene_MainMenu =					new ModuleScene_MainMenu(false);
 
@@ -54,14 +55,15 @@ Application::Application()
 	modules[11] =	boss =								new ModuleBoss(false);
 
 
-	modules[12]	=	player =							new ModulePlayer(false);					//off
-	modules[13] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	//off
+	modules[12]	=	player =							new ModulePlayer(false);					
+	modules[13] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	
 	modules[14] =	particles =							new ModuleParticles(true);
 	modules[15] =	collisions =						new ModuleCollisions(true);
 	modules[16] =	audio =								new ModuleAudio(true);
 	modules[17] =	fade =								new ModuleFadeToBlack(true);
-	modules[18] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
-	modules[19] =   fonts =								new ModuleFonts(true);
+	modules[18] =	fonts =								new ModuleFonts(true);
+	modules[19] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+
 }
 
 Application::~Application()
