@@ -16,7 +16,7 @@ class ModuleBoss : public Module {
 
 public:
 	// Constructor
-	ModuleBoss(bool startEnabled);
+	ModuleBoss(bool startEnabled); 
 
 	// Destructor
 	~ModuleBoss();

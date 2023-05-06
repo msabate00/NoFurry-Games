@@ -10,7 +10,7 @@
 struct SDL_Texture;
 
 class ModuleScene_Boss1 : public Module
-{
+{ 
 public:
 	//Constructor
 	ModuleScene_Boss1(bool startEnabled);

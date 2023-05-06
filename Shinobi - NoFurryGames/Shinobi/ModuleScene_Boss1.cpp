@@ -12,7 +12,6 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleBoss.h"
 #include "SDL/include/SDL_scancode.h"
-
 #include "SDL/include/SDL.h"
 #include <string> 
 #include <vector>
