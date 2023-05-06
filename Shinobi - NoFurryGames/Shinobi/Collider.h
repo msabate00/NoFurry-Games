@@ -14,6 +14,7 @@ struct Collider
 		PLAYER,
 		PLAYER_RANGE,
 		ENEMY,
+		ENEMY_RANGE,
 		PLAYER_SHOT,
 		ENEMY_SHOT,
 		HOSTAGE,

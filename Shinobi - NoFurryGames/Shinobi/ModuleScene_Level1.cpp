@@ -84,13 +84,15 @@ bool ModuleScene_Level1::Start()
 	//secondFloor->active = false;
 	
 
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 250, FLOOR_LEVEL - 64); //Enemigo básico 1
+
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64); //Enemigo básico 1
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64); //Enemigo básico 3
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4
 
-	if (App->player->position.x >= 1210)
+	if (App->player->position.x >= 1210) // <----- ESTO NO FUNCIONA, YA QUE ESTA EN EL START
 	{
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1059, FLOOR_LEVEL - 64); //Enemigo básico 5
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1113, FLOOR_LEVEL - 64); //Enemigo básico 6

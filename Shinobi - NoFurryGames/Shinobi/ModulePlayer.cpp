@@ -222,9 +222,6 @@ update_status ModulePlayer::Update()
 	if (currJumpForce < -grav) {
 		isJumping = true;
 	}
-
-	
-
 	position.y -= currJumpForce;
 	
 
@@ -623,16 +620,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (!c2->active) { return; }
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
-		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().w << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
-
 		if(c2->GetRect().y <= 103){ 
 		//ta arriba	
 			isSecondFloor = true;
 		}
 		else {
 			//ta abajo
-			//App->scene_Level1->secondFloor->active = false;
-			//App->scene_Level1_SecondFloor->Disable();
 			App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
 			isSecondFloor = false;
 		}
