@@ -150,6 +150,40 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PistolaattackAnim.speed = 0.1f;
 	PistolaattackAnim.loop = false;
 
+	//Espada
+
+	Animation PatadaAnim;
+	Animation EspadaCrouchAnim;
+	Animation EspadaAnim;
+
+
+	PatadaAnim.PushBack({ 375, 656, 44, 37 });
+	PatadaAnim.PushBack({ 427, 654, 65, 39 });
+	PatadaAnim.PushBack({ 375, 656, 44, 37 });
+	PatadaAnim.speed = 0.1f;
+	PatadaAnim.loop = false;
+
+	EspadaCrouchAnim.PushBack({ 10, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 85, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 160, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 235, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 310, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 385, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 460, 825, 69, 51 });
+	EspadaCrouchAnim.speed = 0.1f;
+	EspadaCrouchAnim.loop = false;
+
+	EspadaAnim.PushBack({ 10, 916, 67, 63 });
+	EspadaAnim.PushBack({ 83, 916, 67, 63 });
+	EspadaAnim.PushBack({ 156, 916, 67, 63 });
+	EspadaAnim.PushBack({ 229, 916, 67, 63 });
+	EspadaAnim.PushBack({ 302, 916, 67, 63 });
+	EspadaAnim.PushBack({ 375, 916, 67, 63 });
+	EspadaAnim.PushBack({ 448, 916, 67, 63 });
+	EspadaAnim.PushBack({ 521, 916, 67, 63 });
+	EspadaAnim.speed = 0.1f;
+	EspadaAnim.loop = false;
+
 }
 
 ModulePlayer::~ModulePlayer()

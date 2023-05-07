@@ -97,6 +97,10 @@ public:
 	Animation PistolajumpAnim;
 	Animation PistolajumpAttackAnim;
 	Animation PistolaattackAnim;
+
+	Animation PatadaAnim;
+	Animation EspadaCrouchAnim;
+	Animation EspadaAnim;
 	
 
 	// The player's collider
