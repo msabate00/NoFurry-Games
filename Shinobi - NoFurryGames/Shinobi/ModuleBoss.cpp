@@ -27,9 +27,40 @@ using namespace std;
 
 ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 
-	head_IdleAnim.PushBack({ 0,0,18,24 });
-	torso_IdleAnim.PushBack({0,25, 56, 27});
-	legs_IdleAnim.PushBack({0, 122, 47, 53});
+	head_IdleAnim.PushBack({ 3,16,28,26 });
+
+	/*head_IdleAnim.PushBack({ 3,16,28,26 });
+	head_IdleAnim.PushBack({ 37,16,28,26 });
+	head_IdleAnim.PushBack({ 71,16,28,26 });
+	head_IdleAnim.PushBack({ 105,16,28,26 });
+	head_IdleAnim.PushBack({ 139,16,28,26 });*/
+
+	torso_IdleAnim.PushBack({3,50, 66, 53});
+
+	/* NO BORRAR
+	
+	torso_IdleAnim.PushBack({75,50, 66, 53});
+	torso_IdleAnim.PushBack({147,50, 66, 53});
+	torso_IdleAnim.PushBack({219,50, 66, 53});
+
+
+	torso_IdleAnim.PushBack({3,109, 66, 53});
+	torso_IdleAnim.PushBack({75,109, 66, 53});
+	torso_IdleAnim.PushBack({147,109, 66, 53});
+	torso_IdleAnim.PushBack({219,109, 66, 53});
+
+
+	torso_IdleAnim.PushBack({3,168, 66, 53});
+	torso_IdleAnim.PushBack({ 75,168, 66, 53});
+	torso_IdleAnim.PushBack({ 147,168, 66, 53});
+	torso_IdleAnim.PushBack({ 219,168, 66, 53});*/
+
+
+	legs_IdleAnim.PushBack({4, 234, 63, 59});
+	/*legs_IdleAnim.PushBack({73, 234, 63, 59});
+	legs_IdleAnim.PushBack({142, 234, 63, 59});
+	legs_IdleAnim.PushBack({211, 234, 63, 59});
+	legs_IdleAnim.PushBack({280, 234, 63, 59});*/
 
 
 }

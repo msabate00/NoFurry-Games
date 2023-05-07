@@ -152,11 +152,6 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	//Espada
 
-	Animation PatadaAnim;
-	Animation EspadaCrouchAnim;
-	Animation EspadaAnim;
-
-
 	PatadaAnim.PushBack({ 375, 656, 44, 37 });
 	PatadaAnim.PushBack({ 427, 654, 65, 39 });
 	PatadaAnim.PushBack({ 375, 656, 44, 37 });
