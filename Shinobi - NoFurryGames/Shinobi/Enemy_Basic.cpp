@@ -133,6 +133,19 @@ void Enemy_Basic::Update()
 
 	}
 	
+	if(App->player->destroyed && App->player->currentAnimation->HasFinished())
+	{
+		currentAnim = &walkBasic;
+		if (facingLeft) 
+		{
+			position.x -= speed;
+		}
+		else 
+		{
+			position.x += speed;
+		}
+		
+	}
 
 
 	/*

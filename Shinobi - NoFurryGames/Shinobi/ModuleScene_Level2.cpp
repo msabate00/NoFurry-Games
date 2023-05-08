@@ -24,14 +24,14 @@ ModuleScene_Level2::ModuleScene_Level2(bool startEnabled) : Module(startEnabled)
 	// ground
 	ground.x = 0;
 	ground.y = 0;
-	ground.w = 2046;
-	ground.h = 350;
+	ground.w = 2048;
+	ground.h = 372;
 
 	// Background / sky
-	background.x = 72;
-	background.y = 208;
-	background.w = 768;
-	background.h = 176;
+	background.x = 0;
+	background.y = 0;
+	background.w = 2046;
+	background.h = 350;
 
 
 }
@@ -46,8 +46,15 @@ bool ModuleScene_Level2::Start()
 {
 	LOG("Loading background assets");
 
+	App->collisions->Enable();
+	
+	App->player->Enable();
+	App->enemy->Enable();
 	
 	bool ret = true;
+
+	stageTexture2 = App->textures->Load("Assets/Maps/Level2/Nivel2_wide.png");
+	stageBackgroundTexture2 = App->textures->Load("Assets/Maps/Level2/Nivel2_wide_fondo.png");
 
 	return ret;
 }

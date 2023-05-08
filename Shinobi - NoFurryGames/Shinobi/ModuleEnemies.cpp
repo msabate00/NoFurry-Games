@@ -15,7 +15,9 @@
 #include "Hostage.h"
 #include "EnemyBrownShield.h"
 #include "EnemyPurpleShield.h"
+
 #include "EnemyKnife.h"
+#include "EnemyGun.h"
 
 
 #include <iostream>
@@ -227,6 +229,10 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 
 			case ENEMY_TYPE::PURPLESHIELD:
 				enemies[i] = new EnemyPurpleShield(info.x, info.y, info.secondFloor);
+				break;
+
+			case ENEMY_TYPE::GUNSHOOTER:
+				enemies[i] = new EnemyGun(info.x, info.y, info.secondFloor);
 				break;
 
 			case ENEMY_TYPE::HOSTAGE:

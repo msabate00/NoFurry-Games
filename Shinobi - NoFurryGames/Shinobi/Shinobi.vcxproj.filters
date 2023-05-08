@@ -157,6 +157,7 @@
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="EnemyKnife.cpp">
+    <ClCompile Include="EnemyGun.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -264,6 +265,7 @@
       <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
     </ClInclude>
     <ClInclude Include="EnemyKnife.h">
+    <ClInclude Include="EnemyGun.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
