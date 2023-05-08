@@ -27,22 +27,24 @@ using namespace std;
 
 ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 
-	head_IdleAnim.PushBack({ 3,16,28,26 });
+	//head_IdleAnim.PushBack({ 3,16,28,26 });
 
-	/*head_IdleAnim.PushBack({ 3,16,28,26 });
+	head_IdleAnim.PushBack({ 3,16,28,26 });
 	head_IdleAnim.PushBack({ 37,16,28,26 });
 	head_IdleAnim.PushBack({ 71,16,28,26 });
 	head_IdleAnim.PushBack({ 105,16,28,26 });
-	head_IdleAnim.PushBack({ 139,16,28,26 });*/
+	//head_IdleAnim.PushBack({ 139,16,28,26 });
+	head_IdleAnim.speed = 0.05;
 
-	torso_IdleAnim.PushBack({3,50, 66, 53});
+	//torso_IdleAnim.PushBack({3,50, 66, 53});
 
-	/* NO BORRAR
+	
 	
 	torso_IdleAnim.PushBack({75,50, 66, 53});
 	torso_IdleAnim.PushBack({147,50, 66, 53});
 	torso_IdleAnim.PushBack({219,50, 66, 53});
-
+	torso_IdleAnim.speed = 0.05;
+	/* NO BORRAR
 
 	torso_IdleAnim.PushBack({3,109, 66, 53});
 	torso_IdleAnim.PushBack({75,109, 66, 53});
@@ -57,10 +59,11 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 
 
 	legs_IdleAnim.PushBack({4, 234, 63, 59});
-	/*legs_IdleAnim.PushBack({73, 234, 63, 59});
+	legs_IdleAnim.PushBack({73, 234, 63, 59});
 	legs_IdleAnim.PushBack({142, 234, 63, 59});
 	legs_IdleAnim.PushBack({211, 234, 63, 59});
-	legs_IdleAnim.PushBack({280, 234, 63, 59});*/
+	legs_IdleAnim.PushBack({280, 234, 63, 59});
+	legs_IdleAnim.speed = 0.05;
 
 
 }
@@ -92,7 +95,7 @@ bool ModuleBoss::Start()
 
 	facingRight = false;
 	position.x = 375;
-	position.y = 136;
+	position.y = 134;
 
 	return true;
 }
@@ -110,12 +113,12 @@ update_status ModuleBoss::Update()
 	current_legs_Animation = &legs_IdleAnim;
 
 	
-	if (facingRight) {
+	/*if (facingRight) {
 		position.x += speed;
 	}
 	else {
 		position.x -= speed;
-	}
+	}*/
 
 	if (!facingRight && position.x <= 100) {
 		facingRight = true;
@@ -142,23 +145,24 @@ update_status ModuleBoss::PostUpdate()
 
 	if (!facingRight) {
 		
-		App->render->Blit(texture, position.x, position.y+2, SDL_FLIP_NONE, &rectTorso);
-		App->render->Blit(texture, position.x + 20, position.y + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
-		App->render->Blit(texture, position.x + 26, position.y - 9, SDL_FLIP_NONE, &rectHead);
+		App->render->Blit(texture, position.x + 23, position.y - 5, SDL_FLIP_NONE, &rectHead);
+		App->render->Blit(texture, position.x, position.y-10, SDL_FLIP_NONE, &rectTorso);
+		App->render->Blit(texture, position.x + 21, position.y-25 + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
 		
-		torso_Collider->SetPos(position.x, position.y + 2 );
-		legs_Collider->SetPos(position.x + 20, position.y + rectTorso.h );
-		head_Collider->SetPos(position.x + 26, position.y - 9);
+		head_Collider->SetPos(position.x + 26, position.y - 5);
+		torso_Collider->SetPos(position.x, position.y - 10);
+		legs_Collider->SetPos(position.x + 20, position.y - 25 + rectTorso.h );
+		
 	}
 	else {
-		
+		App->render->Blit(texture, position.x + 11, position.y - 9, SDL_FLIP_HORIZONTAL, &rectHead);
 		App->render->Blit(texture, position.x, position.y+2, SDL_FLIP_HORIZONTAL, &rectTorso);
 		App->render->Blit(texture, position.x - 11, position.y + rectTorso.h, SDL_FLIP_HORIZONTAL, &rectLegs);
-		App->render->Blit(texture, position.x + 11, position.y - 9, SDL_FLIP_HORIZONTAL, &rectHead);
 		
+		head_Collider->SetPos(position.x + 11, position.y - 9);
 		torso_Collider->SetPos(position.x, position.y+2);
 		legs_Collider->SetPos(position.x - 11, position.y + rectTorso.h );
-		head_Collider->SetPos(position.x + 11, position.y - 9);
+		
 	}
 
 
