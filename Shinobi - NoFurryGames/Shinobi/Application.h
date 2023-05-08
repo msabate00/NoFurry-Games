@@ -63,6 +63,9 @@ public:
 	Module* activeModule = nullptr;
 
 	bool debugMode = false;
+	bool godMode = false;
+	bool showRect = false;
+	bool showDebug = true;
 	double deltaTime = 0;
 
 

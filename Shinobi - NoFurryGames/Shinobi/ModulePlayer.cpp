@@ -726,7 +726,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}	
 	}
 
-	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed && !inmune)
+	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed && !inmune && !App->godMode)
 	{
 
 		for(uint i = 0; i<MAX_ENEMIES; i++){

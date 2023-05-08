@@ -28,6 +28,7 @@
 #include "ModuleInterface.h"
 
 #include <iostream>
+#include "SDL/include/SDL_scancode.h"
 using namespace std;
 
 Application::Application()
@@ -131,6 +132,16 @@ update_status Application::Update()
 
 
 	
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_DOWN) {
+		godMode = !godMode;
+	}
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN) {
+		showRect = !showRect;
+	}
+	if (App->input->keys[SDL_SCANCODE_F6] == KEY_DOWN) {
+		showDebug = !showDebug;
+	}
+
 
 	// Cap to 60 FPS
 	SDL_Delay(16.666f);

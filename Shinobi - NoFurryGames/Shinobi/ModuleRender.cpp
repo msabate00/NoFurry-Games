@@ -196,7 +196,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip fli
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
-	if (App->debugMode && false) {
+	if (App->debugMode && App->showRect) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderDrawRect(renderer, &rect);
 	}
