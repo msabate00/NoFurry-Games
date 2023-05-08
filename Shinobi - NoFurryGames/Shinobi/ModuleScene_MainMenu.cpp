@@ -75,11 +75,7 @@ bool ModuleScene_MainMenu::Start()
 	}
 	App->scene_Level1->hostage_num = 4;
 
-	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz       " };
-	App->scoreFontRed = App->fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
-	App->scoreFontBlue = App->fonts->Load("Assets/Interface/Fonts/Blue.png", lookupTable, 3);
-	App->scoreFontWhite = App->fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);
-	App->scoreFontYellow = App->fonts->Load("Assets/Interface/Fonts/Yellow.png", lookupTable, 3);
+	
 
 
 	return ret;

@@ -420,6 +420,7 @@ update_status ModulePlayer::Update()
 			if (enemyInRange) {
 				//ANIMACION DE ATAQUE KATANA HACER
 				currentAnimation = &EspadaAnim;
+				inmune = true;
 
 			}else if (!holdingGun) {
 				currentAnimation = &attack_shurikenAnim;
@@ -434,7 +435,14 @@ update_status ModulePlayer::Update()
 		
 		if (currentAnimation->HasFinished()) {
 			isAttacking = false;
+			inmune = false;
 			currentAnimation->Reset();
+			currentAnimation = &idleAnim;
+			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+			currentAnimation->Update();
 		}
 		else {
 			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
@@ -452,7 +460,7 @@ update_status ModulePlayer::Update()
 			//ANIMACION DE ATAQUE KATANA HACER
 
 			
-
+			inmune = true;
 			currentAnimation = &PatadaAnim;
 
 		}
@@ -468,7 +476,14 @@ update_status ModulePlayer::Update()
 		
 		if (currentAnimation->HasFinished()) {
 			isCrouchedAttacking = false;
+			inmune = false;
 			currentAnimation->Reset();
+			currentAnimation = &idleAnim;
+			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+			currentAnimation->Update();
 		}
 		else {
 			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
@@ -711,7 +726,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}	
 	}
 
-	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed)
+	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed && !inmune)
 	{
 
 		for(uint i = 0; i<MAX_ENEMIES; i++){

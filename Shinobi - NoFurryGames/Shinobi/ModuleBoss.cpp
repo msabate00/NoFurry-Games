@@ -89,7 +89,7 @@ bool ModuleBoss::Start()
 
 
 	head_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
-	torso_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
+	//torso_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
 	legs_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
 
 
@@ -107,6 +107,8 @@ update_status ModuleBoss::Update()
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
+
+	
 
 
 	current_head_Animation = &head_IdleAnim;
@@ -151,7 +153,7 @@ update_status ModuleBoss::PostUpdate()
 		App->render->Blit(texture, position.x + 21, position.y-25 + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
 		
 		head_Collider->SetPos(position.x + 26, position.y - 5);
-		torso_Collider->SetPos(position.x, position.y - 10);
+		//torso_Collider->SetPos(position.x, position.y - 10);
 		legs_Collider->SetPos(position.x + 20, position.y - 25 + rectTorso.h );
 		
 	}
@@ -161,14 +163,14 @@ update_status ModuleBoss::PostUpdate()
 		App->render->Blit(texture, position.x - 11, position.y + rectTorso.h, SDL_FLIP_HORIZONTAL, &rectLegs);
 		
 		head_Collider->SetPos(position.x + 11, position.y - 9);
-		torso_Collider->SetPos(position.x, position.y+2);
+		//torso_Collider->SetPos(position.x, position.y+2);
 		legs_Collider->SetPos(position.x - 11, position.y + rectTorso.h );
 		
 	}
 
 
 	head_Collider->SetSize(current_head_Animation->GetCurrentFrame().w, current_head_Animation->GetCurrentFrame().h);
-	torso_Collider->SetSize(current_torso_Animation->GetCurrentFrame().w, current_torso_Animation->GetCurrentFrame().h);
+	//torso_Collider->SetSize(current_torso_Animation->GetCurrentFrame().w, current_torso_Animation->GetCurrentFrame().h);
 	legs_Collider->SetSize(current_legs_Animation->GetCurrentFrame().w, current_legs_Animation->GetCurrentFrame().h);
 	
 

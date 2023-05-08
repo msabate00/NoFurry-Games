@@ -25,6 +25,7 @@
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleFonts.h"
+#include "ModuleInterface.h"
 
 #include <iostream>
 using namespace std;
@@ -62,7 +63,15 @@ Application::Application()
 	modules[16] =	audio =								new ModuleAudio(true);
 	modules[17] =	fade =								new ModuleFadeToBlack(true);
 	modules[18] =	fonts =								new ModuleFonts(true);
-	modules[19] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+	modules[19] =	interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[20] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
+
+
+
+
+
+	
+
 
 }
 
@@ -88,6 +97,14 @@ bool Application::Init()
 	// Only active modules will be 'started'
 	for (int i = 0; i < NUM_MODULES && ret; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
+
+
+	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz_·.,-  " };
+	scoreFontRed = fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
+	scoreFontBlue = fonts->Load("Assets/Interface/Fonts/Blue.png", lookupTable, 3);
+	scoreFontWhite = fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);
+	scoreFontYellow = fonts->Load("Assets/Interface/Fonts/Yellow.png", lookupTable, 3);
+	debugFontWhite = fonts->Load("Assets/Interface/Fonts/DebugFont.png", lookupTable, 3);
 
 	return ret;
 }

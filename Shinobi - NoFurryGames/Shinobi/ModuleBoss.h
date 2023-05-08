@@ -73,9 +73,8 @@ public:
 
 
 
-	Collider* head_Collider;
-	Collider* torso_Collider;
-	Collider* legs_Collider;
+	Collider* head_Collider = nullptr;
+	Collider* legs_Collider = nullptr;
 
 
 };

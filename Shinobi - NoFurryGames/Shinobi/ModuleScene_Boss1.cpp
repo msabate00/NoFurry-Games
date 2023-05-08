@@ -11,6 +11,7 @@
 #include "ModuleScene_Boss1.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleBoss.h"
+#include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL.h"
 #include <string> 
@@ -73,6 +74,8 @@ bool ModuleScene_Boss1::Start()
 update_status ModuleScene_Boss1::Update()
 {
 
+	
+
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
@@ -89,6 +92,9 @@ update_status ModuleScene_Boss1::PostUpdate()
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	App->render->Blit(stageBackgroundTexture, 0, -100, SDL_FLIP_NONE, &background, 0.35f); // Edificios del fondo
 	App->render->Blit(stageTexture, 0, -56, SDL_FLIP_NONE, &ground, 1.0f); // Suelo y eso
+
+
+	
 
 
 	return update_status::UPDATE_CONTINUE;

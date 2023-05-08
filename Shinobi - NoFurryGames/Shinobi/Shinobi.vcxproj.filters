@@ -25,33 +25,6 @@
     <ClCompile Include="Hostage.cpp">
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleAudio.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleCollisions.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFadeToBlack.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleFonts.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleInput.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleParticles.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleRender.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleTextures.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleWindow.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
     <ClCompile Include="ModuleBoss.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
@@ -103,6 +76,36 @@
     <ClCompile Include="Particle.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleWindow.cpp">
+      <Filter>Source Files\Modules\Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTextures.cpp">
+      <Filter>Source Files\Modules\Core\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Source Files\Modules\Core\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInterface.cpp">
+      <Filter>Source Files\Modules\Core\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleInput.cpp">
+      <Filter>Source Files\Modules\Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Source Files\Modules\Core\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Source Files\Modules\Core\FadeToBlack</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollisions.cpp">
+      <Filter>Source Files\Modules\Core\Collisions</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Source Files\Modules\Core\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleRender.cpp">
+      <Filter>Source Files\Modules\Core\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -128,33 +131,6 @@
     </ClInclude>
     <ClInclude Include="Hostage.h">
       <Filter>Source Files\Entities\Hostage</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleAudio.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleCollisions.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFadeToBlack.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleFonts.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleInput.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleParticles.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleRender.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleTextures.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleWindow.h">
-      <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
     <ClInclude Include="ModuleBoss.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
@@ -213,6 +189,36 @@
     <ClInclude Include="Particle.h">
       <Filter>Source Files\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleWindow.h">
+      <Filter>Source Files\Modules\Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTextures.h">
+      <Filter>Source Files\Modules\Core\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticles.h">
+      <Filter>Source Files\Modules\Core\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInterface.h">
+      <Filter>Source Files\Modules\Core\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInput.h">
+      <Filter>Source Files\Modules\Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Source Files\Modules\Core\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Source Files\Modules\Core\FadeToBlack</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollisions.h">
+      <Filter>Source Files\Modules\Core\Collisions</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Source Files\Modules\Core\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRender.h">
+      <Filter>Source Files\Modules\Core\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -262,6 +268,36 @@
     </Filter>
     <Filter Include="Source Files\Modules\Gameplay\Scenes\Menu">
       <UniqueIdentifier>{2464f6b8-53c3-49a2-80fa-46a7adb2afb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Audio">
+      <UniqueIdentifier>{db246432-4fff-4df5-8993-37413fd4339c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Collisions">
+      <UniqueIdentifier>{b0c15afc-3226-4068-a2a6-12367fdd27ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\FadeToBlack">
+      <UniqueIdentifier>{aeed8304-9807-4ce1-99b3-5bb92bfcf130}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Fonts">
+      <UniqueIdentifier>{2ad50f43-c0e4-4799-aec1-7740ae254d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Input">
+      <UniqueIdentifier>{0fbdc01b-c5ba-433e-a5a3-790883a5795a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Interface">
+      <UniqueIdentifier>{82919a77-33d9-4424-872b-0bd32eeb7912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Particles">
+      <UniqueIdentifier>{d50f172a-6045-4ec6-8719-76eed6bd9268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Texture">
+      <UniqueIdentifier>{0745060b-0a21-4a8c-8902-8c0618741406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Window">
+      <UniqueIdentifier>{ca7abfb9-a746-4fc9-a1ae-d4927b7e3620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core\Render">
+      <UniqueIdentifier>{994a1eeb-d5f2-4af2-8834-b65b35bc180e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
