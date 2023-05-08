@@ -23,6 +23,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyBrownShield.cpp" />
+    <ClCompile Include="EnemyKnife.cpp" />
     <ClCompile Include="EnemyPurpleShield.cpp" />
     <ClCompile Include="Enemy_Basic.cpp" />
     <ClCompile Include="Globals.cpp" />
@@ -58,6 +59,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBrownShield.h" />
+    <ClInclude Include="EnemyKnife.h" />
     <ClInclude Include="EnemyPurpleShield.h" />
     <ClInclude Include="Enemy_Basic.h" />
     <ClInclude Include="Globals.h" />

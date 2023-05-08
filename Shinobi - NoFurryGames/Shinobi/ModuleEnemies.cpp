@@ -15,6 +15,8 @@
 #include "Hostage.h"
 #include "EnemyBrownShield.h"
 #include "EnemyPurpleShield.h"
+#include "EnemyKnife.h"
+
 
 #include <iostream>
 
@@ -215,6 +217,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			case ENEMY_TYPE::BASIC:
 				enemies[i] = new Enemy_Basic(info.x, info.y, info.secondFloor);
 				break;
+			case ENEMY_TYPE::KNIFE:
+				enemies[i] = new Enemy_Knife(info.x, info.y, info.secondFloor);
+				break;
 
 			case ENEMY_TYPE::BROWNSHIELD:
 				enemies[i] = new EnemyBrownShield(info.x, info.y, info.secondFloor);
@@ -227,6 +232,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			case ENEMY_TYPE::HOSTAGE:
 				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor, info.id);
 				break;
+			
 
 			}
 			enemies[i]->texture = texture;

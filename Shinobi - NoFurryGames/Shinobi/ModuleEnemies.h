@@ -14,6 +14,7 @@ enum class ENEMY_TYPE
 	BASIC,
 	BROWNSHIELD,
 	PURPLESHIELD,
+	KNIFE,
 };
 
 struct EnemySpawnpoint
