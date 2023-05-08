@@ -12,7 +12,6 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleBoss.h"
 #include "SDL/include/SDL_scancode.h"
-
 #include "SDL/include/SDL.h"
 #include <string> 
 #include <vector>
@@ -59,11 +58,12 @@ bool ModuleScene_Boss1::Start()
 	App->player->Enable();
 	App->boss->Enable();
 
+	//Suelo
 	App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 506, 9 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 30, 0, 10, SCREEN_HEIGHT }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 476, 0, 10, SCREEN_HEIGHT }, Collider::Type::WALL);
 
-
+	//Paredes
+	App->collisions->AddCollider({ 10, 0, 30, SCREEN_HEIGHT }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 476, 0, 30, SCREEN_HEIGHT }, Collider::Type::WALL);
 
 	
 
@@ -72,6 +72,10 @@ bool ModuleScene_Boss1::Start()
 
 update_status ModuleScene_Boss1::Update()
 {
+
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+	}
 
 
 	return update_status::UPDATE_CONTINUE;

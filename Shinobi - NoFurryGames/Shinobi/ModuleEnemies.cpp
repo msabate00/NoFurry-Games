@@ -54,7 +54,7 @@ update_status ModuleEnemies::Update()
 			enemies[i]->Update();
 	}
 
-	HandleEnemiesDespawn();
+	HandleEnemiesDespawn(false);
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -82,6 +82,11 @@ bool ModuleEnemies::CleanUp()
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
+
+		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE) {
+			spawnQueue[i].type = ENEMY_TYPE::NO_TYPE;
+		}
+
 	}
 
 	return true;
@@ -177,6 +182,27 @@ void ModuleEnemies::HandleEnemiesDespawn(bool all)
 	}
 }
 
+void ModuleEnemies::HandleEnemiesDespawnEnemy(Enemy* enemy)
+{
+	// Iterate existing enemies
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	{
+		if (enemies[i] != nullptr)
+		{
+
+			if (enemies[i]->GetCollider() == enemy->GetCollider()) {
+
+				delete enemies[i];
+				enemies[i] = nullptr;
+				return;
+			}
+
+		}
+	}
+}
+
+
+
 void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 {
 	// Find an empty slot in the enemies array
@@ -220,14 +246,19 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		return;
 	}
 
+	//PARA LAS PAREDES
 	if (c2->type == Collider::Type::WALL && c1->type == Collider::Type::ENEMY)
 	{
 		for (uint i = 0; i < MAX_ENEMIES; ++i)
 		{
 			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 			{
-				enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-				enemies[i]->boxCollision = true;
+				enemies[i]->OnCollision(c1, c2); //Notify the enemy of a collision
+
+				/*if (c2->GetRect().y < c1->GetRect().y + c1->GetRect().h && ((!enemies[i]->secondFloor && c2->active) || enemies[i]->secondFloor)) {
+					cout << "Caja: " << c2->GetRect().y << " PJ Y: " << c1->GetRect().y << " H: " << c1->GetRect().h << endl;
+					enemies[i]->boxCollision = true;
+				}*/
 				break;
 			}
 		}
@@ -289,9 +320,9 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	//RESTO DE COLISIONES
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if (enemies[i] != nullptr && (enemies[i]->GetCollider() == c1 || enemies[i]->GetColliderRange() == c1))
 		{
-			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+			enemies[i]->OnCollision(c1, c2); //Notify the enemy of a collision
 			enemies[i]->killed = true;
 			
 			//delete enemies[i];

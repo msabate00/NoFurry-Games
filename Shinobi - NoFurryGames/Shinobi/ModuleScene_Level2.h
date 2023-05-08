@@ -87,7 +87,7 @@ public:
 
 
 
-	int life_num = 2;
+	int life_num = 4;
 	int texture_num = 0;
 
 	int elapsed_time;

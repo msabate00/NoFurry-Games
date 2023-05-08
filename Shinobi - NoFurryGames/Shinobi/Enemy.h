@@ -19,6 +19,7 @@ public:
 
 	// Returns the enemy's collider
 	const Collider* GetCollider() const;
+	const Collider* GetColliderRange() const;
 
 	// Called from inhering enemies' Udpate
 	// Updates animation and collider position
@@ -29,7 +30,7 @@ public:
 
 	// Collision response
 	// Triggers an animation and a sound fx
-	virtual void OnCollision(Collider* collider);
+	virtual void OnCollision(Collider* c1, Collider* c2);
 
 	int getPoints();
 	void setPoints(int points);
@@ -39,18 +40,26 @@ public:
 	bool secondFloor;
 
 	bool isJumping = false;
-	float jumpSpeed = 0.0f;
-	float jumpHeight = 100.0f;
-	float gravity = 0.2f;
+	float jumpSpeed = 0.0f;		//Fuerza actual del salto
+	float jumpForce = -3.0f;	//Fuerza del salto al saltar
+	float jumpHeight = 100.0f;	
 
-	bool setHasReceivedDamage = false;
+	bool setHasReceivedDamage = false;	//Cuando recibe daño
 	bool moveToDie = false;
 	bool collidesWithWall = false;
 	bool facingLeft = false;
 	bool killed = false;
 	bool boxCollision = false;
 
+
+	bool isAttacking = false;
+
+
 	int points;
+	int speed = 1;
+	int viewRange = 250;	//Distancia a la que ve el jugador
+	int wanderRange = 20;	//Distancia a la que va a estar deambulando alrededor del jugador
+	int attackRange = 20;	//Distancia a la que puede atacar al jugador
 
 	
 
@@ -75,6 +84,7 @@ protected:
 
 	// The enemy's collider
 	Collider* collider = nullptr;
+	Collider* colliderRange = nullptr;
 
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;

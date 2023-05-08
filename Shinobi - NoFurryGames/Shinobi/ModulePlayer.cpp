@@ -13,7 +13,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 #include "Hostage.h"
-
+#include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
 
@@ -44,7 +44,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	forwardAnim.PushBack({ 173, 112, 46, 60 });
 	forwardAnim.PushBack({ 227, 112, 46, 60 });
 	forwardAnim.PushBack({ 281, 112, 46, 60 });
-	forwardAnim.speed = 0.1f;
+	forwardAnim.speed = 0.17f;
 
 	// crouched idle anim
 	crouched_idleAnim.PushBack({ 270, 211, 51, 36 });
@@ -150,6 +150,62 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PistolaattackAnim.speed = 0.1f;
 	PistolaattackAnim.loop = false;
 
+	//Espada
+
+	PatadaAnim.PushBack({ 375, 656, 44, 37 });
+	PatadaAnim.PushBack({ 427, 654, 65, 39 });
+	PatadaAnim.PushBack({ 375, 656, 44, 37 });
+	PatadaAnim.speed = 0.2f;
+	PatadaAnim.loop = false;
+
+	EspadaCrouchAnim.PushBack({ 10, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 85, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 160, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 235, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 310, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 385, 825, 69, 51 });
+	EspadaCrouchAnim.PushBack({ 460, 825, 69, 51 });
+	EspadaCrouchAnim.speed = 0.5f;
+	EspadaCrouchAnim.loop = false;
+
+	EspadaAnim.PushBack({ 10, 916, 67, 63 });
+	EspadaAnim.PushBack({ 83, 916, 67, 63 });
+	EspadaAnim.PushBack({ 156, 916, 67, 63 });
+	EspadaAnim.PushBack({ 229, 916, 67, 63 });
+	EspadaAnim.PushBack({ 302, 916, 67, 63 });
+	EspadaAnim.PushBack({ 375, 916, 67, 63 });
+	EspadaAnim.PushBack({ 448, 916, 67, 63 });
+	EspadaAnim.PushBack({ 521, 916, 67, 63 });
+	EspadaAnim.speed = 0.5f;
+	EspadaAnim.loop = false;
+
+	
+
+	PatadaSaltoAnim.PushBack({ 11, 449, 29, 49 });
+	PatadaSaltoAnim.PushBack({ 44, 460, 45, 38 });
+	PatadaSaltoAnim.PushBack({ 93, 467, 75, 38 });
+	PatadaSaltoAnim.PushBack({ 172, 460, 45, 38 });
+	PatadaSaltoAnim.PushBack({ 221, 449, 29, 49 });
+	PatadaSaltoAnim.PushBack({ 254, 439, 34, 59 });
+	
+	PatadaSaltoAnim.speed = 0.2f;
+	PatadaSaltoAnim.loop = false;
+
+	
+
+	PatadaKatanaAnim.PushBack({ 14, 543, 39, 58 });
+	PatadaKatanaAnim.PushBack({ 57, 543, 39, 58 });
+	PatadaKatanaAnim.PushBack({ 100, 537, 40, 64 });
+	PatadaKatanaAnim.PushBack({ 144, 540, 51, 61 });
+	PatadaKatanaAnim.PushBack({ 199, 552, 62, 49 });
+	PatadaKatanaAnim.PushBack({ 265, 543, 39, 58 });
+	PatadaKatanaAnim.PushBack({ 308, 543, 39, 58 });
+	PatadaKatanaAnim.PushBack({ 351, 543, 39, 58 });
+	PatadaKatanaAnim.PushBack({ 394, 543, 39, 58 });
+	PatadaKatanaAnim.PushBack({ 437, 543, 39, 58 });
+
+	PatadaKatanaAnim.speed = 0.2f;
+	PatadaKatanaAnim.loop = false;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -183,6 +239,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+	rangeCollider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER_RANGE, this);
 
 	position.x = 100;
 	position.y = FLOOR_LEVEL;
@@ -202,6 +259,9 @@ bool ModulePlayer::Start()
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
 	
+	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz       " };
+	scoreFont = App->fonts->Load("Assets/Interface/Fonts/Rojo.png", lookupTable,3);
+
 
 	return ret;
 }
@@ -218,9 +278,6 @@ update_status ModulePlayer::Update()
 	if (currJumpForce < -grav) {
 		isJumping = true;
 	}
-
-	
-
 	position.y -= currJumpForce;
 	
 
@@ -251,18 +308,21 @@ update_status ModulePlayer::Update()
 		destroyedCountdown--;
 		if (destroyedCountdown <= 0) 
 		{
-			if (App->scene_Level1->life_num <= 0) {
-				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+			if (App->life_num <= 0) {
+				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 			}
 			else {
-				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level1, 60);
+				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
 			}
 		}
 
 
 		currentAnimation->Update();
-		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+
 
 
 		return update_status::UPDATE_CONTINUE;
@@ -309,7 +369,8 @@ update_status ModulePlayer::Update()
 				isChangingFloorF2 = true;
 				currJumpForce = jumpForce / 2;
 				//App->scene_Level1->secondFloor->active = !App->scene_Level1->secondFloor->active;
-				(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				//(App->scene_Level1_SecondFloor->IsEnabled()) ? App->scene_Level1_SecondFloor->Disable() : App->scene_Level1_SecondFloor->Enable();
+				App->scene_Level1_SecondFloor->EnabledColliderForPlayer(!App->scene_Level1_SecondFloor->showFence);
 				//App->scene_Level1_SecondFloor->Disable();
 			}
 		}
@@ -323,8 +384,11 @@ update_status ModulePlayer::Update()
 			positionBefore.y = position.y;
 		}
 		
-		collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-		collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+
 
 		currentAnimation->Update();
 
@@ -338,23 +402,34 @@ update_status ModulePlayer::Update()
 
 	if (isAttacking) {
 		if (isJumping) {
-			if (!holdingGun) {
+			if (enemyInRange) {
+				//ANIMACION DE ATAQUE KATANA EN EL AIRE, A LO MEJOR NO HACER
 				currentAnimation = &jumpAttackAnim;
 			}
-			else
+			else if (!holdingGun) {
+				currentAnimation = &jumpAttackAnim;
+			}
+			else 
 			{
 				currentAnimation = &PistolajumpAttackAnim;
 			}
+			
 
 		}
 		else {
-			if (!holdingGun) {
+
+			if (enemyInRange) {
+				//ANIMACION DE ATAQUE KATANA HACER
+				currentAnimation = &EspadaAnim;
+
+			}else if (!holdingGun) {
 				currentAnimation = &attack_shurikenAnim;
 			}
 			else
 			{
 				currentAnimation = &PistolaattackAnim;
 			}
+			
 		}
 
 		
@@ -363,26 +438,41 @@ update_status ModulePlayer::Update()
 			currentAnimation->Reset();
 		}
 		else {
-			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
 			currentAnimation->Update();
 			return update_status::UPDATE_CONTINUE;
 		}
 	}
 
 	if (isCrouchedAttacking) {
-		if (!holdingGun) {
-			currentAnimation = &crouched_AttackAnim;
+
+		if (enemyInRange && !holdingGun) {
+			//ANIMACION DE ATAQUE KATANA HACER
+			currentAnimation = &PatadaAnim;
+
+		}
+		else if (enemyInRange && holdingGun) {
+			currentAnimation = &EspadaCrouchAnim;
+
+		}
+		else if (!holdingGun) {
+				currentAnimation = &crouched_AttackAnim;
 		}else{
 			currentAnimation = &Pistolacrouched_AttackAnim;
 		}
+		
 		if (currentAnimation->HasFinished()) {
 			isCrouchedAttacking = false;
 			currentAnimation->Reset();
 		}
 		else {
-			collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-			collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+			collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+			collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+			rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
 			currentAnimation->Update();
 			return update_status::UPDATE_CONTINUE;
 		}
@@ -445,6 +535,12 @@ update_status ModulePlayer::Update()
 			else {
 				currentAnimation = &Pistolacrouched_forwardAnim;
 			}
+			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT) {
+				position.x -= crouchedSpeed;
+			}
+			else {
+				position.x += crouchedSpeed;
+			}
 		}
 	}
 
@@ -478,8 +574,10 @@ update_status ModulePlayer::Update()
 	
 
 
-	collider->SetPos(position.x, position.y - currentAnimation->GetCurrentFrame().h);
-	collider->SetSize(currentAnimation->GetCurrentFrame().w, currentAnimation->GetCurrentFrame().h);
+	collider->SetPos(position.x+ marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+	collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider*2, currentAnimation->GetCurrentFrame().h);
+	rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+	rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength*2, currentAnimation->GetCurrentFrame().h);
 
 
 	//ATAQUE SHURIKEN
@@ -538,11 +636,25 @@ update_status ModulePlayer::PostUpdate()
 
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 >= App->render->camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
-		App->render->camera.x += App->player->speed * SCREEN_SIZE;
+
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+			App->render->camera.x += App->player->crouchedSpeed * SCREEN_SIZE;
+		}
+		else {
+			App->render->camera.x += App->player->speed * SCREEN_SIZE;
+		}
+
+		
 	}
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 <= App->render->camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
-		App->render->camera.x -= App->player->speed * SCREEN_SIZE;
+
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
+			App->render->camera.x -= App->player->crouchedSpeed * SCREEN_SIZE;
+		}
+		else {
+			App->render->camera.x -= App->player->speed * SCREEN_SIZE;
+		}
 	}
 
 
@@ -555,6 +667,9 @@ update_status ModulePlayer::PostUpdate()
 	}
 
 
+
+
+	//App->fonts->BlitText(SCREEN_WIDTH - 275, SCREEN_HEIGHT - 50, scoreFont, "hola marti xd 123");
 	
 	
 	return update_status::UPDATE_CONTINUE;
@@ -566,24 +681,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (!c2->active) { return; }
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
-		//cout << " Caja x: " << c2->GetRect().x << " Caja y: " << c2->GetRect().y << " Caja w: " << c2->GetRect().w << " Posi x: " << position.x << " Posi y: " << position.y << " CurrJump: " << currJumpForce << endl;
-
 		if(c2->GetRect().y <= 103){ 
 		//ta arriba	
 			isSecondFloor = true;
 		}
 		else {
 			//ta abajo
-			//App->scene_Level1->secondFloor->active = false;
-			App->scene_Level1_SecondFloor->Disable();
-			isSecondFloor = false;
+			if (App->scene_Level1->IsEnabled()) {
+				App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
+				isSecondFloor = false;
+			}
 		}
 		
 		if (c2->GetRect().x >= position.x && c2->GetRect().y+2 <= position.y) {
 			//NO SE PUEDE MOVER PARA LA DERECHA
 			position.x -= speed;
-		}else
-		if (c2->GetRect().x + c2->GetRect().w+1 >= position.x && c2->GetRect().y+2 <= position.y) {
+		}else if (c2->GetRect().x + c2->GetRect().w+1 >= position.x && c2->GetRect().y+2 <= position.y) {
+			//NO SE PUEDE MOVER PARA LA IZQUIERDA
 			position.x += speed;
 		}
 		if (c2->GetRect().y+1 >= position.y + currJumpForce && currJumpForce<=0){ //COLISION arriba
@@ -613,14 +727,31 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 		holdingGun = false;
 		destroyed = true;
-		App->scene_Level1->life_num--;
+		App->life_num--;
 	}
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
 	
-		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 60);
+		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 20);
 
 	}
+
+
+
+
+
+
+	//Colision rango
+	if (c1 == rangeCollider && c2->type == Collider::Type::ENEMY && (c2->GetRect().x > position.x && facingRight) || (c2->GetRect().x < position.x && !facingRight)) {
+
+		enemyInRange = true;
+	}
+	else {
+		enemyInRange = false;
+	}
+
+
+
 
 }
 

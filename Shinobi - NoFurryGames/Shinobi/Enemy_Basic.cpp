@@ -63,16 +63,17 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
 	
-	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
+	
 
 	facingLeft = true;
 
 	goingToPlayer = true;
-	facingRight = false;
 	facingLeft = true;
-	secondFloor = false;
 	moveToDie = false;
 
+	viewRange = 250;
+	wanderRange = 50;
+	attackRange = 0;
 	points = 100;
 
 	
@@ -80,13 +81,73 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 void Enemy_Basic::Update()
 {
+	currentAnim = &walkBasic;
+
+	//Gravedad
+	jumpSpeed += -GRAVITY;
+	float grav = GRAVITY;
+	if (jumpSpeed < -grav) {
+		isJumping = true;
+	}
+	position.y -= jumpSpeed;
+
+
+
+
+	if (position.x - App->player->position.x > viewRange)
+	{
+		currentAnim = &staticAnim;
+		position.x += 0;
+	}
+	// Cuando entra en el rango, se mueve
+	else
+	{
+		//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+		if (position.x < App->player->position.x - wanderRange && facingLeft)
+		{
+			facingLeft = false;
+		}
+		if (position.x > App->player->position.x + wanderRange && !facingLeft)
+		{
+			facingLeft = true;
+		}
+	}
+
+	//Movimiento dependiendo para donde esta mirando
+	if (!setHasReceivedDamage && !isAttacking) {
+		if (facingLeft) {
+			position.x -= speed;
+		}
+		else {
+			position.x += speed;
+		}
+	}
+	
+	if (isAttacking) {
+		currentAnim = &attackAnim;
+
+		if (currentAnim->HasFinished()) {
+			isAttacking = false;
+			currentAnim->Reset();
+		}
+
+	}
+	
+
+
+	/*
+
+
+
 
 	if (boxCollision)
 	{
 		isJumping = true;
-		jumpSpeed = -4.0f;
+		jumpSpeed = -3.0f;
+		boxCollision = false;
+		
 	}
-
+	
 	if (isJumping)
 	{
 		position.y += jumpSpeed;
@@ -98,10 +159,18 @@ void Enemy_Basic::Update()
 			jumpSpeed = 0.0f;
 			position.y = position.y + jumpHeight;
 		}
-	}
 
-	if (!isJumping)
-	{
+		if (facingRight) {
+			position.x += speed;
+		}
+		else {
+			position.x -= speed;
+		}
+
+	}
+	
+	//if (!isJumping)
+	//{
 		// Enemigo se queda quieto si el jugador no está en su rango de visión
 		if (position.x - App->player->position.x > 250)
 		{
@@ -120,7 +189,7 @@ void Enemy_Basic::Update()
 		if (position.x < App->player->position.x && facingLeft)
 		{
 			currentAnim = &walkBasic;
-			position.x += 2;
+			position.x += 1;
 			facingLeft = false;
 		}
 
@@ -152,8 +221,8 @@ void Enemy_Basic::Update()
 			currentAnim = &staticAnim;
 		}
 
-	}
-
+	//}
+	
 	if (boxCollision && !facingLeft)
 	{
 		currentAnim = &jumping;
@@ -187,6 +256,7 @@ void Enemy_Basic::Update()
 		facingLeft = false;
 		position.x += 2;
 	}
+	*/
 	
 	//// Enemigo se queda quieto si el jugador no está en su rango de visión
 	//if (position.x - App->player->position.x > 250)

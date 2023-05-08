@@ -11,6 +11,7 @@
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
 
 #include <string> 
 #include <iostream>
@@ -53,7 +54,7 @@ bool ModuleScene_Level1::Start()
 	App->scene_Level1_SecondFloor_Enemies->Enable();
 	App->player->Enable();
 	App->enemy->Enable();
-	
+	App->scene_Level1_SecondFloor->Enable();
 
 	bool ret = true;
 
@@ -83,13 +84,15 @@ bool ModuleScene_Level1::Start()
 	//secondFloor->active = false;
 	
 
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 250, FLOOR_LEVEL - 64); //Enemigo básico 1
+
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64); //Enemigo básico 1
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64); //Enemigo básico 3
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4
 
-	if (App->player->position.x >= 1210)
+	if (App->player->position.x >= 1210) // <----- ESTO NO FUNCIONA, YA QUE ESTA EN EL START
 	{
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1059, FLOOR_LEVEL - 64); //Enemigo básico 5
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1113, FLOOR_LEVEL - 64); //Enemigo básico 6
@@ -120,7 +123,9 @@ bool ModuleScene_Level1::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	App->fonts->AddFonts();
 
+	
 	return ret;
 }
 
@@ -152,11 +157,11 @@ update_status ModuleScene_Level1::PostUpdate()
 
 	printSkillIcon();
 	printHostageIcon(hostage_num);
-	printLifeIcon(life_num);
+	printLifeIcon(App->life_num);
 
 
 
-	printNum(getDigits(texture_num), LetraNum);
+	printNum(texture_num);
 
 	printTime(getTimeString(elapsed_time).c_str(), Time);
 	printPlayer1();
@@ -166,6 +171,7 @@ update_status ModuleScene_Level1::PostUpdate()
 bool ModuleScene_Level1::CleanUp()
 {
 	App->collisions->Disable();
+	App->scene_Level1_SecondFloor->Disable();
 	App->scene_Level1_SecondFloor_Enemies->Disable();
 	App->player->Disable();
 	App->enemy->Disable();
@@ -179,13 +185,15 @@ void ModuleScene_Level1::printPlayer1() {
 
 	int IconPosition = 360;
 	timer += App->deltaTime;
+
+
+
+
+
 	if (NameColor) {
 		for (int i = 0; i < 2; i++)
 		{
-			std::string filename = "Assets/Interface/Color_use/Player/Azul_" + std::to_string(i) + ".png";
-			Player1 = App->textures->Load(filename.c_str());
-			App->render->Blit(Player1, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
-			IconPosition -= 16;
+			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontBlue, "p1");
 		}
 		if (timer >= switchTime) {
 			NameColor = false;
@@ -195,10 +203,7 @@ void ModuleScene_Level1::printPlayer1() {
 	else {
 		for (int i = 0; i < 2; i++)
 		{
-			std::string filename = "Assets/Interface/Color_use/Player/Blanco_" + std::to_string(i) + ".png";
-			Player1 = App->textures->Load(filename.c_str());
-			App->render->Blit(Player1, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
-			IconPosition -= 16;
+			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontWhite, "p1");
 		}
 		if (timer >= switchTime) {
 			NameColor = true;
@@ -248,9 +253,17 @@ void ModuleScene_Level1::printLifeIcon(int life) {
 }
 
 
-void ModuleScene_Level1::printNum(std::vector<int> number, SDL_Texture* LetraNum) {
+void ModuleScene_Level1::printNum(int point) {
 
 	int IconPosition = 250;
+
+	int bufferSize = snprintf(nullptr, 0, "%d", point) + 1;
+	char* pointStr = new char[bufferSize];
+	snprintf(pointStr, bufferSize, "%d", point);
+
+	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontRed, pointStr);
+
+/*
 	for (int i = 0; i < number.size(); i++)
 	{
 		std::string filename = "Assets/Interface/Color_use/Red/Rojo_Numeros/Rojo_" + std::to_string(number[i]) + ".png";
@@ -259,7 +272,7 @@ void ModuleScene_Level1::printNum(std::vector<int> number, SDL_Texture* LetraNum
 		App->render->Blit(LetraNum, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
 		IconPosition -= 16;
 	}
-
+	*/
 }
 
 void ModuleScene_Level1::printTime(std::string time_string, SDL_Texture* Time) {
@@ -267,6 +280,7 @@ void ModuleScene_Level1::printTime(std::string time_string, SDL_Texture* Time) {
 	int IconPosition = 70;
 	int elapsed_time = updateTimer(start_time);
 	time_string = getTimeString(elapsed_time);
+
 	std::vector<int> time_vector;
 	for (char c : time_string) {
 		if (isdigit(c)) {
@@ -277,9 +291,16 @@ void ModuleScene_Level1::printTime(std::string time_string, SDL_Texture* Time) {
 
 	for (int i = 0; i < time_vector.size(); i++)
 	{
-		std::string filename = "Assets/Interface/Color_use/Yellow/Yellow_Numeros/Yellow_" + std::to_string(time_vector[i]) + ".png";
+
+		int bufferSize = snprintf(nullptr, 0, "%d", time_vector[i]) + 1;
+		char* pointStr = new char[bufferSize];
+		snprintf(pointStr, bufferSize, "%d", time_vector[i]);
+
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, App->scoreFontYellow, pointStr);
+
+	/*	std::string filename = "Assets/Interface/Color_use/Yellow/Yellow_Numeros/Yellow_" + std::to_string(time_vector[i]) + ".png";
 		SDL_Texture* Time = App->textures->Load(filename.c_str());
-		App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+		App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);*/
 		IconPosition -= 16;
 		if (IconPosition == 54) {
 			App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);

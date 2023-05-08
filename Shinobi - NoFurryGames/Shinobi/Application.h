@@ -4,7 +4,7 @@
 #include "Globals.h"
 #include "SDL/include/SDL_timer.h"
 
-#define NUM_MODULES 19
+#define NUM_MODULES 20
 
 
 class Module;
@@ -30,7 +30,7 @@ class ModuleRender;
 class ModuleEnemies;
 class ModuleFadeToBlack;
 class ModuleBoss;
-
+class ModuleFonts;
 
 class Application
 {
@@ -59,10 +59,21 @@ public:
 public:
 	// An array to store all modules
 	Module* modules[NUM_MODULES];
+	Module* activeModule = nullptr;
 
 	bool godMode = false;
 	double deltaTime = 0;
 
+
+	int life_num;
+
+
+	//Fonts
+	int scoreFontRed = -1;
+	int scoreFontBlue = -1;
+	int scoreFontWhite = -1;
+	int scoreFontYellow = -1;
+	char scoreText[10] = { "\0" };
 
 	// All the modules stored individually
 	ModuleWindow* window = nullptr;
@@ -85,7 +96,7 @@ public:
 	ModuleCollisions* collisions = nullptr;
 	ModuleAudio* audio = nullptr;
 	ModuleEnemies* enemy = nullptr;
-
+	ModuleFonts* fonts = nullptr;
 
 	ModuleFadeToBlack* fade = nullptr;
 	ModuleRender* render = nullptr;

@@ -62,10 +62,10 @@ bool ModuleScene_MainMenu::Start()
 
 	
 	LogoMedio = App->textures->Load("Assets/Interface/Color_use/White/Sega.png");
-
 	LetraNomRed = App->textures->Load("Assets/Interface/Color_use/Red/Shinobi/SHINOBI.png");
 	LetraNomWhite = App->textures->Load("Assets/Interface/Color_use/White/Shinobi/SHINOBI.png");
 	LetraIconC = App->textures->Load("Assets/Interface/Color_use/White/Icon/Sega.png");
+
 	LetraYear = App->textures->Load("Assets/Interface/Color_use/White/Icon/1987.png");
 	currentAnimation = &eyesAnimation;
 
@@ -75,12 +75,19 @@ bool ModuleScene_MainMenu::Start()
 	}
 	App->scene_Level1->hostage_num = 4;
 
+	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz       " };
+	App->scoreFontRed = App->fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
+	App->scoreFontBlue = App->fonts->Load("Assets/Interface/Fonts/Blue.png", lookupTable, 3);
+	App->scoreFontWhite = App->fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);
+	App->scoreFontYellow = App->fonts->Load("Assets/Interface/Fonts/Yellow.png", lookupTable, 3);
+
+
 	return ret;
 }
 
 update_status ModuleScene_MainMenu::Update()
 {
-	App->scene_Level1->life_num = 3;
+	App->life_num = 3;
 	App->scene_Level1->total_time = 180;
 	
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
@@ -147,7 +154,13 @@ void ModuleScene_MainMenu::printLetra() {
 void ModuleScene_MainMenu::printYear() {
 	int IconPosition = 50;
 
+
+	//App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, scoreFont, "1987");
+
 	App->render->Blit(LetraYear, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+
+
+
 }
 
 void ModuleScene_MainMenu::printIconC() {

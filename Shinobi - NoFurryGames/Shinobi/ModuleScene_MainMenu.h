@@ -3,6 +3,8 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "ModuleFonts.h"
+
 #include <vector>
 #include <iostream>
 #include <string> 
@@ -94,10 +96,9 @@ public:
 	float timer = 0.0f;
 	const float switchTime = 100.0f; // Tiempo Cambiar Color
 
-
-	const int CAR_WIDTH = 10;
-	const int CAR_HEIGHT = 0;
-	const int CAR_OFFSET = 1;
+	//Fonts
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
 
 		
 };

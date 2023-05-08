@@ -42,6 +42,7 @@ public:
 
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
+	int crouchedSpeed = 1;
 
 	float jumpForce = 4.8f;
 	float currJumpForce = 0;
@@ -57,6 +58,11 @@ public:
 	bool holdingGun = false;
 
 	bool isSecondFloor = false;
+
+	bool enemyInRange = false;
+
+	int marginCollider = 10;
+	int rangeLength = 32;
 
 	
 
@@ -91,10 +97,18 @@ public:
 	Animation PistolajumpAnim;
 	Animation PistolajumpAttackAnim;
 	Animation PistolaattackAnim;
+
+	Animation PatadaAnim;
+	Animation EspadaCrouchAnim;
+	Animation EspadaAnim;
+	Animation PatadaSaltoAnim;
+	Animation PatadaKatanaAnim;
+
 	
 
 	// The player's collider
 	Collider* collider = nullptr;
+	Collider* rangeCollider = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
@@ -110,6 +124,9 @@ public:
 	uint ataqueFX = 0;
 	uint morirFX = 0;
 	uint efectoSaltoPlataformaFX = 0;
+
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
 
 };
 
