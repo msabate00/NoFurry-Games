@@ -1,65 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{f2fb50dd-1bed-4f16-9157-4f07ecda0c90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Application">
-      <UniqueIdentifier>{26624bde-f14d-479b-ae77-3033eaf32130}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules">
-      <UniqueIdentifier>{ffad0359-d7d2-47f4-8ec1-7e28165b2a34}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entities">
-      <UniqueIdentifier>{5a93acf0-8e23-4a2e-b2a0-c82f84453053}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Core">
-      <UniqueIdentifier>{d098ce9f-860f-420a-8d3d-48b616eb51a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay">
-      <UniqueIdentifier>{12b0351d-3098-468f-aee6-541864803265}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entities\Enemies">
-      <UniqueIdentifier>{c7d9730c-f6d7-4f37-a79d-43c6c4cac02c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes">
-      <UniqueIdentifier>{a9541449-ce38-4e91-b53b-0821afd34b87}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Entities\Hostage">
-      <UniqueIdentifier>{34c466c3-1309-47b5-b190-6589a4eca015}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\Level1">
-      <UniqueIdentifier>{42932b17-20a6-4d67-834f-c79929a65cd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\Level1\Extras">
-      <UniqueIdentifier>{cd2c9007-4d67-4463-a065-87693c0bdadb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\Level2">
-      <UniqueIdentifier>{2c8df509-4e3b-45c5-a85f-e2df1fe11e81}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\Level_Boss1">
-      <UniqueIdentifier>{ab0e2bc1-907d-4e0e-a706-2a7c56f8675d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\MainMenu">
-      <UniqueIdentifier>{92d7a3e3-4312-4c5c-b53b-5624d640bdce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\Intro">
-      <UniqueIdentifier>{03fa6295-192e-46f8-9c25-9399d7307175}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Application.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
@@ -69,14 +10,32 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files\Modules</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>Source Files\Entities</Filter>
+    <ClCompile Include="Enemy_Basic.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
+    <ClCompile Include="EnemyBrownShield.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyPurpleShield.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Hostage.cpp">
+      <Filter>Source Files\Entities\Hostage</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCollisions.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
     <ClCompile Include="ModuleInput.cpp">
       <Filter>Source Files\Modules\Core</Filter>
@@ -93,72 +52,56 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleCollisions.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleAudio.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Basic.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClCompile Include="ModuleBoss.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
+      <Filter>Source Files\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="Path.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleFadeToBlack.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleScene_Level1_SecondFloor.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level1\Extras</Filter>
-    </ClCompile>
-    <ClCompile Include="Hostage.cpp">
-      <Filter>Source Files\Entities\Hostage</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleScene_Level1_SecondFloor_Enemies.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level1\Extras</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyBrownShield.cpp">
+    <ClCompile Include="EnemyGun.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyKnife.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleScene_Boss1.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
     <ClCompile Include="ModuleScene_Level1.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Level1</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleScene_MainMenu.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\MainMenu</Filter>
+    <ClCompile Include="ModuleScene_Level1_SecondFloor.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level1</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleScene_Intro.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Intro</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleScene_Intro2.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Intro</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyPurpleShield.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClCompile Include="ModuleScene_Level1_SecondFloor_Enemies.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level1</Filter>
     </ClCompile>
     <ClCompile Include="ModuleScene_Level2.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level2</Filter>
+      <Filter>Source Files\Modules\Gameplay\Scenes\level2</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleScene_Boss1.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
+    <ClCompile Include="ModuleScene_Intro.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleFonts.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
+    <ClCompile Include="ModuleScene_Intro2.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleBoss.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
+    <ClCompile Include="ModuleScene_MainMenu.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyKnife.cpp">
-    <ClCompile Include="EnemyGun.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,20 +114,32 @@
     <ClInclude Include="MemLeaks.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="Enemy.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="Enemy_Basic.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Module.h">
-      <Filter>Source Files\Modules</Filter>
+    <ClInclude Include="EnemyBrownShield.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Source Files\Entities</Filter>
+    <ClInclude Include="EnemyPurpleShield.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
+    <ClInclude Include="Hostage.h">
+      <Filter>Source Files\Entities\Hostage</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleCollisions.h">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
     <ClInclude Include="ModuleInput.h">
       <Filter>Source Files\Modules\Core</Filter>
@@ -201,72 +156,112 @@
     <ClInclude Include="ModuleWindow.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleCollisions.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Source Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleAudio.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Basic.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClInclude Include="ModuleBoss.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Module.h">
+      <Filter>Source Files\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleFadeToBlack.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleScene_Level1_SecondFloor.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level1\Extras</Filter>
-    </ClInclude>
-    <ClInclude Include="Hostage.h">
-      <Filter>Source Files\Entities\Hostage</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleScene_Level1_SecondFloor_Enemies.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level1\Extras</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyBrownShield.h">
+    <ClInclude Include="EnemyGun.h">
       <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyKnife.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleScene_Boss1.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
     <ClInclude Include="ModuleScene_Level1.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Level1</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleScene_MainMenu.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\MainMenu</Filter>
+    <ClInclude Include="ModuleScene_Level1_SecondFloor.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level1</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleScene_Intro.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Intro</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleScene_Intro2.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Intro</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyPurpleShield.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClInclude Include="ModuleScene_Level1_SecondFloor_Enemies.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Level1</Filter>
     </ClInclude>
     <ClInclude Include="ModuleScene_Level2.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level2</Filter>
+      <Filter>Source Files\Modules\Gameplay\Scenes\level2</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleFonts.h">
-      <Filter>Source Files\Modules\Core</Filter>
+    <ClInclude Include="ModuleScene_Intro.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleBoss.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
+    <ClInclude Include="ModuleScene_Intro2.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleScene_Boss1.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Level_Boss1</Filter>
+    <ClInclude Include="ModuleScene_MainMenu.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyKnife.h">
-    <ClInclude Include="EnemyGun.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
+    <ClInclude Include="Particle.h">
+      <Filter>Source Files\Entities</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{6c6b2e0a-ce08-4f4b-a34e-a006d26bf65f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{bb6b0c0d-b113-4377-bfbc-5c023888d8b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{610294e1-5b40-42ed-85e2-dfe1842ee75a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Application">
+      <UniqueIdentifier>{717fdda5-afa5-492e-9ad9-55d193450031}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{f67ad473-8492-44f6-b1fc-b3404c044821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules">
+      <UniqueIdentifier>{7061f373-efaf-4317-9ec7-a147e43cf37f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{e8162c29-eba9-4d63-bd64-26626e97aa66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Enemies">
+      <UniqueIdentifier>{b38cd1cd-f44c-45a5-b677-69dc14ebe8ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Hostage">
+      <UniqueIdentifier>{22c0c9ee-3279-45d6-b98f-5d2146740066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Core">
+      <UniqueIdentifier>{f8b8b0c6-5821-4a78-9758-93e5c47014f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay">
+      <UniqueIdentifier>{20d48eb7-a100-40aa-8a21-85f346b1705d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes">
+      <UniqueIdentifier>{6f2e93ad-b7a1-4032-ad1d-88249cb70896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes\Boss">
+      <UniqueIdentifier>{3bd003c5-d803-4d54-808a-3dee2d6841c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes\Level1">
+      <UniqueIdentifier>{39fafaf9-aa96-48a1-9d4a-c321dfd98709}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes\level2">
+      <UniqueIdentifier>{d5b1abda-b63c-47d0-9ab6-2f7d08766e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes\Menu">
+      <UniqueIdentifier>{2464f6b8-53c3-49a2-80fa-46a7adb2afb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
