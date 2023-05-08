@@ -270,7 +270,6 @@ update_status ModulePlayer::Update()
 {
 
 	
-
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
 	currJumpForce += -GRAVITY;
@@ -451,6 +450,9 @@ update_status ModulePlayer::Update()
 
 		if (enemyInRange && !holdingGun) {
 			//ANIMACION DE ATAQUE KATANA HACER
+
+			
+
 			currentAnimation = &PatadaAnim;
 
 		}
@@ -633,7 +635,7 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
-
+	
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 >= App->render->camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
 
@@ -742,9 +744,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 
 	//Colision rango
-	if (c1 == rangeCollider && c2->type == Collider::Type::ENEMY && (c2->GetRect().x > position.x && facingRight) || (c2->GetRect().x < position.x && !facingRight)) {
+	//if (c1 == rangeCollider && c2->type == Collider::Type::ENEMY && (c2->GetRect().x > position.x && facingRight) || (c2->GetRect().x < position.x && !facingRight)) {
+	if (c1 == rangeCollider && c2->type == Collider::Type::ENEMY) {
 
-		enemyInRange = true;
+		if (c2->GetRect().x > position.x && facingRight) {
+			enemyInRange = true;
+		}
+		else if (c2->GetRect().x < position.x && !facingRight) {
+			enemyInRange = true;
+		}
+		
 	}
 	else {
 		enemyInRange = false;
