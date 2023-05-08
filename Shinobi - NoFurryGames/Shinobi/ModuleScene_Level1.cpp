@@ -98,6 +98,8 @@ bool ModuleScene_Level1::Start()
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1113, FLOOR_LEVEL - 64); //Enemigo básico 6
 	}
 
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 250, FLOOR_LEVEL - 64);
+
 
 	//Hostage
 	if (hostageTaken[0] == false) {

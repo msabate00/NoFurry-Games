@@ -18,6 +18,7 @@
 #include "Hostage.h"
 #include "EnemyBrownShield.h"
 #include "EnemyPurpleShield.h"
+#include "EnemyGun.h"
 
 #include <iostream>
 #include "SDL/include/SDL_scancode.h"
