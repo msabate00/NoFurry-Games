@@ -54,8 +54,8 @@ bool ModuleScene_Level2::Start()
 	
 	bool ret = true;
 
-	stageTexture2 = App->textures->Load("Assets/Maps/Level2/Nivel2_wide.png");
-	stageBackgroundTexture2 = App->textures->Load("Assets/Maps/Level2/Nivel2_wide_fondo.png");
+	stageTexture = App->textures->Load("Assets/Maps/Level2/Nivel2_wide.png");
+	stageBackgroundTexture = App->textures->Load("Assets/Maps/Level2/Nivel2_wide_fondo.png");
 
 
 	// Colliders ---
@@ -111,6 +111,11 @@ update_status ModuleScene_Level2::Update()
 update_status ModuleScene_Level2::PostUpdate()
 {
 
+	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
+	App->render->Blit(stageBackgroundTexture, 0, -100, SDL_FLIP_NONE, &background, 0.35f); // Edificios del fondo
+	App->render->Blit(stageTexture, 0, -141, SDL_FLIP_NONE, &ground, 1.0f); // Suelo y eso
+
+	
 	printSkillIcon();
 	printHostageIcon(hostage_num);
 	printLifeIcon(life_num);
@@ -132,7 +137,6 @@ bool ModuleScene_Level2::CleanUp()
 	App->collisions->Disable();
 	App->player->Disable();
 	App->enemy->Disable();
-	App->audio->Disable();
 	return true;
 }
 
