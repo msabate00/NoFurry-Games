@@ -73,6 +73,17 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 1599, 119, 32, 32 }, Collider::Type::WALL); // 18 caja
 	App->collisions->AddCollider({ 1599, 151, 96, 64 }, Collider::Type::WALL); // 19 caja grande
 	App->collisions->AddCollider({ 1695, 183, 32, 32 }, Collider::Type::WALL); // 20 caja
+	
+	//Limites jugador
+	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 2048, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
+
+	//Musica
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg", 2.0f);
+
+
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 	return ret;
 }
 

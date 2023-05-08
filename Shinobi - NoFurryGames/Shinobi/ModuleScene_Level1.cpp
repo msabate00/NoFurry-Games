@@ -123,7 +123,7 @@ bool ModuleScene_Level1::Start()
 	start_time = time(nullptr);
 
 	//Musicadddd
-	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 0.0f);
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 2.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
