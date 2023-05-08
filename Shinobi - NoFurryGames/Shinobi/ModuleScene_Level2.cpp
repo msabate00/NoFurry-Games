@@ -62,17 +62,17 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 2046, 9 }, Collider::Type::WALL);
 
 	//Cajas
-	App->collisions->AddCollider({ 287, 183, 32, 32 }, Collider::Type::WALL); //1 caja
-	App->collisions->AddCollider({ 575, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
-	App->collisions->AddCollider({ 895, 183, 64, 32 }, Collider::Type::WALL); // 4 + 5 cajas
-	App->collisions->AddCollider({ 959, 151, 353, 64 }, Collider::Type::WALL); // Bloque grande
-	App->collisions->AddCollider({ 1023, 119, 224, 32 }, Collider::Type::WALL); // fila cajas 6 - 12
-	App->collisions->AddCollider({ 1119, 87, 32, 32 }, Collider::Type::WALL); // caja 13
-	App->collisions->AddCollider({ 1312, 183, 96, 32 }, Collider::Type::WALL); // 14 + 15 + 16 cajas
-	App->collisions->AddCollider({ 1567, 183, 32, 32 }, Collider::Type::WALL); // 17 caja
-	App->collisions->AddCollider({ 1599, 119, 32, 32 }, Collider::Type::WALL); // 18 caja
-	App->collisions->AddCollider({ 1599, 151, 96, 64 }, Collider::Type::WALL); // 19 caja grande
-	App->collisions->AddCollider({ 1695, 183, 32, 32 }, Collider::Type::WALL); // 20 caja
+	App->collisions->AddCollider({ 288, 183, 32, 32 }, Collider::Type::WALL); //1 caja
+	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
+	App->collisions->AddCollider({ 896, 183, 64, 32 }, Collider::Type::WALL); // 4 + 5 cajas
+	App->collisions->AddCollider({ 960, 151, 353, 64 }, Collider::Type::WALL); // Bloque grande
+	App->collisions->AddCollider({ 1024, 119, 224, 32 }, Collider::Type::WALL); // fila cajas 6 - 12
+	App->collisions->AddCollider({ 1120, 87, 32, 32 }, Collider::Type::WALL); // caja 13
+	App->collisions->AddCollider({ 1313, 183, 96, 32 }, Collider::Type::WALL); // 14 + 15 + 16 cajas
+	App->collisions->AddCollider({ 1568, 183, 32, 32 }, Collider::Type::WALL); // 17 caja
+	App->collisions->AddCollider({ 1600, 119, 32, 32 }, Collider::Type::WALL); // 18 caja
+	App->collisions->AddCollider({ 1600, 151, 96, 64 }, Collider::Type::WALL); // 19 caja grande
+	App->collisions->AddCollider({ 1696, 183, 32, 32 }, Collider::Type::WALL); // 20 caja
 	
 	//Limites jugador
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
