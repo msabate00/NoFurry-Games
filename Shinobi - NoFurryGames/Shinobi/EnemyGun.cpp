@@ -1,49 +1,77 @@
-#include "EnemyPurpleShield.h"
-
+#include "EnemyGun.h"
 #include "Application.h"
 #include "ModuleCollisions.h"
-#include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
-#include "ModuleScene_Level1.h"
+#include "ModuleRender.h"
 #include <iostream>
+
+#include "SDL/include/SDL_render.h"
 
 using namespace std;
 
-EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
+	walkBasic.PushBack({ 11, 12,35,64 });
+	walkBasic.PushBack({ 52, 12,35,64 });
+	walkBasic.PushBack({ 93, 12,35,64 });
 
-	walkBasic.PushBack({ 282, 332, 41, 51 });
-	walkBasic.PushBack({ 329, 332, 41, 51 });
-	walkBasic.PushBack({ 376, 332, 41, 51 });
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
-	staticAnim.PushBack({ 509, 258,33,65 });
-	staticAnim.PushBack({ 548, 258,33,65 });
-	staticAnim.loop = true;
-	staticAnim.speed = 0.01f;
+	//salto
+	jumping.PushBack({ 12, 161,42,65 });
+	jumping.PushBack({ 60, 161,42,65 });
+	jumping.PushBack({ 108, 161,42,65 });
 
-	attackPurple.PushBack({ 282, 253,47,70 });
-	attackPurple.PushBack({ 335, 253, 47,70 });
-	attackPurple.PushBack({ 388, 253,59,70 });
-	attackPurple.PushBack({ 453, 253,47,70 });
-	attackPurple.loop = false;
-
-	attackPurple.speed = 0.1f;
+	jumping.loop = false;
+	jumping.speed = 0.01f;
 
 	//muerte
+	Death.PushBack({ 22, 92, 30, 54 });
+	Death.PushBack({ 59, 108, 65, 26 });
+	Death.PushBack({ 131, 108, 65, 26 });
 
-	Death.PushBack({ 429, 331, 39, 65 });
-	Death.PushBack({ 474, 331, 39, 65 });
-	Death.PushBack({ 519, 331, 39, 65 });
-	Death.loop = false;
 	Death.speed = 0.1f;
+	Death.loop = false;
 
-	collider = App->collisions->AddCollider({ 0, 0,44,65 }, Collider::Type::ENEMY, (Module*)App->enemy);
+	Disapear.PushBack({ 0,0,0,0 });
+
+	//ataque
+
+	attackAnim.PushBack({ 205,13,38,63 });
+	attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 143,13,56,63 });
+	attackAnim.PushBack({ 143,13,56,63 });
+	attackAnim.PushBack({ 250,13,38,63 });
+	attackAnim.PushBack({ 11, 12,35,64 });
+
+	attackAnim.speed = 0.2f;
+	attackAnim.loop = false;
+
+	//ANIMACIÓN ESTÁTICA
+	staticAnim.PushBack({ 11, 12,35,64 });
+	staticAnim.speed = 0.1f;
+
+	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
+
+
+
+	facingLeft = true;
+
+	goingToPlayer = true;
+	facingLeft = true;
+	moveToDie = false;
+
+	viewRange = 250;
+	wanderRange = 50;
+	attackRange = 0;
+	points = 100;
+
+
 }
 
-void EnemyPurpleShield::Update()
+void EnemyGun::Update()
 {
 	currentAnim = &walkBasic;
 
@@ -54,9 +82,6 @@ void EnemyPurpleShield::Update()
 		isJumping = true;
 	}
 	position.y -= jumpSpeed;
-
-
-
 
 	if (position.x - App->player->position.x > viewRange)
 	{
@@ -88,12 +113,13 @@ void EnemyPurpleShield::Update()
 	}
 
 	if (isAttacking) {
-		currentAnim = &attackPurple;
+		currentAnim = &attackAnim;
 
 		if (currentAnim->HasFinished()) {
 			isAttacking = false;
 			currentAnim->Reset();
 		}
+
 	}
 
 	if (App->player->destroyed && App->player->currentAnimation->HasFinished())
@@ -108,12 +134,7 @@ void EnemyPurpleShield::Update()
 			position.x += speed;
 		}
 
-
 	}
-
-
 
 	Enemy::Update();
 }
-
-
