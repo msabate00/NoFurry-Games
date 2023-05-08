@@ -42,7 +42,7 @@ private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	Animation attackBrown;
+	Animation attackPurple;
 
 };
 
