@@ -92,7 +92,7 @@ update_status ModuleRender::Update()
 		camera.x -= App->player->speed * SCREEN_SIZE;
 	}*/
 	
-	if (App->godMode) {
+	if (App->debugMode) {
 	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
 		camera.y -= cameraSpeed;
 
@@ -115,7 +115,7 @@ update_status ModuleRender::Update()
 	}
 	
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) {
-		App->godMode = !App->godMode;
+		App->debugMode = !App->debugMode;
 	}
 	
 	
@@ -196,7 +196,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip fli
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
-	if (App->godMode && false) {
+	if (App->debugMode && false) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderDrawRect(renderer, &rect);
 	}

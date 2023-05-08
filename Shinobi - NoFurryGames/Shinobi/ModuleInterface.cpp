@@ -12,6 +12,8 @@
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleScene_Level2.h"
+#include "ModuleScene_Boss1.h"
 #include "ModuleFonts.h"
 
 
@@ -64,8 +66,37 @@ update_status ModuleInterface::Update()
 update_status ModuleInterface::PostUpdate()
 {
 
+	//INTERFAZ COMUN PARA TODO EL JUEGO
 
-	if (App->godMode) {
+	if (App->scene_Level1->IsEnabled() || App->scene_Level2->IsEnabled() || App->scene_Boss1->IsEnabled()) {
+		//INTERFAZ PARA TODOS LOS NIVELES JUGABLES
+	
+	}
+	
+
+
+
+	if (App->scene_Level1->IsEnabled()) {
+		//INTERFAZ PARA EL NIVEL 1
+
+
+
+	}
+	else if (App->scene_Level2->IsEnabled()) {
+		//INTERFAZ PARA EL NIVEL 2
+
+
+	}
+	else if (App->scene_Boss1->IsEnabled()) {
+		//INTERFAZ PARA EL JEFE
+	
+	
+	
+	}
+
+
+	//INTERFAZ DEL GODMODE
+	if (App->debugMode) {
 		SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, 240);
 		SDL_Rect dstRect{
 		(int)(-App->render->camera.x * 0) + 0 * SCREEN_SIZE,

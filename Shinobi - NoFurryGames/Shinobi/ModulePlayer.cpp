@@ -21,7 +21,7 @@
 
 using namespace std;
 
-// Street Fighter reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 
 int frameContador = 0;
 
@@ -749,7 +749,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
 	
-		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_MainMenu, 20);
+		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level2, 20);
 
 	}
 

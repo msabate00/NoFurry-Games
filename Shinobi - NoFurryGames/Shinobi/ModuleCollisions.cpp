@@ -177,7 +177,7 @@ update_status ModuleCollisions::Update()
 
 update_status ModuleCollisions::PostUpdate()
 {
-	if (App->godMode)
+	if (App->debugMode)
 		DebugDraw();
 
 	return update_status::UPDATE_CONTINUE;

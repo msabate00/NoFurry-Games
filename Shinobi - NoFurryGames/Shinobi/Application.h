@@ -62,7 +62,7 @@ public:
 	Module* modules[NUM_MODULES];
 	Module* activeModule = nullptr;
 
-	bool godMode = false;
+	bool debugMode = false;
 	double deltaTime = 0;
 
 
