@@ -65,7 +65,7 @@ public:
 	bool debugMode = false;
 	bool godMode = false;
 	bool showRect = false;
-	bool showDebug = true;
+	bool showDebug = false;
 	double deltaTime = 0;
 
 

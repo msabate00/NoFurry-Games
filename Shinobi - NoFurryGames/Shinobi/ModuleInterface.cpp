@@ -101,12 +101,17 @@ update_status ModuleInterface::PostUpdate()
 		SDL_Rect dstRect{
 		(int)(-App->render->camera.x * 0) + 0 * SCREEN_SIZE,
 		(int)(-App->render->camera.y * 0) + 0 * SCREEN_SIZE,
-		160 * SCREEN_SIZE, 97 * SCREEN_SIZE };
+		144 * SCREEN_SIZE, 97 * SCREEN_SIZE };
 
 		SDL_RenderFillRect(App->render->renderer, &dstRect);
 		App->fonts->BlitText(0, 0, App->debugFontWhite, "f1 - t0ggle debugm0de");
 		App->fonts->BlitText(0, 8, App->debugFontWhite, "f2 - weap0n switcher");
-		App->fonts->BlitText(0, 16, App->debugFontWhite, "f3 - t00gle g0dm0de");
+		if (App->godMode) {
+			App->fonts->BlitText(0, 16, App->debugFontWhite, "f3 - t00gle g0dm0de -0n");
+		}
+		else {
+			App->fonts->BlitText(0, 16, App->debugFontWhite, "f3 - t00gle g0dm0de -0ff");
+		}
 		App->fonts->BlitText(0, 24, App->debugFontWhite, "f4 - t00gle sh0wrect");
 		App->fonts->BlitText(0, 32, App->debugFontWhite, "f5 - l0ad mainmenu");
 		App->fonts->BlitText(0, 40, App->debugFontWhite, "f6 - hide debugmenu");
@@ -122,7 +127,7 @@ update_status ModuleInterface::PostUpdate()
 		SDL_Rect dstRect{
 		(int)(-App->render->camera.x * 0) + 0 * SCREEN_SIZE,
 		(int)(-App->render->camera.y * 0) + 0 * SCREEN_SIZE,
-		160 * SCREEN_SIZE, 9 * SCREEN_SIZE };
+		120 * SCREEN_SIZE, 12 * SCREEN_SIZE };
 		SDL_RenderFillRect(App->render->renderer, &dstRect);
 		App->fonts->BlitText(0, 0, App->debugFontWhite, "f6 - sh0w debugmenu");
 	}
