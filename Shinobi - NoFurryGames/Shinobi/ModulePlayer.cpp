@@ -155,7 +155,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PatadaAnim.PushBack({ 375, 656, 44, 37 });
 	PatadaAnim.PushBack({ 427, 654, 65, 39 });
 	PatadaAnim.PushBack({ 375, 656, 44, 37 });
-	PatadaAnim.speed = 0.1f;
+	PatadaAnim.speed = 0.2f;
 	PatadaAnim.loop = false;
 
 	EspadaCrouchAnim.PushBack({ 10, 825, 69, 51 });
@@ -165,7 +165,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	EspadaCrouchAnim.PushBack({ 310, 825, 69, 51 });
 	EspadaCrouchAnim.PushBack({ 385, 825, 69, 51 });
 	EspadaCrouchAnim.PushBack({ 460, 825, 69, 51 });
-	EspadaCrouchAnim.speed = 0.1f;
+	EspadaCrouchAnim.speed = 0.5f;
 	EspadaCrouchAnim.loop = false;
 
 	EspadaAnim.PushBack({ 10, 916, 67, 63 });
@@ -176,7 +176,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	EspadaAnim.PushBack({ 375, 916, 67, 63 });
 	EspadaAnim.PushBack({ 448, 916, 67, 63 });
 	EspadaAnim.PushBack({ 521, 916, 67, 63 });
-	EspadaAnim.speed = 0.1f;
+	EspadaAnim.speed = 0.5f;
 	EspadaAnim.loop = false;
 
 }
@@ -393,7 +393,7 @@ update_status ModulePlayer::Update()
 
 			if (enemyInRange) {
 				//ANIMACION DE ATAQUE KATANA HACER
-				currentAnimation = &attack_shurikenAnim;
+				currentAnimation = &EspadaAnim;
 
 			}else if (!holdingGun) {
 				currentAnimation = &attack_shurikenAnim;
@@ -424,10 +424,10 @@ update_status ModulePlayer::Update()
 
 		if (enemyInRange) {
 			//ANIMACION DE ATAQUE KATANA HACER
-			currentAnimation = &crouched_AttackAnim;
+			currentAnimation = &PatadaAnim; 
 
 		}else if (!holdingGun) {
-			currentAnimation = &crouched_AttackAnim;
+				currentAnimation = &crouched_AttackAnim;
 		}else{
 			currentAnimation = &Pistolacrouched_AttackAnim;
 		}
