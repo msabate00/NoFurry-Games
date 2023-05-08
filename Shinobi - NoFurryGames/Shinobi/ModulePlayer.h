@@ -101,6 +101,9 @@ public:
 	Animation PatadaAnim;
 	Animation EspadaCrouchAnim;
 	Animation EspadaAnim;
+	Animation PatadaSaltoAnim;
+	Animation PatadaKatanaAnim;
+
 	
 
 	// The player's collider
