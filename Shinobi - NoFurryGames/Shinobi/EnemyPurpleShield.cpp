@@ -88,22 +88,12 @@ void EnemyPurpleShield::Update()
 	}
 
 	if (isAttacking) {
-<<<<<<< Updated upstream
 		currentAnim = &attackPurple;
 
 		if (currentAnim->HasFinished()) {
 			isAttacking = false;
 			currentAnim->Reset();
 		}
-
-=======
-		currentAnim = &attackAnim;
-
-		if (currentAnim->HasFinished()) {
-			isAttacking = false;
-			currentAnim->Reset();
-		}
-
 	}
 
 	if (App->player->destroyed && App->player->currentAnimation->HasFinished())
@@ -118,12 +108,12 @@ void EnemyPurpleShield::Update()
 			position.x += speed;
 		}
 
->>>>>>> Stashed changes
+
 	}
 
 
 
 	Enemy::Update();
-	}
+}
 
 
