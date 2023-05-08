@@ -46,7 +46,7 @@ public:
 	iPoint position;
 	int speed = 1;
 	int life;
-	float inmuneTime = 3;
+	float inmuneTime = 180;
 	bool facingRight = false;
 	bool inmune = false;
 

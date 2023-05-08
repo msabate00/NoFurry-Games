@@ -9,6 +9,7 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollisions.h"
+#include "ModuleScene_MainMenu.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
 #include "ModuleFadeToBlack.h" 
@@ -99,6 +100,7 @@ bool ModuleBoss::Start()
 	position.y = 130;
 	life = 5;
 	inmune = false;
+	inmuneTime = 180;
 
 	return true;
 }
@@ -118,11 +120,22 @@ update_status ModuleBoss::Update()
 	current_legs_Animation = &legs_IdleAnim;
 
 	
-	if (facingRight) {
-		position.x += speed;
+	if (!inmune) {
+
+		if (facingRight) {
+			position.x += speed;
+		}
+		else {
+			position.x -= speed;
+		}
+		
 	}
 	else {
-		position.x -= speed;
+		inmuneTime--;
+		if (inmuneTime <= 0) {
+			inmuneTime = 180;
+			inmune = false;
+		}
 	}
 
 	if (!facingRight && position.x <= 100) {
@@ -192,8 +205,12 @@ bool ModuleBoss::CleanUp()
 void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 {
 
-	if (c1 == head_Collider) {
-		cout << "ay me dieron en la pinche cabesa";
+	if (c1 == head_Collider && c2->type == Collider::Type::PLAYER_SHOT && !inmune) {
+		inmune = true;
+		life--;
+		if (life <= 0) {
+			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);
+		}
 	}
 
 
