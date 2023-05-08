@@ -74,6 +74,11 @@ public:
 	Particle bonus1000;
 	Particle bonusGun;
 
+
+	Particle fireBall;
+
+
+
 };
 
 #endif // !__MODULEPARTICLES_H__

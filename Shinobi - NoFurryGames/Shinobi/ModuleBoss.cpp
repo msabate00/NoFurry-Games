@@ -96,7 +96,9 @@ bool ModuleBoss::Start()
 
 	facingRight = false;
 	position.x = 375;
-	position.y = 134;
+	position.y = 130;
+	life = 5;
+	inmune = false;
 
 	return true;
 }
@@ -116,17 +118,19 @@ update_status ModuleBoss::Update()
 	current_legs_Animation = &legs_IdleAnim;
 
 	
-	/*if (facingRight) {
+	if (facingRight) {
 		position.x += speed;
 	}
 	else {
 		position.x -= speed;
-	}*/
+	}
 
 	if (!facingRight && position.x <= 100) {
+		current_legs_Animation = &legs_WalkForwardAnim;
 		facingRight = true;
 	}
 	else if (facingRight && position.x >= 300) {
+		current_legs_Animation = &legs_WalkForwardAnim;
 		facingRight = false;
 	}
 	
@@ -158,13 +162,13 @@ update_status ModuleBoss::PostUpdate()
 		
 	}
 	else {
-		App->render->Blit(texture, position.x + 11, position.y - 9, SDL_FLIP_HORIZONTAL, &rectHead);
-		App->render->Blit(texture, position.x, position.y+2, SDL_FLIP_HORIZONTAL, &rectTorso);
-		App->render->Blit(texture, position.x - 11, position.y + rectTorso.h, SDL_FLIP_HORIZONTAL, &rectLegs);
+		App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
+		App->render->Blit(texture, position.x, position.y-10, SDL_FLIP_HORIZONTAL, &rectTorso);
+		App->render->Blit(texture, position.x - 20, position.y-25 + rectTorso.h, SDL_FLIP_HORIZONTAL, &rectLegs);
 		
-		head_Collider->SetPos(position.x + 11, position.y - 9);
+		head_Collider->SetPos(position.x + 11, position.y - 5);
 		//torso_Collider->SetPos(position.x, position.y+2);
-		legs_Collider->SetPos(position.x - 11, position.y + rectTorso.h );
+		legs_Collider->SetPos(position.x - 11, position.y-25 + rectTorso.h );
 		
 	}
 
@@ -187,4 +191,10 @@ bool ModuleBoss::CleanUp()
 
 void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 {
+
+	if (c1 == head_Collider) {
+		cout << "ay me dieron en la pinche cabesa";
+	}
+
+
 }

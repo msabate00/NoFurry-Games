@@ -45,9 +45,10 @@ public:
 
 	iPoint position;
 	int speed = 1;
-	int life = 3;
+	int life;
 	float inmuneTime = 3;
 	bool facingRight = false;
+	bool inmune = false;
 
 	SDL_Texture* texture = nullptr;
 	Animation* current_head_Animation = nullptr;
