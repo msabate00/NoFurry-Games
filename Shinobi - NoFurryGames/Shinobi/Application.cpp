@@ -102,7 +102,7 @@ bool Application::Init()
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 
-	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz_·.,-  " };
+	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz_?,-  " };
 	scoreFontRed = fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
 	scoreFontBlue = fonts->Load("Assets/Interface/Fonts/Blue.png", lookupTable, 3);
 	scoreFontWhite = fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);

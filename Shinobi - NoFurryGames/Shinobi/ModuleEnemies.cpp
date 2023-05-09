@@ -9,6 +9,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
+#include "ModuleInterface.h"
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
@@ -299,16 +300,16 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				
 				switch (((Hostage*)enemies[i])->id) {
 					case 1:
-						App->scene_Level1->hostageTaken[0] = true;
+						App->interface_module->hostageTaken[0] = true;
 						break;
 					case 2:
-						App->scene_Level1->hostageTaken[1] = true;
+						App->interface_module->hostageTaken[1] = true;
 						break;
 					case 3:
-						App->scene_Level1->hostageTaken[2] = true;
+						App->interface_module->hostageTaken[2] = true;
 						break;
 					case 4:
-						App->scene_Level1->hostageTaken[3] = true;
+						App->interface_module->hostageTaken[3] = true;
 						break;
 				
 				

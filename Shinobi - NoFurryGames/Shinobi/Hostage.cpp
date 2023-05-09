@@ -5,6 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleAudio.h"
+#include "ModuleInterface.h"
 #include <iostream>
 
 using namespace std;
@@ -92,18 +93,18 @@ void Hostage::Update()
 				break;
 			case 200:
 				App->particles->AddParticle(App->particles->bonus200, position.x, position.y, Collider::Type::NONE);
-				App->scene_Level1->texture_num += 200;
+				App->interface_module->texture_num += 200;
 				break;
 			case 500:
 				App->particles->AddParticle(App->particles->bonus500, position.x, position.y, Collider::Type::NONE);
-				App->scene_Level1->texture_num += 500;
+				App->interface_module->texture_num += 500;
 				break;
 			case 1000:
 				App->particles->AddParticle(App->particles->bonus1000, position.x, position.y, Collider::Type::NONE);
-				App->scene_Level1->texture_num += 1000;
+				App->interface_module->texture_num += 1000;
 				break;
 		}
-		App->scene_Level1->hostage_num--;
+		App->interface_module->hostage_num--;
 		check2 = true;
 	}
 

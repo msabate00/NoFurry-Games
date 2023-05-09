@@ -151,7 +151,7 @@ update_status ModuleBoss::Update()
 		}
 		
 	}
-	else { //recibir daño
+	else { //recibir damage
 
 		current_head_Animation = &head_DamageAnim;
 		current_torso_Animation = &torso_DamageAnim;

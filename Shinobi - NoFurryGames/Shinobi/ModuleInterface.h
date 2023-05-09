@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "SDL/include/SDL_Rect.h"
 #include "SDL/include/SDL_render.h"
+
+#include <stack>
 #include <vector>
 #include <iostream>
 struct SDL_Texture;
@@ -20,7 +22,7 @@ public:
 
 	// Called on application start.
 	// Creates the rendering context using the program's window.
-	bool Init() override;
+	bool Start() override;
 
 	// Called at the beginning of the application loop
 	// Clears the rendering context to a background color
@@ -39,9 +41,84 @@ public:
 	// Destroys the rendering context
 	bool CleanUp() override;
 
+	//MainMenu
+
+	void printYear();
+	void printIconC();
+	void printNom();
+	void printLetra();
+	double letraGetX();
+	double letraGetY();
+	void InsertCoin();
+
+
+	//LV1
+	void printSkillIcon();
+	void printHostageIcon(int);
+	void printLifeIcon(int);
+	void printNum(int point);
+	void printTime(std::string time, SDL_Texture* texture);
+	void printPlayer1();
+	std::vector<int> getDigits(int number);
+	int updateTimer(time_t start_time);
+	std::string getTimeString(int elapsed_seconds);
+
 
 public:
 	
+
+	//MainMenu
+
+	SDL_Texture* Letra = nullptr;
+	SDL_Texture* LogoMedio = nullptr;
+	//SDL_Texture* LogoC = nullptr;
+	SDL_Texture* LetraYear = nullptr;
+	SDL_Texture* LetraIconC = nullptr;
+	SDL_Texture* LetraNomRed = nullptr;
+	SDL_Texture* LetraNomWhite = nullptr;
+	//int texture_Year = 1987;
+	bool NameColor = true;
+
+	//PrintaLetra ÈÌ
+	double letraX = 0;//SCREEN_WIDTH - 400
+	double letraY = 0;//SCREEN_HEIGHT - 200
+	double CENTER_X = SCREEN_WIDTH - 240;
+	double CENTER_Y = SCREEN_HEIGHT - 200;
+	double A = 200;
+	double B = 200;
+	double angle = 0;
+	const double ROTATION_SPEED = 6;
+	//int sumapix = 0;
+	float timer = 0.0f;
+	//Canbiar Color SHINOBI
+	//const float switchTime = 100.0f; // Tiempo Cambiar Color
+
+
+
+	//LV1
+
+	SDL_Texture* SkillIcon = nullptr;
+	SDL_Texture* HostageIcon = nullptr;
+	SDL_Texture* LifeIcon = nullptr;
+	SDL_Texture* LetraNum = nullptr;
+	SDL_Texture* save = nullptr;
+	SDL_Texture* Time = nullptr;
+	SDL_Texture* dosPunt = nullptr;
+	SDL_Texture* Player1 = nullptr;
+
+
+	int hostage_num = 4;
+	bool hostageTaken[4] = { false };
+	int texture_num = 0;
+	int elapsed_time;
+	time_t start_time;
+	int total_time = 180;
+	std::string time_string;
+	//Canbiar Color SHINOBI
+	
+	const float switchTime = 250.0f; // Tiempo Cambiar Color
+	const float switchTimeInsertCoin = 900.0f;
+
 };
 
 #endif //__MODULE_RENDER_H__

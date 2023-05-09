@@ -10,6 +10,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleInterface.h"
 
 #include <iostream>
 using namespace std;
@@ -50,13 +51,13 @@ bool ModuleScene_Level1_SecondFloor_Enemies::Start()
 
 
 	//Hostage
-	if (App->scene_Level1->hostageTaken[1] == false)
+	if (App->interface_module->hostageTaken[1] == false)
 		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 700, FLOOR_LEVEL - 141, true, 0, true, 2);
 
-	if (App->scene_Level1->hostageTaken[2] == false)
+	if (App->interface_module->hostageTaken[2] == false)
 		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1000, FLOOR_LEVEL - 141, false, 500, true, 3);
 
-	if (App->scene_Level1->hostageTaken[3] == false)
+	if (App->interface_module->hostageTaken[3] == false)
 		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1550, FLOOR_LEVEL - 141, false, 1000, true, 4);
 
 	//Enemies
