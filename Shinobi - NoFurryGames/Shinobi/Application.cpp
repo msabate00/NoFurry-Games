@@ -46,11 +46,13 @@ Application::Application()
 
 	//Level1
 	modules[6] =	scene_Level1 =						new ModuleScene_Level1(false);				
-	modules[7] =	enemy =								new ModuleEnemies(false);					
-	modules[8] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);	
+
 
 	//Level 2
-	modules[9] =	scene_Level2 =						new ModuleScene_Level2(false);
+	modules[7] =	scene_Level2 =						new ModuleScene_Level2(false);
+
+	modules[8] = enemy = new ModuleEnemies(false);
+	modules[9] = scene_Level1_SecondFloor_Enemies = new ModuleScene_Level1_SecondFloor_Enemies(false);
 
 	//Level Boss
 	modules[10]	=	scene_Boss1 =						new ModuleScene_Boss1(false);

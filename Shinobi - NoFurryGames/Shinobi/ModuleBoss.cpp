@@ -41,6 +41,8 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	//torso_IdleAnim.PushBack({3,50, 66, 53});
 
 	
+
+	
 	
 	torso_IdleAnim.PushBack({75,50, 66, 53});
 	torso_IdleAnim.PushBack({147,50, 66, 53});
@@ -59,15 +61,33 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_IdleAnim.PushBack({ 147,168, 66, 53});
 	torso_IdleAnim.PushBack({ 219,168, 66, 53});*/
 
+	torso_DamageAnim.PushBack({ 3,168, 66, 53 });
+	torso_DamageAnim.speed = 0.05;
 
-	legs_IdleAnim.PushBack({4, 234, 63, 59});
-	legs_IdleAnim.PushBack({73, 234, 63, 59});
-	legs_IdleAnim.PushBack({142, 234, 63, 59});
-	legs_IdleAnim.PushBack({211, 234, 63, 59});
-	legs_IdleAnim.PushBack({280, 234, 63, 59});
+	head_DamageAnim.PushBack({ 139,16,28,26 });
+	head_DamageAnim.speed = 0.05;
+	
+	legs_DamageAnim.PushBack({ 211, 234, 63, 59 });
+	legs_DamageAnim.speed = 0.05;
+
+	legs_IdleAnim.PushBack({ 73, 234, 63, 59 });
 	legs_IdleAnim.speed = 0.05;
 
 
+	legs_WalkForwardAnim.PushBack({4, 234, 63, 59});
+	legs_WalkForwardAnim.PushBack({73, 234, 63, 59});
+	legs_WalkForwardAnim.PushBack({142, 234, 63, 59});
+	legs_WalkForwardAnim.PushBack({211, 234, 63, 59});
+	legs_WalkForwardAnim.PushBack({280, 234, 63, 59});
+	legs_WalkForwardAnim.speed = 0.1f;
+	
+
+	generalDying.PushBack({ 5,345,59,94 });
+	generalDying.PushBack({ 70,345,59,94 });
+	generalDying.PushBack({ 135,345,109,94 });
+	generalDying.PushBack({ 250,345,109,94 });
+	generalDying.PushBack({ 365,345,109,94 });
+	generalDying.speed = 0.05;
 
 }
 
@@ -83,7 +103,7 @@ bool ModuleBoss::Start()
 
 	current_head_Animation = &head_IdleAnim;
 	current_torso_Animation = &torso_IdleAnim;
-	current_legs_Animation = &legs_IdleAnim;
+	current_legs_Animation = &legs_WalkForwardAnim;
 
 	current_head_Animation->Update();
 	current_torso_Animation->Update();
@@ -118,7 +138,7 @@ update_status ModuleBoss::Update()
 
 	current_head_Animation = &head_IdleAnim;
 	current_torso_Animation = &torso_IdleAnim;
-	current_legs_Animation = &legs_IdleAnim;
+	current_legs_Animation = &legs_WalkForwardAnim;
 
 	
 	if (!inmune) {
@@ -132,6 +152,12 @@ update_status ModuleBoss::Update()
 		
 	}
 	else { //recibir daño
+
+		current_head_Animation = &head_DamageAnim;
+		current_torso_Animation = &torso_DamageAnim;
+		current_legs_Animation = &legs_DamageAnim;
+
+
 		inmuneTime--;
 		if (inmuneTime <= 0) {
 			inmuneTime = 180;
@@ -152,7 +178,7 @@ update_status ModuleBoss::Update()
 
 	current_head_Animation->Update();
 	current_torso_Animation->Update();
-	current_torso_Animation->Update();
+	current_legs_Animation->Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -186,6 +212,14 @@ update_status ModuleBoss::PostUpdate()
 		
 	}
 
+	//if (life <= 0) {//morir
+
+	//	App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
+	//	App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
+	//	App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
+
+
+	//}
 
 	head_Collider->SetSize(current_head_Animation->GetCurrentFrame().w, current_head_Animation->GetCurrentFrame().h);
 	//torso_Collider->SetSize(current_torso_Animation->GetCurrentFrame().w, current_torso_Animation->GetCurrentFrame().h);
@@ -210,6 +244,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 		inmune = true;
 		life--;
 		if (life <= 0) {//morir
+			current_head_Animation = &generalDying;
 			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);
 		}
 	}

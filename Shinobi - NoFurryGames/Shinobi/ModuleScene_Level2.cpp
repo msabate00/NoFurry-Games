@@ -78,6 +78,12 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 2048, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 
+	//Hostage
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 300, FLOOR_LEVEL - 70, false, 200, false, 5);
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 26, false, 200, false, 6);
+	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 110, false, 200, false, 7);
+
+
 	//Musica
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg", 2.0f);
 
