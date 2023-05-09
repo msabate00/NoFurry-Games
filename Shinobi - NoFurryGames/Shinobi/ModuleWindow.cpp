@@ -4,6 +4,7 @@
 #include "Globals.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_image/include/SDL_image.h"
 
 
 ModuleWindow::ModuleWindow(bool startEnabled) : Module(startEnabled)
@@ -40,6 +41,8 @@ bool ModuleWindow::Init()
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
 		window = SDL_CreateWindow("Shinobi - NoFurryGames", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE, flags);
+		SDL_Surface* surface = IMG_Load("Assets/Misc/icon.png");
+		SDL_SetWindowIcon(window, surface);
 
 		if (window == nullptr)
 		{
