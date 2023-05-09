@@ -68,6 +68,7 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	legs_IdleAnim.speed = 0.05;
 
 
+
 }
 
 ModuleBoss::~ModuleBoss()
@@ -130,7 +131,7 @@ update_status ModuleBoss::Update()
 		}
 		
 	}
-	else {
+	else { //recibir daño
 		inmuneTime--;
 		if (inmuneTime <= 0) {
 			inmuneTime = 180;
@@ -138,7 +139,7 @@ update_status ModuleBoss::Update()
 		}
 	}
 
-	if (!facingRight && position.x <= 100) {
+	if (!facingRight && position.x <= 100) { //andar
 		current_legs_Animation = &legs_WalkForwardAnim;
 		facingRight = true;
 	}
@@ -208,7 +209,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == head_Collider && c2->type == Collider::Type::PLAYER_SHOT && !inmune) {
 		inmune = true;
 		life--;
-		if (life <= 0) {
+		if (life <= 0) {//morir
 			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);
 		}
 	}

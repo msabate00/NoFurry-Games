@@ -224,9 +224,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{6c6b2e0a-ce08-4f4b-a34e-a006d26bf65f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{bb6b0c0d-b113-4377-bfbc-5c023888d8b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{610294e1-5b40-42ed-85e2-dfe1842ee75a}</UniqueIdentifier>
     </Filter>
@@ -298,6 +295,9 @@
     </Filter>
     <Filter Include="Source Files\Modules\Core\Render">
       <UniqueIdentifier>{994a1eeb-d5f2-4af2-8834-b65b35bc180e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resource Files">
+      <UniqueIdentifier>{bb6b0c0d-b113-4377-bfbc-5c023888d8b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
