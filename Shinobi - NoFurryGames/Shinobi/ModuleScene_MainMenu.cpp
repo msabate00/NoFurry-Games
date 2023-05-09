@@ -83,7 +83,7 @@ update_status ModuleScene_MainMenu::Update()
 	
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
+		App->fade->FadeToBlack(this, (Module*)App->mision1, 20);
 		App->audio->PlayFx(monedaFX);
 	}
 

@@ -8,6 +8,7 @@
 #include "ModuleScene_Level1.h"
 #include "ModuleScene_Intro.h"
 #include "ModuleScene_Intro2.h"
+#include "ModuleMision1.h"
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
 
@@ -51,8 +52,8 @@ Application::Application()
 	//Level 2
 	modules[7] =	scene_Level2 =						new ModuleScene_Level2(false);
 
-	modules[8] = enemy = new ModuleEnemies(false);
-	modules[9] = scene_Level1_SecondFloor_Enemies = new ModuleScene_Level1_SecondFloor_Enemies(false);
+	modules[8] =	enemy =								new ModuleEnemies(false);
+	modules[9] =	scene_Level1_SecondFloor_Enemies =  new ModuleScene_Level1_SecondFloor_Enemies(false);
 
 	//Level Boss
 	modules[10]	=	scene_Boss1 =						new ModuleScene_Boss1(false);
@@ -64,12 +65,11 @@ Application::Application()
 	modules[14] =	particles =							new ModuleParticles(true);
 	modules[15] =	collisions =						new ModuleCollisions(true);
 	modules[16] =	audio =								new ModuleAudio(true);
-	modules[17] =	fade =								new ModuleFadeToBlack(true);
-	modules[18] =	fonts =								new ModuleFonts(true);
-	modules[19] =	interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[17] =	fonts =								new ModuleFonts(true);
+	modules[18] =	interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[19] =	fade =								new ModuleFadeToBlack(true);
 	modules[20] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
-
-
+	modules[21] =	mision1 =							new ModuleMision1(true); // 
 
 
 
