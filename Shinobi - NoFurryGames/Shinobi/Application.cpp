@@ -44,32 +44,30 @@ Application::Application()
 	activeModule =	scene_Intro;
 	modules[4] =	scene_Intro2 =						new ModuleScene_Intro2(false);
 	modules[5] =	scene_MainMenu =					new ModuleScene_MainMenu(false);
-	modules[6] =	mision1 =							new ModuleMision1(false);
+
 	//Level1
-	modules[7] =	scene_Level1 =						new ModuleScene_Level1(false);				
+	modules[6] =	mision1 =							new ModuleMision1(false);
 
 
 	//Level 2
+	modules[7] =	scene_Level1 =						new ModuleScene_Level1(false);
 	modules[8] =	scene_Level2 =						new ModuleScene_Level2(false);
-
 	modules[9] =	enemy =								new ModuleEnemies(false);
-	modules[10] =	scene_Level1_SecondFloor_Enemies =  new ModuleScene_Level1_SecondFloor_Enemies(false);
+	modules[10] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
 
-	//Level Boss
-	modules[11]	=	scene_Boss1 =						new ModuleScene_Boss1(false);
+	modules[11] =	scene_Boss1 =						new ModuleScene_Boss1(false);
 	modules[12] =	boss =								new ModuleBoss(false);
 
 
-	modules[13]	=	player =							new ModulePlayer(false);					
-	modules[14] =	scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);	
-	modules[15] =	particles =							new ModuleParticles(true);
-	modules[16] =	collisions =						new ModuleCollisions(true);
-	modules[17] =	audio =								new ModuleAudio(true);
-	modules[18] =	fonts =								new ModuleFonts(true);
-	modules[19] =	interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[20] =	fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[21] =	render =							new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTIMO <----
-	
+	modules[13] = player =								new ModulePlayer(false);
+	modules[14] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
+	modules[15] = particles =							new ModuleParticles(true);
+	modules[16] = collisions =							new ModuleCollisions(true);
+	modules[17] = audio =								new ModuleAudio(true);
+	modules[18] = fonts =								new ModuleFonts(true);
+	modules[19] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[20] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[21] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 

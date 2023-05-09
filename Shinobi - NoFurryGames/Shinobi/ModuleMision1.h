@@ -32,8 +32,8 @@ public:
 	update_status PostUpdate();
 
 
-	void printtext();
-
+	void printext();
+	void printMision();
 
 public:
 
@@ -41,12 +41,20 @@ public:
 
 
 
+	SDL_Texture* dosComa = nullptr;
 	SDL_Texture* textureBackground = nullptr;
 	SDL_Rect background;
 
 
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
+
+	const char* str = "pursue the terrorists";
+	int len = strlen(str);
+	bool texttime = 100.0f;
+	std::string str_cache = "";
+	Uint32 last_time = 0;
+
 
 
 

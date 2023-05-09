@@ -258,9 +258,7 @@ bool ModulePlayer::Start()
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
-	
-	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz       " };
-	scoreFont = App->fonts->Load("Assets/Interface/Fonts/Rojo.png", lookupTable,3);
+
 
 
 	return ret;

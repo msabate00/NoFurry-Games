@@ -44,6 +44,7 @@ bool ModuleMision1::Start()
 	SDL_SetRenderDrawColor(App->render->renderer, 128, 128, 128, 255);
 	SDL_RenderClear(App->render->renderer);
 
+	dosComa = App->textures->Load("Assets/Interface/Color_use/White/Icon/DosComa.png");
 
 	return ret;
 }
@@ -79,12 +80,59 @@ update_status ModuleMision1::Update()
 // Update: draw background
 update_status ModuleMision1::PostUpdate()
 {
-
-	App->fonts->BlitText(SCREEN_WIDTH/2, SCREEN_HEIGHT /2, App->scoreFontWhite, "insert coin");
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
-	//printtext();
+	printext();	
+	printMision();
+		return update_status::UPDATE_CONTINUE;
+}
 
-	return update_status::UPDATE_CONTINUE;
+void ModuleMision1::printext() {
+	
+	int IconPosition = 360;
+	App->interface_module->timer += App->deltaTime;
+
+	Uint32 current_time = SDL_GetTicks();
+
+	if (current_time - last_time > 50 && str_cache.length() < len) {
+	
+		str_cache += str[str_cache.length()];
+
+
+		last_time = current_time;
+	}
+
+	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite, str_cache.c_str());
+	
 }
 
 
+void ModuleMision1::printMision() {
+	int IconPosition = 260;
+	App->interface_module->timer += App->deltaTime;
+
+
+
+
+
+	if (App->interface_module->NameColor) {
+		for (int i = 0; i < 2; i++)
+		{
+			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 170, App->scoreFontRed, "mission 1");
+		}
+		if (App->interface_module->timer >= App->interface_module->switchTime) {
+			App->interface_module->NameColor = false;
+			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	else {
+		for (int i = 0; i < 2; i++)
+		{
+			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 170, App->scoreFontWhite, "mission 1");
+		}
+		if (App->interface_module->timer >= App->interface_module->switchTime) {
+			App->interface_module->NameColor = true;
+			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+
+}
