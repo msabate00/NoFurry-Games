@@ -156,10 +156,10 @@ update_status ModuleBoss::Update()
 	}
 	if (fireBallParticle != -1) {
 		if (timeContador < 90) {
-			App->particles->SetSpeedParticle(fireBallParticle, iPoint(-1, -1));
+			App->particles->SetSpeedParticle(fireBallParticle, fPoint(-1, -1));
 		}
 		else {
-			App->particles->SetSpeedParticle(fireBallParticle, iPoint(-1, 1));
+			App->particles->SetSpeedParticle(fireBallParticle, fPoint(-1, 1));
 		}
 	}
 
