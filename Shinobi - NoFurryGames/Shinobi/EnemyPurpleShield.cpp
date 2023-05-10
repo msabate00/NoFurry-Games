@@ -41,6 +41,8 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 	Death.speed = 0.1f;
 
 	collider = App->collisions->AddCollider({ 0, 0,44,65 }, Collider::Type::ENEMY, (Module*)App->enemy);
+
+
 }
 
 void EnemyPurpleShield::Update()
@@ -68,6 +70,7 @@ void EnemyPurpleShield::Update()
 		currentAnim = &staticAnim;
 		position.x -= speed;
 	}
+
 	// Cuando entra en el rango, se mueve
 	else
 	{
