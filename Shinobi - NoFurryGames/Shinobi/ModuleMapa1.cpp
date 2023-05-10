@@ -18,20 +18,14 @@
 #include <iostream>
 #include <cmath>
 
-ModuleMapa1::ModuleMapa1(bool startEnabled) : Module(startEnabled)
-{
+ModuleMapa1::ModuleMapa1(bool startEnabled) : Module(startEnabled){
 
-	backgroundAnim.loop = false;
-	backgroundAnim.speed = 0.01f;
-	background = { 200,200, SCREEN_WIDTH, SCREEN_HEIGHT };
 
+	
 
 }
 
-ModuleMapa1::~ModuleMapa1()
-{
-
-}
+ModuleMapa1::~ModuleMapa1(){}
 
 // Load assets
 bool ModuleMapa1::Start()
@@ -41,7 +35,7 @@ bool ModuleMapa1::Start()
 	bool ret = true;
 	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
 	textureBackground = App->textures->Load("Assets/Interface/ZoneChange/AlNivel1_Blanco_0.png");
-
+	backgroundAnim.PushBack({});
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -85,7 +79,7 @@ update_status ModuleMapa1::PostUpdate()
 
 
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
-	App->render->Blit(textureBackground, SCREEN_WIDTH - 360, SCREEN_HEIGHT - 170, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
+	App->render->Blit(textureBackground, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 170, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
 
 	return update_status::UPDATE_CONTINUE;
 }
