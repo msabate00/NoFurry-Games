@@ -85,11 +85,11 @@ bool ModuleScene_Level1::Start()
 	//secondFloor->active = false;
 	
 
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 250, FLOOR_LEVEL - 64); //Enemigo básico 1
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 250, FLOOR_LEVEL - 64, false ,true); //Enemigo básico 1
 
 	//Enemies ---
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64); //Enemigo básico 1
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64); //Enemigo básico 2
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64, false ,true); //Enemigo básico 1
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64); //Enemigo básico 3
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4
 
@@ -110,7 +110,7 @@ bool ModuleScene_Level1::Start()
 
 	//Hostage
 	if (App->interface_module->hostageTaken[0] == false) {
-		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200, false, 1);
+		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200, false, 1, true);
 	}
 
 	//Musicadddd
