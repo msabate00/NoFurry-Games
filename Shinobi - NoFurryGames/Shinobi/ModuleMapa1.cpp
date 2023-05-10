@@ -49,9 +49,9 @@ bool ModuleMapa1::Start()
 update_status ModuleMapa1::Update()
 {
 
+	App->interface_module->timer += App->deltaTime;
 
-
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN ||  App->interface_module->timer >= 3000) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
 
@@ -86,6 +86,7 @@ void ModuleMapa1::printMapa1() {
 	App->interface_module->timer += App->deltaTime;
 
 	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
+
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = false;
 		if (MapaX < 129 && MapaX > 123 && MapaY < 16 && MapaX > 10) {
@@ -106,8 +107,6 @@ void ModuleMapa1::printMapa1() {
 	}else {
 		App->render->Blit(mapaRed, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = true;
-
-
 		if (MapaX < 129 && MapaX > 123 && MapaY < 16 && MapaX > 10) {
 			MapaX = 126;
 			MapaY = 13;

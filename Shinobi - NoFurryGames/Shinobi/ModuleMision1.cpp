@@ -40,22 +40,22 @@ bool ModuleMision1::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	currentAnimation = &backgroundAnim;
+	
 
 	SDL_SetRenderDrawColor(App->render->renderer, 128, 128, 128, 255);
 	SDL_RenderClear(App->render->renderer);
 
 	dosComa = App->textures->Load("Assets/Interface/Color_use/White/Icon/DosComa.png");
-
+	currentAnimation = &backgroundAnim;
 	return ret;
 }
 
 update_status ModuleMision1::Update()
 {
 
+	App->interface_module->timer += App->deltaTime;
 	
-
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 2000) {
 		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
 	}
 
