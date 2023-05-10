@@ -10,7 +10,7 @@
 
 using namespace std;
 
-EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::BROWNSHIELD)
 {
 	
 	walkBasic.PushBack({282, 332, 41, 51});

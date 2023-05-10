@@ -13,7 +13,7 @@ class Enemy
 public:
 	// Constructor
 	// Saves the spawn position for later movement calculations
-	Enemy(int x, int y, bool secondFloor);
+	Enemy(int x, int y, bool secondFloor, ENEMY_TYPE type);
 
 	// Destructor
 	virtual ~Enemy();
@@ -67,7 +67,6 @@ public:
 public:
 	// The current position in the world
 	iPoint position;
-	iPoint spawnPosition;
 	ENEMY_TYPE type;
 
 	iPoint diePos;

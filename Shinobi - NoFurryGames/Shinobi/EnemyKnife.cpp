@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::KNIFE)
 {
 	walkBasic.PushBack({ 680, 20,42,61 });
 	walkBasic.PushBack({ 728, 20,42,61 });
@@ -65,6 +65,8 @@ Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	goingToPlayer = true;
 	facingLeft = true;
 	moveToDie = false;
+
+	speed = 2;
 
 	viewRange = 250;
 	wanderRange = 50;

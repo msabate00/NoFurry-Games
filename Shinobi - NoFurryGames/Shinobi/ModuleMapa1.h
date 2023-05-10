@@ -50,11 +50,6 @@ public:
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
 
-	const char* str = "pursue the terrorists";
-	int len = strlen(str);
-	bool texttime = 100.0f;
-	std::string str_cache = "";
-	Uint32 last_time = 0;
 
 
 
