@@ -53,24 +53,24 @@ Application::Application()
 	modules[7] =	mapa1 =								new ModuleMapa1(false);
 
 	//Level 2
-	modules[7] =	scene_Level1 =						new ModuleScene_Level1(false);
-	modules[8] =	scene_Level2 =						new ModuleScene_Level2(false);
-	modules[9] =	enemy =								new ModuleEnemies(false);
-	modules[10] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
+	modules[8] =	scene_Level1 =						new ModuleScene_Level1(false);
+	modules[9] =	scene_Level2 =						new ModuleScene_Level2(false);
+	modules[10] =	enemy =								new ModuleEnemies(false);
+	modules[11] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
 
-	modules[11] =	scene_Boss1 =						new ModuleScene_Boss1(false);
-	modules[12] =	boss =								new ModuleBoss(false);
+	modules[12] =	scene_Boss1 =						new ModuleScene_Boss1(false);
+	modules[13] =	boss =								new ModuleBoss(false);
 
 
-	modules[13] = player =								new ModulePlayer(false);
-	modules[14] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
-	modules[15] = particles =							new ModuleParticles(true);
-	modules[16] = collisions =							new ModuleCollisions(true);
-	modules[17] = audio =								new ModuleAudio(true);
-	modules[18] = fonts =								new ModuleFonts(true);
-	modules[19] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[20] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[21] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[14] = player =								new ModulePlayer(false);
+	modules[15] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
+	modules[16] = particles =							new ModuleParticles(true);
+	modules[17] = collisions =							new ModuleCollisions(true);
+	modules[18] = audio =								new ModuleAudio(true);
+	modules[19] = fonts =								new ModuleFonts(true);
+	modules[20] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[21] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[22] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 
