@@ -52,13 +52,13 @@ bool ModuleScene_Level1_SecondFloor_Enemies::Start()
 
 	//Hostage
 	if (App->interface_module->hostageTaken[1] == false)
-		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 700, FLOOR_LEVEL - 141, true, 0, true, 2);
+		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 700, FLOOR_LEVEL - 141, true, 0, true, 2, true);
 
 	if (App->interface_module->hostageTaken[2] == false)
-		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1000, FLOOR_LEVEL - 141, false, 500, true, 3);
+		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1000, FLOOR_LEVEL - 141, false, 500, true, 3, true);
 
 	if (App->interface_module->hostageTaken[3] == false)
-		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1550, FLOOR_LEVEL - 141, false, 1000, true, 4);
+		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1550, FLOOR_LEVEL - 141, false, 1000, true, 4, true);
 
 	//Enemies
 	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 950, FLOOR_LEVEL - 177, true);
