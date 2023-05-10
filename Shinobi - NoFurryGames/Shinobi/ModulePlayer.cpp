@@ -410,6 +410,14 @@ update_status ModulePlayer::Update()
 			{
 				currentAnimation = &PistolajumpAttackAnim;
 			}
+			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT) {
+				position.x += speed;
+				facingRight = true;
+			}
+			else if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT) {
+				position.x -= speed;
+				facingRight = false;
+			}
 			
 
 		}
