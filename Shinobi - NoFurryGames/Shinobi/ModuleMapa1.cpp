@@ -11,6 +11,7 @@
 #include "ModuleScene_Level1.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
+#include "ModuleInterface.h"
 
 #include "SDL/include/SDL.h"
 #include <string> 
@@ -75,13 +76,60 @@ update_status ModuleMapa1::Update()
 // Update: draw background
 update_status ModuleMapa1::PostUpdate()
 {
-
-
-	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
-	App->render->Blit(mapaWhite, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 170, SDL_FLIP_NONE, nullptr, 1);
+	printMapa1();
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 
+void ModuleMapa1::printMapa1() {
+	App->interface_module->timer += App->deltaTime;
 
+	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
+		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
+		App->interface_module->NameColor = false;
+		if (MapaX < 129 && MapaX > 123 && MapaY < 16 && MapaX > 10) {
+			MapaX = 126;
+			MapaY = 13;
+
+			if (App->interface_module->timer >= 2000) {
+
+				MapaX += 16;
+				MapaY -= 16;
+			}
+		}
+		else {
+			MapaX += 15;
+			MapaY -= 15;
+		}
+
+	}else {
+		App->render->Blit(mapaRed, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
+		App->interface_module->NameColor = true;
+
+
+		if (MapaX < 129 && MapaX > 123 && MapaY < 16 && MapaX > 10) {
+			MapaX = 126;
+			MapaY = 13;
+
+			if (App->interface_module->timer >= 2000) {
+
+				MapaX += 16;
+				MapaY -= 16;
+			}
+		}
+		else {
+			MapaX += 15;
+			MapaY -= 15;
+		}
+	}
+
+	
+
+
+
+
+
+	cout << "MapaX" << MapaX << endl;
+	cout << "MapaY" << MapaY << endl;
+}

@@ -787,9 +787,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 bool ModulePlayer::CleanUp() {
 
-	
-	
-
 	collider->pendingToDelete = true;
 
 	return true;

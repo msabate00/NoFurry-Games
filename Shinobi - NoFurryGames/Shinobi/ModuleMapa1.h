@@ -33,8 +33,7 @@ public:
 	update_status PostUpdate();
 
 
-	void printext();
-	void printMision();
+	void printMapa1();
 
 public:
 
@@ -51,8 +50,10 @@ public:
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
 
-
-
+	
+	int MapaX = -70;
+	int MapaY = SCREEN_HEIGHT - 15;
+	
 
 
 };
