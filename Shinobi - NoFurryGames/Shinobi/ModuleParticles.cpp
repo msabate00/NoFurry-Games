@@ -114,6 +114,21 @@ bool ModuleParticles::Start()
 	bonusGun.anim.speed = 0.5f;
 	bonusGun.speed = iPoint(0, -1);
 	bonusGun.lifetime = 60;
+
+
+	fireBall.anim.PushBack({302, 993, 31, 27});
+	fireBall.anim.PushBack({339, 993, 31, 27});
+	fireBall.anim.PushBack({376, 993, 31, 27});
+	fireBall.anim.PushBack({413, 993, 31, 27});
+	fireBall.anim.PushBack({450, 993, 31, 27});
+	fireBall.anim.PushBack({487, 993, 31, 27});
+	fireBall.anim.PushBack({524, 993, 31, 27});
+	fireBall.anim.PushBack({561, 993, 31, 27});
+	fireBall.anim.PushBack({598, 993, 31, 27});
+	fireBall.anim.pingpong = true;
+	fireBall.anim.speed = 0.5f;
+	fireBall.speed = iPoint(-1, 0);
+	fireBall.lifetime = 180;
 	
 
 	return true;
@@ -218,7 +233,7 @@ update_status ModuleParticles::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
+int ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
 {
 	Particle* p = new Particle(particle);
 	
@@ -229,7 +244,20 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 	//Adding the particle's collider
 	if (colliderType != Collider::Type::NONE)
 		p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-
-	particles[lastParticle++] = p;
+	int aux = lastParticle++;
+	particles[aux] = p;
 	lastParticle %= MAX_ACTIVE_PARTICLES;
+
+	return aux;
+
+}
+
+
+void ModuleParticles::SetSpeedParticle(int position, iPoint speed) {
+	Particle* particle = particles[position];
+	if (particle != nullptr && particle->isAlive) {
+		particle->speed = speed;
+	}
+
+
 }

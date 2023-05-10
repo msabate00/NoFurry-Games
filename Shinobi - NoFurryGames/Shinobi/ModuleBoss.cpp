@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
+#include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollisions.h"
@@ -17,6 +18,8 @@
 #include "Enemy.h"
 #include "Enemy_Basic.h"
 #include "Hostage.h"
+#include "p2Point.h"
+#include "Particle.h"
 #include "EnemyBrownShield.h"
 #include "EnemyPurpleShield.h"
 #include "EnemyGun.h"
@@ -122,12 +125,14 @@ bool ModuleBoss::Start()
 	life = 5;
 	inmune = false;
 	inmuneTime = 180;
+	timeContador = 0;
 
 	return true;
 }
 
 update_status ModuleBoss::Update()
 {
+	
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
@@ -135,10 +140,29 @@ update_status ModuleBoss::Update()
 
 	
 
+	
+
 
 	current_head_Animation = &head_IdleAnim;
 	current_torso_Animation = &torso_IdleAnim;
 	current_legs_Animation = &legs_WalkForwardAnim;
+
+
+	//SPAWN BOLA DI FOGO
+	if (timeContador % 180 == 0) {
+		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y);
+		timeContador = 0;
+
+	}
+	if (fireBallParticle != -1) {
+		if (timeContador < 90) {
+			App->particles->SetSpeedParticle(fireBallParticle, iPoint(-1, -1));
+		}
+		else {
+			App->particles->SetSpeedParticle(fireBallParticle, iPoint(-1, 1));
+		}
+	}
+
 
 	
 	if (!inmune) {
@@ -179,6 +203,9 @@ update_status ModuleBoss::Update()
 	current_head_Animation->Update();
 	current_torso_Animation->Update();
 	current_legs_Animation->Update();
+
+	timeContador++;
+
 
 	return update_status::UPDATE_CONTINUE;
 }

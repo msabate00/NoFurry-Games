@@ -7,6 +7,7 @@
 
 struct SDL_Texture;
 struct Collider;
+struct Particle;
 
 
 
@@ -49,6 +50,7 @@ public:
 	float inmuneTime = 180;
 	bool facingRight = false;
 	bool inmune = false;
+	int timeContador = 0;
 
 	SDL_Texture* texture = nullptr;
 	Animation* current_head_Animation = nullptr;
@@ -71,7 +73,7 @@ public:
 
 	Animation generalDying;
 
-
+	int fireBallParticle = -1;
 
 
 	Collider* head_Collider = nullptr;
