@@ -148,6 +148,7 @@ void Enemy_Basic::Update()
 	}
 
 
+
 	/*
 
 

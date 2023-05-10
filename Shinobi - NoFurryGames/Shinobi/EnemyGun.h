@@ -39,6 +39,8 @@ private:
 	int distanceBetween;
 	int distanceToAttack = 3;
 
+	Animation recharge;
+
 };
 
 #endif // __ENEMY_GUN_H__

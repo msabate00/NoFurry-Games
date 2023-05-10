@@ -12,18 +12,16 @@ using namespace std;
 
 EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
-	walkBasic.PushBack({ 11, 12,35,64 });
-	walkBasic.PushBack({ 52, 12,35,64 });
-	walkBasic.PushBack({ 93, 12,35,64 });
+	walkBasic.PushBack({ 57, 245,47,58 });
 
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
-	//salto
-	jumping.PushBack({ 12, 161,42,65 });
-	jumping.PushBack({ 60, 161,42,65 });
-	jumping.PushBack({ 108, 161,42,65 });
+	recharge.PushBack({ 4,245,47,58 });
 
+	//salto
+	jumping.PushBack({ 202, 317,34,68 });
+	
 	jumping.loop = false;
 	jumping.speed = 0.01f;
 
