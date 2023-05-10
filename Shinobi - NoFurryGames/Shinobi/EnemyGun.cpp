@@ -10,7 +10,7 @@
 
 using namespace std;
 
-EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::GUNSHOOTER)
 {
 	walkBasic.PushBack({ 57, 245,47,58 });
 

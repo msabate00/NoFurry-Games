@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::BASIC)
 {
 	walkBasic.PushBack({ 11, 12,35,64 });
 	walkBasic.PushBack({ 52, 12,35,64 });

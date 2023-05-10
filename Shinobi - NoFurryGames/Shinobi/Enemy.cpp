@@ -13,10 +13,12 @@
  
 using namespace std;
 
-Enemy::Enemy(int x, int y, bool secondFloor) : position(x, y)
+Enemy::Enemy(int x, int y, bool secondFloor, ENEMY_TYPE type) : position(x, y)
 {
 	spawnPos = position;
 	this->secondFloor = secondFloor;
+	this->type = type;
+	
 
 
 	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
@@ -68,8 +70,9 @@ void Enemy::Update()
 			if (colliderRange != nullptr)
 				colliderRange->pendingToDelete = true;
 
+			//App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor);
 			App->enemy->HandleEnemiesDespawnEnemy(this);
-			//App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor); <---- EN PROCESO
+			
 
 			return;
 		}
