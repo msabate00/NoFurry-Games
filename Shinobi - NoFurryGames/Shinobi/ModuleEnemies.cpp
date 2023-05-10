@@ -25,6 +25,7 @@
 
 
 #define SPAWN_MARGIN 50
+#define SPAWN_MARGIN_LEFT 250
 
 using namespace std;
 
@@ -151,10 +152,14 @@ void ModuleEnemies::HandleEnemiesSpawn()
 		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE)
 		{
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
+			if ((spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN*2 &&
+				spawnQueue[i].x * SCREEN_SIZE > App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN) ||
+				(spawnQueue[i].x * SCREEN_SIZE <  App->render->camera.x - SPAWN_MARGIN_LEFT &&
+				spawnQueue[i].x * SCREEN_SIZE > App->render->camera.x - SPAWN_MARGIN_LEFT- SPAWN_MARGIN
+				))
 			{
 				
-
+				cout << "SpawnX: " << spawnQueue[i].x*SCREEN_SIZE << " CAM:" << App->render->camera.x - SPAWN_MARGIN *2  << endl;
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
 			}

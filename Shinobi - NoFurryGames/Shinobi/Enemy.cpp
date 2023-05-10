@@ -70,7 +70,7 @@ void Enemy::Update()
 			if (colliderRange != nullptr)
 				colliderRange->pendingToDelete = true;
 
-			//App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor);
+			App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor);
 			App->enemy->HandleEnemiesDespawnEnemy(this);
 			
 
