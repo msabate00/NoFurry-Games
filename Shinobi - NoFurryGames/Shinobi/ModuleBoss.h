@@ -48,9 +48,15 @@ public:
 	int speed = 1;
 	int life;
 	float inmuneTime = 180;
+	float stunnedTime = 16;
 	bool facingRight = false;
 	bool inmune = false;
+	bool stunned = false;
 	int timeContador = 0;
+
+	fPoint currentParticleDirection = fPoint(-1,-1);
+
+
 
 	SDL_Texture* texture = nullptr;
 	Animation* current_head_Animation = nullptr;

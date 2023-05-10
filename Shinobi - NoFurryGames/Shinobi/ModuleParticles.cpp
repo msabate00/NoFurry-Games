@@ -183,7 +183,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				App->particles->AddParticle(bulletDying, particles[i]->position.x-10, particles[i]->position.y - 14, Collider::Type::NONE);
 				particles[i]->collider->pendingToDelete = true;
 			}
-			
+			if (particles[i]->collider != nullptr) {
+				particles[i]->collider->pendingToDelete = true;
+			}
 			delete particles[i];
 			particles[i] = nullptr;
 			break;

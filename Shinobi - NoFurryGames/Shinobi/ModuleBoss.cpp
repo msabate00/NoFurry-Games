@@ -150,7 +150,7 @@ update_status ModuleBoss::Update()
 
 	//SPAWN BOLA DI FOGO
 	if (timeContador % 180 == 0) {
-		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y);
+		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
 		timeContador = 0;
 
 	}
@@ -165,7 +165,7 @@ update_status ModuleBoss::Update()
 
 
 	
-	if (!inmune) {
+	if (!stunned) {
 
 		if (facingRight) {
 			position.x += speed;
@@ -175,17 +175,23 @@ update_status ModuleBoss::Update()
 		}
 		
 	}
-	else { //recibir damage
-
-		current_head_Animation = &head_DamageAnim;
-		current_torso_Animation = &torso_DamageAnim;
-		current_legs_Animation = &legs_DamageAnim;
-
+	if(stunned || inmune) { //recibir damage
+		if (stunnedTime > 0) {
+			current_head_Animation = &head_DamageAnim;
+			current_torso_Animation = &torso_DamageAnim;
+			current_legs_Animation = &legs_DamageAnim;
+			stunnedTime--;
+		}
+		else {
+			stunned = false;
+		}
 
 		inmuneTime--;
 		if (inmuneTime <= 0) {
 			inmuneTime = 180;
+			stunnedTime = 16;
 			inmune = false;
+			
 		}
 	}
 
@@ -269,6 +275,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == head_Collider && c2->type == Collider::Type::PLAYER_SHOT && !inmune) {
 		inmune = true;
+		stunned = true;
 		life--;
 		if (life <= 0) {//morir
 			current_head_Animation = &generalDying;
