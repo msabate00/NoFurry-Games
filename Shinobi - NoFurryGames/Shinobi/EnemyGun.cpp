@@ -13,7 +13,8 @@ using namespace std;
 
 EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::GUNSHOOTER)
 {
-	walkBasic.PushBack({ 57, 245,47,58 });
+	walkBasic.PushBack({ 8, 351,36,60 });
+	walkBasic.PushBack({ 50, 351,36,60 });
 
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
@@ -27,8 +28,8 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	jumping.speed = 0.01f;
 
 	//muerte
-	Death.PushBack({ 4, 316, 19, 63 });
-	Death.PushBack({ 73, 316, 19, 63 });
+	Death.PushBack({ 4, 316, 63, 19 });
+	Death.PushBack({ 73, 316, 63, 19 });
 
 	Death.speed = 0.1f;
 	Death.loop = false;
