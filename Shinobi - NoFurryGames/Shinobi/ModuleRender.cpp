@@ -12,6 +12,7 @@
 #include "ModulePlayer.h"
 #include "ModuleMision1.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleMapa1.h"
 
 
 #include "SDL/include/SDL_render.h"
@@ -72,6 +73,9 @@ update_status ModuleRender::PreUpdate()
 	//Set the color used for drawing operations
 	if (App->mision1->IsEnabled()) {
 		SDL_SetRenderDrawColor(renderer, 184, 184, 184, 255);
+	}
+	else if(App->mapa1->IsEnabled()){
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	}
 	else {
 		SDL_SetRenderDrawColor(renderer, 115, 66, 148, 255);

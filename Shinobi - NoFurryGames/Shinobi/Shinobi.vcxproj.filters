@@ -109,6 +109,9 @@
     <ClCompile Include="ModuleMision1.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleMapa1.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -223,6 +226,9 @@
       <Filter>Source Files\Modules\Core\Render</Filter>
     </ClInclude>
     <ClInclude Include="ModuleMision1.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMapa1.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClInclude>
   </ItemGroup>

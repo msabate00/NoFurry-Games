@@ -9,8 +9,10 @@
 #include "ModuleScene_Intro.h"
 #include "ModuleScene_Intro2.h"
 #include "ModuleMision1.h"
+#include "ModuleMapa1.h"
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
+
 
 #include "ModuleScene_Level2.h"
 
@@ -48,6 +50,7 @@ Application::Application()
 	//Level1
 	modules[6] =	mision1 =							new ModuleMision1(false);
 
+	modules[7] =	mapa1 =								new ModuleMapa1(false);
 
 	//Level 2
 	modules[7] =	scene_Level1 =						new ModuleScene_Level1(false);

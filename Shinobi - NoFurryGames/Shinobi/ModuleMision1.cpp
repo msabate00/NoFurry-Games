@@ -8,6 +8,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleInput.h"
 #include "ModulePlayer.h"
+#include "ModuleMapa1.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
@@ -55,7 +56,7 @@ update_status ModuleMision1::Update()
 	
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
+		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
 	}
 
 	currentAnimation->Update();
@@ -109,10 +110,6 @@ void ModuleMision1::printext() {
 void ModuleMision1::printMision() {
 	int IconPosition = 260;
 	App->interface_module->timer += App->deltaTime;
-
-
-
-
 
 	if (App->interface_module->NameColor) {
 		for (int i = 0; i < 2; i++)

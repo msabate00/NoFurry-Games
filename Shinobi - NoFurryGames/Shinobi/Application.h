@@ -17,6 +17,7 @@ class ModuleScene_Intro;
 class ModuleScene_Intro2;
 
 class ModuleMision1;
+class ModuleMapa1;
 
 class ModuleScene_Level1;
 class ModuleScene_Level1_SecondFloor;
@@ -111,7 +112,7 @@ public:
 	ModuleInterface* interface_module = nullptr;
 
 	ModuleMision1* mision1 = nullptr;
-	
+	ModuleMapa1* mapa1 = nullptr;
 };
 
 // Global var made extern for Application ---
