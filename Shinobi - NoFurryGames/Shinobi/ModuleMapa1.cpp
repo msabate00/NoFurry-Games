@@ -34,8 +34,8 @@ bool ModuleMapa1::Start()
 
 	bool ret = true;
 	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
-	textureBackground = App->textures->Load("Assets/Interface/ZoneChange/AlNivel1_Blanco_0.png");
-	backgroundAnim.PushBack({});
+	mapaWhite= App->textures->Load("Assets/Interface/ZoneChange/AlNivel1_Blanco_0.png");
+	mapaRed = App->textures->Load("Assets/Interface/ZoneChange/AlNivel1_Rojo_0.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -54,7 +54,6 @@ update_status ModuleMapa1::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
 
-	currentAnimation->Update();
 
 	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
@@ -79,7 +78,7 @@ update_status ModuleMapa1::PostUpdate()
 
 
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
-	App->render->Blit(textureBackground, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 170, SDL_FLIP_NONE, &currentAnimation->GetCurrentFrame(), 1);
+	App->render->Blit(mapaWhite, SCREEN_WIDTH - 200, SCREEN_HEIGHT - 170, SDL_FLIP_NONE, nullptr, 1);
 
 	return update_status::UPDATE_CONTINUE;
 }
