@@ -78,14 +78,14 @@ void EnemyGun::Update()
 
 
 
-	if (facingLeft && App->player->position.x < (position.x - viewRange))
+	if (facingLeft && App->player->position.x < (position.x - (viewRange - 20)))
 	{
-		currentAnim = &staticAnim;
+		currentAnim = &recharge;
 		position.x += speed;
 	}
-	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
+	else if (!facingLeft && App->player->position.x > (position.x + (viewRange-20)))
 	{
-		currentAnim = &staticAnim;
+		currentAnim = &recharge;
 		position.x -= speed;
 	}
 	// Cuando entra en el rango, se mueve

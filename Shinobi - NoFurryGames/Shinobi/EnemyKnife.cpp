@@ -89,10 +89,15 @@ void Enemy_Knife::Update()
 
 
 
-	if (position.x - App->player->position.x > viewRange)
+	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &staticAnim;
-		position.x += 0;
+		position.x += speed;
+	}
+	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
+	{
+		currentAnim = &staticAnim;
+		position.x -= speed;
 	}
 	// Cuando entra en el rango, se mueve
 	else
