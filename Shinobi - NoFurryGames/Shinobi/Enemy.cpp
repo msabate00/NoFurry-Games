@@ -69,6 +69,7 @@ void Enemy::Update()
 				colliderRange->pendingToDelete = true;
 
 			App->enemy->HandleEnemiesDespawnEnemy(this);
+			//App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor); <---- EN PROCESO
 
 			return;
 		}

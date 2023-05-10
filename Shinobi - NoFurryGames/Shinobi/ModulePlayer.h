@@ -62,7 +62,7 @@ public:
 	bool enemyInRange = false;
 
 	int marginCollider = 10;
-	int rangeLength = 32;
+	int rangeLength = 8;
 
 	
 
