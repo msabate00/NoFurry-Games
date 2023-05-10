@@ -4,6 +4,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
+#include "ModuleParticles.h"
 #include <iostream>
 #include <math.h>
 
@@ -11,15 +12,20 @@
 
 using namespace std;
 
-EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::GUNSHOOTER)
+EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 {
-	walkBasic.PushBack({ 8, 351,36,60 });
-	walkBasic.PushBack({ 50, 351,36,60 });
+	walkBasic.PushBack({ 57, 245,47,58 });
 
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
 	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.speed = 0.1f;
+	recharge.loop = false;
 
 	//salto
 	jumping.PushBack({ 202, 317,34,68 });
@@ -28,8 +34,8 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	jumping.speed = 0.01f;
 
 	//muerte
-	Death.PushBack({ 4, 316, 63, 19 });
-	Death.PushBack({ 73, 316, 63, 19 });
+	Death.PushBack({ 4, 316, 19, 63 });
+	Death.PushBack({ 73, 316, 19, 63 });
 
 	Death.speed = 0.1f;
 	Death.loop = false;
@@ -113,15 +119,28 @@ void EnemyGun::Update()
 		}
 	}
 
-	if (isAttacking) {
-		currentAnim = &attackAnim;
-
-		if (currentAnim->HasFinished()) {
-			isAttacking = false;
-			currentAnim->Reset();
-		}
-
+	if (facingLeft && (App->player->position.x + 120) > position.x)
+	{
+		hasToShot = true;
 	}
+
+	if (hasToShot)
+	{
+		currentAnim = &recharge;
+		position.x += speed;
+
+		if (currentAnim->HasFinished())
+		{
+			currentAnim = &attackAnim;
+
+			if (currentAnim->HasFinished())
+			{
+				hasToShot = false;
+			}
+		}
+	}
+
+	
 
 	Enemy::Update();
 }

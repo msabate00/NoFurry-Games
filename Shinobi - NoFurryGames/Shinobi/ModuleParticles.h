@@ -72,6 +72,9 @@ public:
 	Particle bulletL;
 	Particle bulletDying;
 
+	Particle enemyShotR;
+	Particle enemyShotL;
+
 	Particle bonus200;
 	Particle bonus500;
 	Particle bonus1000;

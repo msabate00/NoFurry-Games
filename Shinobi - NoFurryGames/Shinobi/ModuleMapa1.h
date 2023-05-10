@@ -43,7 +43,8 @@ public:
 
 
 	SDL_Texture* dosComa = nullptr;
-	SDL_Texture* textureBackground = nullptr;
+	SDL_Texture* mapaWhite = nullptr;
+	SDL_Texture* mapaRed = nullptr;
 	SDL_Rect background;
 
 

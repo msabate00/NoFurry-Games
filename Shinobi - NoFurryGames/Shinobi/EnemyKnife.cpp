@@ -66,6 +66,8 @@ Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	facingLeft = true;
 	moveToDie = false;
 
+	speed = 2;
+
 	viewRange = 250;
 	wanderRange = 50;
 	attackRange = 0;
