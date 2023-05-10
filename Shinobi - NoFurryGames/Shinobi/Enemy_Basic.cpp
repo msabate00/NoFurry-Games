@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::BASIC)
 {
 	walkBasic.PushBack({ 11, 12,35,64 });
 	walkBasic.PushBack({ 52, 12,35,64 });
@@ -94,10 +94,15 @@ void Enemy_Basic::Update()
 
 
 
-	if (position.x - App->player->position.x > viewRange)
+	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &staticAnim;
-		position.x += 0;
+		position.x += speed;
+	}
+	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
+	{
+		currentAnim = &staticAnim;
+		position.x -= speed;
 	}
 	// Cuando entra en el rango, se mueve
 	else

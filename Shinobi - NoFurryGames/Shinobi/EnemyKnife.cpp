@@ -11,7 +11,7 @@
 
 using namespace std;
 
-Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
+Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::KNIFE)
 {
 	walkBasic.PushBack({ 680, 20,42,61 });
 	walkBasic.PushBack({ 728, 20,42,61 });
@@ -89,10 +89,15 @@ void Enemy_Knife::Update()
 
 
 
-	if (position.x - App->player->position.x > viewRange)
+	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &staticAnim;
-		position.x += 0;
+		position.x += speed;
+	}
+	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
+	{
+		currentAnim = &staticAnim;
+		position.x -= speed;
 	}
 	// Cuando entra en el rango, se mueve
 	else

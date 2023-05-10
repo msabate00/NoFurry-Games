@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) : Enemy(x, y, secondFloor)
+Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) : Enemy(x, y, secondFloor, ENEMY_TYPE::HOSTAGE)
 {
 
 	this->gun = gun;
