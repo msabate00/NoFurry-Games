@@ -98,7 +98,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor, bool spawnStart)
 {
 	bool ret = false;
 
@@ -110,6 +110,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor)
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
 			spawnQueue[i].secondFloor = secondFloor;
+			spawnQueue[i].spawnStart = spawnStart;
 			ret = true;
 			break;
 		}
@@ -120,7 +121,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor)
 
 
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor, int id)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor, int id, bool spawnStart)
 {
 	bool ret = false;
 
@@ -135,6 +136,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points
 			spawnQueue[i].points = points;
 			spawnQueue[i].secondFloor = secondFloor;
 			spawnQueue[i].id = id;
+			spawnQueue[i].spawnStart = spawnStart;
 			ret = true;
 			break;
 		}
@@ -156,10 +158,8 @@ void ModuleEnemies::HandleEnemiesSpawn()
 				spawnQueue[i].x * SCREEN_SIZE > App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN) ||
 				(spawnQueue[i].x * SCREEN_SIZE <  App->render->camera.x - SPAWN_MARGIN_LEFT &&
 				spawnQueue[i].x * SCREEN_SIZE > App->render->camera.x - SPAWN_MARGIN_LEFT- SPAWN_MARGIN
-				))
-			{
-				
-				cout << "SpawnX: " << spawnQueue[i].x*SCREEN_SIZE << " CAM:" << App->render->camera.x - SPAWN_MARGIN *2  << endl;
+				) || spawnQueue->spawnStart){
+
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
 			}

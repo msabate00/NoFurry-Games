@@ -24,6 +24,7 @@ struct EnemySpawnpoint
 	bool gun;
 	int points;
 	bool secondFloor = false;
+	bool spawnStart = false;
 };
 
 class Enemy;
@@ -61,8 +62,8 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 	// Add an enemy into the queue to be spawned later
-	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor = false);
-	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor = false, int id = -1);
+	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool secondFloor = false, bool spawnStart = false);
+	bool AddEnemy(ENEMY_TYPE type, int x, int y, bool gun, int points, bool secondFloor = false, int id = -1, bool spawnStart = false);
 
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();
