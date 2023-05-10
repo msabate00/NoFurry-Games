@@ -5,6 +5,7 @@
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
 #include <iostream>
+#include <math.h>
 
 #include "SDL/include/SDL_render.h"
 
@@ -26,9 +27,8 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	jumping.speed = 0.01f;
 
 	//muerte
-	Death.PushBack({ 22, 92, 30, 54 });
-	Death.PushBack({ 59, 108, 65, 26 });
-	Death.PushBack({ 131, 108, 65, 26 });
+	Death.PushBack({ 4, 316, 19, 63 });
+	Death.PushBack({ 73, 316, 19, 63 });
 
 	Death.speed = 0.1f;
 	Death.loop = false;
@@ -39,11 +39,7 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 
 	attackAnim.PushBack({ 205,13,38,63 });
 	attackAnim.PushBack({ 250,13,38,63 });
-	attackAnim.PushBack({ 143,13,56,63 });
-	attackAnim.PushBack({ 143,13,56,63 });
-	attackAnim.PushBack({ 250,13,38,63 });
-	attackAnim.PushBack({ 11, 12,35,64 });
-
+	
 	attackAnim.speed = 0.2f;
 	attackAnim.loop = false;
 
@@ -52,8 +48,6 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	staticAnim.speed = 0.1f;
 
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
-
-
 
 	facingLeft = true;
 
@@ -81,10 +75,18 @@ void EnemyGun::Update()
 	}
 	position.y -= jumpSpeed;
 
-	if (position.x - App->player->position.x > viewRange)
+
+
+
+	if (facingLeft && App->player->position.x < (position.x - (viewRange - 20)))
 	{
-		currentAnim = &staticAnim;
-		position.x += 0;
+		currentAnim = &recharge;
+		position.x += speed;
+	}
+	else if (!facingLeft && App->player->position.x > (position.x + (viewRange-20)))
+	{
+		currentAnim = &recharge;
+		position.x -= speed;
 	}
 	// Cuando entra en el rango, se mueve
 	else
@@ -116,20 +118,6 @@ void EnemyGun::Update()
 		if (currentAnim->HasFinished()) {
 			isAttacking = false;
 			currentAnim->Reset();
-		}
-
-	}
-
-	if (App->player->destroyed && App->player->currentAnimation->HasFinished())
-	{
-		currentAnim = &walkBasic;
-		if (facingLeft)
-		{
-			position.x -= speed;
-		}
-		else
-		{
-			position.x += speed;
 		}
 
 	}
