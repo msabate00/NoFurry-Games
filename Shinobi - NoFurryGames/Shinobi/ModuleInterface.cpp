@@ -115,7 +115,6 @@ update_status ModuleInterface::PostUpdate()
 
 	if (App->scene_Level1->IsEnabled()) {
 
-	
 		//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
 		printHostageIcon(hostage_num);

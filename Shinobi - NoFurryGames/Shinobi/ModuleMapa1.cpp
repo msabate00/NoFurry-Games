@@ -123,12 +123,4 @@ void ModuleMapa1::printMapa1() {
 		}
 	}
 
-	
-
-
-
-
-
-	cout << "MapaX" << MapaX << endl;
-	cout << "MapaY" << MapaY << endl;
 }

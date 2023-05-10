@@ -78,6 +78,7 @@ bool ModuleScene_MainMenu::Start()
 
 update_status ModuleScene_MainMenu::Update()
 {
+
 	App->life_num = 3;
 	App->interface_module->total_time = 180;
 	
