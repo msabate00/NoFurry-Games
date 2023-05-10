@@ -66,6 +66,9 @@ bool ModuleScene_Level1_SecondFloor_Enemies::Start()
 
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 850, FLOOR_LEVEL - 177, true); //Enemigo básico 1
 
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 596, FLOOR_LEVEL - 177, true); 
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1693, FLOOR_LEVEL - 177, true); 
+
 
 	bool ret = true;
 

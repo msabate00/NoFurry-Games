@@ -95,14 +95,18 @@ bool ModuleScene_Level1::Start()
 
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 820, FLOOR_LEVEL - 64); //Enemigo knife
 
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 605, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 815, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1020, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1522, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1694, FLOOR_LEVEL - 64);
+
 
 	if (App->player->position.x >= 1210) // <----- ESTO NO FUNCIONA, YA QUE ESTA EN EL START
 	{
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1059, FLOOR_LEVEL - 64); //Enemigo básico 5
 		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1113, FLOOR_LEVEL - 64); //Enemigo básico 6
 	}
-
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 250, FLOOR_LEVEL - 64);
 
 	//Hostage
 	if (App->interface_module->hostageTaken[0] == false) {
