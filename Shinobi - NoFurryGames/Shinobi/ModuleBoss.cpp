@@ -150,19 +150,40 @@ update_status ModuleBoss::Update()
 
 	//SPAWN BOLA DI FOGO
 	if (timeContador % 180 == 0) {
-		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
+		//fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
+		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y);
 		timeContador = 0;
 
 	}
 	if (fireBallParticle != -1) {
-		if (timeContador < 90) {
-			App->particles->SetSpeedParticle(fireBallParticle, fPoint(-1, -1));
-		}
-		else {
-			App->particles->SetSpeedParticle(fireBallParticle, fPoint(-1, 1));
-		}
-	}
+		
+		if (App->player->position.y- App->player->currentAnimation->GetCurrentFrame().h/2 > App->particles->GetPositionParticle(fireBallParticle).y) {
+			currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
 
+		}
+		else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 2 < App->particles->GetPositionParticle(fireBallParticle).y) {
+			currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
+		}
+	
+		
+
+		if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
+			currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
+		}
+		else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
+			currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
+		}
+		
+		
+
+		
+
+
+		//currentParticleDirection = fPoint(currentParticleDirection.x - auxParticleDirection.x, currentParticleDirection.y - auxParticleDirection.y);
+		
+		
+	}
+	App->particles->SetSpeedParticle(fireBallParticle, currentParticleDirection);
 
 	
 	if (!stunned) {
@@ -184,22 +205,23 @@ update_status ModuleBoss::Update()
 		}
 		else {
 			stunned = false;
+			current_head_Animation->Reset();
 		}
 
 		inmuneTime--;
 		if (inmuneTime <= 0) {
-			inmuneTime = 180;
-			stunnedTime = 16;
+			inmuneTime = TOTAL_INMUNE_TIME;
+			stunnedTime = TOTAL_STUNNED_TIME;
 			inmune = false;
 			
 		}
 	}
 
-	if (!facingRight && position.x <= 100) { //andar
+	if (!facingRight && position.x <= 200) { //andar
 		current_legs_Animation = &legs_WalkForwardAnim;
 		facingRight = true;
 	}
-	else if (facingRight && position.x >= 300) {
+	else if (facingRight && position.x >= 400) {
 		current_legs_Animation = &legs_WalkForwardAnim;
 		facingRight = false;
 	}

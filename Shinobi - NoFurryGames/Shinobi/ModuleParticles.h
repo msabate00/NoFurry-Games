@@ -50,6 +50,7 @@ public:
 	int AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 	void SetSpeedParticle(int position, fPoint speed);
+	fPoint GetPositionParticle(int position);
 
 
 private:

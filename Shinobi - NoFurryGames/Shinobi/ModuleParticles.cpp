@@ -260,6 +260,17 @@ void ModuleParticles::SetSpeedParticle(int position, fPoint speed) {
 	if (particle != nullptr && particle->isAlive) {
 		particle->speed = speed;
 	}
+}
+
+fPoint ModuleParticles::GetPositionParticle(int position) {
+
+	Particle* particle = particles[position];
+	if (particle != nullptr && particle->isAlive) {
+		return particle->position;
+	}
+	else {
+		return fPoint(0, 0);
+	}
 
 
 }
