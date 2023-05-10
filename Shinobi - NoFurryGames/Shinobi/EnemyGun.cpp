@@ -4,6 +4,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
+#include "ModuleParticles.h"
 #include <iostream>
 #include <math.h>
 
@@ -19,6 +20,12 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor)
 	walkBasic.speed = 0.1f;
 
 	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.PushBack({ 4,245,47,58 });
+	recharge.speed = 0.1f;
+	recharge.loop = false;
 
 	//salto
 	jumping.PushBack({ 202, 317,34,68 });
@@ -112,15 +119,28 @@ void EnemyGun::Update()
 		}
 	}
 
-	if (isAttacking) {
-		currentAnim = &attackAnim;
-
-		if (currentAnim->HasFinished()) {
-			isAttacking = false;
-			currentAnim->Reset();
-		}
-
+	if (facingLeft && (App->player->position.x + 120) > position.x)
+	{
+		hasToShot = true;
 	}
+
+	if (hasToShot)
+	{
+		currentAnim = &recharge;
+		position.x += speed;
+
+		if (currentAnim->HasFinished())
+		{
+			currentAnim = &attackAnim;
+
+			if (currentAnim->HasFinished())
+			{
+				hasToShot = false;
+			}
+		}
+	}
+
+	
 
 	Enemy::Update();
 }

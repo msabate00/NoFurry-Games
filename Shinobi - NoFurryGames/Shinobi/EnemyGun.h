@@ -18,6 +18,8 @@ public:
 	bool secondFloor = false;
 	bool moveToDie = false;
 
+	bool hasToShot = false;
+
 
 	iPoint diePos;
 
