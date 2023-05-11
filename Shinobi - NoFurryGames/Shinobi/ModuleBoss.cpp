@@ -82,7 +82,7 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	legs_DamageAnim.PushBack({ 211, 234, 63, 59 });
 	legs_DamageAnim.speed = 0.05;
 
-	legs_IdleAnim.PushBack({ 73, 234, 63, 59 });
+	legs_IdleAnim.PushBack({ 280, 234, 63, 59 });
 	legs_IdleAnim.speed = 0.05;
 
 
@@ -91,7 +91,7 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	legs_WalkForwardAnim.PushBack({142, 234, 63, 59});
 	legs_WalkForwardAnim.PushBack({211, 234, 63, 59});
 	legs_WalkForwardAnim.PushBack({280, 234, 63, 59});
-	legs_WalkForwardAnim.speed = 0.1f;
+	legs_WalkForwardAnim.speed = 0.2f;
 	
 
 	generalDying.PushBack({ 5,345,59,94 });
@@ -164,7 +164,7 @@ update_status ModuleBoss::Update()
 		currentParticleDirection.x = particleSpeed;
 		currentParticleDirection.y = 0;
 		timeContador = 0;
-		current_torso_Animation
+		current_torso_Animation = &torso_AttackAnim;
 	}
 	if (fireBallParticle != -1) {
 		
