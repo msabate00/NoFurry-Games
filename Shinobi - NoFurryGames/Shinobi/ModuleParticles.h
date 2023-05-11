@@ -65,6 +65,7 @@ private:
 
 public:
 	
+	Particle ultiEspada;
 	Particle shurikenR;
 	Particle shurikenL;
 	Particle shurikenDying;

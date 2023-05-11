@@ -30,7 +30,19 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png");
 
+
 	
+	ultiEspada.anim.PushBack({ 445, 1110, 20, 58 });
+	ultiEspada.anim.PushBack({ 0, 0, 0, 0 });
+
+	ultiEspada.anim.loop = true;
+	ultiEspada.anim.speed = 0.3f;
+	ultiEspada.lifetime = 80;
+	ultiEspada.speed = fPoint(0, -10);
+
+
+
+
 	shurikenR.anim.PushBack({103, 292, 13, 10});
 	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
 	shurikenR.anim.PushBack({ 137, 292, 13, 10 });

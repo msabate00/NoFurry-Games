@@ -206,6 +206,15 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	PatadaKatanaAnim.speed = 0.2f;
 	PatadaKatanaAnim.loop = false;
+
+
+	
+	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
+	
+
+	ultiEspadaAnim.speed = 0.005f;
+	ultiEspadaAnim.loop = false;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -277,7 +286,7 @@ update_status ModulePlayer::Update()
 	}
 	position.y -= currJumpForce;
 	
-
+	
 	
 	//Reset the currentAnimation back to idle before updating the logic
 	if (!holdingGun) {
@@ -568,6 +577,14 @@ update_status ModulePlayer::Update()
 	}
 
 	
+	//ULTI
+	if (App->input->keys[SDL_SCANCODE_K] == KEY_DOWN)
+	{
+		ulti = true;
+		cout << "ULTIIIII" << endl;
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::NONE, 0);
+
+	}
 
 	//MECANICA DEL SALTO
 	if (isJumping) {
@@ -652,6 +669,18 @@ update_status ModulePlayer::Update()
 	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
+
+	//ulti
+	if (ulti = true) {
+
+		currentAnimation = &ultiEspadaAnim;
+
+		ulti = false;
+
+		return update_status::UPDATE_CONTINUE;
+
+
+	}
 }
 
 update_status ModulePlayer::PostUpdate()

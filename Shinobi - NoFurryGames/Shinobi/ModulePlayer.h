@@ -104,6 +104,8 @@ public:
 	Animation PatadaSaltoAnim;
 	Animation PatadaKatanaAnim;
 
+	Animation ultiEspadaAnim;
+
 	
 
 	// The player's collider
@@ -114,6 +116,7 @@ public:
 	bool destroyed = false;
 	bool hasPlayedDeathSound = true;
 	bool inmune = false;
+	bool ulti = false;
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint destroyedCountdown = 120;
