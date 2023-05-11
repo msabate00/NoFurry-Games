@@ -56,9 +56,26 @@ void EnemyBrownShield::Update()
 	// Cuando entra en el rango, se mueve
 	else
 	{
-		currentAnim = &walkBasic;
-		position.x -= 1;
-		facingLeft = true;
+		cout << "entra" << endl;
+			// Mover hacia delante
+			for (int i = 0; i < 10; i++) {
+				currentAnim = &walkBasic;
+				position.x -= 1;
+				facingLeft = true;
+				int o = 0;
+				cout << "delante" << endl;
+
+			}
+
+			// Mover hacia atrás
+			for (int o = 0; o < 10; o++) {
+				currentAnim = &walkBasic;
+				position.x += 1;
+				facingLeft = true;
+				int i = 0;
+			}
+
+	
 	}
 
 	//Si el enemigo queda por detrás del jugador, este primero cambia su dirección

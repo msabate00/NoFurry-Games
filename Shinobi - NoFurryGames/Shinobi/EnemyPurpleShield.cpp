@@ -43,11 +43,16 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 	collider = App->collisions->AddCollider({ 0, 0,44,65 }, Collider::Type::ENEMY, (Module*)App->enemy);
 
 
+
+	viewRange = 200;
+
 }
 
 void EnemyPurpleShield::Update()
 {
 	currentAnim = &walkBasic;
+
+	
 
 	//Gravedad
 	jumpSpeed += -GRAVITY;
