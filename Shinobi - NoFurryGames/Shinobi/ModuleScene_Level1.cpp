@@ -52,7 +52,7 @@ bool ModuleScene_Level1::Start()
 	LOG("Loading background assets");
 
 	App->collisions->Enable();
-	//App->scene_Level1_SecondFloor_Enemies->Enable();
+	App->scene_Level1_SecondFloor_Enemies->Enable();
 	App->player->Enable();
 	App->enemy->Enable();
 	App->scene_Level1_SecondFloor->Enable();
