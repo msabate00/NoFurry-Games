@@ -5,9 +5,12 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
+#include "Enemy.h"
 #include <iostream>
 
 #include "SDL/include/SDL_render.h"
+
+
 
 using namespace std;
 
@@ -83,13 +86,7 @@ void Enemy_Basic::Update()
 {
 	currentAnim = &walkBasic;
 
-	//Gravedad
-	jumpSpeed += -GRAVITY;
-	float grav = GRAVITY;
-	if (jumpSpeed < -grav) {
-		isJumping = true;
-	}
-	position.y -= jumpSpeed;
+	
 
 
 

@@ -168,16 +168,16 @@ update_status ModuleBoss::Update()
 	}
 	if (fireBallParticle != -1) {
 		
+		//Y
 		if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
 			currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
-
 		}
 		else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 3 < App->particles->GetPositionParticle(fireBallParticle).y) {
 			currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
 		}
 	
 		
-
+		//X
 		if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
 			currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
 		}
@@ -215,6 +215,7 @@ update_status ModuleBoss::Update()
 	
 	if (stunned || inmune) { //recibir damage
 		if (stunnedTime > 0) {
+			(facingRight && stunnedTime % 3 == 0) ? position.x-- : position.x++;
 			current_head_Animation = &head_DamageAnim;
 			current_torso_Animation = &torso_DamageAnim;
 			current_legs_Animation = &legs_DamageAnim;
@@ -230,54 +231,7 @@ update_status ModuleBoss::Update()
 		inmuneTime = TOTAL_INMUNE_TIME;
 		stunnedTime = TOTAL_STUNNED_TIME;
 		inmune = false;
-				
 	}
-	
-
-
-	
-	
-
-
-	//if (!stunned) {
-
-	//	if (facingRight) {
-	//		position.x += speed;
-	//	}
-	//	else {
-	//		position.x -= speed;
-	//	}
-	//	
-	//}
-	//if(stunned || inmune) { //recibir damage
-	//	if (stunnedTime > 0) {
-	//		current_head_Animation = &head_DamageAnim;
-	//		current_torso_Animation = &torso_DamageAnim;
-	//		current_legs_Animation = &legs_DamageAnim;
-	//		stunnedTime--;
-	//	}
-	//	else {
-	//		stunned = false;
-	//		current_head_Animation->Reset();
-	//	}
-
-	//	inmuneTime--;
-	//	if (inmuneTime <= 0) {
-	//		inmuneTime = TOTAL_INMUNE_TIME;
-	//		stunnedTime = TOTAL_STUNNED_TIME;
-	//		inmune = false;
-	//		
-	//	}
-	//}
-
-	//if (!facingRight && position.x <= 200) { //andar
-	//	current_legs_Animation = &legs_WalkForwardAnim;
-	//	facingRight = true;
-	//}
-	//else if (facingRight && position.x >= 400) {
-	//	current_legs_Animation = &legs_WalkForwardAnim;
-	//	facingRight = false;
-	//}
 	
 
 

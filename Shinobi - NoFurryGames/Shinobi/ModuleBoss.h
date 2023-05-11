@@ -11,7 +11,7 @@ struct Particle;
 
 
 #define TOTAL_INMUNE_TIME 180;
-#define TOTAL_STUNNED_TIME 16;
+#define TOTAL_STUNNED_TIME 8;
 #define BOSS_PARTICLE_DURATION 600;
 
 
@@ -49,8 +49,8 @@ public:
 	iPoint position;
 	const int speed = 1;
 	int life;
-	float inmuneTime = TOTAL_INMUNE_TIME;
-	float stunnedTime = TOTAL_STUNNED_TIME;
+	int inmuneTime = TOTAL_INMUNE_TIME;
+	int stunnedTime = TOTAL_STUNNED_TIME;
 	bool facingRight = false;
 	bool inmune = false;
 	bool stunned = false;

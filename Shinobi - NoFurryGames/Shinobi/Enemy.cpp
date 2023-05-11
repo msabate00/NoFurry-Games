@@ -48,6 +48,15 @@ const Collider* Enemy::GetColliderRange() const
 void Enemy::Update()
 {
 
+	//Gravedad
+	jumpSpeed += -GRAVITY;
+	float grav = GRAVITY;
+	if (jumpSpeed < -grav) {
+		isJumping = true;
+	}
+	position.y -= jumpSpeed;
+
+
 	if (setHasReceivedDamage)
 	{
 		if (!moveToDie)
@@ -141,23 +150,36 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	//Colisiona con pared, caja, suelo
 	if (c2->type == Collider::Type::WALL) {
 		
-		if (c2->GetRect().x >= position.x && c2->GetRect().y + 2 <= position.y) {
+		if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y) {
 			//NO SE PUEDE MOVER PARA LA DERECHA
+			
 			position.x -= speed;
 		}
-		else if (c2->GetRect().x + c2->GetRect().w + 1 >= position.x && c2->GetRect().y + 2 <= position.y) {
-				position.x += speed;
+		else if (c2->GetRect().x + c2->GetRect().w  >= position.x && c2->GetRect().y+2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed) {
+			position.x += speed;
+			
 		}
 
 
 
-		if (c2->GetRect().y + 1 >= position.y + jumpSpeed && jumpSpeed <= 0) {
-			position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h+1;
+		if (c2->GetRect().y >= position.y + currentAnim->GetCurrentFrame().h - 2 + jumpSpeed && jumpSpeed <= 0) {
+			position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h + 1;
 			jumpSpeed = 0;
 			isJumping = false;
-			//jumpAnim.Reset();
-
 		}
+
+		//if (c2->GetRect().y <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed && jumpSpeed <= 0) {
+		//	position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h+1;
+		//	jumpSpeed = 0;
+		//	isJumping = false;
+		//	
+		//	cout << c2->GetRect().y << " p: " << position.y<< " cf: " << currentAnim->GetCurrentFrame().h << endl;
+		//	//jumpAnim.Reset();
+
+		//}
+		//else {
+		//	//cout << "aaaa" << endl;
+		//}
 	}
 
 	 

@@ -46,6 +46,10 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 
 void EnemyBrownShield::Update()
 {
+
+	//REHACER TODO LO QUE HAY AQUI
+
+
 	// Enemigo se queda quieto si el jugador no está en su rango de visión
 	if (position.x - App->player->position.x > 150)
 	{
