@@ -63,14 +63,16 @@ bool ModuleScene_Level2::Start()
 
 	//Cajas
 	App->collisions->AddCollider({ 288, 183, 32, 32 }, Collider::Type::WALL); //1 caja
+
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
-	App->collisions->AddCollider({ 896, 183, 64, 32 }, Collider::Type::WALL); // 4 + 5 cajas
-	App->collisions->AddCollider({ 960, 151, 353, 64 }, Collider::Type::WALL); // Bloque grande
-	App->collisions->AddCollider({ 1024, 119, 224, 32 }, Collider::Type::WALL); // fila cajas 6 - 12
+
+	App->collisions->AddCollider({ 896, 183, 512, 32 }, Collider::Type::WALL); // Fila Cajas Abajo
+	App->collisions->AddCollider({ 960, 151, 352, 32 }, Collider::Type::WALL); // Fila Cajas Medio
+	App->collisions->AddCollider({ 1024, 119, 224, 32 }, Collider::Type::WALL); // fila cajas Arriba
 	App->collisions->AddCollider({ 1120, 87, 32, 32 }, Collider::Type::WALL); // caja 13
-	App->collisions->AddCollider({ 1313, 183, 96, 32 }, Collider::Type::WALL); // 14 + 15 + 16 cajas
+
 	App->collisions->AddCollider({ 1568, 183, 32, 32 }, Collider::Type::WALL); // 17 caja
-	App->collisions->AddCollider({ 1600, 119, 32, 32 }, Collider::Type::WALL); // 18 caja
+	App->collisions->AddCollider({ 1600, 119, 32, 32 }, Collider::Type::WALL); // 18 cajas
 	App->collisions->AddCollider({ 1600, 151, 96, 64 }, Collider::Type::WALL); // 19 caja grande
 	App->collisions->AddCollider({ 1696, 183, 32, 32 }, Collider::Type::WALL); // 20 caja
 	
