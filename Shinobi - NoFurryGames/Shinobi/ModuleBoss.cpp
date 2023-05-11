@@ -188,24 +188,51 @@ update_status ModuleBoss::Update()
 	App->particles->SetSpeedParticle(fireBallParticle, currentParticleDirection);
 
 	
-	if (timeMovingContador >= (bossMovingTime)) {
-		if (bossMovingTimer <= (timeMovingContador - bossMovingTime)) {
-			timeMovingContador = 0;
-		}
+	//Movimiento di boss
+	if (!stunned) {
+		if (timeMovingContador >= (bossMovingTime)) {
 
-		if (facingRight) {
-			position.x += speed;
+			(App->player->position.x > position.x) ? facingRight = true : facingRight = false;
+
+			if (bossMovingTimer <= (timeMovingContador - bossMovingTime)) {
+				timeMovingContador = 0;
+			}
+
+			if (facingRight) {
+				position.x += speed;
+			}
+			else {
+				position.x -= speed;
+			}
+
+			current_legs_Animation = &legs_WalkForwardAnim;
 		}
 		else {
-			position.x -= speed;
+			current_legs_Animation = &legs_IdleAnim;
 		}
-		
-		current_legs_Animation = &legs_WalkForwardAnim;
 	}
-	else {
-		current_legs_Animation = &legs_IdleAnim;
+	
+	
+	if (stunned || inmune) { //recibir damage
+		if (stunnedTime > 0) {
+			current_head_Animation = &head_DamageAnim;
+			current_torso_Animation = &torso_DamageAnim;
+			current_legs_Animation = &legs_DamageAnim;
+			stunnedTime--;
+		}
+		else {
+			stunned = false;
+			current_head_Animation->Reset();
+		}
 	}
-
+	inmuneTime--;
+	if (inmuneTime <= 0) {
+		inmuneTime = TOTAL_INMUNE_TIME;
+		stunnedTime = TOTAL_STUNNED_TIME;
+		inmune = false;
+				
+	}
+	
 
 
 	

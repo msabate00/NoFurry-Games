@@ -49,15 +49,15 @@ public:
 	iPoint position;
 	const int speed = 1;
 	int life;
-	const float inmuneTime = TOTAL_INMUNE_TIME;
-	const float stunnedTime = TOTAL_STUNNED_TIME;
+	float inmuneTime = TOTAL_INMUNE_TIME;
+	float stunnedTime = TOTAL_STUNNED_TIME;
 	bool facingRight = false;
 	bool inmune = false;
 	bool stunned = false;
 	int timeContador = 0;
 	int timeMovingContador = 0; 
 
-	const int bossMovingTime = 720;
+	const int bossMovingTime = 480;
 	const int bossMovingTimer = 20;
 
 
