@@ -47,17 +47,20 @@ public:
 
 
 	iPoint position;
-	int speed = 1;
+	const int speed = 1;
 	int life;
-	float inmuneTime = TOTAL_INMUNE_TIME;
-	float stunnedTime = TOTAL_STUNNED_TIME;
+	const float inmuneTime = TOTAL_INMUNE_TIME;
+	const float stunnedTime = TOTAL_STUNNED_TIME;
 	bool facingRight = false;
 	bool inmune = false;
 	bool stunned = false;
 	int timeContador = 0;
+	int timeMovingContador = 0; 
 
-	
-	fPoint auxParticleDirection = fPoint(0,0);
+	const int bossMovingTime = 720;
+	const int bossMovingTimer = 20;
+
+
 	float particleSpeed = 2.0f;
 	float particleAdjustmen = 0.04f;
 	fPoint currentParticleDirection = fPoint(particleSpeed, 0);

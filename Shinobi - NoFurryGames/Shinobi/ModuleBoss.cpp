@@ -46,10 +46,11 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	
 
 	
-	
+	torso_IdleAnim.PushBack({ 75,50, 66, 53 });
+	/*
 	torso_IdleAnim.PushBack({75,50, 66, 53});
 	torso_IdleAnim.PushBack({147,50, 66, 53});
-	torso_IdleAnim.PushBack({219,50, 66, 53});
+	torso_IdleAnim.PushBack({219,50, 66, 53});*/
 	torso_IdleAnim.speed = 0.05;
 	/* NO BORRAR
 
@@ -58,11 +59,19 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_IdleAnim.PushBack({147,109, 66, 53});
 	torso_IdleAnim.PushBack({219,109, 66, 53});
 
-
+	haz 
 	torso_IdleAnim.PushBack({3,168, 66, 53});
 	torso_IdleAnim.PushBack({ 75,168, 66, 53});
 	torso_IdleAnim.PushBack({ 147,168, 66, 53});
 	torso_IdleAnim.PushBack({ 219,168, 66, 53});*/
+
+	
+	torso_AttackAnim.PushBack({ 75,50, 66, 53 });
+	torso_AttackAnim.PushBack({ 147,50, 66, 53 });
+	torso_AttackAnim.PushBack({ 219,50, 66, 53 });
+	torso_AttackAnim.speed = 0.05;
+	torso_AttackAnim.loop = false;
+
 
 	torso_DamageAnim.PushBack({ 3,168, 66, 53 });
 	torso_DamageAnim.speed = 0.05;
@@ -124,7 +133,6 @@ bool ModuleBoss::Start()
 	position.y = 130;
 	life = 8;
 	inmune = false;
-	inmuneTime = 180;
 	timeContador = 0;
 
 	return true;
@@ -156,7 +164,7 @@ update_status ModuleBoss::Update()
 		currentParticleDirection.x = particleSpeed;
 		currentParticleDirection.y = 0;
 		timeContador = 0;
-
+		current_torso_Animation
 	}
 	if (fireBallParticle != -1) {
 		
@@ -176,20 +184,14 @@ update_status ModuleBoss::Update()
 		else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
 			currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
 		}
-		
-		
-
-		cout << currentParticleDirection.x << " - " << currentParticleDirection.y << endl;
-
-
-		//currentParticleDirection = fPoint(currentParticleDirection.x - auxParticleDirection.x, currentParticleDirection.y - auxParticleDirection.y);
-		
-		
 	}
 	App->particles->SetSpeedParticle(fireBallParticle, currentParticleDirection);
 
 	
-	if (!stunned) {
+	if (timeMovingContador >= (bossMovingTime)) {
+		if (bossMovingTimer <= (timeMovingContador - bossMovingTime)) {
+			timeMovingContador = 0;
+		}
 
 		if (facingRight) {
 			position.x += speed;
@@ -198,36 +200,57 @@ update_status ModuleBoss::Update()
 			position.x -= speed;
 		}
 		
+		current_legs_Animation = &legs_WalkForwardAnim;
 	}
-	if(stunned || inmune) { //recibir damage
-		if (stunnedTime > 0) {
-			current_head_Animation = &head_DamageAnim;
-			current_torso_Animation = &torso_DamageAnim;
-			current_legs_Animation = &legs_DamageAnim;
-			stunnedTime--;
-		}
-		else {
-			stunned = false;
-			current_head_Animation->Reset();
-		}
-
-		inmuneTime--;
-		if (inmuneTime <= 0) {
-			inmuneTime = TOTAL_INMUNE_TIME;
-			stunnedTime = TOTAL_STUNNED_TIME;
-			inmune = false;
-			
-		}
+	else {
+		current_legs_Animation = &legs_IdleAnim;
 	}
 
-	if (!facingRight && position.x <= 200) { //andar
-		current_legs_Animation = &legs_WalkForwardAnim;
-		facingRight = true;
-	}
-	else if (facingRight && position.x >= 400) {
-		current_legs_Animation = &legs_WalkForwardAnim;
-		facingRight = false;
-	}
+
+
+	
+	
+
+
+	//if (!stunned) {
+
+	//	if (facingRight) {
+	//		position.x += speed;
+	//	}
+	//	else {
+	//		position.x -= speed;
+	//	}
+	//	
+	//}
+	//if(stunned || inmune) { //recibir damage
+	//	if (stunnedTime > 0) {
+	//		current_head_Animation = &head_DamageAnim;
+	//		current_torso_Animation = &torso_DamageAnim;
+	//		current_legs_Animation = &legs_DamageAnim;
+	//		stunnedTime--;
+	//	}
+	//	else {
+	//		stunned = false;
+	//		current_head_Animation->Reset();
+	//	}
+
+	//	inmuneTime--;
+	//	if (inmuneTime <= 0) {
+	//		inmuneTime = TOTAL_INMUNE_TIME;
+	//		stunnedTime = TOTAL_STUNNED_TIME;
+	//		inmune = false;
+	//		
+	//	}
+	//}
+
+	//if (!facingRight && position.x <= 200) { //andar
+	//	current_legs_Animation = &legs_WalkForwardAnim;
+	//	facingRight = true;
+	//}
+	//else if (facingRight && position.x >= 400) {
+	//	current_legs_Animation = &legs_WalkForwardAnim;
+	//	facingRight = false;
+	//}
 	
 
 
@@ -236,6 +259,7 @@ update_status ModuleBoss::Update()
 	current_legs_Animation->Update();
 
 	timeContador++;
+	timeMovingContador++;
 
 
 	return update_status::UPDATE_CONTINUE;
