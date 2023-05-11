@@ -19,6 +19,7 @@ struct Collider
 		ENEMY_SHOT,
 		HOSTAGE,
 		CHANGE_LEVEL,
+		BOSS_PROYECTILE,
 
 		MAX
 	};

@@ -23,6 +23,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::WALL][Collider::Type::BOSS_PROYECTILE] = true;
+
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
@@ -33,6 +35,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::CHANGE_LEVEL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_RANGE] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BOSS_PROYECTILE] = true;
+
 
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
@@ -44,6 +48,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_RANGE] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BOSS_PROYECTILE] = false;
+
 
 
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
@@ -55,6 +61,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS_PROYECTILE] = false;
+
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
@@ -65,6 +73,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS_PROYECTILE] = false;
+
 
 	matrix[Collider::Type::HOSTAGE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::PLAYER] = true;
@@ -75,6 +85,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::HOSTAGE][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::HOSTAGE][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::HOSTAGE][Collider::Type::BOSS_PROYECTILE] = false;
+
 
 	matrix[Collider::Type::CHANGE_LEVEL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::CHANGE_LEVEL][Collider::Type::PLAYER] = true;
@@ -85,6 +97,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::CHANGE_LEVEL][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::CHANGE_LEVEL][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::CHANGE_LEVEL][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::CHANGE_LEVEL][Collider::Type::BOSS_PROYECTILE] = false;
+
 
 	matrix[Collider::Type::PLAYER_RANGE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::PLAYER_RANGE][Collider::Type::PLAYER] = false;
@@ -95,6 +109,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_RANGE][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::PLAYER_RANGE][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::PLAYER_RANGE][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::PLAYER_RANGE][Collider::Type::BOSS_PROYECTILE] = false;
+
 
 	matrix[Collider::Type::ENEMY_RANGE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::ENEMY_RANGE][Collider::Type::PLAYER] = true;
@@ -105,6 +121,19 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_RANGE][Collider::Type::CHANGE_LEVEL] = false;
 	matrix[Collider::Type::ENEMY_RANGE][Collider::Type::PLAYER_RANGE] = false;
 	matrix[Collider::Type::ENEMY_RANGE][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::ENEMY_RANGE][Collider::Type::BOSS_PROYECTILE] = false;
+
+
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::WALL] = true;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::HOSTAGE] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::CHANGE_LEVEL] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::PLAYER_RANGE] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::ENEMY_RANGE] = false;
+	matrix[Collider::Type::BOSS_PROYECTILE][Collider::Type::BOSS_PROYECTILE] = false;
 
 
 }
@@ -203,6 +232,7 @@ void ModuleCollisions::DebugDraw()
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 		case Collider::Type::ENEMY: // red
+		case Collider::Type::BOSS_PROYECTILE:
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		case Collider::Type::PLAYER_SHOT: // yellow

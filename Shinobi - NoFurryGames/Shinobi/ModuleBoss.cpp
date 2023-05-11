@@ -149,19 +149,22 @@ update_status ModuleBoss::Update()
 
 
 	//SPAWN BOLA DI FOGO
-	if (timeContador % 180 == 0) {
+	int aux = BOSS_PARTICLE_DURATION;
+	if ((timeContador % aux) == 0) {
 		//fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
-		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y);
+		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::BOSS_PROYECTILE);
+		currentParticleDirection.x = particleSpeed;
+		currentParticleDirection.y = 0;
 		timeContador = 0;
 
 	}
 	if (fireBallParticle != -1) {
 		
-		if (App->player->position.y- App->player->currentAnimation->GetCurrentFrame().h/2 > App->particles->GetPositionParticle(fireBallParticle).y) {
+		if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
 			currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
 
 		}
-		else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 2 < App->particles->GetPositionParticle(fireBallParticle).y) {
+		else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 3 < App->particles->GetPositionParticle(fireBallParticle).y) {
 			currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
 		}
 	
@@ -176,7 +179,7 @@ update_status ModuleBoss::Update()
 		
 		
 
-		
+		cout << currentParticleDirection.x << " - " << currentParticleDirection.y << endl;
 
 
 		//currentParticleDirection = fPoint(currentParticleDirection.x - auxParticleDirection.x, currentParticleDirection.y - auxParticleDirection.y);

@@ -7,6 +7,7 @@
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
+#include "ModuleBoss.h"
 #include "Enemy.h"
 #include "SDL/include/SDL_timer.h"
 
@@ -139,8 +140,8 @@ bool ModuleParticles::Start()
 	fireBall.anim.PushBack({598, 993, 31, 27});
 	fireBall.anim.pingpong = true;
 	fireBall.anim.speed = 0.5f;
-	fireBall.speed = fPoint(-1, 0);
-	fireBall.lifetime = 180;
+	fireBall.speed = fPoint(-1, -1);
+	fireBall.lifetime = BOSS_PARTICLE_DURATION;
 	
 
 	return true;
@@ -181,6 +182,16 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 						break;
 					}
 				}
+			}
+
+			if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
+				if (c2->GetRect().y > c1->GetRect().y) {
+					App->boss->currentParticleDirection.y *= -1;
+				}
+				else {
+					App->boss->currentParticleDirection.x *= -1;
+				}
+				return;
 			}
 
 
