@@ -52,19 +52,62 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_IdleAnim.PushBack({147,50, 66, 53});
 	torso_IdleAnim.PushBack({219,50, 66, 53});*/
 	torso_IdleAnim.speed = 0.05;
-	/* NO BORRAR
+	
+	/*
+	Torso atraque 1
 
-	torso_IdleAnim.PushBack({3,109, 66, 53});
-	torso_IdleAnim.PushBack({75,109, 66, 53});
-	torso_IdleAnim.PushBack({147,109, 66, 53});
-	torso_IdleAnim.PushBack({219,109, 66, 53});
+	torso_AttackAnim1
 
-	haz 
-	torso_IdleAnim.PushBack({3,168, 66, 53});
-	torso_IdleAnim.PushBack({ 75,168, 66, 53});
-	torso_IdleAnim.PushBack({ 147,168, 66, 53});
-	torso_IdleAnim.PushBack({ 219,168, 66, 53});*/
+	torso_AttackAnim1.PushBack({ 3,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 75,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 147,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 219,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 219,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 219,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 219,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 147,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 75,50, 66, 53 });
+	torso_AttackAnim1.PushBack({ 3,50, 66, 53 });
 
+	torso_AttackAnim1.speed = 0.05;
+	torso_AttackAnim1.loop = false;
+
+	Torso ataque 2
+
+	torso_AttackAnim2
+	
+	torso_AttackAnim2.PushBack({ 3,50, 66, 53 });
+	torso_AttackAnim2.PushBack({ 75,50, 66, 53 });
+	torso_AttackAnim2.PushBack({ 147,50, 66, 53 });
+	torso_AttackAnim2.PushBack({ 219,50, 66, 53 });
+	torso_AttackAnim2.PushBack({ 3,109, 66, 53 });
+	torso_AttackAnim2.PushBack({ 75,109, 66, 53 });
+	torso_AttackAnim2.PushBack({ 147,109, 66, 53 });
+	torso_AttackAnim2.PushBack({ 219,109, 66, 53 });
+	torso_AttackAnim2.PushBack({ 3,168, 66, 53 });
+	torso_AttackAnim2.PushBack({ 75,168, 66, 53 });
+	torso_AttackAnim2.PushBack({ 147,168, 66, 53 });
+
+
+	torso_AttackAnim2.speed = 0.05;
+	torso_AttackAnim2.loop = false;
+	
+
+	Torso ataque 3
+
+	torso_AttackAnim3
+
+	torso_AttackAnim3.PushBack({ 147,109, 66, 53 });
+	torso_AttackAnim3.PushBack({ 219,109, 66, 53 });
+	torso_AttackAnim3.PushBack({ 3,168, 66, 53 });
+	torso_AttackAnim3.PushBack({ 75,168, 66, 53 });
+	torso_AttackAnim3.PushBack({ 147,168, 66, 53 });
+
+	torso_AttackAnim3.speed = 0.05;
+	torso_AttackAnim3.loop = false;
+
+
+	*/
 	
 	torso_AttackAnim.PushBack({ 75,50, 66, 53 });
 	torso_AttackAnim.PushBack({ 147,50, 66, 53 });
@@ -73,14 +116,20 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_AttackAnim.loop = false;
 
 
+	torso_DamageAnim.PushBack({ 407,170, 66, 53 });
 	torso_DamageAnim.PushBack({ 3,168, 66, 53 });
-	torso_DamageAnim.speed = 0.05;
+	torso_DamageAnim.speed = 0.3;
+	torso_DamageAnim.loop = false;
 
+	head_DamageAnim.PushBack({ 444,134,28,26 });
 	head_DamageAnim.PushBack({ 139,16,28,26 });
-	head_DamageAnim.speed = 0.05;
-	
+	head_DamageAnim.speed = 0.3;
+	head_DamageAnim.loop = false;
+
+	legs_DamageAnim.PushBack({ 409, 236, 63, 59 });
 	legs_DamageAnim.PushBack({ 211, 234, 63, 59 });
-	legs_DamageAnim.speed = 0.05;
+	legs_DamageAnim.speed = 0.3;
+	legs_DamageAnim.loop = false;
 
 	legs_IdleAnim.PushBack({ 280, 234, 63, 59 });
 	legs_IdleAnim.speed = 0.05;
@@ -95,11 +144,24 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	
 
 	generalDying.PushBack({ 5,345,59,94 });
+	generalDying.PushBack({ 5,345,124,94 });
+	generalDying.PushBack({ 5,345,239,94 });
+	generalDying.PushBack({ 5,345,354,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.loop = false;
+
+	generalDying.speed = 0.05;
+
+
+
+
+	/*
+	generalDying.PushBack({ 5,345,59,94 });
 	generalDying.PushBack({ 70,345,59,94 });
 	generalDying.PushBack({ 135,345,109,94 });
 	generalDying.PushBack({ 250,345,109,94 });
 	generalDying.PushBack({ 365,345,109,94 });
-	generalDying.speed = 0.05;
+	generalDying.speed = 0.05;*/
 
 }
 
@@ -317,6 +379,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 		life--;
 		
 		if (life <= 0) {//morir
+			
 			current_head_Animation = &generalDying;
 			App->audio->PlayFx(Boss_DieFX);
 			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);

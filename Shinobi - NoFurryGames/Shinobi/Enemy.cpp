@@ -140,7 +140,14 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(destroyedFx);
 	}
 		
+
+	//Colisiona con la pre-caja, para saltar
+	if (c2->type == Collider::Type::BOX_HELP && currentAnim == &walkBasic) 
+	{
+		cout << "colisionaa" << endl;
+	}
 	
+
 	//Colisiona con pared, caja, suelo
 	if (c2->type == Collider::Type::WALL) {
 		
