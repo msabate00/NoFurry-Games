@@ -126,7 +126,7 @@ update_status ModuleInterface::PostUpdate()
 		printHostageIcon(hostage_num);
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
-		printTime(getTimeString(elapsed_time).c_str(), Time);
+		printTime(getTimeString(elapsed_time).c_str());
 		printPlayer1();
 	
 		
@@ -325,9 +325,6 @@ void ModuleInterface::printPlayer1() {
 	timer += App->deltaTime;
 
 
-
-
-
 	if (NameColor) {
 		
 			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontBlue, "p1");
@@ -463,7 +460,7 @@ void ModuleInterface::printGoIcon() {
 	//GoIconPosition = 200;
 }
 
-void ModuleInterface::printTime(std::string time_string, SDL_Texture* Time) {
+void ModuleInterface::printTime(std::string time_string) {
 
 	int IconPosition = 70;
 	int elapsed_time = updateTimer(start_time);
@@ -484,7 +481,7 @@ void ModuleInterface::printTime(std::string time_string, SDL_Texture* Time) {
 		char* pointStr = new char[bufferSize];
 		snprintf(pointStr, bufferSize, "%d", time_vector[i]);
 
-		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, App->scoreFontYellow, pointStr);
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, App->scoreFontYellow, pointStr);//
 
 		/*	std::string filename = "Assets/Interface/Color_use/Yellow/Yellow_Numeros/Yellow_" + std::to_string(time_vector[i]) + ".png";
 			SDL_Texture* Time = App->textures->Load(filename.c_str());
@@ -539,6 +536,8 @@ std::string ModuleInterface::getTimeString(int elapsed_time) {
 	}
 	time_string += std::to_string(seconds);
 
+	//cout << time_string <<endl;
+	
 	return time_string;
 }
 
