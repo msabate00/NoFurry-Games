@@ -60,6 +60,7 @@ public:
 	void printTime(std::string time, SDL_Texture* texture);
 	void printPlayer1();
 	void printGoNext();
+	void printGoIcon();
 	int updateTimer(time_t start_time);
 	std::vector<int> getDigits(int number);
 	std::string getTimeString(int elapsed_seconds);
@@ -92,6 +93,7 @@ public:
 	int coinNum = 0;
 	float timer = 0.0f;
 	float timerGonext = 0.0f;
+	float timerGoIcon = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
 
@@ -107,12 +109,13 @@ public:
 	SDL_Texture* Time = nullptr;
 	SDL_Texture* dosPunt = nullptr;
 	SDL_Texture* Player1 = nullptr;
-
+	SDL_Texture* goIcon = nullptr;
 
 	int hostage_num = 4;
 	bool hostageTaken[4] = { false };
 	int texture_num = 0;
 	int elapsed_time;
+
 	time_t start_time;
 	int total_time = 180;
 	std::string time_string;
@@ -121,6 +124,8 @@ public:
 	
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	const float switchTimeInsertCoin = 900.0f;
+
+	int GoIconPosition = 200;//-1580
 
 };
 

@@ -70,6 +70,7 @@ bool ModuleInterface::Start()
 	LifeIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/vida.png");
 	save = App->textures->Load("Assets/Interface/Color_use/Yellow/SAVE.png");
 	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
+	goIcon = App->textures->Load("Assets/Interface/go.png");
 	start_time = time(nullptr);
 	return ret;
 }
@@ -128,13 +129,18 @@ update_status ModuleInterface::PostUpdate()
 		printTime(getTimeString(elapsed_time).c_str(), Time);
 		printPlayer1();
 		
-		
-		cout << timerGonext << endl;
+		printGoIcon();
+		timerGoIcon += App->deltaTime++;
+
 		if (hostage_num == 0 ) {
 			timerGonext += App->deltaTime++;
+			
 			if (timerGonext <= 2000) {
 				printGoNext();
-			}	
+			}
+			else {
+				timerGonext = 2001;
+			}
 		}
 			
 		
@@ -433,6 +439,23 @@ void ModuleInterface::printGoNext() {
 		}
 	}
 	
+}
+
+void ModuleInterface::printGoIcon() {
+
+
+	//cout << timerGoIcon << endl;
+	for (int i = 0; i < 3; i++)
+	{	
+		App->render->Blit(goIcon, SCREEN_WIDTH - GoIconPosition, SCREEN_HEIGHT - 80, SDL_FLIP_NONE, nullptr, 1);
+		if (timerGoIcon >= 1000) {
+			GoIconPosition -= 20;
+			timerGoIcon = 0;
+		}
+	
+	}
+	//GoIconPosition = 200;
+
 }
 
 void ModuleInterface::printTime(std::string time_string, SDL_Texture* Time) {
