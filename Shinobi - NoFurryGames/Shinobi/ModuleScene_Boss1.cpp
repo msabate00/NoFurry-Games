@@ -66,7 +66,8 @@ bool ModuleScene_Boss1::Start()
 	App->collisions->AddCollider({ 10, 0, 30, SCREEN_HEIGHT }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 476, 0, 30, SCREEN_HEIGHT }, Collider::Type::WALL);
 
-	
+	//Musica
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-3 (Boss).ogg", 2.0f);
 
 	return ret;
 }

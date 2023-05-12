@@ -135,6 +135,10 @@ bool ModuleBoss::Start()
 	inmune = false;
 	timeContador = 0;
 
+	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
+	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss");
+	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted");
+	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die");
 	return true;
 }
 
@@ -165,6 +169,7 @@ update_status ModuleBoss::Update()
 		currentParticleDirection.y = 0;
 		timeContador = 0;
 		current_torso_Animation = &torso_AttackAnim;
+		App->audio->PlayFx(FuegoFX);
 	}
 	if (fireBallParticle != -1) {
 		
@@ -220,6 +225,7 @@ update_status ModuleBoss::Update()
 			current_torso_Animation = &torso_DamageAnim;
 			current_legs_Animation = &legs_DamageAnim;
 			stunnedTime--;
+			App->audio->PlayFx(RecieveDamageFX);
 		}
 		else {
 			stunned = false;
@@ -306,9 +312,12 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == head_Collider && c2->type == Collider::Type::PLAYER_SHOT && !inmune) {
 		inmune = true;
 		stunned = true;
+		App->audio->PlayFx(RecieveDamageFX);
 		life--;
+		
 		if (life <= 0) {//morir
 			current_head_Animation = &generalDying;
+			App->audio->PlayFx(Boss_DieFX);
 			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);
 		}
 	}
