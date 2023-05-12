@@ -225,11 +225,12 @@ update_status ModuleBoss::Update()
 
 	int aux = BOSS_PARTICLE_DURATION;
 	if (timeContador % aux == 0) {
+		firstParticle = true;
 		if (firstParticle) {
 			currentParticlePosition = fPoint(position.x, position.y);
 			currentParticleDirection.x = particleSpeed;
 			currentParticleDirection.y = 0;
-			App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
+			fireBallParticle = App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
 			timeContador = 0;
 			firstParticle = false;
 		}
@@ -239,11 +240,11 @@ update_status ModuleBoss::Update()
 		if (!firstParticle) {
 			currentParticlePosition.x += currentParticleDirection.x;
 			currentParticlePosition.y += currentParticleDirection.y;
-
+			
+			//cout << "FB: " << fireBallParticle << " ParticleDir: " << currentParticleDirection.x << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
-			App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
-
+			
 
 			//Y
 			if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
@@ -256,11 +257,17 @@ update_status ModuleBoss::Update()
 
 			//X
 			if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
+			
 				currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
 			}
 			else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
+				cout << "bbb" << endl;
 				currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
 			}
+
+			fireBallParticle = App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
+
+
 		}
 	}
 

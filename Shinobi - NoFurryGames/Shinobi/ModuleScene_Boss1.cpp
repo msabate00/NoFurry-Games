@@ -60,7 +60,7 @@ bool ModuleScene_Boss1::Start()
 	App->boss->Enable();
 
 	//Suelo
-	App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 506, 9 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, SCREEN_HEIGHT - 9, 506, 50 }, Collider::Type::WALL);
 
 	//Paredes
 	App->collisions->AddCollider({ 10, 0, 30, SCREEN_HEIGHT }, Collider::Type::WALL);
