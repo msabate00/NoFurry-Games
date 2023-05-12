@@ -130,9 +130,11 @@ update_status ModuleInterface::PostUpdate()
 		
 		
 		cout << timerGonext << endl;
-		if (hostage_num == 0 && timerGonext >= 2000) {
+		if (hostage_num == 0 ) {
 			timerGonext += App->deltaTime++;
-			printGoNext();
+			if (timerGonext <= 2000) {
+				printGoNext();
+			}	
 		}
 			
 		
