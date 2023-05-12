@@ -42,6 +42,7 @@
     <ClCompile Include="ModuleInterface.cpp" />
     <ClCompile Include="ModuleMision1.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModuleParticlesBoss.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleScene_Boss1.cpp" />
@@ -55,6 +56,7 @@
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="ParticleBoss.cpp" />
     <ClCompile Include="Path.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +84,7 @@
     <ClInclude Include="ModuleInterface.h" />
     <ClInclude Include="ModuleMision1.h" />
     <ClInclude Include="ModuleParticles.h" />
+    <ClInclude Include="ModuleParticlesBoss.h" />
     <ClInclude Include="ModulePlayer.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleScene_Boss1.h" />
@@ -96,6 +99,7 @@
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleBoss.h" />
     <ClInclude Include="Path.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

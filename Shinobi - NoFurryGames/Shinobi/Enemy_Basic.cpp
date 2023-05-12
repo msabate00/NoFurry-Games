@@ -24,19 +24,21 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	walkBasic.speed = 0.1f;
 
 	//salto
-	jumping.PushBack({ 12, 161,42,65 });
-	jumping.PushBack({ 60, 161,42,65 });
+	fallJumping.PushBack({ 12, 161,42,65 });
 	jumping.PushBack({ 108, 161,42,65 });
+	jumping.PushBack({ 60, 161,42,65 });
 
+	fallJumping.loop = false;
+	fallJumping.speed = 0.1f;
 	jumping.loop = false;
-	jumping.speed = 0.01f;
+	jumping.speed = 0.1f;
 
 	//muerte
 	Death.PushBack({ 22, 92, 30, 54 });
 	Death.PushBack({ 59, 108, 65, 26 });
 	Death.PushBack({ 131, 108, 65, 26 });
 
-	Death.speed = 0.1f;
+	Death.speed = 0.2f;
 	Death.loop = false;
 
 	Disapear.PushBack({ 0,0,0,0 });
@@ -84,7 +86,15 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 void Enemy_Basic::Update()
 {
-	currentAnim = &walkBasic;
+	if (!jumpsNow)
+	{
+		currentAnim = &walkBasic;
+	}
+
+	if (currentAnim->HasFinished())
+	{
+		jumpsNow = false;
+	}
 
 	
 	//Gravedad
@@ -95,6 +105,11 @@ void Enemy_Basic::Update()
 	}
 	position.y -= jumpSpeed;
 
+
+	if(jumpsNow)
+	{
+		currentAnim = &jumping;
+	}
 
 
 	if (facingLeft && App->player->position.x < (position.x - viewRange))

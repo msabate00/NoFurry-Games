@@ -112,6 +112,12 @@
     <ClCompile Include="ModuleMapa1.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleBoss.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleParticlesBoss.cpp">
+      <Filter>Source Files\Modules\Core\Particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -230,6 +236,12 @@
     </ClInclude>
     <ClInclude Include="ModuleMapa1.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleBoss.h">
+      <Filter>Source Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleParticlesBoss.h">
+      <Filter>Source Files\Modules\Core\Particles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

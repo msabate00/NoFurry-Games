@@ -142,21 +142,33 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		
 
 	//Colisiona con la pre-caja, para saltar
-	if (c2->type == Collider::Type::BOX_HELP && currentAnim == &walkBasic) 
+	if (c2->type == Collider::Type::BOX_HELP) 
 	{
-		cout << "colisionaa" << endl;
+		if (facingLeft || currentAnim == &walkBasic)
+		{
+			jumpsNow = true;
+			position.y -= 5;
+		}
+		else if (!facingLeft || currentAnim == &walkBasic)
+		{
+			cout << "debe derechear" << endl;
+			position.y -= 4;
+		}
 	}
 	
 
 	//Colisiona con pared, caja, suelo
 	if (c2->type == Collider::Type::WALL) {
 		
-		if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y) {
+		if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y)
+		{
 			//NO SE PUEDE MOVER PARA LA DERECHA
-			
+
 			position.x -= speed;
 		}
-		else if (c2->GetRect().x + c2->GetRect().w  >= position.x && c2->GetRect().y+2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed) {
+		else if (c2->GetRect().x + c2->GetRect().w  >= position.x && c2->GetRect().y+2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed) 
+		{
+		
 			position.x += speed;
 			
 		}

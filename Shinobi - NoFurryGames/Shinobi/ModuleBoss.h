@@ -12,7 +12,7 @@ struct Particle;
 
 #define TOTAL_INMUNE_TIME 180;
 #define TOTAL_STUNNED_TIME 8;
-#define BOSS_PARTICLE_DURATION 600;
+#define BOSS_PARTICLE_DURATION 40;
 
 
 class ModuleBoss : public Module {
@@ -78,6 +78,9 @@ public:
 	//Torso
 	Animation torso_IdleAnim;
 	Animation torso_AttackAnim;
+	Animation torso_AttackAnim1;
+	Animation torso_AttackAnim2;
+	Animation torso_AttackAnim3;
 	Animation torso_DamageAnim;
 
 	//Legs

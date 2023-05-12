@@ -22,6 +22,7 @@
 #include "ModuleScene_Boss1.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModuleParticlesBoss.h"
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModuleAudio.h"
@@ -65,12 +66,13 @@ Application::Application()
 	modules[14] = player =								new ModulePlayer(false);
 	modules[15] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
 	modules[16] = particles =							new ModuleParticles(true);
-	modules[17] = collisions =							new ModuleCollisions(true);
-	modules[18] = audio =								new ModuleAudio(true);
-	modules[19] = fonts =								new ModuleFonts(true);
-	modules[20] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[21] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[22] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[17] = particlesBoss =							new ModuleParticlesBoss(true);
+	modules[18] = collisions =							new ModuleCollisions(true);
+	modules[19] = audio =								new ModuleAudio(true);
+	modules[20] = fonts =								new ModuleFonts(true);
+	modules[21] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[22] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[23] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 

@@ -140,7 +140,7 @@ bool ModuleParticles::Start()
 	fireBall.anim.PushBack({598, 993, 31, 27});
 	fireBall.anim.pingpong = true;
 	fireBall.anim.speed = 0.5f;
-	fireBall.speed = fPoint(-1, -1);
+	fireBall.speed = fPoint(0, 0);
 	fireBall.lifetime = BOSS_PARTICLE_DURATION;
 	
 
