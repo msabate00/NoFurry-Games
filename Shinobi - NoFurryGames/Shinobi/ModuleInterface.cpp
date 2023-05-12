@@ -91,6 +91,7 @@ update_status ModuleInterface::Update()
 		coinNum++;
 	}
 
+	
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -118,7 +119,7 @@ update_status ModuleInterface::PostUpdate()
 	}
 
 	if (App->scene_Level1->IsEnabled()) {
-
+		
 		//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
 		printHostageIcon(hostage_num);
@@ -126,7 +127,17 @@ update_status ModuleInterface::PostUpdate()
 		printNum(texture_num);
 		printTime(getTimeString(elapsed_time).c_str(), Time);
 		printPlayer1();
-
+		
+		
+		/*cout << timerGonext << endl;
+		if (hostage_num == 0 ) {
+			timerGonext += App->deltaTime++;
+			if (timerGonext <= 2000) {
+				printGoNext();
+			}	
+		}*/
+			
+		
 
 	}
 	else if (App->scene_Level2->IsEnabled()) {
@@ -312,20 +323,18 @@ void ModuleInterface::printPlayer1() {
 
 
 	if (NameColor) {
-		for (int i = 0; i < 2; i++)
-		{
+		
 			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontBlue, "p1");
-		}
+		
 		if (timer >= switchTime) {
 			NameColor = false;
 			timer = 0.0f; // Reset Tiempo Contador
 		}
 	}
 	else {
-		for (int i = 0; i < 2; i++)
-		{
+		
 			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontWhite, "p1");
-		}
+		
 		if (timer >= switchTime) {
 			NameColor = true;
 			timer = 0.0f; // Reset Tiempo Contador
@@ -375,24 +384,55 @@ void ModuleInterface::printLifeIcon(int life) {
 
 void ModuleInterface::printNum(int point) {
 
-	int IconPosition = 250;
+	int IconPosition = 300;
+
 
 	int bufferSize = snprintf(nullptr, 0, "%d", point) + 1;
 	char* pointStr = new char[bufferSize];
 	snprintf(pointStr, bufferSize, "%d", point);
 
-	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontRed, pointStr);
-
-	/*
-		for (int i = 0; i < number.size(); i++)
-		{
-			std::string filename = "Assets/Interface/Color_use/Red/Rojo_Numeros/Rojo_" + std::to_string(number[i]) + ".png";
-			LetraNum = App->textures->Load(filename.c_str());
-
-			App->render->Blit(LetraNum, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
-			IconPosition -= 16;
+	if (NameColor) {
+		
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontBlue, pointStr);
+		
+		if (timer >= switchTime) {
+			NameColor = false;
+			timer = 0.0f; // Reset Tiempo Contador
 		}
-		*/
+	}
+	else {
+		
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontWhite, pointStr);
+		
+		if (timer >= switchTime) {
+			NameColor = true;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+
+	bufferSize = snprintf(nullptr, 0, "%d", rankingNum) + 1;
+	char* rankStr = new char[bufferSize];
+	snprintf(rankStr, bufferSize, "%d", rankingNum);
+	std::string rankText = "h1 " + std::string(rankStr);
+	App->fonts->BlitText(SCREEN_WIDTH - 150, SCREEN_HEIGHT - 220, App->scoreFontRed, rankText.c_str());
+
+
+}
+
+void ModuleInterface::printGoNext() {
+
+	int IconPosition = 315;
+
+	if (NameColor) {
+
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 130, App->scoreFontYellow, "go to next stage");
+
+		if (timer >= switchTime) {
+			NameColor = false;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	
 }
 
 void ModuleInterface::printTime(std::string time_string, SDL_Texture* Time) {

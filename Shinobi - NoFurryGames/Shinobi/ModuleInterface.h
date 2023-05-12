@@ -59,8 +59,9 @@ public:
 	void printNum(int point);
 	void printTime(std::string time, SDL_Texture* texture);
 	void printPlayer1();
-	std::vector<int> getDigits(int number);
+	void printGoNext();
 	int updateTimer(time_t start_time);
+	std::vector<int> getDigits(int number);
 	std::string getTimeString(int elapsed_seconds);
 
 
@@ -90,6 +91,7 @@ public:
 	const double ROTATION_SPEED = 6;
 	int coinNum = 0;
 	float timer = 0.0f;
+	float timerGonext = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
 
@@ -115,6 +117,7 @@ public:
 	int total_time = 180;
 	std::string time_string;
 	//Canbiar Color SHINOBI
+	int rankingNum = 100000;
 	
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	const float switchTimeInsertCoin = 900.0f;

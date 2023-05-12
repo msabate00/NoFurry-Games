@@ -78,6 +78,9 @@ public:
 	//Torso
 	Animation torso_IdleAnim;
 	Animation torso_AttackAnim;
+	Animation torso_AttackAnim1;
+	Animation torso_AttackAnim2;
+	Animation torso_AttackAnim3;
 	Animation torso_DamageAnim;
 
 	//Legs
@@ -93,6 +96,11 @@ public:
 	Collider* head_Collider = nullptr;
 	Collider* legs_Collider = nullptr;
 
+	//Efectos
+	uint RecieveDamageFX = 0;
+	uint FuegoFX = 0;
+	uint RecieveDamage_2FX = 0;
+	uint Boss_DieFX = 0;
 
 };
 

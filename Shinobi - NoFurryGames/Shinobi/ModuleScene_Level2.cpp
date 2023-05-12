@@ -71,9 +71,10 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 1024, 119, 224, 32 }, Collider::Type::WALL); // fila cajas Arriba
 	App->collisions->AddCollider({ 1120, 87, 32, 32 }, Collider::Type::WALL); // caja 13
 
-	App->collisions->AddCollider({ 1568, 183, 32, 32 }, Collider::Type::WALL); // 17 caja
-	App->collisions->AddCollider({ 1600, 119, 32, 32 }, Collider::Type::WALL); // 18 cajas
-	App->collisions->AddCollider({ 1600, 151, 96, 64 }, Collider::Type::WALL); // 19 caja grande
+	App->collisions->AddCollider({ 1568, 183, 32, 32 }, Collider::Type::WALL); // Columna 17 caja
+	App->collisions->AddCollider({ 1600, 119, 32, 96 }, Collider::Type::WALL); // Columna 18 caja + bloque
+	App->collisions->AddCollider({ 1632, 151, 32, 64 }, Collider::Type::WALL); // Columna 2 19 caja grande
+	App->collisions->AddCollider({ 1664, 151, 32, 64 }, Collider::Type::WALL); // Columna 3 19 caja grande
 	App->collisions->AddCollider({ 1696, 183, 32, 32 }, Collider::Type::WALL); // 20 caja
 	
 	//Limites jugador
