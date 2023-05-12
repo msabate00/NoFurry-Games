@@ -60,6 +60,7 @@ void Enemy::Update()
 	}
 
 
+
 	if (setHasReceivedDamage)
 	{
 		if (!moveToDie)
@@ -157,7 +158,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 5;
+			position.y -= 4;
 		}
 	}
 	if (c2->type == Collider::Type::BOX_HELP_RIGHT)
@@ -165,7 +166,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (!facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 5;
+			position.y -= 6;
 		}
 	}
 	
