@@ -73,6 +73,9 @@ bool ModuleScene_Level1::Start()
 	App->collisions->AddCollider({1437, 183, 64, 32}, Collider::Type::WALL);
 	App->collisions->AddCollider({1405, 151, 32, 64}, Collider::Type::WALL);
 
+	//Colliders con cajas para los saltos
+	App->collisions->AddCollider({ 401, 180, 62, 15 }, Collider::Type::BOX_HELP);
+
 
 	//Limites jugador
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
