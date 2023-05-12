@@ -129,13 +129,13 @@ update_status ModuleInterface::PostUpdate()
 		printPlayer1();
 		
 		
-		cout << timerGonext << endl;
+		/*cout << timerGonext << endl;
 		if (hostage_num == 0 ) {
 			timerGonext += App->deltaTime++;
 			if (timerGonext <= 2000) {
 				printGoNext();
 			}	
-		}
+		}*/
 			
 		
 

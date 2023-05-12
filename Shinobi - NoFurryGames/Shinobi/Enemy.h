@@ -39,6 +39,7 @@ public:
 	float timeToDestroy;
 	float lookForPlayer = 10;
 	bool secondFloor;
+	bool jumpsNow = false;
 
 	bool isJumping = false;
 	float jumpSpeed = 0.0f;		//Fuerza actual del salto
@@ -81,7 +82,7 @@ protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
 
-	Animation walkBasic, staticAnim, jumping, attackAnim;
+	Animation walkBasic, staticAnim, jumping, attackAnim, fallJumping;
 	Animation Death, Disapear;
 
 	// The enemy's collider
