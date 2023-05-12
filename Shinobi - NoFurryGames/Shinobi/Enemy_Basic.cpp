@@ -86,17 +86,7 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 void Enemy_Basic::Update()
 {
-	if (!jumpsNow)
-	{
-		currentAnim = &walkBasic;
-	}
-
-	if (currentAnim->HasFinished())
-	{
-		jumpsNow = false;
-	}
-
-	
+		
 	//Gravedad
 	jumpSpeed += -GRAVITY;
 	float grav = GRAVITY;
@@ -104,12 +94,6 @@ void Enemy_Basic::Update()
 		isJumping = true;
 	}
 	position.y -= jumpSpeed;
-
-
-	if(jumpsNow)
-	{
-		currentAnim = &jumping;
-	}
 
 
 	if (facingLeft && App->player->position.x < (position.x - viewRange))

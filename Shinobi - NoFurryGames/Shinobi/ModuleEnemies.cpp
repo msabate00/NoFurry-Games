@@ -206,7 +206,6 @@ void ModuleEnemies::HandleEnemiesDespawnEnemy(Enemy* enemy)
 				enemies[i] = nullptr;
 				return;
 			}
-
 		}
 	}
 }
