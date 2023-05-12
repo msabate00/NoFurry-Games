@@ -93,6 +93,11 @@ public:
 	Collider* head_Collider = nullptr;
 	Collider* legs_Collider = nullptr;
 
+	//Efectos
+	uint RecieveDamageFX = 0;
+	uint FuegoFX = 0;
+	uint RecieveDamage_2FX = 0;
+	uint Boss_DieFX = 0;
 
 };
 

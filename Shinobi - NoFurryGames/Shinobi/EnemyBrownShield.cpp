@@ -48,7 +48,13 @@ void EnemyBrownShield::Update()
 {
 
 	//REHACER TODO LO QUE HAY AQUI
-
+	//Gravedad
+	jumpSpeed += -GRAVITY;
+	float grav = GRAVITY;
+	if (jumpSpeed < -grav) {
+		isJumping = true;
+	}
+	position.y -= jumpSpeed;
 
 	// Enemigo se queda quieto si el jugador no está en su rango de visión
 	if (position.x - App->player->position.x > 150)

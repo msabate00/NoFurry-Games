@@ -74,7 +74,13 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 void EnemyGun::Update()
 {
 	currentAnim = &walkBasic;
-
+	//Gravedad
+	jumpSpeed += -GRAVITY;
+	float grav = GRAVITY;
+	if (jumpSpeed < -grav) {
+		isJumping = true;
+	}
+	position.y -= jumpSpeed;
 
 	if (facingLeft && App->player->position.x < (position.x - (viewRange - 20)))
 	{

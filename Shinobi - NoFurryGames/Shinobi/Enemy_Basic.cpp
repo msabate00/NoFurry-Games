@@ -87,7 +87,13 @@ void Enemy_Basic::Update()
 	currentAnim = &walkBasic;
 
 	
-
+	//Gravedad
+	jumpSpeed += -GRAVITY;
+	float grav = GRAVITY;
+	if (jumpSpeed < -grav) {
+		isJumping = true;
+	}
+	position.y -= jumpSpeed;
 
 
 
