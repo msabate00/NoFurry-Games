@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleParticles.h"
+#include "ModuleParticlesBoss.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleCollisions.h"
