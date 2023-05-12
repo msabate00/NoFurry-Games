@@ -99,12 +99,13 @@ void ModuleMision1::printext() {
 
 	if (current_time - last_time > 50 && str_cache.length() < len) {
 	
+		
 		str_cache += str[str_cache.length()];
 
 
 		last_time = current_time;
 	}
-
+	//App->audio->PlayFx(typewriterFX);
 	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite, str_cache.c_str());
 	
 }
@@ -113,6 +114,13 @@ void ModuleMision1::printext() {
 void ModuleMision1::printMision() {
 	int IconPosition = 260;
 	App->interface_module->timer += App->deltaTime;
+	while (EfectoSonido == true)
+	{
+		App->audio->PlayFx(Mision_soundFX);
+		
+		EfectoSonido = false;
+		App->audio->PlayFx(ONE_FX);
+	}
 
 	if (App->interface_module->NameColor) {
 		for (int i = 0; i < 2; i++)

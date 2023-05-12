@@ -61,6 +61,8 @@ public:
 	uint Mision_FinishedFX;
 	uint Mision_soundFX;
 
+	bool EfectoSonido = true;
+
 
 
 };
