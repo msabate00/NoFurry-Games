@@ -160,7 +160,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	//Colisiona con pared, caja, suelo
 	if (c2->type == Collider::Type::WALL) {
 		
-		if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y)
+		if (c2->GetRect().x >= position.x && c2->GetRect().y + 2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed)
 		{
 			//NO SE PUEDE MOVER PARA LA DERECHA
 
