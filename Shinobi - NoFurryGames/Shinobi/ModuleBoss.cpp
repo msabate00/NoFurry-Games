@@ -164,12 +164,13 @@ update_status ModuleBoss::Update()
 	int aux = BOSS_PARTICLE_DURATION;
 	if ((timeContador % aux) == 0) {
 		//fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
+		App->audio->PlayFx(FuegoFX);
 		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::BOSS_PROYECTILE);
 		currentParticleDirection.x = particleSpeed;
 		currentParticleDirection.y = 0;
 		timeContador = 0;
 		current_torso_Animation = &torso_AttackAnim;
-		App->audio->PlayFx(FuegoFX);
+		
 	}
 	if (fireBallParticle != -1) {
 		
