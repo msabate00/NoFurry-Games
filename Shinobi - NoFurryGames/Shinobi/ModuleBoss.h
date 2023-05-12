@@ -78,6 +78,9 @@ public:
 	//Torso
 	Animation torso_IdleAnim;
 	Animation torso_AttackAnim;
+	Animation torso_AttackAnim1;
+	Animation torso_AttackAnim2;
+	Animation torso_AttackAnim3;
 	Animation torso_DamageAnim;
 
 	//Legs
