@@ -88,7 +88,7 @@ bool ModuleScene_Level2::Start()
 
 
 	//Musica
-	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg", 2.0f);
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg");
 
 
 	App->render->camera.x = 0;

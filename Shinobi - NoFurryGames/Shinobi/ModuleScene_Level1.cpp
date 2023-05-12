@@ -118,7 +118,7 @@ bool ModuleScene_Level1::Start()
 	}
 
 	//Musicadddd
-	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 2.0f);
+	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
