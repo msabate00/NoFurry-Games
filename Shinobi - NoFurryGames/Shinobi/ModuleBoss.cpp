@@ -223,8 +223,50 @@ update_status ModuleBoss::Update()
 	current_legs_Animation = &legs_WalkForwardAnim;
 
 
-	//SPAWN BOLA DI FOGO
 	int aux = BOSS_PARTICLE_DURATION;
+	if (timeContador % aux == 0) {
+		if (firstParticle) {
+			currentParticlePosition = fPoint(position.x, position.y);
+			currentParticleDirection.x = particleSpeed;
+			currentParticleDirection.y = 0;
+			App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
+			timeContador = 0;
+			firstParticle = false;
+		}
+		
+	}
+	else {
+		if (!firstParticle) {
+			currentParticlePosition.x += currentParticleDirection.x;
+			currentParticlePosition.y += currentParticleDirection.y;
+
+
+			current_torso_Animation = &torso_AttackAnim;
+			App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
+
+
+			//Y
+			if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
+				currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
+			}
+			else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 3 < App->particles->GetPositionParticle(fireBallParticle).y) {
+				currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
+			}
+
+
+			//X
+			if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
+				currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
+			}
+			else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
+				currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
+			}
+		}
+	}
+
+
+	//SPAWN BOLA DI FOGO
+	/*int aux = BOSS_PARTICLE_DURATION;
 	if ((timeContador % aux) == 0) {
 		//fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
 		App->audio->PlayFx(FuegoFX);
@@ -255,7 +297,7 @@ update_status ModuleBoss::Update()
 		}
 	}
 	App->particles->SetSpeedParticle(fireBallParticle, currentParticleDirection);
-
+	*/
 	
 	//Movimiento di boss
 	if (!stunned) {
@@ -265,6 +307,7 @@ update_status ModuleBoss::Update()
 
 			if (bossMovingTimer <= (timeMovingContador - bossMovingTime)) {
 				timeMovingContador = 0;
+				
 			}
 
 			if (facingRight) {
@@ -293,6 +336,9 @@ update_status ModuleBoss::Update()
 		}
 		else {
 			stunned = false;
+			head_DamageAnim.Reset();
+			torso_DamageAnim.Reset();
+			legs_DamageAnim.Reset();
 			current_head_Animation->Reset();
 		}
 	}

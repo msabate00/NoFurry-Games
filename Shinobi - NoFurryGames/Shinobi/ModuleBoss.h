@@ -12,7 +12,7 @@ struct Particle;
 
 #define TOTAL_INMUNE_TIME 180;
 #define TOTAL_STUNNED_TIME 8;
-#define BOSS_PARTICLE_DURATION 40;
+#define BOSS_PARTICLE_DURATION 600;
 
 
 class ModuleBoss : public Module {
@@ -64,6 +64,8 @@ public:
 	float particleSpeed = 2.0f;
 	float particleAdjustmen = 0.04f;
 	fPoint currentParticleDirection = fPoint(particleSpeed, 0);
+	fPoint currentParticlePosition = fPoint(particleSpeed, 0);
+	float firstParticle = true;
 
 
 	SDL_Texture* texture = nullptr;
