@@ -48,13 +48,7 @@ const Collider* Enemy::GetColliderRange() const
 void Enemy::Update()
 {
 
-	//Gravedad
-	jumpSpeed += -GRAVITY;
-	float grav = GRAVITY;
-	if (jumpSpeed < -grav) {
-		isJumping = true;
-	}
-	position.y -= jumpSpeed;
+	
 
 
 	if (setHasReceivedDamage)

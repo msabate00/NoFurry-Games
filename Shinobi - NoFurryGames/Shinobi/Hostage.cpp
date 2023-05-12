@@ -69,6 +69,9 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) :
 
 void Hostage::Update()
 {
+
+	
+
 	
 	if (!saved) {
 		currentAnim = &IdleHostage;
