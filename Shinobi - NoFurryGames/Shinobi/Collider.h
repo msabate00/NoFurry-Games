@@ -20,6 +20,7 @@ struct Collider
 		HOSTAGE,
 		CHANGE_LEVEL,
 		BOSS_PROYECTILE,
+		BOX_HELP,
 
 		MAX
 	};
