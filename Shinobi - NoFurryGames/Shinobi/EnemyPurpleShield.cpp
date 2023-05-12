@@ -51,7 +51,13 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 void EnemyPurpleShield::Update()
 {
 	currentAnim = &walkBasic;
-
+	//Gravedad
+	jumpSpeed += -GRAVITY;
+	float grav = GRAVITY;
+	if (jumpSpeed < -grav) {
+		isJumping = true;
+	}
+	position.y -= jumpSpeed;
 
 
 	if (facingLeft && App->player->position.x < (position.x - viewRange))

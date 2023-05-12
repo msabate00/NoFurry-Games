@@ -48,13 +48,7 @@ const Collider* Enemy::GetColliderRange() const
 void Enemy::Update()
 {
 
-	//Gravedad
-	jumpSpeed += -GRAVITY;
-	float grav = GRAVITY;
-	if (jumpSpeed < -grav) {
-		isJumping = true;
-	}
-	position.y -= jumpSpeed;
+	
 
 
 	if (setHasReceivedDamage)
@@ -146,7 +140,14 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(destroyedFx);
 	}
 		
+
+	//Colisiona con la pre-caja, para saltar
+	if (c2->type == Collider::Type::BOX_HELP && currentAnim == &walkBasic) 
+	{
+		cout << "colisionaa" << endl;
+	}
 	
+
 	//Colisiona con pared, caja, suelo
 	if (c2->type == Collider::Type::WALL) {
 		
