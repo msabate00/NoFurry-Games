@@ -51,6 +51,7 @@ public:
 
 	void SetSpeedParticle(int position, fPoint speed);
 	fPoint GetPositionParticle(int position);
+	void DestroyCollision(int position);
 
 
 private:

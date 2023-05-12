@@ -48,7 +48,17 @@ const Collider* Enemy::GetColliderRange() const
 void Enemy::Update()
 {
 
-	
+	if (!jumpsNow)
+	{
+		currentAnim = &walkBasic;
+	}
+	else currentAnim = &jumping;
+		
+	if (currentAnim->HasFinished())
+	{
+		jumpsNow = false;
+	}
+
 
 
 	if (setHasReceivedDamage)
@@ -134,7 +144,8 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	//Si no es de la segunda planta, y la colision esta inactiva, y es de tipo wall, ignora la colision
 	if (!secondFloor && !c2->active && c2->type == Collider::Type::WALL) { return;  }
 
-	if (c2->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage) {
+	if (c2->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage) 
+	{
 		//c muere
 		this->setHasReceivedDamage = true;
 		App->audio->PlayFx(destroyedFx);
@@ -147,12 +158,15 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 5;
-		}
-		else if (!facingLeft || currentAnim == &walkBasic)
-		{
-			cout << "debe derechear" << endl;
 			position.y -= 4;
+		}
+	}
+	if (c2->type == Collider::Type::BOX_HELP_RIGHT)
+	{
+		if (!facingLeft || currentAnim == &walkBasic)
+		{
+			jumpsNow = true;
+			position.y -= 6;
 		}
 	}
 	

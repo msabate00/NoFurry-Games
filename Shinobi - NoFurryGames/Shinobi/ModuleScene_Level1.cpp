@@ -74,7 +74,8 @@ bool ModuleScene_Level1::Start()
 	App->collisions->AddCollider({1405, 151, 32, 64}, Collider::Type::WALL);
 
 	//Colliders con cajas para los saltos
-	App->collisions->AddCollider({ 416, 186, 62, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 416, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 1 - IZQUIERDA
+	App->collisions->AddCollider({ 411, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 1 - DERECHA
 
 
 	//Limites jugador

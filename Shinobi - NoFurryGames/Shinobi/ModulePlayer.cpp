@@ -761,21 +761,22 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}	
 	}
 
-	if (c1 == collider && c2->type == Collider::Type::ENEMY && !destroyed && !inmune && !App->godMode)
+	if (c1 == collider && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::BOSS_PROYECTILE) && !destroyed && !inmune && !App->godMode)
 	{
+		if (c2->type == Collider::Type::ENEMY) {
+			for (uint i = 0; i < MAX_ENEMIES; i++) {
 
-		for(uint i = 0; i<MAX_ENEMIES; i++){
-		
-			if (App->enemy->getEnemy(i) != nullptr && App->enemy->getEnemy(i)->GetCollider() == c2) {
-				if (App->enemy->getEnemy(i)->secondFloor != isSecondFloor || App->enemy->getEnemy(i)->setHasReceivedDamage) {
-					return;
+				if (App->enemy->getEnemy(i) != nullptr && App->enemy->getEnemy(i)->GetCollider() == c2) {
+					if (App->enemy->getEnemy(i)->secondFloor != isSecondFloor || App->enemy->getEnemy(i)->setHasReceivedDamage) {
+						return;
+					}
+					else {
+						break;
+					}
+
 				}
-				else {
-					break;
-				}
-				
+
 			}
-		
 		}
 		holdingGun = false;
 		destroyed = true;

@@ -21,6 +21,7 @@ struct Collider
 		CHANGE_LEVEL,
 		BOSS_PROYECTILE,
 		BOX_HELP,
+		BOX_HELP_RIGHT,
 
 		MAX
 	};

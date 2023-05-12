@@ -32,7 +32,7 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	jumping.PushBack({ 202, 317,34,68 });
 	
 	jumping.loop = false;
-	jumping.speed = 0.01f;
+	jumping.speed = 0.1f;
 
 	//muerte
 	Death.PushBack({ 4, 316, 63, 19 });
