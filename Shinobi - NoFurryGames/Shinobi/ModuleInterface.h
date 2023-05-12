@@ -88,7 +88,7 @@ public:
 	double B = 200;
 	double angle = 0;
 	const double ROTATION_SPEED = 6;
-	//int sumapix = 0;
+	int coinNum = 0;
 	float timer = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
