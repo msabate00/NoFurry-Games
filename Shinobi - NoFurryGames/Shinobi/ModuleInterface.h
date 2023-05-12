@@ -125,7 +125,7 @@ public:
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	const float switchTimeInsertCoin = 900.0f;
 
-	int GoIconPosition = 200;//-1580
+	int GoIconPosition = -1580;//-1580
 
 };
 

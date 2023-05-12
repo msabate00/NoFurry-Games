@@ -128,13 +128,13 @@ update_status ModuleInterface::PostUpdate()
 		printNum(texture_num);
 		printTime(getTimeString(elapsed_time).c_str(), Time);
 		printPlayer1();
+	
 		
-		printGoIcon();
-		timerGoIcon += App->deltaTime++;
 
 		if (hostage_num == 0 ) {
 			timerGonext += App->deltaTime++;
-			
+			timerGoIcon += App->deltaTime++;
+			printGoIcon();
 			if (timerGonext <= 2000) {
 				printGoNext();
 			}
@@ -445,17 +445,22 @@ void ModuleInterface::printGoIcon() {
 
 
 	//cout << timerGoIcon << endl;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 2; i++)
 	{	
 		App->render->Blit(goIcon, SCREEN_WIDTH - GoIconPosition, SCREEN_HEIGHT - 80, SDL_FLIP_NONE, nullptr, 1);
-		if (timerGoIcon >= 1000) {
-			GoIconPosition -= 20;
-			timerGoIcon = 0;
+		if (GoIconPosition <= -1634) {
+			
+			if (timerGoIcon >= 500) {
+				GoIconPosition = -1580;
+				timerGoIcon = 0;
+			}
 		}
-	
+		if (timerGoIcon >= 500) {
+			GoIconPosition -= 18;
+			timerGoIcon = 0;
+		}		
 	}
 	//GoIconPosition = 200;
-
 }
 
 void ModuleInterface::printTime(std::string time_string, SDL_Texture* Time) {
