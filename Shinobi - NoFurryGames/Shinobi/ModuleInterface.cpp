@@ -87,6 +87,10 @@ update_status ModuleInterface::Update()
 
 	int elapsed_time = updateTimer(start_time);
 
+	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
+		coinNum++;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -192,8 +196,13 @@ void ModuleInterface::InsertCoin() {
 	int IconPosition = 280;
 	timer += App->deltaTime;
 	
+	int bufferSize = snprintf(nullptr, 0, "%d", coinNum) + 1;
+	char* pointStr = new char[bufferSize];
+	snprintf(pointStr, bufferSize, "%d", coinNum);
+
 	if (NameColor) {
-		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 80, App->scoreFontWhite, "insert coin");
+		std::string coinText = "insert coin " + std::string(pointStr);
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 80, App->scoreFontWhite, coinText.c_str());
 		if (timer >= switchTimeInsertCoin) {
 			NameColor = false;
 			timer = 0.0f; // Reset Tiempo Contador
