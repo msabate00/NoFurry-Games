@@ -57,7 +57,7 @@ public:
 	void printHostageIcon(int);
 	void printLifeIcon(int);
 	void printNum(int point);
-	void printTime(std::string time, SDL_Texture* texture);
+	void printTime(std::string time);
 	void printPlayer1();
 	void printGoNext();
 	void printGoIcon();

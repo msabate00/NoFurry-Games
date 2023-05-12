@@ -784,7 +784,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
-	
+		
 		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level2, 20);
 
 	}
