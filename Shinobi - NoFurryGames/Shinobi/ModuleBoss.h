@@ -62,9 +62,9 @@ public:
 
 
 	float particleSpeed = 2.0f;
-	float particleAdjustmen = 0.04f;
-	fPoint currentParticleDirection = fPoint(particleSpeed, 0);
-	fPoint currentParticlePosition = fPoint(particleSpeed, 0);
+	float particleAdjustmen = 0.03f;
+	fPoint currentParticleDirection = fPoint(0, 0);
+	fPoint currentParticlePosition = fPoint(0, 0);
 	float firstParticle = true;
 
 

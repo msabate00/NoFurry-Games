@@ -129,7 +129,7 @@ bool ModuleParticles::Start()
 	bonusGun.lifetime = 60;
 
 
-	fireBall.anim.PushBack({302, 993, 31, 27});
+	/*fireBall.anim.PushBack({302, 993, 31, 27});
 	fireBall.anim.PushBack({339, 993, 31, 27});
 	fireBall.anim.PushBack({376, 993, 31, 27});
 	fireBall.anim.PushBack({413, 993, 31, 27});
@@ -137,7 +137,34 @@ bool ModuleParticles::Start()
 	fireBall.anim.PushBack({487, 993, 31, 27});
 	fireBall.anim.PushBack({524, 993, 31, 27});
 	fireBall.anim.PushBack({561, 993, 31, 27});
-	fireBall.anim.PushBack({598, 993, 31, 27});
+	fireBall.anim.PushBack({598, 993, 31, 27});*/
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	fireBall.anim.PushBack({ 598, 993, 31, 27 });
+	fireBall.anim.PushBack({ 561, 993, 31, 27 });
+	fireBall.anim.PushBack({ 524, 993, 31, 27 });
+	fireBall.anim.PushBack({ 487, 993, 31, 27 });
+	fireBall.anim.PushBack({ 450, 993, 31, 27 });
+	fireBall.anim.PushBack({ 413, 993, 31, 27 });
+	fireBall.anim.PushBack({ 376, 993, 31, 27 });
+	fireBall.anim.PushBack({ 339, 993, 31, 27 });
+	fireBall.anim.PushBack({ 302, 993, 31, 27 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
 	fireBall.anim.pingpong = true;
 	fireBall.anim.speed = 0.5f;
 	fireBall.speed = fPoint(0, 0);
@@ -294,6 +321,11 @@ fPoint ModuleParticles::GetPositionParticle(int position) {
 	else {
 		return fPoint(0, 0);
 	}
+}
 
-
+void ModuleParticles::DestroyCollision(int position) {
+	Particle* particle = particles[position];
+	if (particle != nullptr && particle->isAlive) {
+		particle->collider->pendingToDelete = true;
+	}
 }

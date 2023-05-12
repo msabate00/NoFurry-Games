@@ -208,7 +208,7 @@ bool ModuleBoss::Start()
 update_status ModuleBoss::Update()
 {
 	
-
+	App->particles->DestroyCollision(fireBallParticle);
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
@@ -222,6 +222,9 @@ update_status ModuleBoss::Update()
 	current_torso_Animation = &torso_IdleAnim;
 	current_legs_Animation = &legs_WalkForwardAnim;
 
+	if (App->player->destroyed) {
+		return update_status::UPDATE_CONTINUE;
+	}
 
 	int aux = BOSS_PARTICLE_DURATION;
 	if (timeContador % aux == 0) {
@@ -237,11 +240,11 @@ update_status ModuleBoss::Update()
 		
 	}
 	else {
-		if (!firstParticle) {
+		if (!firstParticle && timeContador < (aux - aux /4)) {
 			currentParticlePosition.x += currentParticleDirection.x;
 			currentParticlePosition.y += currentParticleDirection.y;
 			
-			//cout << "FB: " << fireBallParticle << " ParticleDir: " << currentParticleDirection.x << endl;
+			cout << "FB: " << fireBallParticle << " ParticleDir: " << currentParticlePosition.y << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
 			
@@ -250,7 +253,7 @@ update_status ModuleBoss::Update()
 			if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
 				currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
 			}
-			else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 3 < App->particles->GetPositionParticle(fireBallParticle).y) {
+			else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h  < App->particles->GetPositionParticle(fireBallParticle).y) {
 				currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
 			}
 
@@ -265,8 +268,9 @@ update_status ModuleBoss::Update()
 				currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
 			}
 
+			
 			fireBallParticle = App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
-
+			
 
 		}
 	}
