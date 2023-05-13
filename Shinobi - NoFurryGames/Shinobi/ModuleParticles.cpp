@@ -211,7 +211,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				}
 			}
 
-			if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
+			/*if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
 				if (c2->GetRect().y > c1->GetRect().y) {
 					App->boss->currentParticleDirection.y *= -1;
 				}
@@ -219,7 +219,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					App->boss->currentParticleDirection.x *= -1;
 				}
 				return;
-			}
+			}*/
 
 
 			if (!c2->active) { return; } //SI ESA COLISION NO ESTA ACTIVA, IGNORA TODO LO DE ABAJO

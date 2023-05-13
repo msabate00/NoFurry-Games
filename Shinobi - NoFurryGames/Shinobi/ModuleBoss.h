@@ -97,6 +97,7 @@ public:
 
 	Collider* head_Collider = nullptr;
 	Collider* legs_Collider = nullptr;
+	Collider* fireBall_Collider = nullptr;
 
 	//Efectos
 	uint RecieveDamageFX = 0;

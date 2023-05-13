@@ -4,7 +4,7 @@
 #include "Module.h"
 
 #include "Globals.h"
-#include "ParticleBoss.h"
+#include "Particle.h"
 #include "Collider.h"
 
 #define MAX_ACTIVE_PARTICLES 100
@@ -47,10 +47,11 @@ public:
 	// Param particle	- A template particle from which the new particle will be created
 	// Param x, y		- Position x,y in the screen (upper left axis)
 	// Param delay		- Delay time from the moment the function is called until the particle is displayed in screen
-	int AddParticle(const ParticleBoss& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
+	int AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 	void SetSpeedParticle(int position, fPoint speed);
 	fPoint GetPositionParticle(int position);
+	void DestroyCollision(int position);
 
 
 private:
@@ -58,16 +59,33 @@ private:
 	SDL_Texture* texture = nullptr;
 
 	// An array to store and handle all the particles
-	ParticleBoss* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
+	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
 
 	// An index to the last added particle
 	uint lastParticle = 0;
 
 public:
 
-	ParticleBoss fireBallBig;
-	ParticleBoss fireBallMedium;
-	ParticleBoss fireBallLittle;
+	Particle ultiEspada;
+	Particle shurikenR;
+	Particle shurikenL;
+	Particle shurikenDying;
+
+	Particle bulletR;
+	Particle bulletL;
+	Particle bulletDying;
+
+	Particle enemyShotR;
+	Particle enemyShotL;
+
+	Particle bonus200;
+	Particle bonus500;
+	Particle bonus1000;
+	Particle bonusGun;
+
+
+	Particle fireBall;
+
 
 
 };
