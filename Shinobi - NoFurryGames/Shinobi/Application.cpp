@@ -18,6 +18,7 @@
 
 #include "ModuleMapa3.h"
 #include "ModuleBoss.h"
+#include "ModuleMapaV.h"
 
 #include "ModuleScene_MainMenu.h"
 #include "ModuleScene_Boss1.h"
@@ -65,18 +66,18 @@ Application::Application()
 	modules[13] =	mapa3 =								new ModuleMapa3(false);
 	modules[14] =	scene_Boss1 =						new ModuleScene_Boss1(false);
 	modules[15] =	boss =								new ModuleBoss(false);
+	modules[16] =	mapaV=								new ModuleMapaV(false);
 
-
-	modules[16] = player =								new ModulePlayer(false);
-	modules[17] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
-	modules[18] = particles =							new ModuleParticles(true);
-	modules[19] = particlesBoss =							new ModuleParticlesBoss(true);
-	modules[20] = collisions =							new ModuleCollisions(true);
-	modules[21] = audio =								new ModuleAudio(true);
-	modules[22] = fonts =								new ModuleFonts(true);
-	modules[23] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[24] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[25] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[17] = player =								new ModulePlayer(false);
+	modules[18] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
+	modules[19] = particles =							new ModuleParticles(true);
+	modules[20] = particlesBoss =							new ModuleParticlesBoss(true);
+	modules[21] = collisions =							new ModuleCollisions(true);
+	modules[22] = audio =								new ModuleAudio(true);
+	modules[23] = fonts =								new ModuleFonts(true);
+	modules[24] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[25] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[26] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 

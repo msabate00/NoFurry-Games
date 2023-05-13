@@ -83,7 +83,7 @@ void ModuleMapa2::printMapa2() {
 
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = false;
-		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaX > 6) {
+		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
 			MapaX = 119;
 			MapaY = 9;
 
@@ -103,7 +103,7 @@ void ModuleMapa2::printMapa2() {
 	else {
 		App->render->Blit(mapaRed, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = true;
-		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaX > 6) {
+		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
 			MapaX = 119;
 			MapaY = 9;
 

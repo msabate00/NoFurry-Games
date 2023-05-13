@@ -1,4 +1,4 @@
-#include "ModuleMapa3.h"
+#include "ModuleMapaV.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -19,19 +19,20 @@
 #include <iostream>
 #include <cmath>
 
-ModuleMapa3::ModuleMapa3(bool startEnabled) : Module(startEnabled) {}
+ModuleMapaV::ModuleMapaV(bool startEnabled) : Module(startEnabled) {}
 
-ModuleMapa3::~ModuleMapa3() {}
+ModuleMapaV::~ModuleMapaV() {}
 
 // Load assets
-bool ModuleMapa3::Start()
+bool ModuleMapaV::Start()
 {
 	LOG("Loading background assets");
 
 	bool ret = true;
 	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
-	mapaWhite = App->textures->Load("Assets/Interface/ZoneChange/Nivel3/AlNivel3_Blanco_0.png");
+	
 	mapaRed = App->textures->Load("Assets/Interface/ZoneChange/Nivel3/AlNivel3_Rojo_0.png");
+	mapaVictoria = App->textures->Load("Assets/Interface/ZoneChange/JefeDerrotado/JefeDerrotado_0.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -41,12 +42,12 @@ bool ModuleMapa3::Start()
 	return ret;
 }
 
-update_status ModuleMapa3::Update()
+update_status ModuleMapaV::Update()
 {
 
 	App->interface_module->timer += App->deltaTime;
 
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 5000) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 
@@ -67,56 +68,42 @@ update_status ModuleMapa3::Update()
 }
 
 // Update: draw background
-update_status ModuleMapa3::PostUpdate()
+update_status ModuleMapaV::PostUpdate()
 {
-	printMapa3();
+	printMapaV();
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 
-void ModuleMapa3::printMapa3() {
+void ModuleMapaV::printMapaV() {
 	App->interface_module->timer += App->deltaTime;
 
-
-	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
-
-		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
-		App->interface_module->NameColor = false;
-		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
-			MapaX = 119;
-			MapaY = 9;
-
-			if (App->interface_module->timer >= 2000) {
-
-				MapaX += 16;
-				MapaY += 16;
-			}
-		}
-		else {
-
-			MapaX += 15;
-			MapaY += 15;
-		}
-
-	}
-	else {
+	if (App->interface_module->timer >= 1000) {
 		App->render->Blit(mapaRed, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
-		App->interface_module->NameColor = true;
-		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
-			MapaX = 119;
-			MapaY = 9;
-
-			if (App->interface_module->timer >= 2000) {
+		
+		if (MapaX < 118 && MapaX > 112 && MapaY < 8 && MapaY > 2 ) {
+		
+			mapaVJumptimer += App->deltaTime;
+			MapaX = 115;
+			MapaY = 5;
+			cout << mapaVJumptimer << endl;
+			if (mapaVJumptimer >= 500) {
+				
+				App->render->Blit(mapaVictoria, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
+			}
+			if (mapaVJumptimer >= 1000) {
 
 				MapaX += 16;
 				MapaY += 16;
 			}
 		}
 		else {
+
 			MapaX += 15;
 			MapaY += 15;
+
 		}
 	}
-
+	
 }

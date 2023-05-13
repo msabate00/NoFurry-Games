@@ -124,6 +124,9 @@
     <ClCompile Include="ModuleMapa3.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleMapaV.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -253,6 +256,9 @@
       <Filter>Source Files\Modules\Gameplay\Scenes\level2</Filter>
     </ClInclude>
     <ClInclude Include="ModuleMapa3.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMapaV.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
   </ItemGroup>
