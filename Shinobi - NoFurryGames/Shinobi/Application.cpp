@@ -13,7 +13,7 @@
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
 
-
+#include "ModuleMapa2.h"
 #include "ModuleScene_Level2.h"
 
 #include "ModuleBoss.h"
@@ -50,29 +50,31 @@ Application::Application()
 
 	//Level1
 	modules[6] =	mision1 =							new ModuleMision1(false);
-
 	modules[7] =	mapa1 =								new ModuleMapa1(false);
+	modules[8] = scene_Level1 =							new ModuleScene_Level1(false);
+
 
 	//Level 2
-	modules[8] =	scene_Level1 =						new ModuleScene_Level1(false);
-	modules[9] =	scene_Level2 =						new ModuleScene_Level2(false);
-	modules[10] =	enemy =								new ModuleEnemies(false);
-	modules[11] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
+	
+	modules[9] =	mapa2 =								new ModuleMapa2(false);
+	modules[10] =	scene_Level2 =						new ModuleScene_Level2(false);
+	modules[11] =	enemy =								new ModuleEnemies(false);
+	modules[12] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
 
-	modules[12] =	scene_Boss1 =						new ModuleScene_Boss1(false);
-	modules[13] =	boss =								new ModuleBoss(false);
+	modules[13] =	scene_Boss1 =						new ModuleScene_Boss1(false);
+	modules[14] =	boss =								new ModuleBoss(false);
 
 
-	modules[14] = player =								new ModulePlayer(false);
-	modules[15] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
-	modules[16] = particles =							new ModuleParticles(true);
-	modules[17] = particlesBoss =						new ModuleParticlesBoss(true);
-	modules[18] = collisions =							new ModuleCollisions(true);
-	modules[19] = audio =								new ModuleAudio(true);
-	modules[20] = fonts =								new ModuleFonts(true);
-	modules[21] = interface_module =					new ModuleInterface(true);		// <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[22] = fade =								new ModuleFadeToBlack(true);	// <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[23] = render =								new ModuleRender(true);			// <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[15] = player =								new ModulePlayer(false);
+	modules[16] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
+	modules[17] = particles =							new ModuleParticles(true);
+	modules[18] = particlesBoss =							new ModuleParticlesBoss(true);
+	modules[19] = collisions =							new ModuleCollisions(true);
+	modules[20] = audio =								new ModuleAudio(true);
+	modules[21] = fonts =								new ModuleFonts(true);
+	modules[22] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[23] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[24] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 

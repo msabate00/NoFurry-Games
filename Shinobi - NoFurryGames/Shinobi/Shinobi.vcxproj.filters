@@ -118,6 +118,9 @@
     <ClCompile Include="ModuleParticlesBoss.cpp">
       <Filter>Source Files\Modules\Core\Particles</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleMapa2.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\level2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -242,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="ModuleParticlesBoss.h">
       <Filter>Source Files\Modules\Core\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMapa2.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\level2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

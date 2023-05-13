@@ -55,10 +55,10 @@ bool ModuleMision1::Start()
 
 update_status ModuleMision1::Update()
 {
-
-	App->interface_module->timer += App->deltaTime;
+	mis1Jumptimer += App->deltaTime;
 	
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 2000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || mis1Jumptimer >= 3000) {
+		mis1Jumptimer = 999999;
 		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
 	}
 
