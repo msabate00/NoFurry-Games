@@ -68,13 +68,13 @@ Application::Application()
 	modules[15] = player =								new ModulePlayer(false);
 	modules[16] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
 	modules[17] = particles =							new ModuleParticles(true);
-	modules[18] = particlesBoss =							new ModuleParticlesBoss(true);
+	modules[18] = particlesBoss =						new ModuleParticlesBoss(true);
 	modules[19] = collisions =							new ModuleCollisions(true);
 	modules[20] = audio =								new ModuleAudio(true);
 	modules[21] = fonts =								new ModuleFonts(true);
-	modules[22] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[23] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[24] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[22] = interface_module =					new ModuleInterface(true);		// <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[23] = fade =								new ModuleFadeToBlack(true);	// <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[24] = render =								new ModuleRender(true);			// <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 
