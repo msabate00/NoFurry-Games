@@ -42,8 +42,8 @@ bool ModuleMision1::Start()
 
 	Mision_FinishedFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/Finished.wav");
 	typewriterFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/typewriter.wav");
-	ONE_FX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/1.wav");
 	Mision_soundFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/Mission.wav");
+	ONE_FX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/1.wav");
 
 	SDL_SetRenderDrawColor(App->render->renderer, 128, 128, 128, 255);
 	SDL_RenderClear(App->render->renderer);

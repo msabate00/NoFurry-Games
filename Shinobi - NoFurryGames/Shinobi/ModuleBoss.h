@@ -45,7 +45,6 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 
-
 	iPoint position;
 	const int speed = 1;
 	int life;
@@ -66,6 +65,10 @@ public:
 	fPoint currentParticleDirection = fPoint(0, 0);
 	fPoint currentParticlePosition = fPoint(0, 0);
 	float firstParticle = true;
+
+
+
+
 
 
 	SDL_Texture* texture = nullptr;

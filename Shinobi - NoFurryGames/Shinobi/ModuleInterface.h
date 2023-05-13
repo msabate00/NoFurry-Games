@@ -65,6 +65,9 @@ public:
 	std::vector<int> getDigits(int number);
 	std::string getTimeString(int elapsed_seconds);
 
+	//Boss
+	void printBossLife();
+
 
 public:
 	
@@ -126,6 +129,11 @@ public:
 	const float switchTimeInsertCoin = 900.0f;
 
 	int GoIconPosition = -1580;//-1580
+
+
+	//Boos
+	SDL_Texture* Boss_pow = nullptr;
+	SDL_Texture* Boss_life = nullptr;
 
 };
 

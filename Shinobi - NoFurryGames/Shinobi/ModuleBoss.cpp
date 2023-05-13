@@ -15,6 +15,7 @@
 #include "ModuleScene_Level1.h"
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
 #include "ModuleFadeToBlack.h" 
+#include "ModuleMapaV.h" 
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
@@ -203,6 +204,7 @@ bool ModuleBoss::Start()
 	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss");
 	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted");
 	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die");
+
 	return true;
 }
 
@@ -213,10 +215,6 @@ update_status ModuleBoss::Update()
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
-
-	
-
-	
 
 
 	current_head_Animation = &head_IdleAnim;
@@ -422,6 +420,7 @@ update_status ModuleBoss::PostUpdate()
 	
 
 
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -445,7 +444,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 			
 			current_head_Animation = &generalDying;
 			App->audio->PlayFx(Boss_DieFX);
-			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);
+			App->fade->FadeToBlack(App->activeModule, App->mapaV);
 		}
 	}
 
@@ -461,3 +460,6 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 
 
 }
+
+
+

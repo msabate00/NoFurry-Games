@@ -48,7 +48,7 @@ update_status ModuleMapaV::Update()
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 5000) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
+		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 
 

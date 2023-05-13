@@ -1,3 +1,5 @@
+#include "ModuleInterface.h"
+
 #include "ModuleRender.h"
 #include <string> 
 #include <iostream>
@@ -8,7 +10,7 @@
 #include <stack>
 
 #include "ModuleWindow.h"
-#include "ModuleInterface.h"
+
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleInput.h"
@@ -19,6 +21,7 @@
 #include "ModuleFonts.h"
 #include "ModuleEnemies.h"
 #include "ModuleScene_MainMenu.h"
+#include "ModuleBoss.h"
 
 #include <string> 
 #include <iostream>
@@ -72,6 +75,10 @@ bool ModuleInterface::Start()
 	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
 	goIcon = App->textures->Load("Assets/Interface/go.png");
 	start_time = time(nullptr);
+
+	//Boss
+	Boss_life = App->textures->Load("Assets/Interface/Color_use/Blue/Boss/Boss_life.png");
+	Boss_pow = App->textures->Load("Assets/Interface/Color_use/Blue/Boss/Boss.png");
 	return ret;
 }
 
@@ -172,9 +179,12 @@ update_status ModuleInterface::PostUpdate()
 	}
 	else if (App->scene_Boss1->IsEnabled()) {
 		//INTERFAZ PARA EL JEFE
-	
-	
-	
+		printSkillIcon();
+		printLifeIcon(App->life_num);
+		printNum(texture_num);
+		printTime(getTimeString(elapsed_time).c_str());
+		printPlayer1();
+		printBossLife();
 	}
 
 
@@ -583,4 +593,18 @@ std::vector<int> ModuleInterface::getDigits(int number) {
 
 }
 
+//Boss
+void ModuleInterface::printBossLife() {
+	int IconPosition = 200;
+	
+	App->render->Blit(Boss_pow, SCREEN_WIDTH - 272, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+
+	for (int i = 0; i < App->boss->life; i++)
+	{
+		App->render->Blit(Boss_life, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+		IconPosition -= 8;
+	}
+
+
+}
 
