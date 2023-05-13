@@ -41,6 +41,7 @@
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleInterface.cpp" />
     <ClCompile Include="ModuleMapa2.cpp" />
+    <ClCompile Include="ModuleMapa3.cpp" />
     <ClCompile Include="ModuleMision1.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleParticlesBoss.cpp" />
@@ -84,6 +85,7 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleInterface.h" />
     <ClInclude Include="ModuleMapa2.h" />
+    <ClInclude Include="ModuleMapa3.h" />
     <ClInclude Include="ModuleMision1.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModuleParticlesBoss.h" />

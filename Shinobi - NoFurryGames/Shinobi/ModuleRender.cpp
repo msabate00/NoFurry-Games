@@ -14,6 +14,7 @@
 #include "ModuleScene_Level1.h"
 #include "ModuleMapa1.h"
 #include "ModuleMapa2.h"
+#include "ModuleMapa3.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -68,6 +69,9 @@ update_status ModuleRender::PreUpdate()
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	}
 	else if (App->mapa2->IsEnabled()) {
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	}
+	else if (App->mapa3->IsEnabled()) {
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	}
 	else {
