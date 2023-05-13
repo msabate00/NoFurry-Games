@@ -8,6 +8,7 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
+#include "ModuleMapa2.h"
 #include "ModuleAudio.h"
 #include "Collider.h"
 #include "ModuleFadeToBlack.h"
@@ -785,7 +786,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
 		
-		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->scene_Level2, 20);
+		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
 
 	}
 

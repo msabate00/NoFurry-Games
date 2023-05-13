@@ -1,6 +1,7 @@
 #pragma once
-#ifndef __MODULE_SCENE_MISION1_H__
-#define __MODULE_SCENE_MISION1_H__
+#pragma once
+#ifndef __MODULE_SCENE_MAPA2_H__
+#define __MODULE_SCENE_MAPA2_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -10,14 +11,14 @@
 
 struct SDL_Texture;
 
-class ModuleMision1 : public Module
+class ModuleMapa2 : public Module
 {
 public:
 	//Constructor
-	ModuleMision1(bool startEnabled);
+	ModuleMapa2(bool startEnabled);
 
 	//Destructor
-	~ModuleMision1();
+	~ModuleMapa2();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -32,8 +33,7 @@ public:
 	update_status PostUpdate();
 
 
-	void printext();
-	void printMision();
+	void printMapa2();
 
 public:
 
@@ -42,28 +42,17 @@ public:
 
 
 	SDL_Texture* dosComa = nullptr;
-	SDL_Texture* textureBackground = nullptr;
+	SDL_Texture* mapaWhite = nullptr;
+	SDL_Texture* mapaRed = nullptr;
 	SDL_Rect background;
 
 
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
 
-	const char* str = "pursue the terrorists";
-	int len = strlen(str);
-	bool texttime = 100.0f;
-	std::string str_cache = "";
-	Uint32 last_time = 0;
 
-	//Efectos
-	uint typewriterFX;
-	uint ONE_FX;
-	uint Mision_FinishedFX;
-	uint Mision_soundFX;
-
-	bool EfectoSonido = true;
-
-	float mis1Jumptimer = 0.0f;
+	int MapaX = SCREEN_WIDTH -25 ;
+	int MapaY = SCREEN_HEIGHT + 25;//-15
 
 
 

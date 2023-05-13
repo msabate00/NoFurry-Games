@@ -129,7 +129,7 @@ update_status ModuleInterface::PostUpdate()
 		printTime(getTimeString(elapsed_time).c_str());
 		printPlayer1();
 	
-		
+
 
 		if (hostage_num == 0 ) {
 			timerGonext += App->deltaTime++;
@@ -143,11 +143,30 @@ update_status ModuleInterface::PostUpdate()
 			}
 		}
 			
-		
-
 	}
 	else if (App->scene_Level2->IsEnabled()) {
 		//INTERFAZ PARA EL NIVEL 2
+			//INTERFAZ PARA EL NIVEL 1
+		printSkillIcon();
+		printHostageIcon(hostage_num);
+		printLifeIcon(App->life_num);
+		printNum(texture_num);
+		printTime(getTimeString(elapsed_time).c_str());
+		printPlayer1();
+
+	
+
+		if (hostage_num == 0) {
+			timerGonext += App->deltaTime++;
+			timerGoIcon += App->deltaTime++;
+			printGoIcon();
+			if (timerGonext <= 2000) {
+				printGoNext();
+			}
+			else {
+				timerGonext = 999999;
+			}
+		}
 
 
 	}
@@ -457,6 +476,7 @@ void ModuleInterface::printGoIcon() {
 			timerGoIcon = 0;
 		}		
 	}
+	cout<< GoIconPosition << endl;
 	//GoIconPosition = 200;
 }
 

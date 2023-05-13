@@ -13,7 +13,7 @@
 #include "ModuleMision1.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleMapa1.h"
-
+#include "ModuleMapa2.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -53,16 +53,6 @@ bool ModuleRender::Init()
 		ret = false;
 	}
 
-	//SkillIcon = App->textures->Load("Assets/Sprites/Player/Player.png");
-	/*SkillIcon = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Rojo.png");
-	HostageIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/rescate.png");
-	LifeIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/vida.png");
-	SA = App->textures->Load("Assets/Interface/Color_use/Yellow/SA.png");
-	VE = App->textures->Load("Assets/Interface/Color_use/Yellow/VE.png");
-	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
-
-	start_time = time(nullptr);
-	*/
 
 	return ret;
 }
@@ -75,6 +65,9 @@ update_status ModuleRender::PreUpdate()
 		SDL_SetRenderDrawColor(renderer, 184, 184, 184, 255);
 	}
 	else if(App->mapa1->IsEnabled()){
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	}
+	else if (App->mapa2->IsEnabled()) {
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	}
 	else {
@@ -140,24 +133,8 @@ update_status ModuleRender::Update()
 
 update_status ModuleRender::PostUpdate()
 {
-
-
-	//PrintaIcon
-	/*printSkillIcon();
-	printHostageIcon(hostage_num);
-	printLifeIcon(life_num);
-	
-
-
-	printNum(getDigits(texture_num),LetraNum);
-
-	printTime(getTimeString(elapsed_time).c_str(),Time);
-
-	*/
-
 	//Update the screen
 	SDL_RenderPresent(renderer);
-
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -239,150 +216,3 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 }
 
 
-
-/*
-void ModuleRender::printSkillIcon() {
-	SDL_Rect rect = { 168,59,17,14 };
-
-	bool sur = App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT-16, SDL_FLIP_NONE, nullptr, 0);
-	if (!sur) {
-		//cout << "error" << endl;
-	}
-
-
-}
-
-void ModuleRender::printHostageIcon(int hostage) {
-
-	//App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-	int IconPosition = 340;
-
-	for (int i = 0; i < hostage; i++)
-	{
-		App->render->Blit(HostageIcon, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-		IconPosition -= 8;
-	}
-
-	App->render->Blit(SA, SCREEN_WIDTH - 376, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-	App->render->Blit(VE, SCREEN_WIDTH - 360, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-}
-void ModuleRender::printLifeIcon(int life) {
-	
-
-	int IconPosition = 350;
-	for (int i = 0; i < life; i++)
-	{
-		App->render->Blit(LifeIcon, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
-		IconPosition -= 8;
-	}
-
-}
-
-
-void ModuleRender::printNum(std::vector<int> number, SDL_Texture* LetraNum) {
-
-	int IconPosition = 250;
-	for (int i = 0; i < number.size(); i++)
-	{
-		std::string filename = "Assets/Interface/Color_use/Red/Rojo_Numeros/Rojo_" + std::to_string(number[i]) + ".png";
-		LetraNum = App->textures->Load(filename.c_str());
-
-		App->render->Blit(LetraNum, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, SDL_FLIP_NONE, nullptr, 0);
-		IconPosition -= 16;
-	}
-
-}
-
-void ModuleRender::printTime(std::string time_string, SDL_Texture* Time) {
-
-	int IconPosition = 70;
-	int elapsed_time = updateTimer(start_time);
-	time_string = getTimeString(elapsed_time);
-	std::vector<int> time_vector;
-	for (char c : time_string) {
-		if (isdigit(c)) {
-			time_vector.push_back(c - '0');
-		}
-	}
-	//App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
-
-	for (int i = 0; i < time_vector.size(); i++)
-	{
-		std::string filename = "Assets/Interface/Color_use/Yellow/Yellow_Numeros/Yellow_" + std::to_string(time_vector[i]) + ".png";
-		SDL_Texture* Time = App->textures->Load(filename.c_str());
-		App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-		IconPosition -= 16;
-		if (IconPosition == 54) {
-			App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-			IconPosition -= 16;
-		}
-			
-		string time_string = getTimeString(elapsed_time);
-		//cout << "Remaining time: " << time_string << endl;
-
-		//cout << IconPosition << endl;
-	}
-	//App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
-
-}
-
-int ModuleRender::updateTimer(time_t start_time) {
-	time_t current_time = time(nullptr);
-	int elapsed_seconds = difftime(current_time, start_time);
-	return elapsed_seconds;
-}
-//Suma tiempo*/
-/*
-std::string ModuleRender::getTimeString(int elapsed_time) {
-	int minutes = elapsed_time / 60;
-	int seconds = elapsed_time % 60;
-	std::string time_string = std::to_string(minutes) + ":";
-
-	if (seconds < 10) {
-		time_string += "0";
-	}
-	time_string += std::to_string(seconds);
-
-	return time_string;
-}*/
-/*
-//Resta tiempo , int total_time
-std::string ModuleRender::getTimeString(int elapsed_time) {
-	int remaining_seconds = total_time - elapsed_time;
-	if (remaining_seconds < 0) {
-		remaining_seconds = 0;
-	}
-	int minutes = remaining_seconds / 60;
-	int seconds = remaining_seconds % 60;
-	std::string time_string = std::to_string(minutes) + ":";
-
-	if (seconds < 10) {
-		time_string += "0";
-	}
-	time_string += std::to_string(seconds);
-
-	return time_string;
-}
-
-
-
-std::vector<int> ModuleRender::getDigits(int number) {
-	std::vector<int> digits;
-
-	if (number == 0) {
-		digits.push_back(0);
-		return digits;
-	}
-
-	while (number != 0) {
-		int digit = number % 10;
-		digits.push_back(digit);
-		number /= 10;
-	}
-
-	std::reverse(digits.begin(), digits.end());
-
-	return digits;
-
-}
-*/
