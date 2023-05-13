@@ -1,3 +1,4 @@
+#include "ModuleParticles.h"
 #include "ModuleParticlesBoss.h"
 
 #include "Application.h"
@@ -31,37 +32,144 @@ bool ModuleParticlesBoss::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png");
 
-	
-	fireBallBig.anim.PushBack({ 524, 993, 31, 27 });
-	fireBallBig.anim.PushBack({ 561, 993, 31, 27 });
-	fireBallBig.anim.PushBack({ 598, 993, 31, 27 });
-	fireBallBig.anim.loop = true;
-	fireBallBig.anim.speed = 0.5f;
 
-	fireBallMedium.anim.PushBack({ 376, 993, 31, 27 });
-	fireBallMedium.anim.PushBack({ 413, 993, 31, 27 });
-	fireBallMedium.anim.PushBack({ 450, 993, 31, 27 });
-	fireBallMedium.anim.pingpong = true;
-	fireBallMedium.anim.speed = 0.5f;
 
-	fireBallLittle.anim.PushBack({ 302, 993, 31, 27 });
-	fireBallLittle.anim.PushBack({ 339, 993, 31, 27 });
-	fireBallLittle.anim.pingpong = true;
-	fireBallLittle.anim.speed = 0.5f;
+	ultiEspada.anim.PushBack({ 445, 1110, 20, 58 });
+	ultiEspada.anim.PushBack({ 0, 0, 0, 0 });
 
-	/*fireBall.anim.PushBack({ 302, 993, 31, 27 });
-	fireBall.anim.PushBack({ 339, 993, 31, 27 });
-	fireBall.anim.PushBack({ 376, 993, 31, 27 });
-	fireBall.anim.PushBack({ 413, 993, 31, 27 });
-	fireBall.anim.PushBack({ 450, 993, 31, 27 });
-	fireBall.anim.PushBack({ 487, 993, 31, 27 });
-	fireBall.anim.PushBack({ 524, 993, 31, 27 });
-	fireBall.anim.PushBack({ 561, 993, 31, 27 });
+	ultiEspada.anim.loop = true;
+	ultiEspada.anim.speed = 0.3f;
+	ultiEspada.lifetime = 80;
+	ultiEspada.speed = fPoint(0, -10);
+
+
+
+
+	shurikenR.anim.PushBack({ 103, 292, 13, 10 });
+	shurikenR.anim.PushBack({ 120, 292, 13, 10 });
+	shurikenR.anim.PushBack({ 137, 292, 13, 10 });
+	shurikenR.anim.loop = true;
+	shurikenR.anim.speed = 0.3f;
+	shurikenR.lifetime = 80;
+	shurikenR.speed = fPoint(4, 0);
+
+	shurikenL.anim.PushBack({ 103, 292, 13, 10 });
+	shurikenL.anim.PushBack({ 120, 292, 13, 10 });
+	shurikenL.anim.PushBack({ 137, 292, 13, 10 });
+	shurikenL.anim.loop = true;
+	shurikenL.anim.speed = 0.3f;
+	shurikenL.lifetime = 80;
+	shurikenL.speed = fPoint(-4, 0);
+
+
+	shurikenDying.anim.PushBack({ 378, 328, 15, 15 });
+	shurikenDying.anim.PushBack({ 399, 328, 15, 15 });
+	shurikenDying.anim.PushBack({ 420, 328, 15, 15 });
+	shurikenDying.anim.loop = false;
+	shurikenDying.anim.speed = 0.5f;
+	shurikenDying.speed = fPoint(0, 0);
+
+
+
+	bulletR.anim.PushBack({ 279, 297, 14, 7 });
+	bulletR.anim.PushBack({ 297, 297, 14, 7 });
+	bulletR.anim.PushBack({ 315, 297, 14, 7 });
+	bulletR.anim.loop = true;
+	bulletR.anim.speed = 0.3f;
+	bulletR.lifetime = 80;
+	bulletR.speed = fPoint(4, 0);
+
+	bulletL.anim.PushBack({ 279, 297, 14, 7 });
+	bulletL.anim.PushBack({ 297, 297, 14, 7 });
+	bulletL.anim.PushBack({ 315, 297, 14, 7 });
+	bulletL.anim.loop = true;
+	bulletL.anim.speed = 0.3f;
+	bulletL.lifetime = 80;
+	bulletL.speed = fPoint(-4, 0);
+
+
+	bulletDying.anim.PushBack({ 475, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 520, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 565, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 610, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 655, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 700, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 745, 302, 41, 41 });
+	bulletDying.anim.PushBack({ 790, 302, 41, 41 });
+	bulletDying.anim.loop = false;
+	bulletDying.anim.speed = 0.5f;
+	bulletDying.speed = fPoint(0, 0);
+
+
+
+
+
+
+	bonus200.anim.PushBack({ 28,2095,38,17 });
+	bonus200.anim.loop = false;
+	bonus200.anim.speed = 0.5f;
+	bonus200.speed = fPoint(0, -1);
+	bonus200.lifetime = 60;
+
+	bonus500.anim.PushBack({ 76,2095,38,17 });
+	bonus500.anim.loop = false;
+	bonus500.anim.speed = 0.5f;
+	bonus500.speed = fPoint(0, -1);
+	bonus500.lifetime = 60;
+
+	bonus1000.anim.PushBack({ 122,2095,47,17 });
+	bonus1000.anim.loop = false;
+	bonus1000.anim.speed = 0.5f;
+	bonus1000.speed = fPoint(0, -1);
+	bonus1000.lifetime = 60;
+
+	bonusGun.anim.PushBack({ 179,2095,49,19 });
+	bonusGun.anim.loop = false;
+	bonusGun.anim.speed = 0.5f;
+	bonusGun.speed = fPoint(0, -1);
+	bonusGun.lifetime = 60;
+
+
+	/*fireBall.anim.PushBack({302, 993, 31, 27});
+	fireBall.anim.PushBack({339, 993, 31, 27});
+	fireBall.anim.PushBack({376, 993, 31, 27});
+	fireBall.anim.PushBack({413, 993, 31, 27});
+	fireBall.anim.PushBack({450, 993, 31, 27});
+	fireBall.anim.PushBack({487, 993, 31, 27});
+	fireBall.anim.PushBack({524, 993, 31, 27});
+	fireBall.anim.PushBack({561, 993, 31, 27});
+	fireBall.anim.PushBack({598, 993, 31, 27});*/
+
+
+
+
+
+
+
+
+
+
 	fireBall.anim.PushBack({ 598, 993, 31, 27 });
+	fireBall.anim.PushBack({ 561, 993, 31, 27 });
+	fireBall.anim.PushBack({ 524, 993, 31, 27 });
+	fireBall.anim.PushBack({ 487, 993, 31, 27 });
+	fireBall.anim.PushBack({ 450, 993, 31, 27 });
+	fireBall.anim.PushBack({ 413, 993, 31, 27 });
+	fireBall.anim.PushBack({ 376, 993, 31, 27 });
+	fireBall.anim.PushBack({ 339, 993, 31, 27 });
+	fireBall.anim.PushBack({ 302, 993, 31, 27 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
+	fireBall.anim.PushBack({ 0, 0, 0, 0 });
 	fireBall.anim.pingpong = true;
 	fireBall.anim.speed = 0.5f;
-	fireBall.speed = fPoint(-1, -1);
-	fireBall.lifetime = BOSS_PARTICLE_DURATION;*/
+	fireBall.speed = fPoint(0, 0);
+	fireBall.lifetime = 40;
 
 
 	return true;
@@ -93,6 +201,17 @@ void ModuleParticlesBoss::OnCollision(Collider* c1, Collider* c2)
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
 
+			if (c2->type == Collider::Type::ENEMY) {
+				for (uint i = 0; i < MAX_ENEMIES; i++) {
+					if (App->enemy->getEnemy(i) != nullptr && c2 == App->enemy->getEnemy(i)->GetCollider()) {
+						if (App->enemy->getEnemy(i)->secondFloor != App->player->isSecondFloor) {
+							return;
+						}
+						break;
+					}
+				}
+			}
+
 			if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
 				if (c2->GetRect().y > c1->GetRect().y) {
 					App->boss->currentParticleDirection.y *= -1;
@@ -107,7 +226,14 @@ void ModuleParticlesBoss::OnCollision(Collider* c1, Collider* c2)
 			if (!c2->active) { return; } //SI ESA COLISION NO ESTA ACTIVA, IGNORA TODO LO DE ABAJO
 
 
-			
+			if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && !App->player->holdingGun) {
+				App->particles->AddParticle(shurikenDying, particles[i]->position.x, particles[i]->position.y - 3, Collider::Type::NONE);
+				particles[i]->collider->pendingToDelete = true;
+			}
+			else if (particles[i]->collider->type == Collider::Type::PLAYER_SHOT && App->player->holdingGun) {
+				App->particles->AddParticle(bulletDying, particles[i]->position.x - 10, particles[i]->position.y - 14, Collider::Type::NONE);
+				particles[i]->collider->pendingToDelete = true;
+			}
 			if (particles[i]->collider != nullptr) {
 				particles[i]->collider->pendingToDelete = true;
 			}
@@ -125,7 +251,7 @@ update_status ModuleParticlesBoss::Update()
 
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		ParticleBoss* particle = particles[i];
+		Particle* particle = particles[i];
 
 		if (particle == nullptr)	continue;
 
@@ -149,7 +275,7 @@ update_status ModuleParticlesBoss::PostUpdate()
 	//Iterating all particle array and drawing any active particles
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		ParticleBoss* particle = particles[i];
+		Particle* particle = particles[i];
 
 		if (particle != nullptr && particle->isAlive)
 		{
@@ -160,9 +286,9 @@ update_status ModuleParticlesBoss::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
-int ModuleParticlesBoss::AddParticle(const ParticleBoss& particle, int x, int y, Collider::Type colliderType, uint delay)
+int ModuleParticlesBoss::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
 {
-	ParticleBoss* p = new ParticleBoss(particle);
+	Particle* p = new Particle(particle);
 
 	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
@@ -181,7 +307,7 @@ int ModuleParticlesBoss::AddParticle(const ParticleBoss& particle, int x, int y,
 
 
 void ModuleParticlesBoss::SetSpeedParticle(int position, fPoint speed) {
-	ParticleBoss* particle = particles[position];
+	Particle* particle = particles[position];
 	if (particle != nullptr && particle->isAlive) {
 		particle->speed = speed;
 	}
@@ -189,13 +315,18 @@ void ModuleParticlesBoss::SetSpeedParticle(int position, fPoint speed) {
 
 fPoint ModuleParticlesBoss::GetPositionParticle(int position) {
 
-	ParticleBoss* particle = particles[position];
+	Particle* particle = particles[position];
 	if (particle != nullptr && particle->isAlive) {
 		return particle->position;
 	}
 	else {
 		return fPoint(0, 0);
 	}
+}
 
-
+void ModuleParticlesBoss::DestroyCollision(int position) {
+	Particle* particle = particles[position];
+	if (particle != nullptr && particle->collider != nullptr && particle->isAlive) {
+		particle->collider->pendingToDelete = true;
+	}
 }

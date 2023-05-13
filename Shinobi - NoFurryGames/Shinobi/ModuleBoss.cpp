@@ -188,6 +188,7 @@ bool ModuleBoss::Start()
 	head_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
 	//torso_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
 	legs_Collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::ENEMY, this);
+	
 
 
 
@@ -208,7 +209,7 @@ bool ModuleBoss::Start()
 update_status ModuleBoss::Update()
 {
 	
-	App->particles->DestroyCollision(fireBallParticle);
+	//App->particlesBoss->DestroyCollision(fireBallParticle);
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
@@ -233,7 +234,8 @@ update_status ModuleBoss::Update()
 			currentParticlePosition = fPoint(position.x, position.y);
 			currentParticleDirection.x = particleSpeed;
 			currentParticleDirection.y = 0;
-			fireBallParticle = App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
+			fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
+			fireBall_Collider = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
 			timeContador = 0;
 			firstParticle = false;
 		}
@@ -244,34 +246,37 @@ update_status ModuleBoss::Update()
 			currentParticlePosition.x += currentParticleDirection.x;
 			currentParticlePosition.y += currentParticleDirection.y;
 			
-			cout << "FB: " << fireBallParticle << " ParticleDir: " << currentParticlePosition.y << endl;
+			cout << "x: " << currentParticleDirection.x << " Y: " << currentParticleDirection.y << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
 			
 
 			//Y
-			if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
+			if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particlesBoss->GetPositionParticle(fireBallParticle).y) {
 				currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
 			}
-			else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h  < App->particles->GetPositionParticle(fireBallParticle).y) {
+			else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h  < App->particlesBoss->GetPositionParticle(fireBallParticle).y) {
 				currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
 			}
 
 
 			//X
-			if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
+			if (App->player->position.x > App->particlesBoss->GetPositionParticle(fireBallParticle).x) {
 			
 				currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
 			}
-			else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
-				cout << "bbb" << endl;
+			else if (App->player->position.x < App->particlesBoss->GetPositionParticle(fireBallParticle).x) {
+				
 				currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
 			}
 
-			
-			fireBallParticle = App->particles->AddParticle(App->particles->fireBall, currentParticlePosition.x, currentParticlePosition.y, Collider::Type::BOSS_PROYECTILE);
+			fireBall_Collider->SetPos(currentParticlePosition.x+5, currentParticlePosition.y+5);
+			fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
 			
 
+		}
+		else {
+			fireBall_Collider->pendingToDelete = true;
 		}
 	}
 
@@ -442,6 +447,16 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 			App->audio->PlayFx(Boss_DieFX);
 			App->fade->FadeToBlack(App->activeModule, App->scene_MainMenu);
 		}
+	}
+
+	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
+		if (c2->GetRect().y > c1->GetRect().y) {
+			App->boss->currentParticleDirection.y *= -1;
+		}
+		else {
+			App->boss->currentParticleDirection.x *= -1;
+		}
+		return;
 	}
 
 
