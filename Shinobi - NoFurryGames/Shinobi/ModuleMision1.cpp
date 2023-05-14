@@ -16,6 +16,7 @@
 #include "ModuleInterface.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 #include <string> 
 #include <vector>
 #include <iostream>
@@ -40,6 +41,7 @@ bool ModuleMision1::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	
 	Mision_FinishedFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/Finished.wav");
 	typewriterFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/typewriter.wav");
 	Mision_soundFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/Mission.wav");
@@ -105,21 +107,27 @@ void ModuleMision1::printext() {
 
 		last_time = current_time;
 	}
-	//App->audio->PlayFx(typewriterFX);
+	
 	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite, str_cache.c_str());
 	
 }
 
-
 void ModuleMision1::printMision() {
 	int IconPosition = 260;
 	App->interface_module->timer += App->deltaTime;
-	while (EfectoSonido == true)
+	
+	//Efectos sonido
+	if (EfectoSonidoMision == true)
 	{
 		App->audio->PlayFx(Mision_soundFX);
-		
-		EfectoSonido = false;
+		EfectoSonidoMision = false;
+	}
+	if (Mix_Playing(1) == false && EfectoSonidoONE == true)
+	{
+		Mix_HaltChannel(1);
 		App->audio->PlayFx(ONE_FX);
+		EfectoSonidoONE = false;
+
 	}
 
 	if (App->interface_module->NameColor) {
@@ -144,3 +152,5 @@ void ModuleMision1::printMision() {
 	}
 
 }
+
+

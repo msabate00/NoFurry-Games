@@ -61,7 +61,9 @@ public:
 	uint Mision_FinishedFX;
 	uint Mision_soundFX;
 
-	bool EfectoSonido = true;
+	bool EfectoSonidoMision = true;
+	bool EfectoSonidoONE = true;
+	bool EfectoSonidoTypewriter = true;
 
 	float mis1Jumptimer = 0.0f;
 
