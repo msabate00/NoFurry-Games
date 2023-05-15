@@ -225,6 +225,7 @@ update_status ModuleBoss::Update()
 		return update_status::UPDATE_CONTINUE;
 	}
 
+	//BOLA DI FOGO 1
 	int aux = BOSS_PARTICLE_DURATION;
 	if (timeContador % aux == 0) {
 		firstParticle = true;
@@ -275,6 +276,58 @@ update_status ModuleBoss::Update()
 		}
 		else {
 			fireBall_Collider->pendingToDelete = true;
+		}
+	}
+
+	if (timeContador2 % aux == 0) {
+		firstParticle2 = true;
+		if (firstParticle2) {
+			currentParticlePosition2 = fPoint(position.x, position.y+10);
+			currentParticleDirection2.x = particleSpeed;
+			currentParticleDirection2.y = 0;
+			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
+			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
+			timeContador2 = 0;
+			firstParticle2 = false;
+		}
+
+	}
+	else {
+		if (!firstParticle2 && timeContador2 < (aux - aux / 4)) {
+			currentParticlePosition2.x += currentParticleDirection2.x;
+			currentParticlePosition2.y += currentParticleDirection2.y;
+
+			cout << "x: " << currentParticleDirection2.x << " Y: " << currentParticleDirection2.y << endl;
+
+			current_torso_Animation = &torso_AttackAnim;
+
+
+			//Y
+			if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particlesBoss->GetPositionParticle(fireBallParticle2).y) {
+				currentParticleDirection2.y = min(currentParticleDirection2.y + particleAdjustmen2, particleSpeed2);
+			}
+			else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h < App->particlesBoss->GetPositionParticle(fireBallParticle2).y) {
+				currentParticleDirection2.y = max(currentParticleDirection2.y - particleAdjustmen2, -particleSpeed2);
+			}
+
+
+			//X
+			if (App->player->position.x > App->particlesBoss->GetPositionParticle(fireBallParticle2).x) {
+
+				currentParticleDirection2.x = min(currentParticleDirection2.x + particleAdjustmen2, particleSpeed2);
+			}
+			else if (App->player->position.x < App->particlesBoss->GetPositionParticle(fireBallParticle2).x) {
+
+				currentParticleDirection2.x = max(currentParticleDirection2.x - particleAdjustmen2, -particleSpeed2);
+			}
+
+			fireBall_Collider2->SetPos(currentParticlePosition2.x + 5, currentParticlePosition2.y + 5);
+			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
+
+
+		}
+		else {
+			fireBall_Collider2->pendingToDelete = true;
 		}
 	}
 
@@ -370,6 +423,7 @@ update_status ModuleBoss::Update()
 	current_legs_Animation->Update();
 
 	timeContador++;
+	timeContador2++;
 	timeMovingContador++;
 
 

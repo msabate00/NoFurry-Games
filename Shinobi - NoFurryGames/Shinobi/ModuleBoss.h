@@ -54,6 +54,7 @@ public:
 	bool inmune = false;
 	bool stunned = false;
 	int timeContador = 0;
+	int timeContador2 = 0;
 	int timeMovingContador = 0; 
 
 	const int bossMovingTime = 480;
@@ -67,7 +68,11 @@ public:
 	float firstParticle = true;
 
 
-
+	float particleSpeed2 = 2.0f;
+	float particleAdjustmen2 = 0.03f;
+	fPoint currentParticleDirection2 = fPoint(0, 0);
+	fPoint currentParticlePosition2 = fPoint(0, 0);
+	float firstParticle2 = true;
 
 
 
@@ -96,11 +101,13 @@ public:
 	Animation generalDying;
 
 	int fireBallParticle = -1;
+	int fireBallParticle2 = -1;
 
 
 	Collider* head_Collider = nullptr;
 	Collider* legs_Collider = nullptr;
 	Collider* fireBall_Collider = nullptr;
+	Collider* fireBall_Collider2 = nullptr;
 
 	//Efectos
 	uint RecieveDamageFX = 0;
