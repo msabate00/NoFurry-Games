@@ -28,6 +28,7 @@
 
 #include <iostream>
 #include "SDL/include/SDL_scancode.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 using namespace std;
 
@@ -502,6 +503,7 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 			
 			current_head_Animation = &generalDying;
 			App->audio->PlayFx(Boss_DieFX);
+			Mix_FadeOutMusic(10);
 			App->fade->FadeToBlack(App->activeModule, App->mapaV);
 		}
 	}
