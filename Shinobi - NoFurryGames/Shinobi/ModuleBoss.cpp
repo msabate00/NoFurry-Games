@@ -245,7 +245,7 @@ update_status ModuleBoss::Update()
 			currentParticlePosition.x += currentParticleDirection.x;
 			currentParticlePosition.y += currentParticleDirection.y;
 			
-			cout << "x: " << currentParticleDirection.x << " Y: " << currentParticleDirection.y << endl;
+			//cout << "x: " << currentParticleDirection.x << " Y: " << currentParticleDirection.y << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
 			
@@ -275,18 +275,21 @@ update_status ModuleBoss::Update()
 
 		}
 		else {
-			fireBall_Collider->pendingToDelete = true;
+			if (fireBall_Collider != nullptr)
+				fireBall_Collider->pendingToDelete = true;
 		}
 	}
 
-	if (timeContador2 % aux == 0) {
+	if (timeContador2 % (aux+30) == 0) {
 		firstParticle2 = true;
+		
 		if (firstParticle2) {
-			currentParticlePosition2 = fPoint(position.x, position.y+10);
-			currentParticleDirection2.x = particleSpeed;
+			
+			currentParticlePosition2 = fPoint(position.x, position.y+20);
+			currentParticleDirection2.x = particleSpeed2;
 			currentParticleDirection2.y = 0;
 			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
-			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
+			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE2, this);
 			timeContador2 = 0;
 			firstParticle2 = false;
 		}
@@ -297,7 +300,7 @@ update_status ModuleBoss::Update()
 			currentParticlePosition2.x += currentParticleDirection2.x;
 			currentParticlePosition2.y += currentParticleDirection2.y;
 
-			cout << "x: " << currentParticleDirection2.x << " Y: " << currentParticleDirection2.y << endl;
+			//cout << "x: " << currentParticleDirection2.x << " Y: " << currentParticleDirection2.y << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
 
@@ -327,7 +330,8 @@ update_status ModuleBoss::Update()
 
 		}
 		else {
-			fireBall_Collider2->pendingToDelete = true;
+			if(fireBall_Collider2 != nullptr)
+				fireBall_Collider2->pendingToDelete = true;
 		}
 	}
 
