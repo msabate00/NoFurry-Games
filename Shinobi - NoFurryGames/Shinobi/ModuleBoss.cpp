@@ -151,6 +151,10 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	generalDying.PushBack({ 5,345,239,94 });
 	generalDying.PushBack({ 5,345,354,94 });
 	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
 	generalDying.loop = false;
 
 	generalDying.speed = 0.05;
@@ -199,6 +203,7 @@ bool ModuleBoss::Start()
 	position.y = 130;
 	life = 8;
 	inmune = false;
+	dead = false;
 	timeContador = 0;
 
 	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
@@ -217,7 +222,14 @@ update_status ModuleBoss::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 
-
+	if (dead) {
+		current_head_Animation = &generalDying;
+		if (current_head_Animation->HasFinished()) {
+			App->fade->FadeToBlack(App->activeModule, App->mapaV);
+		}
+		current_head_Animation->Update();
+		return update_status::UPDATE_CONTINUE;
+	}
 	current_head_Animation = &head_IdleAnim;
 	current_torso_Animation = &torso_IdleAnim;
 	current_legs_Animation = &legs_WalkForwardAnim;
@@ -383,39 +395,7 @@ update_status ModuleBoss::Update()
 	}
 
 
-	//SPAWN BOLA DI FOGO
-	/*int aux = BOSS_PARTICLE_DURATION;
-	if ((timeContador % aux) == 0) {
-		//fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
-		App->audio->PlayFx(FuegoFX);
-		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::BOSS_PROYECTILE);
-		currentParticleDirection.x = particleSpeed;
-		currentParticleDirection.y = 0;
-		timeContador = 0;
-		current_torso_Animation = &torso_AttackAnim;
-		
-	}
-	if (fireBallParticle != -1) {
-		
-		//Y
-		if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
-			currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
-		}
-		else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 3 < App->particles->GetPositionParticle(fireBallParticle).y) {
-			currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
-		}
 	
-		
-		//X
-		if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
-			currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
-		}
-		else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
-			currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
-		}
-	}
-	App->particles->SetSpeedParticle(fireBallParticle, currentParticleDirection);
-	*/
 	
 	//Movimiento di boss
 	if (!stunned) {
@@ -550,7 +530,8 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 			current_head_Animation = &generalDying;
 			App->audio->PlayFx(Boss_DieFX);
 			Mix_FadeOutMusic(10);
-			App->fade->FadeToBlack(App->activeModule, App->mapaV);
+			//App->fade->FadeToBlack(App->activeModule, App->mapaV);
+			dead = true;
 		}
 	}
 
