@@ -66,15 +66,6 @@ bool ModuleInterface::Start()
 	LetraIconC = App->textures->Load("Assets/Interface/Color_use/White/Icon/Sega.png");
 	LetraYear = App->textures->Load("Assets/Interface/Color_use/White/Icon/1987.png");
 
-	//std::vector<std::string>colorImagePathList = {
-	//"Assets/Interface/Letra/LetraColor/Letra0.png",
-	//"Assets/Interface/Letra/LetraColor/Letra1.png",
-	//"Assets/Interface/Letra/LetraColor/Letra2.png",
-	//"Assets/Interface/Letra/LetraColor/Letra3.png",
-	//"Assets/Interface/Letra/LetraColor/Letra4.png",
-	//"Assets/Interface/Letra/LetraColor/Letra5.png"
-	//};
-
 	letraTrailColor[0] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra1.png");
 	letraTrailColor[1] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra2.png");
 	letraTrailColor[2] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra3.png");
@@ -260,7 +251,7 @@ bool ModuleInterface::CleanUp()
 //Main menu
 
 void ModuleInterface::InsertCoin() {
-	int IconPosition = 280;
+	int IconPosition = 300;
 	timer += App->deltaTime;
 	
 	int bufferSize = snprintf(nullptr, 0, "%d", coinNum) + 1;
@@ -397,6 +388,11 @@ double ModuleInterface::letraGetX() {
 		A = A - 0.7;
 		//cout << "X: " << letraX << endl;
 	}
+
+	if (A < 0) {
+		// 停止在 (148, 34)
+		letraX = 148;
+	}
 	return letraX;
 }
 
@@ -410,6 +406,11 @@ double ModuleInterface::letraGetY() {
 		angle += ROTATION_SPEED;
 		B = B - 0.6, 5;
 		//cout << "Y: " << letraY << endl;
+	}
+
+	if (B < 0) {
+		// 停止在 (148, 34)
+		letraY = 34;
 	}
 
 	return letraY;
