@@ -107,7 +107,7 @@ public:
 	SDL_Texture** letraTrailColor = new SDL_Texture * [trailLength];
 
 
-
+	uint monedaFX = 0;
 
 	//LV1
 
