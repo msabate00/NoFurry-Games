@@ -234,7 +234,20 @@ update_status ModuleBoss::Update()
 			currentParticlePosition = fPoint(position.x, position.y);
 			currentParticleDirection.x = particleSpeed;
 			currentParticleDirection.y = 0;
-			fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 1:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 2:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			}
+			
+			
 			fireBall_Collider = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
 			timeContador = 0;
 			firstParticle = false;
@@ -271,8 +284,19 @@ update_status ModuleBoss::Update()
 			}
 
 			fireBall_Collider->SetPos(currentParticlePosition.x+5, currentParticlePosition.y+5);
-			fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
-			
+			//fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 1:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 2:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			}
 
 		}
 		else {
@@ -289,7 +313,19 @@ update_status ModuleBoss::Update()
 			currentParticlePosition2 = fPoint(position.x, position.y+20);
 			currentParticleDirection2.x = particleSpeed2;
 			currentParticleDirection2.y = 0;
-			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
+		
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 1:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 2:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			}
 			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE2, this);
 			timeContador2 = 0;
 			firstParticle2 = false;
@@ -326,8 +362,18 @@ update_status ModuleBoss::Update()
 			}
 
 			fireBall_Collider2->SetPos(currentParticlePosition2.x + 5, currentParticlePosition2.y + 5);
-			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
-
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 1:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 2:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			}
 
 		}
 		else {
