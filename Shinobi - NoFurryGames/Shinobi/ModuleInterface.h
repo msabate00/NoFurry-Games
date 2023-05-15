@@ -50,7 +50,7 @@ public:
 	double letraGetX();
 	double letraGetY();
 	void InsertCoin();
-
+	void updateTrailPosition();
 
 	//LV1
 	void printSkillIcon();
@@ -99,6 +99,13 @@ public:
 	float timerGoIcon = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
+
+
+	int trailLength = 5;
+	double* letraTrailX = new double[trailLength];
+	double* letraTrailY = new double[trailLength];
+	SDL_Texture** letraTrailColor = new SDL_Texture * [trailLength];
+
 
 
 

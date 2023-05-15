@@ -1,4 +1,4 @@
-#include "ModuleInterface.h"
+﻿#include "ModuleInterface.h"
 
 #include "ModuleRender.h"
 #include <string> 
@@ -65,6 +65,20 @@ bool ModuleInterface::Start()
 	LetraIconC = App->textures->Load("Assets/Interface/Color_use/White/Icon/Sega.png");
 	LetraYear = App->textures->Load("Assets/Interface/Color_use/White/Icon/1987.png");
 
+	//std::vector<std::string>colorImagePathList = {
+	//"Assets/Interface/Letra/LetraColor/Letra0.png",
+	//"Assets/Interface/Letra/LetraColor/Letra1.png",
+	//"Assets/Interface/Letra/LetraColor/Letra2.png",
+	//"Assets/Interface/Letra/LetraColor/Letra3.png",
+	//"Assets/Interface/Letra/LetraColor/Letra4.png",
+	//"Assets/Interface/Letra/LetraColor/Letra5.png"
+	//};
+
+	letraTrailColor[0] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra1.png");
+	letraTrailColor[1] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra2.png");
+	letraTrailColor[2] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra3.png");
+	letraTrailColor[3] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra4.png");
+	letraTrailColor[4] = App->textures->Load("Assets/Interface/Letra/LetraColor/Letra5.png");
 	//LV1
 
 	//App->scene_Level1_SecondFloor->Enable();
@@ -119,8 +133,8 @@ update_status ModuleInterface::PostUpdate()
 
 		printYear();
 		printIconC();
-		printNom();
 		printLetra();
+		printNom();
 		InsertCoin();
 		App->render->Blit(LogoMedio, SCREEN_WIDTH - 225, SCREEN_HEIGHT - 50, SDL_FLIP_NONE, nullptr, 10);
 	
@@ -231,7 +245,8 @@ update_status ModuleInterface::PostUpdate()
 
 bool ModuleInterface::CleanUp()
 {
-
+	delete[] letraTrailX;
+	delete[] letraTrailY;
 
 	return true;
 }
@@ -258,14 +273,7 @@ void ModuleInterface::InsertCoin() {
 }
 
 
-void ModuleInterface::printLetra() {
 
-	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
-	Letra = App->textures->Load(filename.c_str());
-
-	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 0);
-
-}
 
 void ModuleInterface::printYear() {
 	int IconPosition = 50;
@@ -312,6 +320,63 @@ void ModuleInterface::printNom() {
 
 }
 
+//void ModuleInterface::printLetra() {
+//
+//	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
+//	Letra = App->textures->Load(filename.c_str());
+//
+//	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 0);
+//
+//}
+
+void ModuleInterface::printLetra() {
+	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
+	Letra = App->textures->Load(filename.c_str());
+
+	// 绘制拖尾效果
+	for (int i = 0; i < trailLength; i++) {
+		double trailX = letraTrailX[i];
+		double trailY = letraTrailY[i];
+		SDL_Texture* trailColorTexture = letraTrailColor[i];
+		SDL_Rect trailRect = { static_cast<int>(trailX), static_cast<int>(trailY), 0, 0 };
+		App->render->Blit(trailColorTexture, trailRect.x, trailRect.y, SDL_FLIP_NONE, nullptr, 0);
+	}
+
+	// 绘制当前位置
+	SDL_Rect currentRect = { static_cast<int>(letraGetX()), static_cast<int>(letraGetY()), 0, 0 };
+	App->render->Blit(Letra, currentRect.x, currentRect.y, SDL_FLIP_NONE, nullptr, 0);
+
+	// 更新拖尾位置
+	updateTrailPosition();
+
+	// 存储当前位置到拖尾数组
+	letraTrailX[0] = currentRect.x;
+	letraTrailY[0] = currentRect.y;
+}
+
+
+
+
+void ModuleInterface::updateTrailPosition() {
+	// 将之前的拖尾位置向后移动一位
+	for (int i = trailLength - 1; i > 0; i--) {
+		double deltaX = letraTrailX[i - 1] - letraTrailX[i];
+		double deltaY = letraTrailY[i - 1] - letraTrailY[i];
+		double distance = sqrt(deltaX * deltaX + deltaY * deltaY);
+
+		// 计算每个拖尾之间的距离
+		double desiredDistance = 10.0;  // 设置每个拖尾之间的期望距离
+		if (distance > desiredDistance) {
+			double ratio = desiredDistance / distance;
+			letraTrailX[i] = letraTrailX[i - 1] - ratio * deltaX;
+			letraTrailY[i] = letraTrailY[i - 1] - ratio * deltaY;
+		}
+		else {
+			letraTrailX[i] = letraTrailX[i - 1];
+			letraTrailY[i] = letraTrailY[i - 1];
+		}
+	}
+}
 
 
 
@@ -328,6 +393,7 @@ double ModuleInterface::letraGetX() {
 	}
 	return letraX;
 }
+
 double ModuleInterface::letraGetY() {
 	if (letraY > 32 && letraY < 36 && letraX > 146 && letraX < 150) {
 		//cout << "Y yes" << endl;
