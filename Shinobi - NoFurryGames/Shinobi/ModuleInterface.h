@@ -51,6 +51,7 @@ public:
 	double letraGetY();
 	void InsertCoin();
 	void updateTrailPosition();
+	void player1Ready();
 
 	//LV1
 	void printSkillIcon();
@@ -95,8 +96,10 @@ public:
 	const double ROTATION_SPEED = 6;
 	int coinNum = 0;
 	float timer = 0.0f;
+	float Icontimer = 0.0f;
 	float timerGonext = 0.0f;
 	float timerGoIcon = 0.0f;
+	float timerPR = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
 
@@ -133,7 +136,7 @@ public:
 	int rankingNum = 100000;
 	
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
-	const float switchTimeInsertCoin = 900.0f;
+	const float switchTimeInsertCoin = 1000.0f;
 
 	int GoIconPosition = -1580;//-1580
 

@@ -138,7 +138,7 @@ update_status ModuleInterface::PostUpdate()
 	}
 
 	if (App->scene_Level1->IsEnabled()) {
-		
+		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
 		printHostageIcon(hostage_num);
@@ -146,9 +146,16 @@ update_status ModuleInterface::PostUpdate()
 		printNum(texture_num);
 		printTime(getTimeString(elapsed_time).c_str());
 		printPlayer1();
-	
+		
 
-
+		if (timerPR <= 1000) {
+			player1Ready();
+			
+		}
+		else {
+			timerPR = 1001;
+		}
+		
 		if (hostage_num == 0 ) {
 			timerGonext += App->deltaTime++;
 			timerGoIcon += App->deltaTime++;
@@ -163,6 +170,7 @@ update_status ModuleInterface::PostUpdate()
 			
 	}
 	else if (App->scene_Level2->IsEnabled()) {
+		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
@@ -171,7 +179,14 @@ update_status ModuleInterface::PostUpdate()
 		printNum(texture_num);
 		printTime(getTimeString(elapsed_time).c_str());
 		printPlayer1();
+		
+		if (timerPR <= 1000) {
+			player1Ready();
 
+		}
+		else {
+			timerPR = 1001;
+		}
 	
 
 		if (hostage_num == 0) {
@@ -269,7 +284,10 @@ void ModuleInterface::InsertCoin() {
 	
 }
 
-
+void ModuleInterface::player1Ready() {
+	int IconPosition = 300;
+	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 115, App->scoreFontWhite, "player 1 ready");
+}
 
 
 void ModuleInterface::printYear() {
@@ -300,14 +318,14 @@ void ModuleInterface::printNom() {
 
 
 	if (NameColor) {
-		App->render->Blit(LetraNomRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+		App->render->Blit(LetraNomRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
 		if (timer >= switchTime) {
 			NameColor = false;
 			timer = 0.0f; // Reset Tiempo Contador
 		}
 	}
 	else {
-		App->render->Blit(LetraNomWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
+		App->render->Blit(LetraNomWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
 		if (timer >= switchTime) {
 			NameColor = true;
 			timer = 0.0f; // Reset Tiempo Contador
@@ -559,7 +577,6 @@ void ModuleInterface::printGoIcon() {
 			timerGoIcon = 0;
 		}		
 	}
-	cout<< GoIconPosition << endl;
 	//GoIconPosition = 200;
 }
 
