@@ -32,14 +32,25 @@ bool ModuleParticles::Start()
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png");
 
 
-	
+	ulti.anim.PushBack({ 445, 1110, 20, 58 });
+	ulti.anim.PushBack({ 0, 0, 0, 0 });
+
+	ulti.anim.loop = false;
+	ulti.anim.speed = 0.3f;
+	ulti.lifetime = 80;
+	ulti.speed = fPoint(0, 0);
+
+
+
+
 	ultiEspada.anim.PushBack({ 445, 1110, 20, 58 });
 	ultiEspada.anim.PushBack({ 0, 0, 0, 0 });
 
 	ultiEspada.anim.loop = true;
 	ultiEspada.anim.speed = 0.3f;
 	ultiEspada.lifetime = 80;
-	ultiEspada.speed = fPoint(0, -10);
+	ultiEspada.speed = fPoint(0, 0);
+
 
 
 
@@ -139,14 +150,6 @@ bool ModuleParticles::Start()
 	fireBall.anim.PushBack({561, 993, 31, 27});
 	fireBall.anim.PushBack({598, 993, 31, 27});*/
 
-
-	
-	
-	
-	
-	
-	
-	
 	
 	fireBall.anim.PushBack({ 598, 993, 31, 27 });
 	fireBall.anim.PushBack({ 561, 993, 31, 27 });
@@ -292,6 +295,26 @@ int ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collide
 	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 	p->position.y = y;						
+
+	//Adding the particle's collider
+	if (colliderType != Collider::Type::NONE)
+		p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
+	int aux = lastParticle++;
+	particles[aux] = p;
+	lastParticle %= MAX_ACTIVE_PARTICLES;
+
+	return aux;
+
+}
+
+int ModuleParticles::AddParticle(const Particle& particle, int x, int y, fPoint initial_speed, Collider::Type colliderType, uint delay)
+{
+	Particle* p = new Particle(particle);
+
+	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+	p->position.y = y;
+	p->speed = initial_speed;
 
 	//Adding the particle's collider
 	if (colliderType != Collider::Type::NONE)
