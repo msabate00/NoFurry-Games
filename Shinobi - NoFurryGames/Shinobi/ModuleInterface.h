@@ -100,7 +100,7 @@ public:
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
 
-
+	uint monedaFX = 0;
 
 	//LV1
 
