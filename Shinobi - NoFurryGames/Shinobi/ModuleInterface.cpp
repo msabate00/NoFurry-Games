@@ -89,6 +89,7 @@ bool ModuleInterface::Start()
 
 	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
 
+
 	return ret;
 }
 
@@ -124,10 +125,6 @@ update_status ModuleInterface::PostUpdate()
 	
 	}
 	if (App->scene_MainMenu->IsEnabled()) {
-
-
-
-
 		printYear();
 		printIconC();
 		printLetra();
@@ -138,6 +135,7 @@ update_status ModuleInterface::PostUpdate()
 	}
 
 	if (App->scene_Level1->IsEnabled()) {
+		
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
@@ -170,6 +168,7 @@ update_status ModuleInterface::PostUpdate()
 			
 	}
 	else if (App->scene_Level2->IsEnabled()) {
+		
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
