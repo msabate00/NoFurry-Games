@@ -77,6 +77,21 @@ bool ModuleScene_Level1::Start()
 	App->collisions->AddCollider({ 416, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 1 - IZQUIERDA
 	App->collisions->AddCollider({ 411, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 1 - DERECHA
 
+	App->collisions->AddCollider({ 544, 75, 35, 15 }, Collider::Type::BOX_HELP); //MURO 1 - IZQUIERDA
+	App->collisions->AddCollider({ 539, 75, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //MURO 1 - DERECHA
+
+	App->collisions->AddCollider({ 703, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - IZQUIERDA
+	App->collisions->AddCollider({ 698, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - DERECHA
+
+	App->collisions->AddCollider({ 863, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 3 - IZQUIERDA
+	App->collisions->AddCollider({ 858, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 3 - DERECHA
+
+	App->collisions->AddCollider({ 1405, 155, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 4 - IZQUIERDA
+	App->collisions->AddCollider({ 1469, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 5 - IZQUIERDA
+
+
+
+
 
 	//Limites jugador
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);

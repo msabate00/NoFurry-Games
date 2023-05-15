@@ -53,10 +53,8 @@ public:
 	// The sprite section for the background
 	SDL_Rect background;
 
-
+	
 	Collider* secondFloor;
-
-	uint monedaFX = 0;	
 };
 
 #endif

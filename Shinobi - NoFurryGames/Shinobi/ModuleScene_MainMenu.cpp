@@ -57,7 +57,7 @@ bool ModuleScene_MainMenu::Start()
 	App->render->camera.y = 0;
 	
 	
-	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
+
 	//Musicadddd
 	//App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg", 1.0f);
 
@@ -85,7 +85,7 @@ update_status ModuleScene_MainMenu::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->mision1, 2);
-		App->audio->PlayFx(monedaFX);
+
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {

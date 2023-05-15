@@ -22,6 +22,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleScene_MainMenu.h"
 #include "ModuleBoss.h"
+#include "ModuleAudio.h"
 
 #include <string> 
 #include <iostream>
@@ -93,6 +94,10 @@ bool ModuleInterface::Start()
 	//Boss
 	Boss_life = App->textures->Load("Assets/Interface/Color_use/Blue/Boss/Boss_life.png");
 	Boss_pow = App->textures->Load("Assets/Interface/Color_use/Blue/Boss/Boss.png");
+
+
+	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
+
 	return ret;
 }
 
@@ -111,6 +116,7 @@ update_status ModuleInterface::Update()
 
 	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
 		coinNum++;
+		App->audio->PlayFx(monedaFX);
 	}
 
 	
