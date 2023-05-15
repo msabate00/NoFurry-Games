@@ -511,7 +511,15 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 		}
 		return;
 	}
-
+	if (c1->type == Collider::Type::BOSS_PROYECTILE2 && c2->active && c2->type == Collider::Type::WALL) {
+		if (c2->GetRect().y > c1->GetRect().y) {
+			App->boss->currentParticleDirection2.y *= -1;
+		}
+		else {
+			App->boss->currentParticleDirection2.x *= -1;
+		}
+		return;
+	}
 
 }
 
