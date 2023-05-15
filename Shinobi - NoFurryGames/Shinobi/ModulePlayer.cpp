@@ -211,10 +211,12 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	
 	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
+	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
+	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
 	
 
 	ultiEspadaAnim.speed = 0.005f;
-	ultiEspadaAnim.loop = false;
+	ultiEspadaAnim.loop = true;
 
 }
 
@@ -265,6 +267,7 @@ bool ModulePlayer::Start()
 
 	facingRight = true;
 	isSecondFloor = false;
+
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
@@ -582,8 +585,30 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_K] == KEY_DOWN)
 	{
 		ulti = true;
-		cout << "ULTIIIII" << endl;
-		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::NONE, 0);
+		currentAnimation = &ultiEspadaAnim;
+
+		//ulti
+		if (ulti == true) {
+
+			cout << "ULTIIIII" << endl;
+
+			currentAnimation = &ultiEspadaAnim;
+
+			ulti = false;
+		}
+		App->particles->AddParticle(App->particles->ulti, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, Collider::Type::NONE, 0);
+
+		/*App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(10,-10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(0, -10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-10, -10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(5, -10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-5, -10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -10), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -5), Collider::Type::NONE, 0);
+		App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -5), Collider::Type::NONE, 0);
+	*/
+		return update_status::UPDATE_CONTINUE;
 
 	}
 
@@ -671,17 +696,7 @@ update_status ModulePlayer::Update()
 
 	return update_status::UPDATE_CONTINUE;
 
-	//ulti
-	if (ulti = true) {
-
-		currentAnimation = &ultiEspadaAnim;
-
-		ulti = false;
-
-		return update_status::UPDATE_CONTINUE;
-
-
-	}
+	
 }
 
 update_status ModulePlayer::PostUpdate()

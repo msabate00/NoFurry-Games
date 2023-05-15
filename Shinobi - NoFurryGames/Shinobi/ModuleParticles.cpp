@@ -32,14 +32,120 @@ bool ModuleParticles::Start()
 	texture = App->textures->Load("Assets/Sprites/Player/Player.png");
 
 
+	ulti.anim.PushBack({ 399, 1147, 81, 363 });
+	ulti.anim.PushBack({ 486, 1147, 81, 363 });
+	ulti.anim.PushBack({ 573, 1147, 81, 363 });
+	ulti.anim.PushBack({ 660, 1147, 81, 363 });
+	ulti.anim.PushBack({ 747, 1147, 81, 363 });
+	ulti.anim.PushBack({ 834, 1147, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1516, 81, 363 });
+	ulti.anim.PushBack({ 138, 1516, 81, 363 });
+	ulti.anim.PushBack({ 225, 1516, 81, 363 });
+	ulti.anim.PushBack({ 312, 1516, 81, 363 });
+	ulti.anim.PushBack({ 399, 1516, 81, 363 });
+	ulti.anim.PushBack({ 486, 1516, 81, 363 });
+	ulti.anim.PushBack({ 573, 1516, 81, 363 });
+	ulti.anim.PushBack({ 660, 1516, 81, 363 });
+	ulti.anim.PushBack({ 747, 1516, 81, 363 });
+	ulti.anim.PushBack({ 834, 1516, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1516, 81, 363 });
+	ulti.anim.PushBack({ 138, 1585, 81, 363 });
+	ulti.anim.PushBack({ 225, 1585, 81, 363 });
+	ulti.anim.PushBack({ 312, 1585, 81, 363 });
+	ulti.anim.PushBack({ 399, 1585, 81, 363 });
+	ulti.anim.PushBack({ 486, 1585, 81, 363 });
+	ulti.anim.PushBack({ 573, 1585, 81, 363 });
+	ulti.anim.PushBack({ 660, 1585, 81, 363 });
+	ulti.anim.PushBack({ 747, 1585, 81, 363 });
+	ulti.anim.PushBack({ 834, 1585, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1654, 81, 363 });
+	ulti.anim.PushBack({ 138, 1654, 81, 363 });
+	ulti.anim.PushBack({ 225, 1654, 81, 363 });
+	ulti.anim.PushBack({ 312, 1654, 81, 363 });
+	ulti.anim.PushBack({ 399, 1654, 81, 363 });
+	ulti.anim.PushBack({ 486, 1654, 81, 363 });
+	ulti.anim.PushBack({ 573, 1654, 81, 363 });
+	ulti.anim.PushBack({ 660, 1654, 81, 363 });
+	ulti.anim.PushBack({ 747, 1654, 81, 363 });
+	ulti.anim.PushBack({ 834, 1654, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1723, 81, 363 });
+	ulti.anim.PushBack({ 138, 1723, 81, 363 });
+	ulti.anim.PushBack({ 225, 1723, 81, 363 });
+	ulti.anim.PushBack({ 312, 1723, 81, 363 });
+	ulti.anim.PushBack({ 399, 1723, 81, 363 });
+	ulti.anim.PushBack({ 486, 1723, 81, 363 });
+	ulti.anim.PushBack({ 573, 1723, 81, 363 });
+	ulti.anim.PushBack({ 660, 1723, 81, 363 });
+	ulti.anim.PushBack({ 747, 1723, 81, 363 });
+	ulti.anim.PushBack({ 834, 1723, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1792, 81, 363 });
+	ulti.anim.PushBack({ 138, 1792, 81, 363 });
+	ulti.anim.PushBack({ 225, 1792, 81, 363 });
+	ulti.anim.PushBack({ 312, 1792, 81, 363 });
+	ulti.anim.PushBack({ 399, 1792, 81, 363 });
+	ulti.anim.PushBack({ 486, 1792, 81, 363 });
+	ulti.anim.PushBack({ 573, 1792, 81, 363 });
+	ulti.anim.PushBack({ 660, 1792, 81, 363 });
+	ulti.anim.PushBack({ 747, 1792, 81, 363 });
+	ulti.anim.PushBack({ 834, 1792, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1861, 81, 363 });
+	ulti.anim.PushBack({ 138, 1861, 81, 363 });
+	ulti.anim.PushBack({ 225, 1861, 81, 363 });
+	ulti.anim.PushBack({ 312, 1861, 81, 363 });
+	ulti.anim.PushBack({ 399, 1861, 81, 363 });
+	ulti.anim.PushBack({ 486, 1861, 81, 363 });
+	ulti.anim.PushBack({ 573, 1861, 81, 363 });
+	ulti.anim.PushBack({ 660, 1861, 81, 363 });
+	ulti.anim.PushBack({ 747, 1861, 81, 363 });
+	ulti.anim.PushBack({ 834, 1861, 81, 363 });
 	
+	ulti.anim.PushBack({ 51, 1930, 81, 363 });
+	ulti.anim.PushBack({ 138, 1930, 81, 363 });
+	ulti.anim.PushBack({ 225, 1930, 81, 363 });
+	ulti.anim.PushBack({ 312, 1930, 81, 363 });
+	ulti.anim.PushBack({ 399, 1930, 81, 363 });
+	ulti.anim.PushBack({ 486, 1930, 81, 363 });
+	ulti.anim.PushBack({ 573, 1930, 81, 363 });
+	ulti.anim.PushBack({ 660, 1930, 81, 363 });
+	ulti.anim.PushBack({ 747, 1930, 81, 363 });
+	ulti.anim.PushBack({ 834, 1930, 81, 363 });
+
+	ulti.anim.PushBack({ 51, 1999, 81, 363 });
+	ulti.anim.PushBack({ 138, 1999, 81, 363 });
+	ulti.anim.PushBack({ 225, 1999, 81, 363 });
+	ulti.anim.PushBack({ 312, 1999, 81, 363 });
+	ulti.anim.PushBack({ 399, 1999, 81, 363 });
+	ulti.anim.PushBack({ 486, 1999, 81, 363 });
+	ulti.anim.PushBack({ 573, 1999, 81, 363 });
+	ulti.anim.PushBack({ 660, 1999, 81, 363 });
+	ulti.anim.PushBack({ 747, 1999, 81, 363 });
+	ulti.anim.PushBack({ 834, 1999, 81, 363 });
+
+
+	ulti.anim.PushBack({ 0, 0, 0, 0 });
+
+	ulti.anim.loop = false;
+	ulti.anim.speed = 0.3f;
+	ulti.lifetime = 80;
+	ulti.speed = fPoint(0, 0);
+
+
+
+
 	ultiEspada.anim.PushBack({ 445, 1110, 20, 58 });
 	ultiEspada.anim.PushBack({ 0, 0, 0, 0 });
 
 	ultiEspada.anim.loop = true;
 	ultiEspada.anim.speed = 0.3f;
 	ultiEspada.lifetime = 80;
-	ultiEspada.speed = fPoint(0, -10);
+	ultiEspada.speed = fPoint(0, 0);
+
 
 
 
@@ -139,14 +245,6 @@ bool ModuleParticles::Start()
 	fireBall.anim.PushBack({561, 993, 31, 27});
 	fireBall.anim.PushBack({598, 993, 31, 27});*/
 
-
-	
-	
-	
-	
-	
-	
-	
 	
 	fireBall.anim.PushBack({ 598, 993, 31, 27 });
 	fireBall.anim.PushBack({ 561, 993, 31, 27 });
@@ -292,6 +390,26 @@ int ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collide
 	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 	p->position.y = y;						
+
+	//Adding the particle's collider
+	if (colliderType != Collider::Type::NONE)
+		p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
+	int aux = lastParticle++;
+	particles[aux] = p;
+	lastParticle %= MAX_ACTIVE_PARTICLES;
+
+	return aux;
+
+}
+
+int ModuleParticles::AddParticle(const Particle& particle, int x, int y, fPoint initial_speed, Collider::Type colliderType, uint delay)
+{
+	Particle* p = new Particle(particle);
+
+	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+	p->position.y = y;
+	p->speed = initial_speed;
 
 	//Adding the particle's collider
 	if (colliderType != Collider::Type::NONE)

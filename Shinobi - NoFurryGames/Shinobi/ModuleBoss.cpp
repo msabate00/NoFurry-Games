@@ -28,6 +28,7 @@
 
 #include <iostream>
 #include "SDL/include/SDL_scancode.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 using namespace std;
 
@@ -150,6 +151,10 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	generalDying.PushBack({ 5,345,239,94 });
 	generalDying.PushBack({ 5,345,354,94 });
 	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 5,345,469,94 });
 	generalDying.loop = false;
 
 	generalDying.speed = 0.05;
@@ -198,6 +203,7 @@ bool ModuleBoss::Start()
 	position.y = 130;
 	life = 8;
 	inmune = false;
+	dead = false;
 	timeContador = 0;
 
 	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
@@ -216,7 +222,14 @@ update_status ModuleBoss::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 
-
+	if (dead) {
+		current_head_Animation = &generalDying;
+		if (current_head_Animation->HasFinished()) {
+			App->fade->FadeToBlack(App->activeModule, App->mapaV);
+		}
+		current_head_Animation->Update();
+		return update_status::UPDATE_CONTINUE;
+	}
 	current_head_Animation = &head_IdleAnim;
 	current_torso_Animation = &torso_IdleAnim;
 	current_legs_Animation = &legs_WalkForwardAnim;
@@ -233,7 +246,20 @@ update_status ModuleBoss::Update()
 			currentParticlePosition = fPoint(position.x, position.y);
 			currentParticleDirection.x = particleSpeed;
 			currentParticleDirection.y = 0;
-			fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 1:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 2:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			}
+			
+			
 			fireBall_Collider = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
 			timeContador = 0;
 			firstParticle = false;
@@ -245,7 +271,7 @@ update_status ModuleBoss::Update()
 			currentParticlePosition.x += currentParticleDirection.x;
 			currentParticlePosition.y += currentParticleDirection.y;
 			
-			cout << "x: " << currentParticleDirection.x << " Y: " << currentParticleDirection.y << endl;
+			//cout << "x: " << currentParticleDirection.x << " Y: " << currentParticleDirection.y << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
 			
@@ -270,23 +296,49 @@ update_status ModuleBoss::Update()
 			}
 
 			fireBall_Collider->SetPos(currentParticlePosition.x+5, currentParticlePosition.y+5);
-			fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
-			
+			//fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 1:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			case 2:
+				fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition.x, currentParticlePosition.y);
+				break;
+			}
 
 		}
 		else {
-			fireBall_Collider->pendingToDelete = true;
+			if (fireBall_Collider != nullptr)
+				fireBall_Collider->pendingToDelete = true;
 		}
 	}
 
-	if (timeContador2 % aux == 0) {
+	if (timeContador2 % (aux+30) == 0) {
 		firstParticle2 = true;
+		
 		if (firstParticle2) {
-			currentParticlePosition2 = fPoint(position.x, position.y+10);
-			currentParticleDirection2.x = particleSpeed;
+			
+			currentParticlePosition2 = fPoint(position.x, position.y+20);
+			currentParticleDirection2.x = particleSpeed2;
 			currentParticleDirection2.y = 0;
-			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
-			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
+		
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 1:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 2:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			}
+			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE2, this);
 			timeContador2 = 0;
 			firstParticle2 = false;
 		}
@@ -297,7 +349,7 @@ update_status ModuleBoss::Update()
 			currentParticlePosition2.x += currentParticleDirection2.x;
 			currentParticlePosition2.y += currentParticleDirection2.y;
 
-			cout << "x: " << currentParticleDirection2.x << " Y: " << currentParticleDirection2.y << endl;
+			//cout << "x: " << currentParticleDirection2.x << " Y: " << currentParticleDirection2.y << endl;
 
 			current_torso_Animation = &torso_AttackAnim;
 
@@ -322,49 +374,28 @@ update_status ModuleBoss::Update()
 			}
 
 			fireBall_Collider2->SetPos(currentParticlePosition2.x + 5, currentParticlePosition2.y + 5);
-			fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition2.x, currentParticlePosition2.y);
-
+			int ran = rand() % 3;
+			switch (ran) {
+			case 0:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 1:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			case 2:
+				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition2.x, currentParticlePosition2.y);
+				break;
+			}
 
 		}
 		else {
-			fireBall_Collider2->pendingToDelete = true;
+			if(fireBall_Collider2 != nullptr)
+				fireBall_Collider2->pendingToDelete = true;
 		}
 	}
 
 
-	//SPAWN BOLA DI FOGO
-	/*int aux = BOSS_PARTICLE_DURATION;
-	if ((timeContador % aux) == 0) {
-		//fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
-		App->audio->PlayFx(FuegoFX);
-		fireBallParticle = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::BOSS_PROYECTILE);
-		currentParticleDirection.x = particleSpeed;
-		currentParticleDirection.y = 0;
-		timeContador = 0;
-		current_torso_Animation = &torso_AttackAnim;
-		
-	}
-	if (fireBallParticle != -1) {
-		
-		//Y
-		if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h > App->particles->GetPositionParticle(fireBallParticle).y) {
-			currentParticleDirection.y = min(currentParticleDirection.y + particleAdjustmen, particleSpeed);
-		}
-		else if (App->player->position.y - App->player->currentAnimation->GetCurrentFrame().h / 3 < App->particles->GetPositionParticle(fireBallParticle).y) {
-			currentParticleDirection.y = max(currentParticleDirection.y - particleAdjustmen, -particleSpeed);
-		}
 	
-		
-		//X
-		if (App->player->position.x > App->particles->GetPositionParticle(fireBallParticle).x) {
-			currentParticleDirection.x = min(currentParticleDirection.x + particleAdjustmen, particleSpeed);
-		}
-		else if (App->player->position.x < App->particles->GetPositionParticle(fireBallParticle).x) {
-			currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
-		}
-	}
-	App->particles->SetSpeedParticle(fireBallParticle, currentParticleDirection);
-	*/
 	
 	//Movimiento di boss
 	if (!stunned) {
@@ -498,7 +529,9 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 			
 			current_head_Animation = &generalDying;
 			App->audio->PlayFx(Boss_DieFX);
-			App->fade->FadeToBlack(App->activeModule, App->mapaV);
+			Mix_FadeOutMusic(10);
+			//App->fade->FadeToBlack(App->activeModule, App->mapaV);
+			dead = true;
 		}
 	}
 

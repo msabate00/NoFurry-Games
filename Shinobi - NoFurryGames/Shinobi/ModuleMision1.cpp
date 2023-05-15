@@ -117,13 +117,13 @@ void ModuleMision1::printMision() {
 	App->interface_module->timer += App->deltaTime;
 	
 	//Efectos sonido
-	if (EfectoSonidoMision == true)
+	if (EfectoSonidoMision == true && Mix_Playing(-1) == false)
 	{
 		App->audio->PlayFx(Mision_soundFX);
 		EfectoSonidoMision = false;
 	}
-	
-	if (EfectoSonidoONE == true && Mix_Playing(1) == false)
+
+	if (EfectoSonidoONE == true && Mix_Playing(-1) == false)
 	{
 		Mix_HaltChannel(1);
 		App->audio->PlayFx(ONE_FX);

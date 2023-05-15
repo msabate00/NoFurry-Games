@@ -48,6 +48,7 @@ public:
 	// Param x, y		- Position x,y in the screen (upper left axis)
 	// Param delay		- Delay time from the moment the function is called until the particle is displayed in screen
 	int AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
+	int AddParticle(const Particle& particle, int x, int y, fPoint initial_speed, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 	void SetSpeedParticle(int position, fPoint speed);
 	fPoint GetPositionParticle(int position);
@@ -67,6 +68,8 @@ private:
 public:
 	
 	Particle ultiEspada;
+	Particle ulti;
+
 	Particle shurikenR;
 	Particle shurikenL;
 	Particle shurikenDying;

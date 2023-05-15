@@ -53,6 +53,7 @@ public:
 	bool facingRight = false;
 	bool inmune = false;
 	bool stunned = false;
+	bool dead = false;
 	int timeContador = 0;
 	int timeContador2 = 0;
 	int timeMovingContador = 0; 

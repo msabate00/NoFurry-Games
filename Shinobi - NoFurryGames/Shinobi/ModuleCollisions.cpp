@@ -305,6 +305,7 @@ void ModuleCollisions::DebugDraw()
 			break;
 		case Collider::Type::ENEMY: // red
 		case Collider::Type::BOSS_PROYECTILE:
+		case Collider::Type::BOSS_PROYECTILE2:
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		case Collider::Type::PLAYER_SHOT: // yellow
