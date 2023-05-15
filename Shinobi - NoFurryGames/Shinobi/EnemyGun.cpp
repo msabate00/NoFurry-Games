@@ -30,7 +30,6 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 
 	//salto
 	jumping.PushBack({ 202, 317,34,68 });
-	
 	jumping.loop = false;
 	jumping.speed = 0.1f;
 
@@ -73,29 +72,31 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 
 void EnemyGun::Update()
 {
-	currentAnim = &walkBasic;
-	//Gravedad
+	// Gravedad - INDV
 	jumpSpeed += -GRAVITY;
 	float grav = GRAVITY;
-	if (jumpSpeed < -grav) {
+	if (jumpSpeed < -grav) 
+	{
 		isJumping = true;
 	}
 	position.y -= jumpSpeed;
 
-	if (facingLeft && App->player->position.x < (position.x - (viewRange - 20)))
+	// Rango de visión - INDV
+	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &recharge;
 		position.x += speed;
 	}
-	else if (!facingLeft && App->player->position.x > (position.x + (viewRange-20)))
+	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
 	{
 		currentAnim = &recharge;
 		position.x -= speed;
 	}
+
 	// Cuando entra en el rango, se mueve
 	else
 	{
-		//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+		// Si el enemigo queda por detrás del jugador, este primero cambia su dirección
 		if (position.x < App->player->position.x - wanderRange && facingLeft)
 		{
 			facingLeft = false;
@@ -106,15 +107,35 @@ void EnemyGun::Update()
 		}
 	}
 
-	//Movimiento dependiendo para donde esta mirando
-	if (!setHasReceivedDamage && !isAttacking) {
-		if (facingLeft) {
+	// Movimiento dependiendo para donde esta mirando
+	if (!setHasReceivedDamage && !isAttacking)
+	{
+		if (facingLeft)
+		{
 			position.x -= speed;
 		}
 		else {
 			position.x += speed;
 		}
 	}
+
+	// Salta
+	if (!jumpsNow)
+	{
+		currentAnim = &walkBasic;
+	}
+	else if (jumpsNow)
+	{
+		currentAnim = &jumping;
+	}
+
+	if (currentAnim->HasFinished())
+	{
+		jumpsNow = false;
+	}
+
+
+	// Disparos
 
 	if (facingLeft && (App->player->position.x + 120) > position.x)
 	{
