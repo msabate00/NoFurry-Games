@@ -16,17 +16,18 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) :
 	this->gun = gun;
 	this->points = points;
 	this->id = id;
+	//IdleHostage
 
-	IdleHostage.PushBack({ 616, 259,25,29 });
-	IdleHostage.PushBack({ 647, 259,25,29 });
-	IdleHostage.PushBack({ 678, 259,25,29 });
-	IdleHostage.PushBack({ 647, 259,25,29 });
-	IdleHostage.PushBack({ 678, 259,25,29 });
-	IdleHostage.PushBack({ 647, 259,25,29 });
-	IdleHostage.PushBack({ 616, 259,25,29 });
-	IdleHostage.PushBack({ 709, 259,25,29 });
-	IdleHostage.PushBack({ 616, 259,25,29 });
-	IdleHostage.PushBack({ 709, 259,25,29 });
+	walkBasic.PushBack({ 616, 259,25,29 });
+	walkBasic.PushBack({ 647, 259,25,29 });
+	walkBasic.PushBack({ 678, 259,25,29 });
+	walkBasic.PushBack({ 647, 259,25,29 });
+	walkBasic.PushBack({ 678, 259,25,29 });
+	walkBasic.PushBack({ 647, 259,25,29 });
+	walkBasic.PushBack({ 616, 259,25,29 });
+	walkBasic.PushBack({ 709, 259,25,29 });
+	walkBasic.PushBack({ 616, 259,25,29 });
+	walkBasic.PushBack({ 709, 259,25,29 });
 	
 
 	viewRange = 0;	//Distancia a la que ve el jugador
@@ -47,18 +48,19 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) :
 
 	1232321414*/
 
-	IdleHostage.speed = 0.1f;
+	walkBasic.speed = 0.1f;
 
-	//muerte
-	SaveHostage.PushBack({ 616, 297, 25, 51 });
-	SaveHostage.PushBack({ 647, 297, 25, 51 });
-	SaveHostage.PushBack({ 678, 297, 25, 51 });
-	SaveHostage.PushBack({ 709, 297, 25, 51 });
-	SaveHostage.PushBack({ 0, 0, 0, 0 });
-	SaveHostage.loop = false;
+	//muerte SaveHostage
+
+	Death.PushBack({ 616, 297, 25, 51 });
+	Death.PushBack({ 647, 297, 25, 51 });
+	Death.PushBack({ 678, 297, 25, 51 });
+	Death.PushBack({ 709, 297, 25, 51 });
+	Death.PushBack({ 0, 0, 0, 0 });
+	Death.loop = false;
 
 
-	SaveHostage.speed = 0.1f;
+	Death.speed = 0.1f;
 
 	//walkBasic.loop = true;
 
@@ -74,7 +76,7 @@ void Hostage::Update()
 
 	
 	if (!saved) {
-		currentAnim = &IdleHostage;
+		currentAnim = &Death;
 	}
 	else {
 		if (!check) {
@@ -83,7 +85,7 @@ void Hostage::Update()
 			App->audio->PlayFx(SalvadoFX);
 		}
 		position.y--;
-		currentAnim = &SaveHostage;
+		currentAnim = &Death;
 		
 	}
 
