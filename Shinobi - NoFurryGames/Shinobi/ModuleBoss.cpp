@@ -124,6 +124,8 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_DamageAnim.speed = 0.3;
 	torso_DamageAnim.loop = false;
 
+	torso_dead.PushBack({ 0,0,0,0 });
+
 	head_DamageAnim.PushBack({ 444,134,28,26 });
 	head_DamageAnim.PushBack({ 139,16,28,26 });
 	head_DamageAnim.speed = 0.3;
@@ -133,6 +135,8 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	legs_DamageAnim.PushBack({ 211, 234, 63, 59 });
 	legs_DamageAnim.speed = 0.3;
 	legs_DamageAnim.loop = false;
+
+	legs_dead.PushBack({ 0,0,0,0 });
 
 	legs_IdleAnim.PushBack({ 280, 234, 63, 59 });
 	legs_IdleAnim.speed = 0.05;
@@ -201,7 +205,7 @@ bool ModuleBoss::Start()
 	facingRight = false;
 	position.x = 375;
 	position.y = 130;
-	life = 8;
+	life = 1;
 	inmune = false;
 	dead = false;
 	timeContador = 0;
@@ -210,6 +214,8 @@ bool ModuleBoss::Start()
 	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss");
 	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted");
 	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die");
+
+	generalDying.Reset();
 
 	return true;
 }
@@ -224,7 +230,10 @@ update_status ModuleBoss::Update()
 
 	if (dead) {
 		current_head_Animation = &generalDying;
+		current_torso_Animation = &torso_dead;
+		current_legs_Animation = &legs_dead;
 		if (current_head_Animation->HasFinished()) {
+			
 			App->fade->FadeToBlack(App->activeModule, App->mapaV);
 		}
 		current_head_Animation->Update();
@@ -470,6 +479,15 @@ update_status ModuleBoss::PostUpdate()
 
 	if (!facingRight) {
 		
+		if (dead) {
+
+			App->render->Blit(texture, position.x - 23, position.y - 5, SDL_FLIP_NONE, &rectHead);
+			App->render->Blit(texture, position.x, position.y - 10, SDL_FLIP_NONE, &rectTorso);
+			App->render->Blit(texture, position.x + 21, position.y - 25 + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
+
+			return update_status::UPDATE_CONTINUE;
+		}
+
 		App->render->Blit(texture, position.x + 23, position.y - 5, SDL_FLIP_NONE, &rectHead);
 		App->render->Blit(texture, position.x, position.y-10, SDL_FLIP_NONE, &rectTorso);
 		App->render->Blit(texture, position.x + 21, position.y-25 + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
@@ -490,14 +508,6 @@ update_status ModuleBoss::PostUpdate()
 		
 	}
 
-	//if (life <= 0) {//morir
-
-	//	App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
-	//	App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
-	//	App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
-
-
-	//}
 
 	head_Collider->SetSize(current_head_Animation->GetCurrentFrame().w, current_head_Animation->GetCurrentFrame().h);
 	//torso_Collider->SetSize(current_torso_Animation->GetCurrentFrame().w, current_torso_Animation->GetCurrentFrame().h);

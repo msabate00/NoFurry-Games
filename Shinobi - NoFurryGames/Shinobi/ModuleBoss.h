@@ -93,11 +93,12 @@ public:
 	Animation torso_AttackAnim2;
 	Animation torso_AttackAnim3;
 	Animation torso_DamageAnim;
-
+	Animation torso_dead;
 	//Legs
 	Animation legs_IdleAnim;
 	Animation legs_WalkForwardAnim;
 	Animation legs_DamageAnim;
+	Animation legs_dead;
 
 	Animation generalDying;
 
