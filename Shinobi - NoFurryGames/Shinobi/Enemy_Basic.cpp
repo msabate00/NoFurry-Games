@@ -59,12 +59,13 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	attackAnim.PushBack({ 250,13,38,63 });
 	attackAnim.PushBack({ 205,13,38,63 });*/
 
-	attackAnim.speed = 0.2f;
+	attackAnim.speed = 0.1f;
 	attackAnim.loop = false;
 
 	//ANIMACIÓN ESTÁTICA
 	staticAnim.PushBack({ 11, 12,35,64 });
 	staticAnim.speed = 0.1f;
+	staticAnim.loop = true;
 
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
 	
@@ -95,7 +96,7 @@ void Enemy_Basic::Update()
 	}
 	position.y -= jumpSpeed;
 
-
+	// Rango de visión
 	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &staticAnim;
@@ -106,10 +107,11 @@ void Enemy_Basic::Update()
 		currentAnim = &staticAnim;
 		position.x -= speed;
 	}
+
 	// Cuando entra en el rango, se mueve
 	else
 	{
-		//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+		// Si el enemigo queda por detrás del jugador, este primero cambia su dirección
 		if (position.x < App->player->position.x - wanderRange && facingLeft)
 		{
 			facingLeft = false;
@@ -130,7 +132,7 @@ void Enemy_Basic::Update()
 		}
 	}
 	
-	if (isAttacking) {
+	/*if (isAttacking) {
 		currentAnim = &attackAnim;
 
 		if (currentAnim->HasFinished()) {
@@ -138,9 +140,9 @@ void Enemy_Basic::Update()
 			currentAnim->Reset();
 		}
 
-	}
+	}*/
 	
-	if(App->player->destroyed && App->player->currentAnimation->HasFinished())
+	/*if(App->player->destroyed && App->player->currentAnimation->HasFinished())
 	{
 		currentAnim = &walkBasic;
 		if (facingLeft) 
@@ -152,6 +154,21 @@ void Enemy_Basic::Update()
 			position.x += speed;
 		}
 		
+	}*/
+
+	if (facingLeft && position.x > App->player->position.x && position.x < (App->player->position.x + attackRange))
+	{
+		cout << "debe atacar" << endl;
+		position.x -= 1;
+		currentAnim = &attackAnim;
+		isAttacking = true;
+
+		if (App->player->destroyed)
+		{
+			position.x += 1;
+			currentAnim = &staticAnim;
+		}
+
 	}
 
 

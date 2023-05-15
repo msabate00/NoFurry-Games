@@ -45,6 +45,10 @@ const Collider* Enemy::GetColliderRange() const
 
 void Enemy::Update()
 {
+	if (isAttacking)
+	{
+		currentAnim = &attackAnim;
+	}
 
 	if (!jumpsNow)
 	{
@@ -56,7 +60,6 @@ void Enemy::Update()
 	{
 		jumpsNow = false;
 	}
-
 
 
 	if (setHasReceivedDamage)
@@ -72,7 +75,6 @@ void Enemy::Update()
 
 		if (currentAnim->HasFinished())
 		{
-			
 			currentAnim = nullptr;
 			
 			if (collider != nullptr)
@@ -89,17 +91,14 @@ void Enemy::Update()
 		}
 	}
 
-	if (boxCollision)
+	/*if (boxCollision)
 	{
 		if (currentAnim->HasFinished())
 		{
 			currentAnim = &walkBasic;
 			position.y += 0;
 		}
-	}
-
-	
-
+	}*/
 
 	if (currentAnim != nullptr)
 		currentAnim->Update();
