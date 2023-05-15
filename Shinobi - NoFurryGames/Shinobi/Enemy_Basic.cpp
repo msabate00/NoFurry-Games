@@ -88,7 +88,7 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 void Enemy_Basic::Update()
 {
 		
-	//Gravedad
+	// Gravedad - INDV
 	jumpSpeed += -GRAVITY;
 	float grav = GRAVITY;
 	if (jumpSpeed < -grav) {
@@ -96,7 +96,7 @@ void Enemy_Basic::Update()
 	}
 	position.y -= jumpSpeed;
 
-	// Rango de visión
+	// Rango de visión - INDV
 	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &staticAnim;
@@ -122,25 +122,43 @@ void Enemy_Basic::Update()
 		}
 	}
 
-	//Movimiento dependiendo para donde esta mirando
-	if (!setHasReceivedDamage && !isAttacking) {
-		if (facingLeft) {
+	// Movimiento dependiendo para donde esta mirando
+	if (!setHasReceivedDamage && !isAttacking) 
+	{
+		if (facingLeft) 
+		{
 			position.x -= speed;
 		}
 		else {
 			position.x += speed;
 		}
 	}
+
+	// Salta
+	if (!jumpsNow)
+	{
+		currentAnim = &walkBasic;
+	}
+	else if (jumpsNow)
+	{
+		currentAnim = &jumping;
+	}
+
+	if (currentAnim->HasFinished())
+	{
+		jumpsNow = false;
+	}
 	
-	/*if (isAttacking) {
+	if (isAttacking) 
+	{
 		currentAnim = &attackAnim;
+		cout << "ataca" << endl;
 
-		if (currentAnim->HasFinished()) {
+		if (currentAnim->HasFinished())
+		{
 			isAttacking = false;
-			currentAnim->Reset();
 		}
-
-	}*/
+	} 
 	
 	/*if(App->player->destroyed && App->player->currentAnimation->HasFinished())
 	{
@@ -156,7 +174,7 @@ void Enemy_Basic::Update()
 		
 	}*/
 
-	if (facingLeft && position.x > App->player->position.x && position.x < (App->player->position.x + attackRange))
+	/*if (facingLeft && position.x > App->player->position.x && position.x < (App->player->position.x + attackRange))
 	{
 		cout << "debe atacar" << endl;
 		position.x -= 1;
@@ -169,7 +187,7 @@ void Enemy_Basic::Update()
 			currentAnim = &staticAnim;
 		}
 
-	}
+	}*/
 
 
 

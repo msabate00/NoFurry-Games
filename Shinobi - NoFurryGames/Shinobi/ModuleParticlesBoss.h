@@ -67,7 +67,9 @@ private:
 public:
 
 
-	ParticleBoss fireBall;
+	ParticleBoss fireBall1;
+	ParticleBoss fireBall2;
+	ParticleBoss fireBall3;
 
 
 
