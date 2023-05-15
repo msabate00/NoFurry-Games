@@ -60,8 +60,10 @@ bool ModuleScene_Intro::Start()
 
 update_status ModuleScene_Intro::Update()
 {
-
-	
+	if (currentAnimation->HasFinished())
+	{
+		App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg");
+	}
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Intro2, 20);
