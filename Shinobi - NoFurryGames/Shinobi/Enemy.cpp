@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
@@ -45,21 +46,24 @@ const Collider* Enemy::GetColliderRange() const
 
 void Enemy::Update()
 {
-	if (isAttacking)
-	{
-		currentAnim = &attackAnim;
-	}
-
-	if (!jumpsNow)
+	if (!isAttacking && !isJumping)
 	{
 		currentAnim = &walkBasic;
 	}
-	else currentAnim = &jumping;
+		
+	/*if (!jumpsNow)
+	{
+		currentAnim = &walkBasic;
+	}
+	else if (jumpsNow)
+	{
+		currentAnim = &jumping;
+	}
 		
 	if (currentAnim->HasFinished())
 	{
 		jumpsNow = false;
-	}
+	}*/
 
 
 	if (setHasReceivedDamage)
@@ -91,14 +95,17 @@ void Enemy::Update()
 		}
 	}
 
-	/*if (boxCollision)
-	{
-		if (currentAnim->HasFinished())
+	/*if (currentAnim->HasFinished() && !facingLeft)
 		{
 			currentAnim = &walkBasic;
-			position.y += 0;
+			position.x += speed;
 		}
+	else if (currentAnim->HasFinished() && facingLeft)
+	{
+		currentAnim = &walkBasic;
+		position.x -= speed;
 	}*/
+	
 
 	if (currentAnim != nullptr)
 		currentAnim->Update();
@@ -140,6 +147,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
 	//Si no es de la segunda planta, y la colision esta inactiva, y es de tipo wall, ignora la colision
 	if (!secondFloor && !c2->active && c2->type == Collider::Type::WALL) { return;  }
+
 
 	if (c2->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage) 
 	{
@@ -206,14 +214,18 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		//}
 	}
 
-	 
-	if (c1 == colliderRange && !isAttacking) {
+	if (c2->type == Collider::Type::PLAYER_RANGE)
+	{
 		isAttacking = true;
-
-		(facingLeft) ? position.x += 1 : position.x -= 1;
-
-		
+		(facingLeft) ? position.x -= 1 : position.x += 1;
 	}
+
+
+	/*else 
+	{
+		(facingLeft) ? position.x -= 1 : position.x += 1;
+		!isAttacking;
+	}*/
 	
 	
 	/*
