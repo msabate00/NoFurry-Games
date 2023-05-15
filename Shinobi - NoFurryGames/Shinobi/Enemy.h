@@ -29,7 +29,7 @@ public:
 	// Called from ModuleEnemies' Update
 	virtual void Draw();
 
-	// Collision response
+	// Collision responsefloat lookForPlayer = 10;
 	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* c1, Collider* c2);
 
@@ -37,7 +37,6 @@ public:
 	void setPoints(int points);
 
 	float timeToDestroy;
-	float lookForPlayer = 10;
 	bool secondFloor;
 	bool jumpsNow = false;
 
@@ -59,13 +58,14 @@ public:
 
 	int points;
 	int speed = 1;
-	int viewRange = 250;	//Distancia a la que ve el jugador
+	int viewRange = 220;	//Distancia a la que ve el jugador
 	int wanderRange = 20;	//Distancia a la que va a estar deambulando alrededor del jugador
 	int attackRange = 20;	//Distancia a la que puede atacar al jugador
 
 	
 
 public:
+
 	// The current position in the world
 	iPoint position;
 	ENEMY_TYPE type;
