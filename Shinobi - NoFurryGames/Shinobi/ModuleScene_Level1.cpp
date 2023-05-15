@@ -21,6 +21,7 @@
 #include <thread>
 #include "Hostage.h"
 #include "SDL/include/SDL_scancode.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
@@ -76,6 +77,21 @@ bool ModuleScene_Level1::Start()
 	//Colliders con cajas para los saltos
 	App->collisions->AddCollider({ 416, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 1 - IZQUIERDA
 	App->collisions->AddCollider({ 411, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 1 - DERECHA
+
+	App->collisions->AddCollider({ 544, 75, 35, 15 }, Collider::Type::BOX_HELP); //MURO 1 - IZQUIERDA
+	App->collisions->AddCollider({ 539, 75, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //MURO 1 - DERECHA
+
+	App->collisions->AddCollider({ 703, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - IZQUIERDA
+	App->collisions->AddCollider({ 698, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - DERECHA
+
+	App->collisions->AddCollider({ 863, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 3 - IZQUIERDA
+	App->collisions->AddCollider({ 858, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 3 - DERECHA
+
+	App->collisions->AddCollider({ 1405, 155, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 4 - IZQUIERDA
+	App->collisions->AddCollider({ 1469, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 5 - IZQUIERDA
+
+
+
 
 
 	//Limites jugador
@@ -135,6 +151,7 @@ update_status ModuleScene_Level1::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
+		Mix_FadeOutMusic(10);
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 	return update_status::UPDATE_CONTINUE;

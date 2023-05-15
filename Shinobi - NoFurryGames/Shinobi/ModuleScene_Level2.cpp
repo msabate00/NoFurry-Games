@@ -10,6 +10,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 #include <string> 
 #include <iostream>
@@ -106,11 +107,13 @@ update_status ModuleScene_Level2::Update()
 	int elapsed_time = updateTimer(start_time);
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
+		Mix_FadeOutMusic(10);
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 
 
 	if (App->input->keys[SDL_SCANCODE_F8] == KEY_DOWN) {
+		Mix_FadeOutMusic(10);
 		App->fade->FadeToBlack(this, (Module*)App->mapa2, 20);
 	}
 	return update_status::UPDATE_CONTINUE;

@@ -45,7 +45,7 @@ public:
 	SDL_Texture* GetResizedTexture(SDL_Texture* texture, int width, int height);*/
 
 	Animation* currentAnimation = nullptr;
-	Animation eyesAnimation;	
+	Animation eyesAnimation;
 
 	// The sprite rectangle for the ground
 	SDL_Rect ground;
@@ -53,7 +53,7 @@ public:
 	// The sprite section for the background
 	SDL_Rect background;
 
-
+	
 	Collider* secondFloor;
 };
 
