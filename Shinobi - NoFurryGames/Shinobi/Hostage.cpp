@@ -113,6 +113,8 @@ void Hostage::Update()
 		check2 = true;
 	}
 
+	collider->SetPos(position.x, position.y - 2);
+
 	Enemy::Update();
 }
 

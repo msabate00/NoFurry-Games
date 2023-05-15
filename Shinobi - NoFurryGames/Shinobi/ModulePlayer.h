@@ -40,6 +40,8 @@ public:
 	iPoint position;
 	iPoint positionBefore;
 
+	int timeContador = 0;
+
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
 	int crouchedSpeed = 1;

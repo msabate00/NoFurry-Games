@@ -66,7 +66,8 @@ private:
 	uint lastParticle = 0;
 
 public:
-	
+
+
 	Particle ultiEspada;
 	Particle ulti;
 

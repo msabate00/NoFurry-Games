@@ -146,15 +146,15 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	legs_WalkForwardAnim.speed = 0.2f;
 	
 
-	generalDying.PushBack({ 5,345,59,94 });
-	generalDying.PushBack({ 5,345,124,94 });
-	generalDying.PushBack({ 5,345,239,94 });
-	generalDying.PushBack({ 5,345,354,94 });
-	generalDying.PushBack({ 5,345,469,94 });
-	generalDying.PushBack({ 5,345,469,94 });
-	generalDying.PushBack({ 5,345,469,94 });
-	generalDying.PushBack({ 5,345,469,94 });
-	generalDying.PushBack({ 5,345,469,94 });
+	generalDying.PushBack({ 4,458,112,90 });
+	generalDying.PushBack({ 122,458,112,90 });
+	generalDying.PushBack({ 240,458,112,90 });
+	generalDying.PushBack({ 4,554,112,90 });
+	generalDying.PushBack({ 122,554,112,90 });
+	generalDying.PushBack({ 240,554,112,90 });
+	generalDying.PushBack({ 358,554,112,90 });
+	generalDying.PushBack({ 5,650,112,90 });
+	
 	generalDying.loop = false;
 
 	generalDying.speed = 0.05;
