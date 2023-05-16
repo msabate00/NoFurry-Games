@@ -52,6 +52,8 @@ public:
 	void InsertCoin();
 	void updateTrailPosition();
 	void player1Ready();
+	void resetTimer();
+
 
 	//LV1
 	void printSkillIcon();
@@ -130,15 +132,19 @@ public:
 	int elapsed_time;
 
 	time_t start_time;
-	int total_time = 180;
+	int total_time = 0;
 	std::string time_string;
 	//Canbiar Color SHINOBI
 	int rankingNum = 100000;
 	
+	double time_multiplier;
+
+
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	const float switchTimeInsertCoin = 1000.0f;
 
 	int GoIconPosition = -1580;//-1580
+
 
 
 	//Boos

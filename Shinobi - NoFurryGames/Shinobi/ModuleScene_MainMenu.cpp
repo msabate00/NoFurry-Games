@@ -80,7 +80,8 @@ update_status ModuleScene_MainMenu::Update()
 {
 
 	App->life_num = 3;
-	App->interface_module->total_time = 180;
+
+
 	
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
 	{

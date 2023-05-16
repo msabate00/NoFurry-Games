@@ -47,7 +47,8 @@ update_status ModuleMapa2::Update()
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
-
+		App->interface_module->resetTimer(); // 重置倒计时起始时间
+		App->interface_module->hostage_num = 4;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
 	}
 

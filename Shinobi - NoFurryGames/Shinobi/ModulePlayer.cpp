@@ -802,6 +802,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		
 		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
 
+
+
 	}
 
 

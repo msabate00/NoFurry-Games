@@ -80,6 +80,7 @@ bool ModuleInterface::Start()
 	save = App->textures->Load("Assets/Interface/Color_use/Yellow/SAVE.png");
 	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
 	goIcon = App->textures->Load("Assets/Interface/go.png");
+
 	start_time = time(nullptr);
 
 	//Boss
@@ -89,6 +90,7 @@ bool ModuleInterface::Start()
 
 	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
 
+	
 
 	return ret;
 }
@@ -106,10 +108,14 @@ update_status ModuleInterface::Update()
 
 	int elapsed_time = updateTimer(start_time);
 
+
 	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
 		coinNum++;
 		App->audio->PlayFx(monedaFX);
 	}
+
+
+
 
 	
 	return update_status::UPDATE_CONTINUE;
@@ -125,6 +131,7 @@ update_status ModuleInterface::PostUpdate()
 	
 	}
 	if (App->scene_MainMenu->IsEnabled()) {
+		
 		printYear();
 		printIconC();
 		printLetra();
@@ -135,7 +142,7 @@ update_status ModuleInterface::PostUpdate()
 	}
 
 	if (App->scene_Level1->IsEnabled()) {
-		
+		App->interface_module->total_time = 180;
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
@@ -168,7 +175,7 @@ update_status ModuleInterface::PostUpdate()
 			
 	}
 	else if (App->scene_Level2->IsEnabled()) {
-		
+		App->interface_module->total_time = 180;
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
@@ -619,12 +626,6 @@ void ModuleInterface::printTime(std::string time_string) {
 	//App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
 
 }
-
-int ModuleInterface::updateTimer(time_t start_time) {
-	time_t current_time = time(nullptr);
-	int elapsed_seconds = difftime(current_time, start_time);
-	return elapsed_seconds;
-}
 //Suma tiempo
 /*
 std::string ModuleRender::getTimeString(int elapsed_time) {
@@ -639,6 +640,12 @@ std::string ModuleRender::getTimeString(int elapsed_time) {
 
 	return time_string;
 }*/
+
+int ModuleInterface::updateTimer(time_t start_time) {
+	time_t current_time = time(nullptr);
+	int elapsed_seconds = difftime(current_time, start_time);
+	return elapsed_seconds;
+}
 
 //Resta tiempo , int total_time
 std::string ModuleInterface::getTimeString(int elapsed_time) {
@@ -660,6 +667,9 @@ std::string ModuleInterface::getTimeString(int elapsed_time) {
 	return time_string;
 }
 
+void ModuleInterface::resetTimer() {
+	start_time = time(nullptr);
+}
 
 
 std::vector<int> ModuleInterface::getDigits(int number) {
