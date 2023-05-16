@@ -47,6 +47,7 @@ update_status ModuleMapa1::Update()
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN ||  App->interface_module->timer >= 3000) {
+		App->interface_module->resetTimer();
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
 

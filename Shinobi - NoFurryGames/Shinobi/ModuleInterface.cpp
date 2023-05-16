@@ -23,6 +23,7 @@
 #include "ModuleScene_MainMenu.h"
 #include "ModuleBoss.h"
 #include "ModuleAudio.h"
+#include "Hostage.h"
 
 #include <string> 
 #include <iostream>
@@ -80,6 +81,10 @@ bool ModuleInterface::Start()
 	save = App->textures->Load("Assets/Interface/Color_use/Yellow/SAVE.png");
 	dosPunt = App->textures->Load("Assets/Interface/Color_use/Yellow/dospunto.png");
 	goIcon = App->textures->Load("Assets/Interface/go.png");
+	skillPoint = App->textures->Load("Assets/Interface/Color_use/Yellow/5000.png");
+	gameOverRed = App->textures->Load("Assets/Interface/Color_use/gameOver/gameoverRed.png");
+	gameOverWhite = App->textures->Load("Assets/Interface/Color_use/gameOver/gameoverWhite.png");
+
 
 	start_time = time(nullptr);
 
@@ -142,16 +147,28 @@ update_status ModuleInterface::PostUpdate()
 	}
 
 	if (App->scene_Level1->IsEnabled()) {
-		App->interface_module->total_time = 180;
+	
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
 		printHostageIcon(hostage_num);
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
-		printTime(getTimeString(elapsed_time).c_str());
 		printPlayer1();
 		
+
+		if (gameChange) {
+		printTime(getTimeString(elapsed_time).c_str());
+		}
+		else {
+		displayTime(remaining_time--);
+		texture_num += 30;
+		stageClear();
+		if (App->interface_module->remaining_time <= 0) {
+			App->interface_module->remaining_time = 0;
+		}
+		}
+
 
 		if (timerPR <= 1000) {
 			player1Ready();
@@ -590,8 +607,10 @@ void ModuleInterface::printTime(std::string time_string) {
 
 	int IconPosition = 70;
 	int elapsed_time = updateTimer(start_time);
+	remaining_time = getRemainingTime();
 	time_string = getTimeString(elapsed_time);
 
+	
 	std::vector<int> time_vector;
 	for (char c : time_string) {
 		if (isdigit(c)) {
@@ -626,6 +645,49 @@ void ModuleInterface::printTime(std::string time_string) {
 	//App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
 
 }
+
+void ModuleInterface::displayTime(int timeInSeconds) {
+	int minutes = timeInSeconds / 60;
+	int seconds = timeInSeconds % 60;
+	std::string timeString = std::to_string(minutes) + ":";
+
+	if (seconds < 10) {
+		timeString += "0";
+	}
+
+	timeString += std::to_string(seconds);
+
+	std::vector<int> time_vector;
+	for (char c : timeString) {
+		if (isdigit(c)) {
+			time_vector.push_back(c - '0');
+		}
+	}
+
+	int IconPosition = 70;
+	for (int i = 0; i < time_vector.size(); i++) {
+		int bufferSize = snprintf(nullptr, 0, "%d", time_vector[i]) + 1;
+		char* pointStr = new char[bufferSize];
+		snprintf(pointStr, bufferSize, "%d", time_vector[i]);
+
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, App->scoreFontYellow, pointStr);
+
+		IconPosition -= 16;
+		if (IconPosition == 54) {
+			App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+			IconPosition -= 16;
+		}
+	}
+}
+
+
+int ModuleInterface::getRemainingTime() {
+	int elapsed_time = updateTimer(start_time);
+	int remaining_time = total_time - elapsed_time;
+	return remaining_time > 0 ? remaining_time : 0;
+}
+
+
 //Suma tiempo
 /*
 std::string ModuleRender::getTimeString(int elapsed_time) {
@@ -707,3 +769,38 @@ void ModuleInterface::printBossLife() {
 
 }
 
+void ModuleInterface::stageClear() {
+
+	
+	App->fonts->BlitText(SCREEN_WIDTH - 285, SCREEN_HEIGHT - 130, App->scoreFontWhite, "stage clear");
+	
+	App->render->Blit(SkillIcon, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
+	App->render->Blit(skillPoint, SCREEN_WIDTH - 215, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
+	App->fonts->BlitText(SCREEN_WIDTH - 180, SCREEN_HEIGHT - 98, App->scoreFontWhite, "pts");
+
+	App->fonts->BlitText(SCREEN_WIDTH - 370, SCREEN_HEIGHT - 66, App->scoreFontRed, "special bonus 20000pts");
+	
+
+}
+
+void ModuleInterface::printgameOver() {
+	int IconPosition = 250;
+	timer += App->deltaTime;
+
+
+	if (NameColor) {
+		App->render->Blit(gameOverRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
+		if (timer >= switchTime) {
+			NameColor = false;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	else {
+		App->render->Blit(gameOverWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
+		if (timer >= switchTime) {
+			NameColor = true;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+
+}

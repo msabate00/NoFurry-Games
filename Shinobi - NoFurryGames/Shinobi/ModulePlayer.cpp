@@ -15,6 +15,8 @@
 #include "ModuleEnemies.h"
 #include "Hostage.h"
 #include "ModuleFonts.h"
+#include "ModuleInterface.h"
+
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
 
@@ -319,7 +321,10 @@ update_status ModulePlayer::Update()
 		if (destroyedCountdown <= 0) 
 		{
 			if (App->life_num <= 0) {
+
+				
 				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+				
 			}
 			else {
 				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
@@ -799,14 +804,20 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
-		
-		App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
 
+		timerChangeLv2 += App->deltaTime;
+		App->interface_module->gameChange = false;
+		cout << timerChangeLv2 << endl;
+		if (timerChangeLv2 <= 20) {
+			App->interface_module->texture_num += 5000;
+			App->interface_module->texture_num += 20000;
+		}
 
-
+		if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time == 0) {
+			App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
+			timerChangeLv2 = 5001;
+		}
 	}
-
-
 
 
 

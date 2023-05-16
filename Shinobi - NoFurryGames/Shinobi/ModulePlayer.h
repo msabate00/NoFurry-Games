@@ -134,6 +134,10 @@ public:
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
 
+	float timerChangeLv2 = 0.0f;
+	float timerGameover = 0.0f;
+
+
 };
 
 #endif //!__MODULE_PLAYER_H__

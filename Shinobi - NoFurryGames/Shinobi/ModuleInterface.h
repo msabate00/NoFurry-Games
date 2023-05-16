@@ -53,7 +53,8 @@ public:
 	void updateTrailPosition();
 	void player1Ready();
 	void resetTimer();
-
+	int getRemainingTime();
+	void displayTime(int timeInSeconds);
 
 	//LV1
 	void printSkillIcon();
@@ -65,6 +66,8 @@ public:
 	void printGoNext();
 	void printGoIcon();
 	int updateTimer(time_t start_time);
+	void stageClear();
+	void printgameOver();
 	std::vector<int> getDigits(int number);
 	std::string getTimeString(int elapsed_seconds);
 
@@ -104,7 +107,9 @@ public:
 	float timerPR = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
-
+	int numRest;
+	bool gameChange = true;
+	int remaining_time;
 
 	int trailLength = 5;
 	double* letraTrailX = new double[trailLength];
@@ -125,6 +130,9 @@ public:
 	SDL_Texture* dosPunt = nullptr;
 	SDL_Texture* Player1 = nullptr;
 	SDL_Texture* goIcon = nullptr;
+	SDL_Texture* skillPoint = nullptr;
+	SDL_Texture* gameOverRed = nullptr;
+	SDL_Texture* gameOverWhite = nullptr;
 
 	int hostage_num = 4;
 	bool hostageTaken[4] = { false };
@@ -132,19 +140,17 @@ public:
 	int elapsed_time;
 
 	time_t start_time;
-	int total_time = 0;
+	int total_time = 180;
 	std::string time_string;
 	//Canbiar Color SHINOBI
 	int rankingNum = 100000;
-	
-	double time_multiplier;
 
 
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	const float switchTimeInsertCoin = 1000.0f;
 
 	int GoIconPosition = -1580;//-1580
-
+	int timePointcount;
 
 
 	//Boos
