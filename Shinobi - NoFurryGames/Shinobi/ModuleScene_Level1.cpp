@@ -56,6 +56,7 @@ bool ModuleScene_Level1::Start()
 	App->scene_Level1_SecondFloor_Enemies->Enable();
 	App->player->Enable();
 	App->enemy->Enable();
+	App->hostages->Enable();
 	App->scene_Level1_SecondFloor->Enable();
 
 	bool ret = true;
@@ -130,7 +131,8 @@ bool ModuleScene_Level1::Start()
 
 	//Hostage
 	if (App->interface_module->hostageTaken[0] == false) {
-		App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200, false, 1, true);
+		
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 530, FLOOR_LEVEL - 26, false, 200, false, 1, true);
 	}
 
 	//Musicadddd
@@ -178,6 +180,7 @@ bool ModuleScene_Level1::CleanUp()
 	App->scene_Level1_SecondFloor_Enemies->Disable();
 	App->player->Disable();
 	App->enemy->Disable();
+	App->hostages->Disable();
 	
 	return true;
 }

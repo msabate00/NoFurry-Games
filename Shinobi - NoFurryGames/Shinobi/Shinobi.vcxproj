@@ -29,7 +29,9 @@
     <ClCompile Include="Enemy_Basic.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Hostage.cpp" />
+    <ClCompile Include="HostageEntity.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModuleHostage.cpp" />
     <ClCompile Include="ModuleMapa1.cpp" />
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
@@ -74,6 +76,8 @@
     <ClInclude Include="Enemy_Basic.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Hostage.h" />
+    <ClInclude Include="HostageEntity.h" />
+    <ClInclude Include="ModuleHostage.h" />
     <ClInclude Include="ModuleMapa1.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />

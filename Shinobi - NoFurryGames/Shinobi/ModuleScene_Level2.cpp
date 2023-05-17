@@ -52,6 +52,7 @@ bool ModuleScene_Level2::Start()
 	
 	App->player->Enable();
 	App->enemy->Enable();
+	App->hostages->Enable();
 	
 	bool ret = true;
 
@@ -151,6 +152,7 @@ bool ModuleScene_Level2::CleanUp()
 	App->collisions->Disable();
 	App->player->Disable();
 	App->enemy->Disable();
+	App->hostages->Disable();
 	return true;
 }
 

@@ -240,9 +240,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i] = new EnemyGun(info.x, info.y, info.secondFloor);
 				break;
 
-			case ENEMY_TYPE::HOSTAGE:
+			/*case ENEMY_TYPE::HOSTAGE:
 				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor, info.id);
-				break;
+				break;*/
 			
 
 			}

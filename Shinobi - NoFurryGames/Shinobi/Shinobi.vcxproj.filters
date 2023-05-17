@@ -127,6 +127,12 @@
     <ClCompile Include="ModuleMapaV.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleHostage.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="HostageEntity.cpp">
+      <Filter>Source Files\Entities\Hostage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -260,6 +266,12 @@
     </ClInclude>
     <ClInclude Include="ModuleMapaV.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleHostage.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="HostageEntity.h">
+      <Filter>Source Files\Entities\Hostage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

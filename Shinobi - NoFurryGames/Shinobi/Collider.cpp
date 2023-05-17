@@ -7,8 +7,10 @@ Collider::Collider(SDL_Rect rectangle, Type type, Module* listener) : rect(recta
 
 void Collider::SetPos(int x, int y)
 {
-	rect.x = x;
-	rect.y = y;
+	if (this != nullptr) {
+		rect.x = x;
+		rect.y = y;
+	}
 }
 
 SDL_Rect Collider::GetRect() {

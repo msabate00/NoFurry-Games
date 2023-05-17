@@ -14,6 +14,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
 #include "Hostage.h"
+#include "Enemy.h"
 #include "ModuleFonts.h"
 #include "ModuleInterface.h"
 

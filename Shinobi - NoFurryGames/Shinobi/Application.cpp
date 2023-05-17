@@ -27,6 +27,7 @@
 #include "ModuleParticlesBoss.h"
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
+#include "ModuleHostage.h"
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_timer.h"
@@ -61,23 +62,24 @@ Application::Application()
 	modules[9] =	mapa2 =								new ModuleMapa2(false);
 	modules[10] =	scene_Level2 =						new ModuleScene_Level2(false);
 	modules[11] =	enemy =								new ModuleEnemies(false);
-	modules[12] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
+	modules[12] =	hostages =							new ModuleHostage(false);
+	modules[13] =	scene_Level1_SecondFloor_Enemies =	new ModuleScene_Level1_SecondFloor_Enemies(false);
 
-	modules[13] =	mapa3 =								new ModuleMapa3(false);
-	modules[14] =	scene_Boss1 =						new ModuleScene_Boss1(false);
-	modules[15] =	boss =								new ModuleBoss(false);
-	modules[16] =	mapaV=								new ModuleMapaV(false);
+	modules[14] =	mapa3 =								new ModuleMapa3(false);
+	modules[15] =	scene_Boss1 =						new ModuleScene_Boss1(false);
+	modules[16] =	boss =								new ModuleBoss(false);
+	modules[17] =	mapaV=								new ModuleMapaV(false);
 
-	modules[17] = player =								new ModulePlayer(false);
-	modules[18] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
-	modules[19] = particles =							new ModuleParticles(true);
-	modules[20] = particlesBoss =							new ModuleParticlesBoss(true);
-	modules[21] = collisions =							new ModuleCollisions(true);
-	modules[22] = audio =								new ModuleAudio(true);
-	modules[23] = fonts =								new ModuleFonts(true);
-	modules[24] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[25] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[26] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[18] = player =								new ModulePlayer(false);
+	modules[19] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
+	modules[20] = particles =							new ModuleParticles(true);
+	modules[21] = particlesBoss =							new ModuleParticlesBoss(true);
+	modules[22] = collisions =							new ModuleCollisions(true);
+	modules[23] = audio =								new ModuleAudio(true);
+	modules[24] = fonts =								new ModuleFonts(true);
+	modules[25] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[26] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[27] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 

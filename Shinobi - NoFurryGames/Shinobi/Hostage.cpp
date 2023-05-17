@@ -10,9 +10,9 @@
 
 using namespace std;
 
-Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) : Enemy(x, y, secondFloor, ENEMY_TYPE::HOSTAGE)
+Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) : HostageEntity(x, y, secondFloor, HOSTAGE_TYPE::HOSTAGE)
 {
-
+	
 	this->gun = gun;
 	this->points = points;
 	this->id = id;
@@ -73,7 +73,7 @@ void Hostage::Update()
 {
 
 	
-
+	
 	
 	if (!saved) {
 		currentAnim = &Death;
@@ -115,7 +115,7 @@ void Hostage::Update()
 
 	collider->SetPos(position.x, position.y - 2);
 
-	Enemy::Update();
+	HostageEntity::Update();
 }
 
 

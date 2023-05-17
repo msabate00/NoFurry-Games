@@ -1,12 +1,12 @@
 #ifndef __HOSTAGE__
 #define __HOSTAGE__
 
-#include "Enemy.h"
+#include "HostageEntity.h"
 #include "Path.h"
 
 struct Collider;
 
-class Hostage : public Enemy
+class Hostage : public HostageEntity
 {
 public:
 	// Constructor (x y coordinates in the world)
