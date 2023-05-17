@@ -104,7 +104,7 @@ public:
 
 	int fireBallParticle = -1;
 	int fireBallParticle2 = -1;
-
+	int attacking = -1;
 
 	Collider* head_Collider = nullptr;
 	Collider* legs_Collider = nullptr;

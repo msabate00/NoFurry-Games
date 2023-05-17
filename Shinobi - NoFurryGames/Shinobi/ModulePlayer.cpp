@@ -807,7 +807,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		timerChangeLv2 += App->deltaTime;
 		App->interface_module->gameChange = false;
-		cout << timerChangeLv2 << endl;
+		
 		if (timerChangeLv2 <= 20) {
 			App->interface_module->texture_num += 5000;
 			App->interface_module->texture_num += 20000;

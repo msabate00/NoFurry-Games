@@ -56,10 +56,10 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_IdleAnim.PushBack({219,50, 66, 53});*/
 	torso_IdleAnim.speed = 0.05;
 	
-	/*
-	Torso atraque 1
+	
+	//Torso atraque 1
 
-	torso_AttackAnim1
+	//torso_AttackAnim1
 
 	torso_AttackAnim1.PushBack({ 3,50, 66, 53 });
 	torso_AttackAnim1.PushBack({ 75,50, 66, 53 });
@@ -71,13 +71,12 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_AttackAnim1.PushBack({ 147,50, 66, 53 });
 	torso_AttackAnim1.PushBack({ 75,50, 66, 53 });
 	torso_AttackAnim1.PushBack({ 3,50, 66, 53 });
-
 	torso_AttackAnim1.speed = 0.05;
 	torso_AttackAnim1.loop = false;
 
-	Torso ataque 2
+	//Torso ataque 2
 
-	torso_AttackAnim2
+	//torso_AttackAnim2
 	
 	torso_AttackAnim2.PushBack({ 3,50, 66, 53 });
 	torso_AttackAnim2.PushBack({ 75,50, 66, 53 });
@@ -90,34 +89,32 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 	torso_AttackAnim2.PushBack({ 3,168, 66, 53 });
 	torso_AttackAnim2.PushBack({ 75,168, 66, 53 });
 	torso_AttackAnim2.PushBack({ 147,168, 66, 53 });
-
-
 	torso_AttackAnim2.speed = 0.05;
 	torso_AttackAnim2.loop = false;
 	
 
-	Torso ataque 3
+	//Torso ataque 3
 
-	torso_AttackAnim3
+	//torso_AttackAnim3
 
 	torso_AttackAnim3.PushBack({ 147,109, 66, 53 });
 	torso_AttackAnim3.PushBack({ 219,109, 66, 53 });
 	torso_AttackAnim3.PushBack({ 3,168, 66, 53 });
 	torso_AttackAnim3.PushBack({ 75,168, 66, 53 });
 	torso_AttackAnim3.PushBack({ 147,168, 66, 53 });
-
 	torso_AttackAnim3.speed = 0.05;
 	torso_AttackAnim3.loop = false;
 
 
-	*/
+
 	
+	/*
 	torso_AttackAnim.PushBack({ 75,50, 66, 53 });
 	torso_AttackAnim.PushBack({ 147,50, 66, 53 });
 	torso_AttackAnim.PushBack({ 219,50, 66, 53 });
 	torso_AttackAnim.speed = 0.05;
 	torso_AttackAnim.loop = false;
-
+	*/
 
 	torso_DamageAnim.PushBack({ 407,170, 66, 53 });
 	torso_DamageAnim.PushBack({ 3,168, 66, 53 });
@@ -250,6 +247,19 @@ update_status ModuleBoss::Update()
 	//BOLA DI FOGO 1
 	int aux = BOSS_PARTICLE_DURATION;
 	if (timeContador % aux == 0) {
+
+		//animacion ataque
+		if (attacking == -1) {
+			int ran = (rand() % 2) + 1; //1-3
+				attacking = ran;
+		}
+		
+			
+			
+		
+
+
+
 		firstParticle = true;
 		if (firstParticle) {
 			currentParticlePosition = fPoint(position.x, position.y);
@@ -431,6 +441,35 @@ update_status ModuleBoss::Update()
 		}
 	}
 	
+
+	//Animacion ataque
+	switch (attacking) {
+			
+
+		case 1:
+			current_torso_Animation = &torso_AttackAnim1;
+			break;
+		case 2:
+			current_torso_Animation = &torso_AttackAnim2;
+			break;
+		case 3:
+			current_torso_Animation = &torso_AttackAnim3;
+			break;
+
+		default:
+			current_torso_Animation = &torso_IdleAnim;
+			break;
+	}
+	if (torso_AttackAnim1.HasFinished() || torso_AttackAnim2.HasFinished() || torso_AttackAnim3.HasFinished()) {
+		attacking = -1;
+		torso_AttackAnim1.Reset();
+		torso_AttackAnim2.Reset();
+		torso_AttackAnim3.Reset();
+	}
+
+
+
+
 	
 	if (stunned || inmune) { //recibir damage
 		if (stunnedTime > 0) {
@@ -488,7 +527,7 @@ update_status ModuleBoss::PostUpdate()
 			return update_status::UPDATE_CONTINUE;
 		}
 
-		App->render->Blit(texture, position.x + 23, position.y - 5, SDL_FLIP_NONE, &rectHead);
+		App->render->Blit(texture, position.x + 21, position.y - 5, SDL_FLIP_NONE, &rectHead);
 		App->render->Blit(texture, position.x, position.y-10, SDL_FLIP_NONE, &rectTorso);
 		App->render->Blit(texture, position.x + 21, position.y-25 + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
 		
@@ -498,6 +537,17 @@ update_status ModuleBoss::PostUpdate()
 		
 	}
 	else {
+
+		if (dead) {
+
+			App->render->Blit(texture, position.x - 23, position.y - 5, SDL_FLIP_NONE, &rectHead);
+			App->render->Blit(texture, position.x, position.y - 10, SDL_FLIP_NONE, &rectTorso);
+			App->render->Blit(texture, position.x + 21, position.y - 25 + rectTorso.h, SDL_FLIP_NONE, &rectLegs);
+
+			return update_status::UPDATE_CONTINUE;
+		}
+
+
 		App->render->Blit(texture, position.x + 11, position.y - 5, SDL_FLIP_HORIZONTAL, &rectHead);
 		App->render->Blit(texture, position.x, position.y-10, SDL_FLIP_HORIZONTAL, &rectTorso);
 		App->render->Blit(texture, position.x - 20, position.y-25 + rectTorso.h, SDL_FLIP_HORIZONTAL, &rectLegs);
