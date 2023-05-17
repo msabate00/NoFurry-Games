@@ -133,6 +133,9 @@
     <ClCompile Include="HostageEntity.cpp">
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleRanking.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="HostageEntity.h">
       <Filter>Source Files\Entities\Hostage</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleRanking.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

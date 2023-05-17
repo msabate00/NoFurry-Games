@@ -103,8 +103,6 @@ bool ModuleInterface::Start()
 // Called every draw update
 update_status ModuleInterface::PreUpdate()
 {
-	
-
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -119,10 +117,6 @@ update_status ModuleInterface::Update()
 		App->audio->PlayFx(monedaFX);
 	}
 
-
-
-
-	
 	return update_status::UPDATE_CONTINUE;
 }
 

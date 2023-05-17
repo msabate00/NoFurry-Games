@@ -4,7 +4,7 @@
 #include "Globals.h"
 #include "SDL/include/SDL_timer.h"
 
-#define NUM_MODULES 28
+#define NUM_MODULES 29
 
 
 class Module;
@@ -29,6 +29,7 @@ class ModuleScene_Level2;
 class ModuleMapa3;
 class ModuleScene_Boss1;
 class ModuleMapaV;
+class ModuleRanking;
 
 class ModuleScene_MainMenu;
 class ModuleParticles;
@@ -124,6 +125,8 @@ public:
 
 	ModuleMapa3* mapa3 = nullptr;
 	ModuleMapaV* mapaV = nullptr;
+
+	ModuleRanking* ranking = nullptr;
 };
 
 // Global var made extern for Application ---

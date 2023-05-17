@@ -16,6 +16,7 @@
 #include "ModuleMapa2.h"
 #include "ModuleMapa3.h"
 #include "ModuleMapaV.h"
+#include "ModuleRanking.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -77,6 +78,9 @@ update_status ModuleRender::PreUpdate()
 	}
 	else if (App->mapaV->IsEnabled()) {
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	}
+	else if (App->ranking->IsEnabled()) {
+		SDL_SetRenderDrawColor(renderer, 184, 184, 184, 255);
 	}
 	else {
 		SDL_SetRenderDrawColor(renderer, 115, 66, 148, 255);

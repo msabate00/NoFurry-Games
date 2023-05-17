@@ -10,6 +10,9 @@
 #include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleRanking.h"
+
+
 #include "SDL/include/SDL_scancode.h"
 
 #include "SDL/include/SDL.h"
@@ -76,7 +79,7 @@ update_status ModuleScene_Intro::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F8] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->mapaV, 20);
+		App->fade->FadeToBlack(this, (Module*)App->ranking, 20);
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
