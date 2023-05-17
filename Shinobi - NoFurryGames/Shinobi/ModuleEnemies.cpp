@@ -296,44 +296,44 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 
 
 	//PARA EL HOSTAGE
-	if (c2 == App->player->collider && c1->type == Collider::Type::HOSTAGE)
-	{
-		for (uint i = 0; i < MAX_ENEMIES; ++i)
-		{
-			if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && !((Hostage*)enemies[i])->saved)
-			{
-				
-				switch (((Hostage*)enemies[i])->id) {
-					case 1:
-						App->interface_module->hostageTaken[0] = true;
-						break;
-					case 2:
-						App->interface_module->hostageTaken[1] = true;
-						break;
-					case 3:
-						App->interface_module->hostageTaken[2] = true;
-						break;
-					case 4:
-						App->interface_module->hostageTaken[3] = true;
-						break;
-				
-				
-				
-				}
+	//if (c2 == App->player->collider && c1->type == Collider::Type::HOSTAGE)
+	//{
+	//	for (uint i = 0; i < MAX_ENEMIES; ++i)
+	//	{
+	//		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && !((Hostage*)enemies[i])->saved)
+	//		{
+	//			
+	//			switch (((Hostage*)enemies[i])->id) {
+	//				case 1:
+	//					App->interface_module->hostageTaken[0] = true;
+	//					break;
+	//				case 2:
+	//					App->interface_module->hostageTaken[1] = true;
+	//					break;
+	//				case 3:
+	//					App->interface_module->hostageTaken[2] = true;
+	//					break;
+	//				case 4:
+	//					App->interface_module->hostageTaken[3] = true;
+	//					break;
+	//			
+	//			
+	//			
+	//			}
 
-				((Hostage*)enemies[i])->saved = true;
-				if (((Hostage*)enemies[i])->gun) {
-					//Mostrar particula bonus gun
-					App->player->holdingGun = true;
-				}
+	//			((Hostage*)enemies[i])->saved = true;
+	//			if (((Hostage*)enemies[i])->gun) {
+	//				//Mostrar particula bonus gun
+	//				App->player->holdingGun = true;
+	//			}
 
 
 
-				return;
-				break;
-			}
-		}
-	}
+	//			return;
+	//			break;
+	//		}
+	//	}
+	//}
 
 	//RESTO DE COLISIONES
 	for (uint i = 0; i < MAX_ENEMIES; ++i)

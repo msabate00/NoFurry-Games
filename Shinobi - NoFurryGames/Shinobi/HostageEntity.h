@@ -77,6 +77,7 @@ public:
 
 	// Sound fx when destroyed
 	uint destroyedFx = 0;
+	bool saved;
 
 protected:
 	// A ptr to the current animation
@@ -87,7 +88,8 @@ protected:
 
 	// The enemy's collider
 	Collider* collider = nullptr;
-	Collider* colliderRange = nullptr;
+	
+	
 
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;

@@ -83,7 +83,7 @@ public:
 	SDL_Texture* Player1 = nullptr;
 
 
-	int hostage_num = 4;
+	int hostage_num = 3;
 
 
 

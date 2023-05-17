@@ -22,9 +22,7 @@ HostageEntity::HostageEntity(int x, int y, bool secondFloor, HOSTAGE_TYPE type) 
 
 
 
-	collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY, (Module*)App->enemy);
-	colliderRange = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::ENEMY_RANGE, (Module*)App->enemy);
-
+	//collider = App->collisions->AddCollider({ 0, 0, 35, 64 }, Collider::Type::HOSTAGE, (Module*)App->hostages);
 }
 
 HostageEntity::~HostageEntity()
@@ -39,10 +37,7 @@ const Collider* HostageEntity::GetCollider() const
 	return collider;
 }
 
-const Collider* HostageEntity::GetColliderRange() const
-{
-	return colliderRange;
-}
+
 
 void HostageEntity::Update()
 {
@@ -51,61 +46,18 @@ void HostageEntity::Update()
 		currentAnim = &walkBasic;
 	}
 
-
+	if (saved) {
+		currentAnim = &Death;
+	}
 	
-
-	//if (setHasReceivedDamage)
-	//{
-	//	if (!moveToDie)
-	//	{
-	//		diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
-	//		App->interface_module->texture_num += this->points;
-	//		moveToDie = true;
-	//	}
-	//	currentAnim = &Death;
-	//	position.y = diePos.y - currentAnim->GetCurrentFrame().h;
-
-	//	if (currentAnim->HasFinished())
-	//	{
-	//		currentAnim = nullptr;
-
-	//		if (collider != nullptr)
-	//			collider->pendingToDelete = true;
-
-	//		if (colliderRange != nullptr)
-	//			colliderRange->pendingToDelete = true;
-
-	//		App->hostages->AddHostage(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor);
-	//		App->hostages->HandleHostageDespawnEnemy(this);
-
-
-	//		return;
-	//	}
-	//}
-
-	/*if (currentAnim->HasFinished() && !facingLeft)
-		{
-			currentAnim = &walkBasic;
-			position.x += speed;
-		}
-	else if (currentAnim->HasFinished() && facingLeft)
-	{
-		currentAnim = &walkBasic;
-		position.x -= speed;
-	}*/
-
 
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
-	/*if (collider != nullptr) {
+	if (collider != nullptr) {
 		collider->SetPos(position.x, position.y);
 		collider->SetSize(currentAnim->GetCurrentFrame().w, currentAnim->GetCurrentFrame().h);
 	}
-	if (colliderRange != nullptr) {
-		colliderRange->SetPos(position.x - attackRange, position.y);
-		colliderRange->SetSize(currentAnim->GetCurrentFrame().w + attackRange * 2, currentAnim->GetCurrentFrame().h);
-	}*/
 
 }
 

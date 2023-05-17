@@ -19,7 +19,6 @@ public:
 
 	bool gun = false;
 	int points = 0;
-	bool saved = false;
 	bool check = false;
 	bool check2 = false;
 	bool secondFloor = false;

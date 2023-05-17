@@ -210,7 +210,7 @@ void ModuleHostage::SpawnHostage(const HostageSpawnpoint& info)
 
 void ModuleHostage::OnCollision(Collider* c1, Collider* c2)
 {
-
+	
 	//IGNORAR LA COLISION SI EL JUGADOR ESTA EN OTRA ALTURA
 	for (uint i = 0; i < MAX_HOSTAGE; ++i)
 	{
