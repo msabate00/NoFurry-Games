@@ -21,10 +21,6 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	walkBasic.speed = 0.1f;
 
 	recharge.PushBack({ 4,245,47,58 });
-	recharge.PushBack({ 4,245,47,58 });
-	recharge.PushBack({ 4,245,47,58 });
-	recharge.PushBack({ 4,245,47,58 });
-	recharge.PushBack({ 4,245,47,58 });
 	recharge.speed = 0.1f;
 	recharge.loop = false;
 
@@ -136,11 +132,12 @@ void EnemyGun::Update()
 
 
 	// Disparos
-
-	if (facingLeft && (App->player->position.x + 120) > position.x)
+		
+	if (facingLeft && (App->player->position.x + viewRange) > position.x)
 	{
 		hasToShot = true;
 	}
+	else hasToShot = false;
 
 	if (hasToShot)
 	{
@@ -149,14 +146,19 @@ void EnemyGun::Update()
 
 		if (currentAnim->HasFinished())
 		{
-			currentAnim = &attackAnim;
-
-			if (currentAnim->HasFinished())
-			{
-				hasToShot = false;
-			}
+			//aquí dispara
 		}
 	}
+
+	if (currentAnim->HasFinished())
+	{
+		currentAnim = &attackAnim;
+		if (currentAnim->HasFinished())
+		{
+			hasToShot = false;
+		}
+	}
+
 
 	
 

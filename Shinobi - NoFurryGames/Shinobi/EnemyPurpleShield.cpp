@@ -50,8 +50,7 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 
 void EnemyPurpleShield::Update()
 {
-	currentAnim = &walkBasic;
-	//Gravedad
+	// Gravedad - INDV
 	jumpSpeed += -GRAVITY;
 	float grav = GRAVITY;
 	if (jumpSpeed < -grav) {
@@ -60,6 +59,7 @@ void EnemyPurpleShield::Update()
 	position.y -= jumpSpeed;
 
 
+	// Rango de visión - INDV
 	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &staticAnim;
@@ -74,7 +74,7 @@ void EnemyPurpleShield::Update()
 	// Cuando entra en el rango, se mueve
 	else
 	{
-		//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+		// Si el enemigo queda por detrás del jugador, este primero cambia su dirección
 		if (position.x < App->player->position.x - wanderRange && facingLeft)
 		{
 			facingLeft = false;
@@ -95,6 +95,22 @@ void EnemyPurpleShield::Update()
 		}
 	}
 
+	// Salta
+	if (!jumpsNow)
+	{
+		currentAnim = &walkBasic;
+	}
+	else if (jumpsNow)
+	{
+		currentAnim = &jumping;
+	}
+
+	if (currentAnim->HasFinished())
+	{
+		jumpsNow = false;
+	}
+
+	// Ataque :)
 	if (isAttacking) {
 		currentAnim = &attackPurple;
 
@@ -104,7 +120,7 @@ void EnemyPurpleShield::Update()
 		}
 	}
 
-	if (App->player->destroyed && App->player->currentAnimation->HasFinished())
+	/*if (App->player->destroyed && App->player->currentAnimation->HasFinished())
 	{
 		currentAnim = &walkBasic;
 		if (facingLeft)
@@ -117,7 +133,7 @@ void EnemyPurpleShield::Update()
 		}
 
 
-	}
+	}*/
 
 
 
