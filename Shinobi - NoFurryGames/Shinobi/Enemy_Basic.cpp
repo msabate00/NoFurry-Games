@@ -149,10 +149,11 @@ void Enemy_Basic::Update()
 		jumpsNow = false;
 	}
 	
+	// Ataque :)
 	if (isAttacking) 
 	{
 		currentAnim = &attackAnim;
-		cout << "ataca" << endl;
+		/*cout << "ataca" << endl;*/
 
 		if (currentAnim->HasFinished())
 		{
