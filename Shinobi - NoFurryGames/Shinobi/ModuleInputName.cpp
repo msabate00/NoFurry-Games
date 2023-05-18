@@ -55,7 +55,7 @@ bool ModuleInputName::Start()
 	ranking = App->textures->Load("Assets/Interface/Color_use/SkillIcon/rank.png");
 	currentAnimation = &backgroundAnim;
 
-
+	dardosWhite = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosWhite.png");
 
 
 	return ret;
@@ -83,6 +83,55 @@ update_status ModuleInputName::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 
+
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_DOWN) {
+		if (dardosPositionX == 215 && dardosPositionY == 65) {
+			dardosPositionY += 30;
+		}
+		else {
+		if (dardosPositionY < 185) {
+			dardosPositionY += 30;
+		}
+		}
+		cout << "dardosPositionX: " << dardosPositionX << endl;
+		cout << "dardosPositionY: " << dardosPositionY << endl;
+	}
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_DOWN) {
+		if (dardosPositionX == 215 && dardosPositionY == 65) {
+			dardosPositionY -= 30;
+		}
+		else {
+			if (dardosPositionY > 65) {
+				dardosPositionY -= 30;
+			}
+		}
+
+		
+		cout << "dardosPositionX: " << dardosPositionX << endl;
+		cout << "dardosPositionY: " << dardosPositionY << endl;
+	}
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_DOWN) {
+		if (dardosPositionX == 215 && dardosPositionY == 35) {}
+		else {
+			if (dardosPositionX < 335 ) {
+				dardosPositionX += 40;
+			}
+		}
+		cout << "dardosPositionX: " << dardosPositionX << endl;
+		cout << "dardosPositionY: " << dardosPositionY << endl;
+	}
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_DOWN) {
+		if (dardosPositionX == 215 && dardosPositionY == 35) {}
+		else {
+			if (dardosPositionX > 95) {
+				dardosPositionX -= 40;
+			}
+		}
+		cout << "dardosPositionX: " << dardosPositionX << endl;
+		cout << "dardosPositionY: " << dardosPositionY << endl;
+	}
+
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -92,7 +141,7 @@ update_status ModuleInputName::PostUpdate()
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
 	prinIcon();
 	printTitle();
-	//printrRanking();
+	printInput();
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -142,35 +191,37 @@ void ModuleInputName::prinIcon() {
 void ModuleInputName::printTitle() {
 	int IconPositionY = 220;
 	int IconPositionY2 = 200;
-	App->interface_module->timer += App->deltaTime;
 
-	if (App->interface_module->NameColor) {
-		for (int i = 0; i < 2; i++)
-		{
-			//App->fonts->BlitText(SCREEN_WIDTH - 350, SCREEN_HEIGHT - IconPositionY, App->scoreFontRed, "greatest");
-			App->render->Blit(App->interface_module->LetraNomRed, SCREEN_WIDTH - 245, SCREEN_HEIGHT - IconPositionY, SDL_FLIP_NONE, nullptr, 0);
+	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 220, App->scoreFontWhite, "your score");
+	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 200, App->scoreFontWhite, "your name");
+	//App->fonts->BlitText(SCREEN_WIDTH - 230, SCREEN_HEIGHT - 180, App->scoreFontWhite, "time");
+	App->fonts->BlitText(SCREEN_WIDTH - 130, SCREEN_HEIGHT - 220, App->scoreFontWhite, std::to_string(App->interface_module->texture_num).c_str() );
 
-			App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - IconPositionY2, App->scoreFontRed, "greatest ranking");
-		}
-		if (App->interface_module->timer >= App->interface_module->switchTime) {
-			App->interface_module->NameColor = false;
-			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
+
+	App->render->Blit(dardosWhite, SCREEN_WIDTH - dardosPositionX, SCREEN_HEIGHT - dardosPositionY, SDL_FLIP_NONE, nullptr, 1);
+	//XÊÇ -40£¬YÊÇ-30
+	
+}
+
+
+void ModuleInputName::printInput() {
+	int InputPositionX = 320;
+	int InputPositionY = 170;
+
+	
+	for (int i = 0; i < 35; i++)
+	{
+		char character[2] = { input_array[i], '\0' };
+		App->fonts->BlitText(SCREEN_WIDTH - InputPositionX, SCREEN_HEIGHT - InputPositionY, App->scoreFontWhite, character);
+
+		InputPositionX -= 40;
+		
+		
+		if ((i + 1) % 7 == 0) {
+			InputPositionY -= 30;
+			InputPositionX = 320;
 		}
 	}
-	else {
-		for (int i = 0; i < 2; i++)
-		{
-			//App->fonts->BlitText(SCREEN_WIDTH - 350, SCREEN_HEIGHT - IconPositionY, App->scoreFontWhite, "greatest");
-			App->render->Blit(App->interface_module->LetraNomWhite, SCREEN_WIDTH - 245, SCREEN_HEIGHT - IconPositionY, SDL_FLIP_NONE, nullptr, 0);
-			App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - IconPositionY2, App->scoreFontWhite, "greatest ranking");
-
-		}
-		if (App->interface_module->timer >= App->interface_module->switchTime) {
-			App->interface_module->NameColor = true;
-			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
-		}
-	}
-
 }
 
 

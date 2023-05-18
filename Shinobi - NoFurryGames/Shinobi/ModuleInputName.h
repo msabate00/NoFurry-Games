@@ -35,6 +35,7 @@ public:
 
 	void prinIcon();
 	void printTitle();
+	void printInput();
 	
 
 public:
@@ -49,18 +50,25 @@ public:
 
 	SDL_Texture** iconType = new SDL_Texture * [2];
 	SDL_Texture* ranking = nullptr;
+	SDL_Texture* dardosWhite = nullptr;
+	SDL_Texture* dardosRed = nullptr;
 
 	SDL_Rect background;
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
 
-
-	char inputidle[36];
-
+	char input_array[35] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
+							 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+							 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4',
+							 '5', '6', '7', '8', '9' };
+	
 
 	float timerIconChange = 0.0f;
 	float timerColorChange = 0.0f;
 
+
+	int dardosPositionX = 335;
+	int dardosPositionY = 185;
 
 
 };
