@@ -129,7 +129,9 @@ update_status ModuleRanking::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 
-
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
+		insert_rank(505000, 6, "lin");
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -223,9 +225,9 @@ void ModuleRanking::printTitle() {
 
 
 void ModuleRanking::printrRanking() {
-	int IconPositionY = 180;
+	int IconPositionY;
 	int IconPositionrank = 160;
-		App->render->Blit(ranking, SCREEN_WIDTH - 325, SCREEN_HEIGHT - IconPositionY, SDL_FLIP_NONE, nullptr, 0);
+		App->render->Blit(ranking, SCREEN_WIDTH - 325, SCREEN_HEIGHT - 180, SDL_FLIP_NONE, nullptr, 0);
 
 		for (int i = 0; i < 10; i++)
 		{
@@ -236,8 +238,14 @@ void ModuleRanking::printrRanking() {
 				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed, leaderboard[i].name.c_str());
 			}
 			else {
+				if (leaderboard[i].score >= 100000) {
+					IconPositionY = 255;
+				}
+				else {
+					IconPositionY = 239;
+				}
 				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, leaderboard[i].rank.c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 239, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, std::to_string(leaderboard[i].score).c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - IconPositionY, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, std::to_string(leaderboard[i].score).c_str());
 				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, std::to_string(leaderboard[i].coin).c_str());
 				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, leaderboard[i].name.c_str());
 			}
@@ -248,3 +256,48 @@ void ModuleRanking::printrRanking() {
 
 }
 
+
+std::string getRankSuffix(int rank) {
+	if (rank >= 11 && rank <= 13)
+		return "th";
+
+	int lastDigit = rank % 10;
+	switch (lastDigit) {
+	case 1:
+		return "st";
+	case 2:
+		return "nd";
+	case 3:
+		return "rd";
+	default:
+		return "th";
+	}
+}
+
+
+void ModuleRanking::insert_rank(int new_score, int new_coin, const std::string& new_name) {
+	int insert_index = -1;
+
+	// 查找要插入的位置
+	for (int i = 0; i < 10; i++) {
+		if (new_score > leaderboard[i].score) {
+			insert_index = i;
+			break;
+		}
+	}
+
+	if (insert_index != -1) {
+		// 向后移动元素
+		for (int i = 9; i > insert_index; i--) {
+			leaderboard[i] = leaderboard[i - 1];
+			int rank = std::stoi(leaderboard[i].rank);
+			leaderboard[i].rank = std::to_string(rank + 1) + getRankSuffix(rank + 1);
+		}
+
+		// 插入新元素
+		leaderboard[insert_index].score = new_score;
+		leaderboard[insert_index].coin = new_coin;
+		leaderboard[insert_index].name = new_name;
+		leaderboard[insert_index].rank = std::to_string(std::stoi(leaderboard[insert_index + 1].rank) - 1) + getRankSuffix(std::stoi(leaderboard[insert_index + 1].rank) - 1);
+	}
+}

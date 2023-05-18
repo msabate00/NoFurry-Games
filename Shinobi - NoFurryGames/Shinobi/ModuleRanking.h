@@ -35,6 +35,7 @@ public:
 	void prinIcon();
 	void printTitle();
 	void printrRanking();
+	void insert_rank(int new_score, int new_coin, const std::string& new_name);
 
 public:
 
