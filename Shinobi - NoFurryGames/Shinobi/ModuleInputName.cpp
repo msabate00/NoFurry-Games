@@ -14,6 +14,7 @@
 #include "SDL/include/SDL_scancode.h"
 #include "ModuleFonts.h"
 #include "ModuleInterface.h"
+#include "ModuleRanking.h"
 
 #include "SDL/include/SDL.h"
 #include "SDL_mixer/include/SDL_mixer.h"
@@ -129,7 +130,17 @@ update_status ModuleInputName::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+		if (dardosPositionX == 215 && dardosPositionY == 35) {
+
+			App->fade->FadeToBlack(this, (Module*)App->ranking, 20);
+		}
+		else {
+		
 		printNomSelect(dardosPositionX, dardosPositionY);
+		}
+	}
+	if (App->input->keys[SDL_SCANCODE_X] == KEY_DOWN) {
+		deleteNom();
 	}
 
 
@@ -323,6 +334,17 @@ void ModuleInputName::printNomSelect(int nameposX, int nameposY) {
 	}
 }
 
+void ModuleInputName::deleteNom() {
+
+	if (myNamelist == 0) {
+		myNamelist = 0;
+	}
+	else {
+		myNamelist -= 1;
+	}
+	myName[myNamelist] = '\0';
+
+}
 void ModuleInputName::printNom() {
 
 

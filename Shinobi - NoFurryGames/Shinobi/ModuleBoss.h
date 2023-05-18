@@ -117,6 +117,8 @@ public:
 	uint RecieveDamage_2FX = 0;
 	uint Boss_DieFX = 0;
 
+	float timerChangeFinal = 0;
+
 };
 
 

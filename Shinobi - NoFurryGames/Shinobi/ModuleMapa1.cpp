@@ -48,6 +48,8 @@ update_status ModuleMapa1::Update()
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN ||  App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer();
+		App->interface_module->gameChange = true;
+		App->interface_module->texture_num = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
 

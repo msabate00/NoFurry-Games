@@ -16,6 +16,7 @@
 #include "ModuleScene_Level1_SecondFloor_Enemies.h"
 #include "ModuleFadeToBlack.h" 
 #include "ModuleMapaV.h" 
+#include "ModuleInterface.h"
 
 #include "Enemy.h"
 #include "Enemy_Basic.h"
@@ -202,7 +203,7 @@ bool ModuleBoss::Start()
 	facingRight = false;
 	position.x = 375;
 	position.y = 130;
-	life = 8;
+	life = 1;
 	inmune = false;
 	dead = false;
 	timeContador = 0;
@@ -230,8 +231,18 @@ update_status ModuleBoss::Update()
 		current_torso_Animation = &torso_dead;
 		current_legs_Animation = &legs_dead;
 		if (current_head_Animation->HasFinished()) {
-			
-			App->fade->FadeToBlack(App->activeModule, App->mapaV);
+
+			timerChangeFinal += App->deltaTime;
+			App->interface_module->gameChange = false;
+
+			if (timerChangeFinal <= 20) {
+				App->interface_module->texture_num += 5000;
+				App->interface_module->texture_num += 20000;
+			}
+			if (timerChangeFinal >= 5000 || App->interface_module->remaining_time == 0) {
+				App->interface_module->gameChange = true;
+				App->fade->FadeToBlack(App->activeModule, App->mapaV);
+			}
 		}
 		current_head_Animation->Update();
 		return update_status::UPDATE_CONTINUE;

@@ -14,6 +14,9 @@
 #include "SDL/include/SDL_scancode.h"
 #include "ModuleFonts.h"
 #include "ModuleInterface.h"
+#include "ModuleInputName.h"
+#include "ModuleScene_MainMenu.h"
+
 
 #include "SDL/include/SDL.h"
 #include "SDL_mixer/include/SDL_mixer.h"
@@ -104,6 +107,7 @@ bool ModuleRanking::Start()
 	leaderboard[8].name = "iii";
 	leaderboard[9].name = "jjj";
 
+	insert_rank(App->interface_module->texture_num, App->interface_module->coinNum, App->inputname->myName);
 	return ret;
 }
 
@@ -113,7 +117,7 @@ update_status ModuleRanking::Update()
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
 
-		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
+		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 	currentAnimation->Update();
 
@@ -130,7 +134,8 @@ update_status ModuleRanking::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
-		insert_rank(505000, 6, "lin");
+		insert_rank(505000, App->interface_module->coinNum, App->inputname->myName);
+		
 	}
 
 	return update_status::UPDATE_CONTINUE;

@@ -12,6 +12,7 @@
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
 #include "ModuleInterface.h"
+#include "ModuleInputName.h"
 
 #include "SDL/include/SDL.h"
 #include <string> 
@@ -48,7 +49,7 @@ update_status ModuleMapaV::Update()
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 5000) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+		App->fade->FadeToBlack(this, (Module*)App->inputname, 20);
 	}
 
 

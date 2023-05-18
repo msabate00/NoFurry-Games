@@ -815,6 +815,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 
 		if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time == 0) {
+			App->interface_module->gameChange = true;
 			App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
 			timerChangeLv2 = 5001;
 		}

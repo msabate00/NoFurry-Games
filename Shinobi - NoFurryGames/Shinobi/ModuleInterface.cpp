@@ -225,7 +225,20 @@ update_status ModuleInterface::PostUpdate()
 		printSkillIcon();
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
-		printTime(getTimeString(elapsed_time).c_str());
+		//printTime(getTimeString(elapsed_time).c_str());
+
+
+		if (gameChange) {
+			printTime(getTimeString(elapsed_time).c_str());
+		}
+		else {
+			displayTime(remaining_time--);
+			texture_num += 30;
+			stageClear();
+			if (App->interface_module->remaining_time <= 0) {
+				App->interface_module->remaining_time = 0;
+			}
+		}
 		printPlayer1();
 		printBossLife();
 	}

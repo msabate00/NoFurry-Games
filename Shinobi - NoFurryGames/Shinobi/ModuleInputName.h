@@ -39,6 +39,7 @@ public:
 	void printdardos();
 	void printNomSelect(int posX, int posY);
 	void printNom();
+	void deleteNom();
 
 public:
 
