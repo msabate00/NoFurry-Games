@@ -36,7 +36,9 @@ public:
 	void prinIcon();
 	void printTitle();
 	void printInput();
-	
+	void printdardos();
+	void printNomSelect(int posX, int posY);
+	void printNom();
 
 public:
 
@@ -52,15 +54,19 @@ public:
 	SDL_Texture* ranking = nullptr;
 	SDL_Texture* dardosWhite = nullptr;
 	SDL_Texture* dardosRed = nullptr;
+	SDL_Texture* ED = nullptr;
 
 	SDL_Rect background;
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
 
-	char input_array[35] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-							 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-							 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4',
-							 '5', '6', '7', '8', '9' };
+	char input_array[5][7] = {
+	{'a', 'b', 'c', 'd', 'e', 'f', 'g'},
+	{'h', 'i', 'j', 'k', 'l', 'm', 'n'},
+	{'o', 'p', 'q', 'r', 's', 't', 'u'},
+	{'v', 'w', 'x', 'y', 'z', '1', '2'},
+	{'3', '4', '5', '6', '7', '8', '9'}
+	};
 	
 
 	float timerIconChange = 0.0f;
@@ -69,8 +75,11 @@ public:
 
 	int dardosPositionX = 335;
 	int dardosPositionY = 185;
+	int letraposX;
+	int letraposY;
 
-
+	char myName[4];
+	int myNamelist = 0;
 };
 
 #endif

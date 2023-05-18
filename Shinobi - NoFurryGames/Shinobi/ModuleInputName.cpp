@@ -56,7 +56,8 @@ bool ModuleInputName::Start()
 	currentAnimation = &backgroundAnim;
 
 	dardosWhite = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosWhite.png");
-
+	dardosRed = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosRed.png");
+	ED = App->textures->Load("Assets/Interface/Color_use/SkillIcon/ED.png");
 
 	return ret;
 }
@@ -84,14 +85,12 @@ update_status ModuleInputName::Update()
 	}
 
 
+
+
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_DOWN) {
-		if (dardosPositionX == 215 && dardosPositionY == 65) {
-			dardosPositionY += 30;
-		}
-		else {
+
 		if (dardosPositionY < 185) {
 			dardosPositionY += 30;
-		}
 		}
 		cout << "dardosPositionX: " << dardosPositionX << endl;
 		cout << "dardosPositionY: " << dardosPositionY << endl;
@@ -105,8 +104,6 @@ update_status ModuleInputName::Update()
 				dardosPositionY -= 30;
 			}
 		}
-
-		
 		cout << "dardosPositionX: " << dardosPositionX << endl;
 		cout << "dardosPositionY: " << dardosPositionY << endl;
 	}
@@ -131,6 +128,10 @@ update_status ModuleInputName::Update()
 		cout << "dardosPositionY: " << dardosPositionY << endl;
 	}
 
+	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
+		printNomSelect(dardosPositionX, dardosPositionY);
+	}
+
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -142,6 +143,8 @@ update_status ModuleInputName::PostUpdate()
 	prinIcon();
 	printTitle();
 	printInput();
+	printdardos();
+	printNom();
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -195,12 +198,7 @@ void ModuleInputName::printTitle() {
 	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 220, App->scoreFontWhite, "your score");
 	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 200, App->scoreFontWhite, "your name");
 	//App->fonts->BlitText(SCREEN_WIDTH - 230, SCREEN_HEIGHT - 180, App->scoreFontWhite, "time");
-	App->fonts->BlitText(SCREEN_WIDTH - 130, SCREEN_HEIGHT - 220, App->scoreFontWhite, std::to_string(App->interface_module->texture_num).c_str() );
-
-
-	App->render->Blit(dardosWhite, SCREEN_WIDTH - dardosPositionX, SCREEN_HEIGHT - dardosPositionY, SDL_FLIP_NONE, nullptr, 1);
-	//X是 -40，Y是-30
-	
+	App->fonts->BlitText(SCREEN_WIDTH - 130, SCREEN_HEIGHT - 220, App->scoreFontWhite, std::to_string(App->interface_module->texture_num).c_str() );	
 }
 
 
@@ -208,20 +206,132 @@ void ModuleInputName::printInput() {
 	int InputPositionX = 320;
 	int InputPositionY = 170;
 
-	
-	for (int i = 0; i < 35; i++)
+	for (int row = 0; row < 5; row++)
 	{
-		char character[2] = { input_array[i], '\0' };
-		App->fonts->BlitText(SCREEN_WIDTH - InputPositionX, SCREEN_HEIGHT - InputPositionY, App->scoreFontWhite, character);
+		for (int col = 0; col < 7; col++)
+		{
+			char character[2] = { input_array[row][col], '\0' };
+			App->fonts->BlitText(SCREEN_WIDTH - InputPositionX, SCREEN_HEIGHT - InputPositionY, App->scoreFontWhite, character);
 
-		InputPositionX -= 40;
-		
-		
-		if ((i + 1) % 7 == 0) {
-			InputPositionY -= 30;
-			InputPositionX = 320;
+			InputPositionX -= 40;
 		}
+
+		InputPositionY -= 30;
+		InputPositionX = 320;
 	}
+	App->render->Blit(ED, SCREEN_WIDTH - 199, SCREEN_HEIGHT - 20, SDL_FLIP_NONE, nullptr, 1);
 }
 
 
+void ModuleInputName::printdardos() {
+	App->interface_module->timer += App->deltaTime;
+
+	if (App->interface_module->NameColor) {
+
+		App->render->Blit(dardosRed, SCREEN_WIDTH - dardosPositionX, SCREEN_HEIGHT - dardosPositionY, SDL_FLIP_NONE, nullptr, 1);
+		if (App->interface_module->timer >= App->interface_module->switchTime) {
+			App->interface_module->NameColor = false;
+			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	else {
+
+		App->render->Blit(dardosWhite, SCREEN_WIDTH - dardosPositionX, SCREEN_HEIGHT - dardosPositionY, SDL_FLIP_NONE, nullptr, 1);
+		if (App->interface_module->timer >= App->interface_module->switchTime) {
+			App->interface_module->NameColor = true;
+			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+
+	//X是 -40，Y是-30
+}
+
+void ModuleInputName::printNomSelect(int nameposX, int nameposY) {
+
+	switch (nameposX) {
+	case 335:
+		letraposX = 0;
+		break;
+	case 295:
+		letraposX = 1;
+		break;
+	case 255:
+		letraposX = 2;
+		break;
+	case 215:
+		letraposX = 3;
+		break;
+	case 175:
+		letraposX = 4;
+		break;
+	case 135:
+		letraposX = 5;
+		break;
+	case 95:
+		letraposX = 6;
+		break;
+	default:
+		letraposX = -1; // 如果输入的x值不在列表中，则设置为-1表示无效
+		break;
+	}
+	switch (nameposY) {
+	case 185:
+		letraposY = 0;
+		break;
+	case 155:
+		letraposY = 1;
+		break;
+	case 125:
+		letraposY = 2;
+		break;
+	case 95:
+		letraposY = 3;
+		break;
+	case 65:
+		letraposY = 4;
+		break;
+	default:
+		letraposY = -1; // 如果输入的y值不在列表中，则设置为-1表示无效
+		break;
+	}
+
+	cout << input_array[letraposY][letraposX] << endl;
+	cout << myNamelist << endl;
+	
+
+	switch (myNamelist) {
+	case 0:
+		myName[0] = input_array[letraposY][letraposX];
+		break;
+	case 1:
+		myName[1] = input_array[letraposY][letraposX];
+		break;
+	case 2:
+		myName[2] = input_array[letraposY][letraposX];
+		break;
+	default:
+		letraposY = -1; // 如果输入的y值不在列表中，则设置为-1表示无效
+		break;
+	}
+
+
+	if (myNamelist == 3) {
+		myNamelist = 3;
+	}
+	else {
+	myNamelist += 1;
+	}
+}
+
+void ModuleInputName::printNom() {
+
+
+	int NamePositionX = 150;
+
+	for (int i = 0; i < myNamelist; i++)
+	{
+		char namecharacter[2] = { myName[i], '\0' };
+		App->fonts->BlitText(SCREEN_WIDTH - NamePositionX, SCREEN_HEIGHT - 200, App->scoreFontWhite, namecharacter);
+		NamePositionX -= 16;
+	}
+}
