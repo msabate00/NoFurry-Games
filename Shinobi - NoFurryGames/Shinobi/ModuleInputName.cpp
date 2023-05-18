@@ -93,8 +93,6 @@ update_status ModuleInputName::Update()
 		if (dardosPositionY < 185) {
 			dardosPositionY += 30;
 		}
-		cout << "dardosPositionX: " << dardosPositionX << endl;
-		cout << "dardosPositionY: " << dardosPositionY << endl;
 	}
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_DOWN) {
 		if (dardosPositionX == 215 && dardosPositionY == 65) {
@@ -105,8 +103,7 @@ update_status ModuleInputName::Update()
 				dardosPositionY -= 30;
 			}
 		}
-		cout << "dardosPositionX: " << dardosPositionX << endl;
-		cout << "dardosPositionY: " << dardosPositionY << endl;
+
 	}
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_DOWN) {
 		if (dardosPositionX == 215 && dardosPositionY == 35) {}
@@ -115,8 +112,7 @@ update_status ModuleInputName::Update()
 				dardosPositionX += 40;
 			}
 		}
-		cout << "dardosPositionX: " << dardosPositionX << endl;
-		cout << "dardosPositionY: " << dardosPositionY << endl;
+
 	}
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_DOWN) {
 		if (dardosPositionX == 215 && dardosPositionY == 35) {}
@@ -125,8 +121,7 @@ update_status ModuleInputName::Update()
 				dardosPositionX -= 40;
 			}
 		}
-		cout << "dardosPositionX: " << dardosPositionX << endl;
-		cout << "dardosPositionY: " << dardosPositionY << endl;
+
 	}
 
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
@@ -306,8 +301,8 @@ void ModuleInputName::printNomSelect(int nameposX, int nameposY) {
 		break;
 	}
 
-	cout << input_array[letraposY][letraposX] << endl;
-	cout << myNamelist << endl;
+
+
 	
 
 	switch (myNamelist) {
