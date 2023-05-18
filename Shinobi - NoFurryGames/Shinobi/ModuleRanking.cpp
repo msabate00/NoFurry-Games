@@ -278,7 +278,6 @@ std::string getRankSuffix(int rank) {
 void ModuleRanking::insert_rank(int new_score, int new_coin, const std::string& new_name) {
 	int insert_index = -1;
 
-	// 查找要插入的位置
 	for (int i = 0; i < 10; i++) {
 		if (new_score > leaderboard[i].score) {
 			insert_index = i;
@@ -287,14 +286,13 @@ void ModuleRanking::insert_rank(int new_score, int new_coin, const std::string& 
 	}
 
 	if (insert_index != -1) {
-		// 向后移动元素
+
 		for (int i = 9; i > insert_index; i--) {
 			leaderboard[i] = leaderboard[i - 1];
 			int rank = std::stoi(leaderboard[i].rank);
 			leaderboard[i].rank = std::to_string(rank + 1) + getRankSuffix(rank + 1);
 		}
 
-		// 插入新元素
 		leaderboard[insert_index].score = new_score;
 		leaderboard[insert_index].coin = new_coin;
 		leaderboard[insert_index].name = new_name;
