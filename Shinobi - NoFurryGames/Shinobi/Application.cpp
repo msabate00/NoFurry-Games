@@ -20,6 +20,7 @@
 #include "ModuleBoss.h"
 #include "ModuleMapaV.h"
 #include "ModuleRanking.h"
+#include "ModuleInputName.h";
 
 
 #include "ModuleScene_MainMenu.h"
@@ -71,18 +72,19 @@ Application::Application()
 	modules[15] =	scene_Boss1 =						new ModuleScene_Boss1(false);
 	modules[16] =	boss =								new ModuleBoss(false);
 	modules[17] =	mapaV=								new ModuleMapaV(false);
-	modules[18] =	ranking =							new ModuleRanking(false);
+	modules[18] =	inputname =							new ModuleInputName(false);
+	modules[19] =	ranking =							new ModuleRanking(false);
 	
-	modules[19] = player =								new ModulePlayer(false);
-	modules[20] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
-	modules[21] = particles =							new ModuleParticles(true);
-	modules[22] = particlesBoss =							new ModuleParticlesBoss(true);
-	modules[23] = collisions =							new ModuleCollisions(true);
-	modules[24] = audio =								new ModuleAudio(true);
-	modules[25] = fonts =								new ModuleFonts(true);
-	modules[26] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
-	modules[27] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
-	modules[28] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
+	modules[20] = player =								new ModulePlayer(false);
+	modules[21] = scene_Level1_SecondFloor =			new ModuleScene_Level1_SecondFloor(false);
+	modules[22] = particles =							new ModuleParticles(true);
+	modules[23] = particlesBoss =							new ModuleParticlesBoss(true);
+	modules[24] = collisions =							new ModuleCollisions(true);
+	modules[25] = audio =								new ModuleAudio(true);
+	modules[26] = fonts =								new ModuleFonts(true);
+	modules[27] = interface_module =					new ModuleInterface(true); // <------- SIEMPRE TIENE QUE CARGAR EL ANTEULTIMO
+	modules[28] = fade =								new ModuleFadeToBlack(true); // <------- SIEMPRE TIENE QUE CARGAR EL PENULTIMO
+	modules[29] = render =								new ModuleRender(true); // <----- SIEMPRE SE TIENE QUE CARGAR EL ULTI
 
 
 

@@ -136,6 +136,9 @@
     <ClCompile Include="ModuleRanking.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleInputName.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -277,6 +280,9 @@
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClInclude>
     <ClInclude Include="ModuleRanking.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleInputName.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
   </ItemGroup>
