@@ -133,31 +133,31 @@ void EnemyGun::Update()
 
 	// Disparos
 		
-	if (facingLeft && (App->player->position.x + viewRange) > position.x)
-	{
-		hasToShot = true;
-	}
-	else hasToShot = false;
+	//if (facingLeft && (App->player->position.x + viewRange) > position.x)
+	//{
+	//	hasToShot = true;
+	//}
+	//else hasToShot = false;
 
-	if (hasToShot)
-	{
-		currentAnim = &recharge;
-		position.x += speed;
+	//if (hasToShot)
+	//{
+	//	currentAnim = &recharge;
+	//	position.x += speed;
 
-		if (currentAnim->HasFinished())
-		{
-			//aquí dispara
-		}
-	}
+	//	if (currentAnim->HasFinished())
+	//	{
+	//		//aquí dispara
+	//	}
+	//}
 
-	if (currentAnim->HasFinished())
-	{
-		currentAnim = &attackAnim;
-		if (currentAnim->HasFinished())
-		{
-			hasToShot = false;
-		}
-	}
+	//if (currentAnim->HasFinished())
+	//{
+	//	currentAnim = &attackAnim;
+	//	if (currentAnim->HasFinished())
+	//	{
+	//		hasToShot = false;
+	//	}
+	//}
 
 
 	

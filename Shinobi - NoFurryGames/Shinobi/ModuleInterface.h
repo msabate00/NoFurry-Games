@@ -104,6 +104,7 @@ public:
 	float Icontimer = 0.0f;
 	float timerGonext = 0.0f;
 	float timerGoIcon = 0.0f;
+	float gameOvertimer = 0.0f;
 	float timerPR = 0.0f;
 	//Canbiar Color SHINOBI
 	//const float switchTime = 100.0f; // Tiempo Cambiar Color
@@ -148,11 +149,12 @@ public:
 
 	const float switchTime = 250.0f; // Tiempo Cambiar Color
 	const float switchTimeInsertCoin = 1000.0f;
+	const float switchTimeGameOver = 1000.0f; // Tiempo Cambiar Color
 
 	int GoIconPosition = -1580;//-1580
 	int timePointcount;
-
-
+	bool gameover = false;
+	bool gameChangeScene = false;
 	//Boos
 	SDL_Texture* Boss_pow = nullptr;
 	SDL_Texture* Boss_life = nullptr;
