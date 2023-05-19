@@ -161,6 +161,16 @@ ModuleBoss::ModuleBoss(bool startEnabled) : Module(startEnabled) {
 
 	generalDying.speed = 0.05;
 
+	//Animacion Primer Nivel
+	//Cambio de cabezas
+	// { 5,750,87,92 }
+	// { 98,750,87,92 }
+	//Andar
+	// { 205,750,87,92 }
+	// { 298,750,87,92 }
+	// { 391,750,87,92 }
+	//Ataque
+	// { 5,852,87,92 }
 
 
 

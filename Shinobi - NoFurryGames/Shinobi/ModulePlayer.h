@@ -138,7 +138,8 @@ public:
 
 	float timerChangeLv2 = 0.0f;
 	float timerGameover = 0.0f;
-
+	bool gameOver = false;
+	
 
 };
 
