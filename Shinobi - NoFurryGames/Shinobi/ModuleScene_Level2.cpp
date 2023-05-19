@@ -6,6 +6,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
+#include "ModuleInterface.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
@@ -84,13 +85,18 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 2048, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 
 	//Hostage
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 290, FLOOR_LEVEL - 60, false, 200, false, 5, true);
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 28, false, 200, false, 6, true);
-	App->enemy->AddEnemy(ENEMY_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 200, false, 7, true);
+	if (App->interface_module->hostageTaken[4] == false) 
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 290, FLOOR_LEVEL - 60, true, 200, false, 5, true);
+	if (App->interface_module->hostageTaken[5] == false) 
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 28 , false, 200, false, 6, true);
+	if (App->interface_module->hostageTaken[6] == false) 
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 200, false, 7, true);
 
 
 	//Musica
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg");
+
+	App->player->isSecondFloor = false;
 
 
 	App->render->camera.x = 0;
