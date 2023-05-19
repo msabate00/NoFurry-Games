@@ -157,7 +157,10 @@ update_status ModuleInterface::PostUpdate()
 		}
 		else {
 		displayTime(remaining_time--);
-		texture_num += 30;
+		if (remaining_time >= 0) {
+			
+			texture_num += 30;
+		}
 		stageClear();
 		if (App->interface_module->remaining_time <= 0) {
 			App->interface_module->remaining_time = 0;
