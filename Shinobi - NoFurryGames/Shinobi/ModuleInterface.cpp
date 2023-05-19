@@ -795,6 +795,7 @@ void ModuleInterface::printgameOver() {
 	int IconPosition = 250;
 	timer += App->deltaTime;
 
+	App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 
 	if (NameColor) {
 		App->render->Blit(gameOverRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
