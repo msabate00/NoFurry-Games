@@ -271,7 +271,7 @@ bool ModulePlayer::Start()
 
 	facingRight = true;
 	isSecondFloor = false;
-
+	gameOver = false;
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
@@ -285,6 +285,14 @@ update_status ModulePlayer::Update()
 {
 
 	
+	if (gameOver) {
+		timerGameover += App->deltaTime;
+		//cout << timerGameover << endl;
+		if (timerGameover >= 3000) {
+		App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+		}
+	}
+
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
 	currJumpForce += -GRAVITY;
@@ -323,16 +331,15 @@ update_status ModulePlayer::Update()
 		if (destroyedCountdown <= 0) 
 		{
 			if (App->life_num <= 0) {
-
-				
-				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
-				
+				App->interface_module->gameover = true;
+				gameOver = true;
 			}
 			else {
 				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
 			}
 		}
 
+		
 
 		currentAnimation->Update();
 		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
