@@ -14,14 +14,14 @@ using namespace std;
 EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::PURPLESHIELD)
 {
 
-	walkBasic.PushBack({ 282, 332, 41, 65 });
-	walkBasic.PushBack({ 329, 332, 41, 65 });
-	walkBasic.PushBack({ 376, 332, 41, 65 });
+	walkBasic.PushBack({ 282, 331, 41, 70 });
+	walkBasic.PushBack({ 329, 331, 41, 70 });
+	walkBasic.PushBack({ 376, 331, 41, 70 });
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
-	staticAnim.PushBack({ 509, 258,33,65 });
-	staticAnim.PushBack({ 548, 258,33,65 });
+	staticAnim.PushBack({ 509, 253,33,70 });
+	staticAnim.PushBack({ 548, 253,33,70 });
 	staticAnim.loop = true;
 	staticAnim.speed = 0.01f;
 
@@ -35,9 +35,9 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 
 	//muerte
 
-	Death.PushBack({ 429, 331, 39, 65 });
-	Death.PushBack({ 474, 331, 39, 65 });
-	Death.PushBack({ 519, 331, 39, 65 });
+	Death.PushBack({ 429, 331, 39, 70 });
+	Death.PushBack({ 474, 331, 39, 70 });
+	Death.PushBack({ 519, 331, 39, 70 });
 	Death.loop = false;
 	Death.speed = 0.1f;
 
