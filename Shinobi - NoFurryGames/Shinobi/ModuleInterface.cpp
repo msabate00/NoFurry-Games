@@ -149,8 +149,9 @@ update_status ModuleInterface::PostUpdate()
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
 		printPlayer1();
-		
-
+		if (gameover) {
+			printgameOver();
+		}
 		if (gameChange) {
 		printTime(getTimeString(elapsed_time).c_str());
 		}
@@ -183,6 +184,9 @@ update_status ModuleInterface::PostUpdate()
 				timerGonext = 2001;
 			}
 		}
+		
+
+		
 			
 	}
 	else if (App->scene_Level2->IsEnabled()) {
@@ -793,23 +797,22 @@ void ModuleInterface::stageClear() {
 
 void ModuleInterface::printgameOver() {
 	int IconPosition = 250;
-	timer += App->deltaTime;
+	gameOvertimer += App->deltaTime;
 
-	App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
-
+	//App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 	if (NameColor) {
-		App->render->Blit(gameOverRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
-		if (timer >= switchTime) {
+		App->render->Blit(gameOverRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 0);
+		if (gameOvertimer >= switchTimeGameOver) {
 			NameColor = false;
-			timer = 0.0f; // Reset Tiempo Contador
+			gameOvertimer = 0.0f; // Reset Tiempo Contador
 		}
 	}
 	else {
-		App->render->Blit(gameOverWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 150, SDL_FLIP_NONE, nullptr, 0);
-		if (timer >= switchTime) {
+		App->render->Blit(gameOverWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 0);
+		if (gameOvertimer >= switchTimeGameOver) {
 			NameColor = true;
-			timer = 0.0f; // Reset Tiempo Contador
+			gameOvertimer = 0.0f; // Reset Tiempo Contador
 		}
 	}
-
+	
 }

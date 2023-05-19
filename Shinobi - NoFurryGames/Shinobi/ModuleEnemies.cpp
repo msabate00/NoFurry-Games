@@ -257,7 +257,6 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 
-
 	//CUANDO COLISIONA CON EL JUGADOR
 	if (c2 == App->player->collider && c1->type == Collider::Type::ENEMY)
 	{
@@ -342,7 +341,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c1, c2); //Notify the enemy of a collision
 			enemies[i]->killed = true;
-			
+
 			//delete enemies[i];
 			//enemies[i] = nullptr;
 			//destroyed = true;
