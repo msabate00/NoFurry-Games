@@ -51,6 +51,7 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	staticAnim.speed = 0.1f;
 
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
+	
 
 	facingLeft = true;
 
@@ -147,6 +148,7 @@ void EnemyGun::Update()
 		if (currentAnim->HasFinished())
 		{
 			//aquí dispara
+			
 		}
 	}
 
