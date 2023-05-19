@@ -137,6 +137,7 @@ public:
 	char scoreText[10] = { "\0" };
 
 	float timerChangeLv2 = 0.0f;
+	float timerChangeLv3 = 0.0f;
 	float timerGameover = 0.0f;
 	bool gameOver = false;
 	

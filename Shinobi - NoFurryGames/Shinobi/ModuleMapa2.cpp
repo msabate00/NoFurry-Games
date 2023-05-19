@@ -49,6 +49,7 @@ update_status ModuleMapa2::Update()
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer(); 
 		App->interface_module->hostage_num = 3;
+		App->interface_module->gameChange = true;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
 	}
 

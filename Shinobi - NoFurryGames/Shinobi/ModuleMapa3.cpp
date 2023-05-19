@@ -47,6 +47,8 @@ update_status ModuleMapa3::Update()
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
+		App->interface_module->resetTimer();
+		App->interface_module->gameChange = true;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 
@@ -86,7 +88,6 @@ void ModuleMapa3::printMapa3() {
 		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
 			MapaX = 119;
 			MapaY = 9;
-
 			if (App->interface_module->timer >= 2000) {
 
 				MapaX += 16;

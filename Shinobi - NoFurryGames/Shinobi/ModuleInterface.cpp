@@ -149,9 +149,12 @@ update_status ModuleInterface::PostUpdate()
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
 		printPlayer1();
+
+
 		if (gameover) {
 			printgameOver();
 		}
+
 		if (gameChange) {
 		printTime(getTimeString(elapsed_time).c_str());
 		}
@@ -166,6 +169,7 @@ update_status ModuleInterface::PostUpdate()
 			App->interface_module->remaining_time = 0;
 		}
 		}
+
 
 
 		if (timerPR <= 1000) {
@@ -201,9 +205,24 @@ update_status ModuleInterface::PostUpdate()
 		printHostageIcon(hostage_num);
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
-		printTime(getTimeString(elapsed_time).c_str());
 		printPlayer1();
-		
+	
+		if (gameChange) {
+			printTime(getTimeString(elapsed_time).c_str());
+		}
+		else {
+			displayTime(remaining_time--);
+			if (remaining_time >= 0) {
+
+				texture_num += 30;
+			}
+			stageClear();
+			if (App->interface_module->remaining_time <= 0) {
+				App->interface_module->remaining_time = 0;
+			}
+		}
+
+
 		if (timerPR <= 1000) {
 			player1Ready();
 
@@ -211,7 +230,6 @@ update_status ModuleInterface::PostUpdate()
 		else {
 			timerPR = 1001;
 		}
-	
 
 		if (hostage_num == 0) {
 			timerGonext += App->deltaTime++;

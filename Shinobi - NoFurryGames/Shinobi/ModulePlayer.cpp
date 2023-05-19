@@ -838,19 +838,40 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
 
-		timerChangeLv2 += App->deltaTime;
-		App->interface_module->gameChange = false;
+
 		
-		if (timerChangeLv2 <= 20) {
-			App->interface_module->texture_num += 5000;
-			App->interface_module->texture_num += 20000;
+		if ((Module*)App->scene_Level1->IsEnabled()) {
+			timerChangeLv2 += App->deltaTime;
+			App->interface_module->gameChange = false;
+
+			if (timerChangeLv2 <= 20) {
+				cout << "lv1" << endl;
+				App->interface_module->texture_num += 5000;
+				App->interface_module->texture_num += 20000;
+			}
+			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
+				App->interface_module->gameChange = true;
+				App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
+				timerChangeLv2 = 0;
+			}
 		}
 
-		if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time == 0) {
-			App->interface_module->gameChange = true;
-			App->fade->FadeToBlack((Module*)App->scene_Level1, (Module*)App->mapa2, 2);
-			timerChangeLv2 = 5001;
+		if ((Module*)App->scene_Level2->IsEnabled()) {
+			timerChangeLv2 += App->deltaTime;
+			App->interface_module->gameChange = false;
+			
+			if (timerChangeLv2 <= 20) {
+				cout << "lv2" << endl;
+				App->interface_module->texture_num += 5000;
+				App->interface_module->texture_num += 20000;
+			}
+			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
+				App->interface_module->gameChange = true;
+				App->fade->FadeToBlack((Module*)App->scene_Level2, (Module*)App->mapa3, 2);
+				timerChangeLv2 = 0;
+			}
 		}
+		
 	}
 
 
