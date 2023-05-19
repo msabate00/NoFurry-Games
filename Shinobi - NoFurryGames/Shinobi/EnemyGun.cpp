@@ -46,11 +46,12 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	attackAnim.speed = 0.2f;
 	attackAnim.loop = false;
 
-	//ANIMACIÓN ESTÁTICA
+	//ANIMACIï¿½N ESTï¿½TICA
 	staticAnim.PushBack({ 11, 12,35,64 });
 	staticAnim.speed = 0.1f;
 
 	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
+	
 
 	facingLeft = true;
 
@@ -77,7 +78,7 @@ void EnemyGun::Update()
 	}
 	position.y -= jumpSpeed;
 
-	// Rango de visión - INDV
+	// Rango de visiï¿½n - INDV
 	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &recharge;
@@ -92,7 +93,7 @@ void EnemyGun::Update()
 	// Cuando entra en el rango, se mueve
 	else
 	{
-		// Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+		// Si el enemigo queda por detrï¿½s del jugador, este primero cambia su direcciï¿½n
 		if (position.x < App->player->position.x - wanderRange && facingLeft)
 		{
 			facingLeft = false;
@@ -146,7 +147,7 @@ void EnemyGun::Update()
 
 	//	if (currentAnim->HasFinished())
 	//	{
-	//		//aquí dispara
+	//		//aquï¿½ dispara
 	//	}
 	//}
 

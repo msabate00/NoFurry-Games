@@ -51,6 +51,7 @@ public:
 	bool facingLeft = false;
 	bool killed = false;
 	bool boxCollision = false;
+	bool needsToAvoidFlip = false;
 
 	bool ignorePlayer;
 
