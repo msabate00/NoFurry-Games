@@ -32,6 +32,9 @@ public:
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
 
+
+	void SpawnFireball();
+
 	bool CleanUp();
 
 
@@ -51,8 +54,23 @@ public:
 
 	// A set of animations
 	Animation idleAnim;
-	Animation actionAnim;
+	Animation walkAnim;
+	Animation attackAnim;
+
+	bool facingRight = false;
+	bool triggered = false;
 	
+
+
+	float particleSpeed = 2.0f;
+	float particleAdjustmen = 0.03f;
+	fPoint currentParticleDirection = fPoint(0, 0);
+	fPoint currentParticlePosition = fPoint(0, 0);
+	float firstParticle = true;
+	int fireBallParticle = -1;
+	Collider* fireBall_Collider = nullptr;
+
+	int timeContador;
 
 
 };

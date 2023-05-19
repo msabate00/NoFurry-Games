@@ -274,12 +274,6 @@ update_status ModuleBoss::Update()
 			int ran = (rand() % 2) + 1; //1-3
 				attacking = ran;
 		}
-		
-			
-			
-		
-
-
 
 		firstParticle = true;
 		if (firstParticle) {

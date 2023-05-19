@@ -13,6 +13,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleInterface.h"
+#include "ModuleBossEndLevel.h"
 
 
 #include <string> 
@@ -59,6 +60,7 @@ bool ModuleScene_Level1::Start()
 	App->enemy->Enable();
 	App->hostages->Enable();
 	App->scene_Level1_SecondFloor->Enable();
+	
 
 	bool ret = true;
 
@@ -149,6 +151,11 @@ update_status ModuleScene_Level1::Update()
 
 	if (App->interface_module->hostage_num <= 0) {
 		finalLevel->active = true;
+
+		if (!App->boss_endLevel->IsEnabled()) {
+			App->boss_endLevel->position.x = 1920;
+			App->boss_endLevel->Enable();
+		}
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
@@ -180,6 +187,11 @@ bool ModuleScene_Level1::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->hostages->Disable();
+
+	if (App->boss_endLevel->IsEnabled()) {
+		App->boss_endLevel->Disable();
+	}
+
 	
 	return true;
 }
