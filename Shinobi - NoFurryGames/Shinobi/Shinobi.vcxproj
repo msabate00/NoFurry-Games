@@ -31,6 +31,7 @@
     <ClCompile Include="Hostage.cpp" />
     <ClCompile Include="HostageEntity.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ModuleBossEndLevel.cpp" />
     <ClCompile Include="ModuleHostage.cpp" />
     <ClCompile Include="ModuleInputName.cpp" />
     <ClCompile Include="ModuleMapa1.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Hostage.h" />
     <ClInclude Include="HostageEntity.h" />
+    <ClInclude Include="ModuleBossEndLevel.h" />
     <ClInclude Include="ModuleHostage.h" />
     <ClInclude Include="ModuleInputName.h" />
     <ClInclude Include="ModuleMapa1.h" />

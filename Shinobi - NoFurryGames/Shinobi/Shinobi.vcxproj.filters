@@ -25,15 +25,6 @@
     <ClCompile Include="Hostage.cpp">
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleBoss.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="Module.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
@@ -127,9 +118,6 @@
     <ClCompile Include="ModuleMapaV.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleHostage.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
     <ClCompile Include="HostageEntity.cpp">
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClCompile>
@@ -137,6 +125,21 @@
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
     <ClCompile Include="ModuleInputName.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBoss.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleHostage.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBossEndLevel.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,15 +167,6 @@
     </ClInclude>
     <ClInclude Include="Hostage.h">
       <Filter>Source Files\Entities\Hostage</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleBoss.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleEnemies.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="Module.h">
       <Filter>Source Files\Modules</Filter>
@@ -273,9 +267,6 @@
     <ClInclude Include="ModuleMapaV.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleHostage.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
     <ClInclude Include="HostageEntity.h">
       <Filter>Source Files\Entities\Hostage</Filter>
     </ClInclude>
@@ -283,6 +274,21 @@
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
     <ClInclude Include="ModuleInputName.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBoss.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleHostage.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleBossEndLevel.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
   </ItemGroup>
@@ -364,6 +370,9 @@
     </Filter>
     <Filter Include="Source Files\Resource Files">
       <UniqueIdentifier>{bb6b0c0d-b113-4377-bfbc-5c023888d8b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Modules\Gameplay\Scenes\Entities">
+      <UniqueIdentifier>{306b9962-84af-4fc0-815d-ee0934e4a902}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
