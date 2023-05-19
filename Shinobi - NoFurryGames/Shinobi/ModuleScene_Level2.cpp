@@ -8,6 +8,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleInterface.h"
 #include "ModulePlayer.h"
+#include "ModuleBossEndLevel.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
@@ -115,6 +116,12 @@ update_status ModuleScene_Level2::Update()
 
 	if (App->interface_module->hostage_num <= 0) {
 		finalLevel->active = true;
+
+		if (!App->boss_endLevel->IsEnabled()) {
+			App->boss_endLevel->position.x = 1920;
+			App->boss_endLevel->Enable();
+		}
+
 	}
 
 	int elapsed_time = updateTimer(start_time);
@@ -165,6 +172,11 @@ bool ModuleScene_Level2::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->hostages->Disable();
+
+	if (App->boss_endLevel->IsEnabled()) {
+		App->boss_endLevel->Disable();
+	}
+
 	return true;
 }
 

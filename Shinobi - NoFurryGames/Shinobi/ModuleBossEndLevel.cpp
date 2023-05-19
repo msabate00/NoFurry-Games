@@ -74,11 +74,20 @@ bool ModuleBossEndLevel::Start()
 
 	//collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
 
-	
+
+	currentParticleDirection = fPoint(-2, 0);
+	currentParticlePosition = fPoint(0, 0);
+
 	currentAnimation = &idleAnim;
 	triggered = false;
 	facingRight = false;
+	timeContador = 0;
+	fireBallParticle = -1;
 	position.y = SCREEN_HEIGHT - 9;
+
+	idleAnim.Reset();
+	attackAnim.Reset();
+	walkAnim.Reset();
 
 	return ret;
 }
@@ -144,16 +153,16 @@ void ModuleBossEndLevel::OnCollision(Collider* c1, Collider* c2)
 	
 	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
 		if (c2->GetRect().y > c1->GetRect().y) {
-			App->boss->currentParticleDirection.y *= -1;
-			cout << "colisiono en la y" << endl;
+			currentParticleDirection.y *= -1;
+			
 		}
 		else {
-			App->boss->currentParticleDirection.x *= -1;
-			cout << "colisiono en la x" << endl;
+			currentParticleDirection.x *= -1;
+			
 		}
 		return;
 	}
-	cout << "no entro en el if :(" << endl;
+	
 
 }
 
