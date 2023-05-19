@@ -192,14 +192,18 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip fli
 
 	//Para el flip
 	SDL_Point center{ rect.w / 2, rect.h / 2 };
+	
+
+	
 	if (SDL_RenderCopyEx(renderer, texture, section, &rect, 0, &center, flip) != 0)
 
-	//Sin el flip
-	//if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
+		//Sin el flip
+		//if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{
 		LOG("Cannot blit to screen. SDL_RenderCopy error: %s", SDL_GetError());
 		ret = false;
 	}
+	
 	if (App->debugMode && App->showRect) {
 		SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 		SDL_RenderDrawRect(renderer, &rect);
@@ -221,6 +225,10 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 		(int)(-camera.x * speed) + rect.x * SCREEN_SIZE,
 		(int)(-camera.y * speed) + rect.y * SCREEN_SIZE,
 		rect.w * SCREEN_SIZE, rect.h * SCREEN_SIZE };
+	/*SDL_Rect dstRect{
+		(int)((-camera.x * speed) + rect.x) * SCREEN_SIZE,
+		(int)((-camera.y * speed) + rect.y) * SCREEN_SIZE,
+		rect.w * SCREEN_SIZE, rect.h * SCREEN_SIZE };*/
 
 	if (SDL_RenderFillRect(renderer, &dstRect) != 0)
 	{
