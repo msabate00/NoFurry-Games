@@ -24,6 +24,7 @@ struct Collider
 		BOX_HELP,
 		BOX_HELP_RIGHT,
 
+
 		MAX
 	};
 
