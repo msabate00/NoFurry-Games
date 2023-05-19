@@ -46,79 +46,80 @@ const Collider* Enemy::GetColliderRange() const
 
 void Enemy::Update()
 {
-	if (!isAttacking && !isJumping)
-	{
-		currentAnim = &walkBasic;
-	}
-		
-	/*if (!jumpsNow)
-	{
-		currentAnim = &walkBasic;
-	}
-	else if (jumpsNow)
-	{
-		currentAnim = &jumping;
-	}
-		
-	if (currentAnim->HasFinished())
-	{
-		jumpsNow = false;
-	}*/
-
-
-	if (setHasReceivedDamage)
-	{
-		if (!moveToDie)
+		/*if (!isAttacking && !isJumping && App->player->isSecondFloor == true)
 		{
-			diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
-			App->interface_module->texture_num += this->points;
-			moveToDie = true;
+			currentAnim = &walkBasic;
+		}*/
+
+		/*if (!jumpsNow)
+		{
+			currentAnim = &walkBasic;
 		}
-		currentAnim = &Death;
-		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
+		else if (jumpsNow)
+		{
+			currentAnim = &jumping;
+		}
 
 		if (currentAnim->HasFinished())
 		{
-			currentAnim = nullptr;
-			
-			if (collider != nullptr)
-				collider->pendingToDelete = true;
+			jumpsNow = false;
+		}*/
 
-			if (colliderRange != nullptr)
-				colliderRange->pendingToDelete = true;
 
-			App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor);
-			App->enemy->HandleEnemiesDespawnEnemy(this);
-			
+		if (setHasReceivedDamage)
+		{
+			if (!moveToDie)
+			{
+				diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
+				App->interface_module->texture_num += this->points;
+				moveToDie = true;
+			}
+			currentAnim = &Death;
+			position.y = diePos.y - currentAnim->GetCurrentFrame().h;
 
-			return;
+			if (currentAnim->HasFinished())
+			{
+				currentAnim = nullptr;
+
+				if (collider != nullptr)
+					collider->pendingToDelete = true;
+
+				if (colliderRange != nullptr)
+					colliderRange->pendingToDelete = true;
+
+				App->enemy->AddEnemy(this->type, this->spawnPos.x, this->spawnPos.y, this->secondFloor);
+				App->enemy->HandleEnemiesDespawnEnemy(this);
+
+
+				return;
+			}
 		}
-	}
 
-	/*if (currentAnim->HasFinished() && !facingLeft)
+		/*if (currentAnim->HasFinished() && !facingLeft)
+			{
+				currentAnim = &walkBasic;
+				position.x += speed;
+			}
+		else if (currentAnim->HasFinished() && facingLeft)
 		{
 			currentAnim = &walkBasic;
-			position.x += speed;
+			position.x -= speed;
+		}*/
+
+
+		if (currentAnim != nullptr)
+			currentAnim->Update();
+
+		if (collider != nullptr) {
+			collider->SetPos(position.x, position.y);
+			collider->SetSize(currentAnim->GetCurrentFrame().w, currentAnim->GetCurrentFrame().h);
 		}
-	else if (currentAnim->HasFinished() && facingLeft)
-	{
-		currentAnim = &walkBasic;
-		position.x -= speed;
-	}*/
-	
+		if (colliderRange != nullptr) {
+			colliderRange->SetPos(position.x - attackRange, position.y);
+			colliderRange->SetSize(currentAnim->GetCurrentFrame().w + attackRange * 2, currentAnim->GetCurrentFrame().h);
+		}
 
-	if (currentAnim != nullptr)
-		currentAnim->Update();
-
-	if (collider != nullptr) {
-		collider->SetPos(position.x, position.y);
-		collider->SetSize(currentAnim->GetCurrentFrame().w, currentAnim->GetCurrentFrame().h);
-	}
-	if (colliderRange != nullptr) {
-		colliderRange->SetPos(position.x- attackRange, position.y);
-		colliderRange->SetSize(currentAnim->GetCurrentFrame().w+ attackRange*2, currentAnim->GetCurrentFrame().h);
-	}
-
+		
 }
 
 void Enemy::Draw()
@@ -147,8 +148,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
 	//Si no es de la segunda planta, y la colision esta inactiva, y es de tipo wall, ignora la colision
 	if (!secondFloor && !c2->active && c2->type == Collider::Type::WALL) { return;  }
-
-
+	
 	if (c2->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage) 
 	{
 		//c muere
@@ -156,7 +156,6 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(destroyedFx);
 	}
 		
-
 	//Colisiona con la pre-caja, para saltar
 	if (c2->type == Collider::Type::BOX_HELP) 
 	{
@@ -199,6 +198,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 			jumpSpeed = 0;
 			isJumping = false;
 		}
+
 
 		//if (c2->GetRect().y <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed && jumpSpeed <= 0) {
 		//	position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h+1;

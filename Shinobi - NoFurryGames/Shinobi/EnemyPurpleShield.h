@@ -22,6 +22,8 @@ public:
 	bool secondFloor = false;
 	int points = 100;
 
+	int lifeCounter = 2;
+
 
 private:
 	// The position (as ratio) in the wave at a specific moment
