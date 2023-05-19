@@ -216,21 +216,22 @@ void ModuleHostage::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (hostages[i] != nullptr && hostages[i]->GetCollider() == c1 && hostages[i]->secondFloor != App->player->isSecondFloor)
 		{
-
+			
 			return; //sale de las coisiones. ESTO DARA PROBLEMAS YA QUE SI SE TIENE QUE CHOCAR CON UNA PARED PERO UENO
 		}
 	}
 
-
+	
 
 	//PARA EL HOSTAGE
 	if (c2 == App->player->collider && c1->type == Collider::Type::HOSTAGE)
 	{
+		
 		for (uint i = 0; i < MAX_HOSTAGE; ++i)
 		{
 			if (hostages[i] != nullptr && hostages[i]->GetCollider() == c1 && !((Hostage*)hostages[i])->saved)
 			{
-
+				
 				switch (((Hostage*)hostages[i])->id) {
 				case 1:
 					App->interface_module->hostageTaken[0] = true;
@@ -244,12 +245,22 @@ void ModuleHostage::OnCollision(Collider* c1, Collider* c2)
 				case 4:
 					App->interface_module->hostageTaken[3] = true;
 					break;
+				case 5:
+					App->interface_module->hostageTaken[4] = true;
+					break;
+				case 6:
+					App->interface_module->hostageTaken[5] = true;
+					break;
+				case 7:
+					App->interface_module->hostageTaken[6] = true;
+					break;
 
 
 
 				}
 
 				((Hostage*)hostages[i])->saved = true;
+				
 				if (((Hostage*)hostages[i])->gun) {
 					//Mostrar particula bonus gun
 					App->player->holdingGun = true;
