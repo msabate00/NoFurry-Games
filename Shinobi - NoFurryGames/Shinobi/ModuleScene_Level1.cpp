@@ -93,8 +93,6 @@ bool ModuleScene_Level1::Start()
 
 
 
-
-
 	//Limites jugador
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 2046, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);

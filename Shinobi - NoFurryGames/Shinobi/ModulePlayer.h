@@ -54,6 +54,8 @@ public:
 	bool isChangingFloorF2 = false;
 	bool isAttacking = false;
 	bool isCrouchedAttacking = false;
+	bool isUlti = false;
+
 
 	bool facingRight = true;
 

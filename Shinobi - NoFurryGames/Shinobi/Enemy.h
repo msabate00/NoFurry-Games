@@ -52,6 +52,8 @@ public:
 	bool killed = false;
 	bool boxCollision = false;
 
+	bool ignorePlayer;
+
 
 	bool isAttacking = false;
 
