@@ -67,10 +67,6 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	staticAnim.speed = 0.1f;
 	staticAnim.loop = true;
 
-	//path.PushBack({ -0.8f, 0.0f }, 150, &walkBasic);
-	
-	
-
 	facingLeft = true;
 
 	goingToPlayer = true;
@@ -82,7 +78,6 @@ Enemy_Basic::Enemy_Basic(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	attackRange = 0;
 	points = 100;
 
-	
 }
 
 void Enemy_Basic::Update()

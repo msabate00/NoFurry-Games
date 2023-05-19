@@ -25,10 +25,10 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 	staticAnim.loop = true;
 	staticAnim.speed = 0.01f;
 
-	attackPurple.PushBack({ 282, 253,47,65 });
-	attackPurple.PushBack({ 335, 253, 47,65 });
-	attackPurple.PushBack({ 388, 253,59,65 });
-	attackPurple.PushBack({ 453, 253,47,65 });
+	attackPurple.PushBack({ 282, 253,47,70 });
+	attackPurple.PushBack({ 335, 253, 47,70 });
+	attackPurple.PushBack({ 388, 253,59,70 });
+	attackPurple.PushBack({ 453, 253,47,70 });
 	attackPurple.loop = false;
 
 	attackPurple.speed = 0.1f;
@@ -52,17 +52,6 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 void EnemyPurpleShield::Update()
 {
 	
-	/*if (setHasReceivedDamage)
-	{
-		lifeCounter--;
-		setHasReceivedDamage = false;
-
-		if (lifeCounter == 0)
-		{
-			setHasReceivedDamage;
-		}
-	}*/
-
 	if (App->player->isSecondFloor == false)
 	{
 		currentAnim = &staticAnim;
@@ -138,6 +127,18 @@ void EnemyPurpleShield::Update()
 				isAttacking = false;
 				currentAnim->Reset();
 			}
+		}
+
+		// Si lo mata, quedarse quieto
+		if (facingLeft && App->player->destroyed)
+		{
+			currentAnim = &staticAnim;
+			position.x += speed;
+		}
+		else if (!facingLeft && App->player->destroyed)
+		{
+			currentAnim = &staticAnim;
+			position.x -= speed;
 		}
 	}
 
