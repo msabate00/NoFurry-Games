@@ -68,7 +68,7 @@ bool ModuleScene_MainMenu::Start()
 	for (int i = 0; i < 4; i++) {
 		App->interface_module->hostageTaken[i] = false;
 	}
-	App->interface_module->hostage_num = 2;
+	
 	
 
 	
