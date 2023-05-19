@@ -5,6 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleRender.h"
 #include "ModuleScene_Level1.h"
 #include <iostream>
 
@@ -13,9 +14,9 @@ using namespace std;
 EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::PURPLESHIELD)
 {
 
-	walkBasic.PushBack({ 282, 332, 41, 51 });
-	walkBasic.PushBack({ 329, 332, 41, 51 });
-	walkBasic.PushBack({ 376, 332, 41, 51 });
+	walkBasic.PushBack({ 282, 332, 41, 65 });
+	walkBasic.PushBack({ 329, 332, 41, 65 });
+	walkBasic.PushBack({ 376, 332, 41, 65 });
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
@@ -24,10 +25,10 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 	staticAnim.loop = true;
 	staticAnim.speed = 0.01f;
 
-	attackPurple.PushBack({ 282, 253,47,70 });
-	attackPurple.PushBack({ 335, 253, 47,70 });
-	attackPurple.PushBack({ 388, 253,59,70 });
-	attackPurple.PushBack({ 453, 253,47,70 });
+	attackPurple.PushBack({ 282, 253,47,65 });
+	attackPurple.PushBack({ 335, 253, 47,65 });
+	attackPurple.PushBack({ 388, 253,59,65 });
+	attackPurple.PushBack({ 453, 253,47,65 });
 	attackPurple.loop = false;
 
 	attackPurple.speed = 0.1f;
@@ -62,15 +63,9 @@ void EnemyPurpleShield::Update()
 		}
 	}*/
 
-	if (App->player->isSecondFloor == false && facingLeft)
+	if (App->player->isSecondFloor == false)
 	{
 		currentAnim = &staticAnim;
-		position.x += speed;
-	}
-	if (App->player->isSecondFloor == false && !facingLeft)
-	{
-		currentAnim = &staticAnim;
-		position.x -= speed;
 	}
 
 	if (App->player->isSecondFloor)
