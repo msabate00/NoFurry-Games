@@ -50,6 +50,7 @@ update_status ModuleMapa1::Update()
 		App->interface_module->resetTimer();
 		App->interface_module->gameChange = true;
 		App->interface_module->texture_num = 0;
+		App->interface_module->hostage_num = 4;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
 
