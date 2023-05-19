@@ -214,12 +214,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	
 	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
-	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
-	ultiEspadaAnim.PushBack({ 10, 1106, 30, 62 });
-	
-
-	ultiEspadaAnim.speed = 0.005f;
-	ultiEspadaAnim.loop = true;
+	ultiEspadaAnim.speed = 0.5f;
+	ultiEspadaAnim.loop = false;
 
 }
 
@@ -267,7 +263,7 @@ bool ModulePlayer::Start()
 	isChangingFloorF2 = false;
 	isAttacking = false;
 	isCrouchedAttacking = false;
-
+	isUlti = false;
 	facingRight = true;
 	isSecondFloor = false;
 
@@ -590,13 +586,23 @@ update_status ModulePlayer::Update()
 	//ULTI
 	if (App->input->keys[SDL_SCANCODE_K] == KEY_DOWN)
 	{
+		if (!isUlti) {
+			App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);
+
+		}
+		isUlti = true;
+
 		
+	}
+
+	if (isUlti) {
+
 		currentAnimation = &ultiEspadaAnim;
+		cout << "endl" << endl;
+		/*App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);*/
 
-		App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);
 
-		
-		if (App->particles->ulti.anim.HasFinished()) {
+		if (currentAnimation->HasFinished()) {
 
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(10, -10), Collider::Type::NONE, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(0, -10), Collider::Type::NONE, 0);
@@ -607,15 +613,16 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -10), Collider::Type::NONE, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -5), Collider::Type::NONE, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -5), Collider::Type::NONE, 0);
-
-
-
-
 		}
-		
+
+		if (ultiEspadaAnim.HasFinished()) {
+			isUlti = false;
+			cout << "ta off" << endl;
+		}
 		return update_status::UPDATE_CONTINUE;
 
 	}
+
 
 	//MECANICA DEL SALTO
 	if (isJumping) {
