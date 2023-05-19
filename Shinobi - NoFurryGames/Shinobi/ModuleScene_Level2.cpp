@@ -84,6 +84,12 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ -16, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 2048, 0, 16, SCREEN_HEIGHT }, Collider::Type::WALL);
 
+
+	//Cambio nivel
+	finalLevel = App->collisions->AddCollider({ 2040, 0, 16, SCREEN_HEIGHT }, Collider::Type::CHANGE_LEVEL);
+	finalLevel->active = false;
+
+
 	//Hostage
 	if (App->interface_module->hostageTaken[4] == false) 
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 290, FLOOR_LEVEL - 60, true, 200, false, 5, true);
@@ -107,7 +113,7 @@ bool ModuleScene_Level2::Start()
 update_status ModuleScene_Level2::Update()
 {
 
-	if (hostage_num <= 0) {
+	if (App->interface_module->hostage_num <= 0) {
 		finalLevel->active = true;
 	}
 

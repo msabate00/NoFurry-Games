@@ -135,7 +135,7 @@ public:
 	SDL_Texture* gameOverRed = nullptr;
 	SDL_Texture* gameOverWhite = nullptr;
 
-	int hostage_num = 4;
+	int hostage_num = 0;
 	bool hostageTaken[7] = { false };
 	int texture_num = 0;
 	int elapsed_time;
