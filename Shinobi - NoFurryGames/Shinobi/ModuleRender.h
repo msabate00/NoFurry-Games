@@ -90,6 +90,7 @@ public:
 
 
 	int cameraSpeed = 3;
+	bool mostrar = false;
 	/*
 	int hostage_num = 3;
 	int life_num = 2;

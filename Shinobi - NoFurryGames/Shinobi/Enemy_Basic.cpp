@@ -123,7 +123,7 @@ void Enemy_Basic::Update()
 	}
 
 	// Movimiento dependiendo para donde esta mirando
-	if (!setHasReceivedDamage && !isAttacking) 
+	if (!setHasReceivedDamage && !isAttacking)
 	{
 		if (facingLeft) 
 		{
@@ -152,6 +152,7 @@ void Enemy_Basic::Update()
 	// Ataque :)
 	if (isAttacking) 
 	{
+
 		currentAnim = &attackAnim;
 		/*cout << "ataca" << endl;*/
 
