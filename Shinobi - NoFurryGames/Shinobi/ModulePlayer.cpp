@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleScene_Level1.h"
+#include "ModuleScene_Level2.h"
 #include "ModuleScene_Level1_SecondFloor.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -764,11 +765,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		if(c2->GetRect().y <= 103){ 
 		//ta arriba	
 			isSecondFloor = true;
+			
 		}
 		else {
 			//ta abajo
 			if (App->scene_Level1->IsEnabled()) {
 				App->scene_Level1_SecondFloor->EnabledColliderForPlayer(false);
+				isSecondFloor = false;
+			}
+			else if (App->scene_Level2->IsEnabled()){
 				isSecondFloor = false;
 			}
 		}
@@ -791,6 +796,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::BOSS_PROYECTILE) && !destroyed && !inmune && !App->godMode)
 	{
+
 		if (c2->type == Collider::Type::ENEMY) {
 			for (uint i = 0; i < MAX_ENEMIES; i++) {
 

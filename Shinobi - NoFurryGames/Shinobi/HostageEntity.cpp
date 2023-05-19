@@ -86,79 +86,79 @@ void HostageEntity::Draw()
 void HostageEntity::OnCollision(Collider* c1, Collider* c2)
 {
 	//Si no es de la segunda planta, y la colision esta inactiva, y es de tipo wall, ignora la colision
-	if (!secondFloor && !c2->active && c2->type == Collider::Type::WALL) { return; }
+	//if (!secondFloor && !c2->active && c2->type == Collider::Type::WALL) { return; }
 
 
-	if (c2->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage)
-	{
-		//c muere
-		this->setHasReceivedDamage = true;
-		App->audio->PlayFx(destroyedFx);
-	}
+	//if (c2->type == Collider::Type::PLAYER_SHOT && !setHasReceivedDamage)
+	//{
+	//	//c muere
+	//	this->setHasReceivedDamage = true;
+	//	App->audio->PlayFx(destroyedFx);
+	//}
 
 
-	//Colisiona con la pre-caja, para saltar
-	if (c2->type == Collider::Type::BOX_HELP)
-	{
-		if (facingLeft || currentAnim == &walkBasic)
-		{
-			jumpsNow = true;
-			position.y -= 4;
-		}
-	}
-	if (c2->type == Collider::Type::BOX_HELP_RIGHT)
-	{
-		if (!facingLeft || currentAnim == &walkBasic)
-		{
-			jumpsNow = true;
-			position.y -= 6;
-		}
-	}
+	////Colisiona con la pre-caja, para saltar
+	//if (c2->type == Collider::Type::BOX_HELP)
+	//{
+	//	if (facingLeft || currentAnim == &walkBasic)
+	//	{
+	//		jumpsNow = true;
+	//		position.y -= 4;
+	//	}
+	//}
+	//if (c2->type == Collider::Type::BOX_HELP_RIGHT)
+	//{
+	//	if (!facingLeft || currentAnim == &walkBasic)
+	//	{
+	//		jumpsNow = true;
+	//		position.y -= 6;
+	//	}
+	//}
 
 
-	//Colisiona con pared, caja, suelo
-	if (c2->type == Collider::Type::WALL) {
+	////Colisiona con pared, caja, suelo
+	//if (c2->type == Collider::Type::WALL) {
 
-		if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y)
-		{
-			//NO SE PUEDE MOVER PARA LA DERECHA
+	//	if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y)
+	//	{
+	//		//NO SE PUEDE MOVER PARA LA DERECHA
 
-			position.x -= speed;
-		}
-		else if (c2->GetRect().x + c2->GetRect().w >= position.x && c2->GetRect().y + 2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed)
-		{
+	//		position.x -= speed;
+	//	}
+	//	else if (c2->GetRect().x + c2->GetRect().w >= position.x && c2->GetRect().y + 2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed)
+	//	{
 
-			position.x += speed;
+	//		position.x += speed;
 
-		}
+	//	}
 
 
 
-		if (c2->GetRect().y >= position.y + currentAnim->GetCurrentFrame().h - 2 + jumpSpeed && jumpSpeed <= 0) {
-			position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h + 1;
-			jumpSpeed = 0;
-			isJumping = false;
-		}
+	//	if (c2->GetRect().y >= position.y + currentAnim->GetCurrentFrame().h - 2 + jumpSpeed && jumpSpeed <= 0) {
+	//		position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h + 1;
+	//		jumpSpeed = 0;
+	//		isJumping = false;
+	//	}
 
-		//if (c2->GetRect().y <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed && jumpSpeed <= 0) {
-		//	position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h+1;
-		//	jumpSpeed = 0;
-		//	isJumping = false;
-		//	
-		//	cout << c2->GetRect().y << " p: " << position.y<< " cf: " << currentAnim->GetCurrentFrame().h << endl;
-		//	//jumpAnim.Reset();
+	//	//if (c2->GetRect().y <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed && jumpSpeed <= 0) {
+	//	//	position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h+1;
+	//	//	jumpSpeed = 0;
+	//	//	isJumping = false;
+	//	//	
+	//	//	cout << c2->GetRect().y << " p: " << position.y<< " cf: " << currentAnim->GetCurrentFrame().h << endl;
+	//	//	//jumpAnim.Reset();
 
-		//}
-		//else {
-		//	//cout << "aaaa" << endl;
-		//}
-	}
+	//	//}
+	//	//else {
+	//	//	//cout << "aaaa" << endl;
+	//	//}
+	//}
 
-	if (c2->type == Collider::Type::PLAYER_RANGE)
-	{
-		isAttacking = true;
-		(facingLeft) ? position.x -= 1 : position.x += 1;
-	}
+	//if (c2->type == Collider::Type::PLAYER_RANGE)
+	//{
+	//	isAttacking = true;
+	//	(facingLeft) ? position.x -= 1 : position.x += 1;
+	//}
 
 
 	/*else
