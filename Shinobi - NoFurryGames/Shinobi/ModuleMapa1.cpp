@@ -38,6 +38,8 @@ bool ModuleMapa1::Start()
 
 	currentAnimation = &backgroundAnim;
 
+	App->interface_module->hostage_num = 4;
+
 	return ret;
 }
 
