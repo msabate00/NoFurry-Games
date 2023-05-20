@@ -269,6 +269,8 @@ bool ModulePlayer::Start()
 	facingRight = true;
 	isSecondFloor = false;
 	gameOver = false;
+	isChangingZone = false;
+	holdingGun = false;
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
@@ -289,6 +291,21 @@ update_status ModulePlayer::Update()
 		App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 		}
 	}
+	if (isChangingZone) {
+		inmune = true;
+
+		currentAnimation = &idleAnim;
+
+		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
+		collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider * 2, currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
+		rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength * 2, currentAnimation->GetCurrentFrame().h);
+
+		currentAnimation->Update();
+
+		return update_status::UPDATE_CONTINUE;
+	}
+
 
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
@@ -838,7 +855,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {
 
-
+		isChangingZone = true;
 		
 		if ((Module*)App->scene_Level1->IsEnabled()) {
 			timerChangeLv2 += App->deltaTime;

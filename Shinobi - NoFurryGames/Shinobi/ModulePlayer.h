@@ -121,6 +121,7 @@ public:
 	bool hasPlayedDeathSound = true;
 	bool inmune = false;
 	bool ulti = false;
+	bool isChangingZone = false;
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint destroyedCountdown = 120;

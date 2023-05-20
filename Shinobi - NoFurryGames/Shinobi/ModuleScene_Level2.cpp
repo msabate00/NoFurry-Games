@@ -93,11 +93,11 @@ bool ModuleScene_Level2::Start()
 
 	//Hostage
 	if (App->interface_module->hostageTaken[4] == false) 
-		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 290, FLOOR_LEVEL - 60, true, 200, false, 5, true);
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 290, FLOOR_LEVEL - 60, true, 0, false, 5, true);
 	if (App->interface_module->hostageTaken[5] == false) 
-		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 28 , false, 200, false, 6, true);
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 28 , false, 500, false, 6, true);
 	if (App->interface_module->hostageTaken[6] == false) 
-		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 200, false, 7, true);
+		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
 
 
 	//Musica
