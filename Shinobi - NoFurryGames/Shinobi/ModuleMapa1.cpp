@@ -40,6 +40,9 @@ bool ModuleMapa1::Start()
 
 	App->interface_module->hostage_num = 4;
 
+	MapaX = -70;
+	MapaY = SCREEN_HEIGHT - 15;
+
 	return ret;
 }
 
@@ -53,6 +56,8 @@ update_status ModuleMapa1::Update()
 		App->interface_module->gameChange = true;
 		App->interface_module->texture_num = 0;
 		App->interface_module->hostage_num = 4;
+		App->interface_module->resetTimeHostage = true;
+		App->interface_module->timerPR = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
 
@@ -92,7 +97,7 @@ void ModuleMapa1::printMapa1() {
 			MapaX = 126;
 			MapaY = 13;
 
-			if (App->interface_module->timer >= 2000) {
+			if (App->interface_module->timer >= 3000) {
 
 				MapaX += 16;
 				MapaY -= 16;
@@ -110,7 +115,7 @@ void ModuleMapa1::printMapa1() {
 			MapaX = 126;
 			MapaY = 13;
 
-			if (App->interface_module->timer >= 2000) {
+			if (App->interface_module->timer >= 3000) {
 
 				MapaX += 16;
 				MapaY -= 16;

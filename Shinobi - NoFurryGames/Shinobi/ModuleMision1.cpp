@@ -50,6 +50,7 @@ bool ModuleMision1::Start()
 	SDL_SetRenderDrawColor(App->render->renderer, 128, 128, 128, 255);
 	SDL_RenderClear(App->render->renderer);
 
+	mis1Jumptimer = 0;
 	dosComa = App->textures->Load("Assets/Interface/Color_use/White/Icon/DosComa.png");
 	currentAnimation = &backgroundAnim;
 	return ret;

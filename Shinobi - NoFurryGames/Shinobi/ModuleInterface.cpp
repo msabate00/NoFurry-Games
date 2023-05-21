@@ -95,7 +95,7 @@ bool ModuleInterface::Start()
 
 	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
 
-	
+	timerPR = 0;
 
 	return ret;
 }
@@ -141,7 +141,6 @@ update_status ModuleInterface::PostUpdate()
 	}
 
 	if (App->scene_Level1->IsEnabled()) {
-	
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 1
 
@@ -177,21 +176,31 @@ update_status ModuleInterface::PostUpdate()
 
 		if (timerPR <= 1000) {
 			player1Ready();
-			
 		}
 		else {
-			timerPR = 1001;
+			if (timerPR > 2000) {
+				timerPR = 0;
+			}
+			else {
+				timerPR = 1001;
+			}
 		}
 		
 		if (hostage_num == 0 ) {
+			if (resetTimeHostage) {
+			timerGonext = 0;
+			timerGoIcon = 0;
+			}
 			timerGonext += App->deltaTime++;
 			timerGoIcon += App->deltaTime++;
 			printGoIcon();
 			if (timerGonext <= 2000) {
 				printGoNext();
+				resetTimeHostage = false;
 			}
 			else {
 				timerGonext = 2001;
+
 			}
 		}
 		
@@ -200,8 +209,11 @@ update_status ModuleInterface::PostUpdate()
 			
 	}
 	else if (App->scene_Level2->IsEnabled()) {
-		App->interface_module->total_time = 180;
-		timerPR += App->deltaTime++;
+
+
+
+
+		
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
 		printSkillIcon();
@@ -224,22 +236,32 @@ update_status ModuleInterface::PostUpdate()
 				App->interface_module->remaining_time = 0;
 			}
 		}
-
+		timerPR += App->deltaTime;
+		
 
 		if (timerPR <= 1000) {
 			player1Ready();
-
 		}
 		else {
-			timerPR = 1001;
+			if (timerPR > 2000) {
+				timerPR = 0;
+			}
+			else {
+				timerPR = 1001;
+			}
 		}
 
 		if (hostage_num == 0) {
-			timerGonext += App->deltaTime++;
-			timerGoIcon += App->deltaTime++;
+			if (resetTimeHostage) {
+				timerGonext = 0;
+				timerGoIcon = 0;
+			}
+			timerGonext += App->deltaTime;
+			timerGoIcon += App->deltaTime;
 			printGoIcon();
 			if (timerGonext <= 2000) {
 				printGoNext();
+				resetTimeHostage = false;
 			}
 			else {
 				timerGonext = 999999;

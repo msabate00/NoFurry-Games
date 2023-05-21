@@ -38,18 +38,25 @@ bool ModuleMapa2::Start()
 
 	currentAnimation = &backgroundAnim;
 
+
+	MapaX = SCREEN_WIDTH - 25;
+	MapaY = SCREEN_HEIGHT + 25;
+
 	return ret;
 }
 
 update_status ModuleMapa2::Update()
 {
 
+	cout << "mapa2" << endl;
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer(); 
 		App->interface_module->hostage_num = 3;
 		App->interface_module->gameChange = true;
+		App->interface_module->resetTimeHostage = true;
+		App->interface_module->timerPR = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
 	}
 
@@ -81,7 +88,9 @@ update_status ModuleMapa2::PostUpdate()
 void ModuleMapa2::printMapa2() {
 	App->interface_module->timer += App->deltaTime;
 
-	
+	cout << "mapa2" << App->interface_module->timer;
+	cout << "mapa2X" << MapaX << endl;
+	cout << "mapa2Y" << MapaY << endl;
 	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
 
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
@@ -90,7 +99,7 @@ void ModuleMapa2::printMapa2() {
 			MapaX = 119;
 			MapaY = 9;
 
-			if (App->interface_module->timer >= 2000) {
+			if (App->interface_module->timer >= 3000) {
 
 				MapaX -= 16;
 				MapaY -= 16;
@@ -110,7 +119,7 @@ void ModuleMapa2::printMapa2() {
 			MapaX = 119;
 			MapaY = 9;
 
-			if (App->interface_module->timer >= 2000) {
+			if (App->interface_module->timer >= 3000) {
 
 				MapaX -= 16;
 				MapaY -= 16;

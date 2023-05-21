@@ -113,6 +113,8 @@ bool ModuleScene_Level2::Start()
 
 update_status ModuleScene_Level2::Update()
 {
+	
+
 
 	if (App->interface_module->hostage_num <= 0) {
 		finalLevel->active = true;

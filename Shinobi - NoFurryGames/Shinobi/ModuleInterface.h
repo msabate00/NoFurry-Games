@@ -155,6 +155,7 @@ public:
 	int timePointcount;
 	bool gameover = false;
 	bool gameChangeScene = false;
+	bool resetTimeHostage = true;
 	//Boos
 	SDL_Texture* Boss_pow = nullptr;
 	SDL_Texture* Boss_life = nullptr;

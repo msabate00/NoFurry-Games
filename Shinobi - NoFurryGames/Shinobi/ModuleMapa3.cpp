@@ -38,6 +38,10 @@ bool ModuleMapa3::Start()
 
 	currentAnimation = &backgroundAnim;
 
+	MapaX = -15;
+	MapaY = -130;
+
+
 	return ret;
 }
 
@@ -85,10 +89,10 @@ void ModuleMapa3::printMapa3() {
 
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = false;
-		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
+		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 4) {
 			MapaX = 119;
 			MapaY = 9;
-			if (App->interface_module->timer >= 2000) {
+			if (App->interface_module->timer >= 3000) {
 
 				MapaX += 16;
 				MapaY += 16;
@@ -104,11 +108,11 @@ void ModuleMapa3::printMapa3() {
 	else {
 		App->render->Blit(mapaRed, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = true;
-		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 6) {
+		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 4) {
 			MapaX = 119;
 			MapaY = 9;
 
-			if (App->interface_module->timer >= 2000) {
+			if (App->interface_module->timer >= 3000) {
 
 				MapaX += 16;
 				MapaY += 16;
@@ -119,5 +123,6 @@ void ModuleMapa3::printMapa3() {
 			MapaY += 15;
 		}
 	}
+
 
 }

@@ -38,6 +38,11 @@ bool ModuleMapaV::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+
+	MapaX = -20;
+	MapaY = -130;
+	mapaVJumptimer = 0.0f;
+
 	currentAnimation = &backgroundAnim;
 
 	return ret;
