@@ -55,6 +55,7 @@ public:
 	bool isAttacking = false;
 	bool isCrouchedAttacking = false;
 	bool isUlti = false;
+	bool haveUlti = true;
 
 
 	bool facingRight = true;

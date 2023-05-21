@@ -144,7 +144,10 @@ update_status ModuleInterface::PostUpdate()
 	
 		timerPR += App->deltaTime++;
 		//INTERFAZ PARA EL NIVEL 1
-		printSkillIcon();
+
+		if (App->player->haveUlti) {
+			printSkillIcon();
+		}
 		printHostageIcon(hostage_num);
 		printLifeIcon(App->life_num);
 		printNum(texture_num);

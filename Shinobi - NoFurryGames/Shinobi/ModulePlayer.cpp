@@ -271,6 +271,7 @@ bool ModulePlayer::Start()
 	gameOver = false;
 	isChangingZone = false;
 	holdingGun = false;
+	haveUlti = true;
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
@@ -649,10 +650,11 @@ update_status ModulePlayer::Update()
 
 	
 	//ULTI
-	if (App->input->keys[SDL_SCANCODE_K] == KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_K] == KEY_DOWN && haveUlti)
 	{
 		if (!isUlti) {
 			App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);
+			haveUlti = false;
 
 		}
 		isUlti = true;
