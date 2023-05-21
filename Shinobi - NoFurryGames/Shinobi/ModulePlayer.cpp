@@ -336,6 +336,7 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
+			App->enemy->KillAll();
 		}
 
 		if (currentAnimation->HasFinished()) {

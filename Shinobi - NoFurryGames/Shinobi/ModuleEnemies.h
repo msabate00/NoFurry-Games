@@ -72,6 +72,8 @@ public:
 	void HandleEnemiesDespawn(bool all);
 	void HandleEnemiesDespawnEnemy(Enemy* enemy);
 
+	void KillAll();
+
 	Enemy* getEnemy(int i);
 
 	// The enemy's collider
