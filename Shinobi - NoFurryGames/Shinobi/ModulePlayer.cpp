@@ -275,7 +275,7 @@ bool ModulePlayer::Start()
 
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
-
+	sumaPoint = true;
 
 
 	return ret;
@@ -864,12 +864,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			timerChangeLv2 += App->deltaTime;
 			App->interface_module->gameChange = false;
 
-			if (timerChangeLv2 <= 20) {
+			if (timerChangeLv2 <= 20 && sumaPoint) {
 				cout << "lv1" << endl;
 				if (haveUlti) {
 				App->interface_module->texture_num += 5000;
 				}
 				App->interface_module->texture_num += 20000;
+				sumaPoint = false;
 			}
 			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
 				App->interface_module->gameChange = true;
@@ -882,12 +883,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			timerChangeLv2 += App->deltaTime;
 			App->interface_module->gameChange = false;
 			
-			if (timerChangeLv2 <= 20) {
+			if (timerChangeLv2 <= 20 && sumaPoint) {
 				cout << "lv2" << endl;
 				if (haveUlti) {
 					App->interface_module->texture_num += 5000;
 				}
 				App->interface_module->texture_num += 20000;
+				sumaPoint = false;
 			}
 			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
 				App->interface_module->gameChange = true;
