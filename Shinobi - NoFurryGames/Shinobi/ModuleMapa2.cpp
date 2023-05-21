@@ -48,7 +48,7 @@ bool ModuleMapa2::Start()
 update_status ModuleMapa2::Update()
 {
 
-	cout << "mapa2" << endl;
+
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
@@ -88,9 +88,6 @@ update_status ModuleMapa2::PostUpdate()
 void ModuleMapa2::printMapa2() {
 	App->interface_module->timer += App->deltaTime;
 
-	cout << "mapa2" << App->interface_module->timer;
-	cout << "mapa2X" << MapaX << endl;
-	cout << "mapa2Y" << MapaY << endl;
 	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
 
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);

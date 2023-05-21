@@ -216,7 +216,9 @@ update_status ModuleInterface::PostUpdate()
 		
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
-		printSkillIcon();
+		if (App->player->haveUlti) {
+			printSkillIcon();
+		}
 		printHostageIcon(hostage_num);
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
@@ -832,9 +834,13 @@ void ModuleInterface::stageClear() {
 	
 	App->fonts->BlitText(SCREEN_WIDTH - 285, SCREEN_HEIGHT - 130, App->scoreFontWhite, "stage clear");
 	
+	if (App->player->haveUlti) {
+
 	App->render->Blit(SkillIcon, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
 	App->render->Blit(skillPoint, SCREEN_WIDTH - 215, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
 	App->fonts->BlitText(SCREEN_WIDTH - 180, SCREEN_HEIGHT - 98, App->scoreFontWhite, "pts");
+	
+	}
 
 	App->fonts->BlitText(SCREEN_WIDTH - 370, SCREEN_HEIGHT - 66, App->scoreFontRed, "special bonus 20000pts");
 	

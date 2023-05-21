@@ -866,7 +866,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 			if (timerChangeLv2 <= 20) {
 				cout << "lv1" << endl;
+				if (haveUlti) {
 				App->interface_module->texture_num += 5000;
+				}
 				App->interface_module->texture_num += 20000;
 			}
 			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
@@ -882,7 +884,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			
 			if (timerChangeLv2 <= 20) {
 				cout << "lv2" << endl;
-				App->interface_module->texture_num += 5000;
+				if (haveUlti) {
+					App->interface_module->texture_num += 5000;
+				}
 				App->interface_module->texture_num += 20000;
 			}
 			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
