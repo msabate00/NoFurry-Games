@@ -143,7 +143,7 @@ bool ModuleParticles::Start()
 
 	ultiEspada.anim.loop = true;
 	ultiEspada.anim.speed = 0.3f;
-	ultiEspada.lifetime = 80;
+	ultiEspada.lifetime = 90;
 	ultiEspada.speed = fPoint(0, 0);
 
 
@@ -309,15 +309,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				}
 			}
 
-			/*if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
-				if (c2->GetRect().y > c1->GetRect().y) {
-					App->boss->currentParticleDirection.y *= -1;
-				}
-				else {
-					App->boss->currentParticleDirection.x *= -1;
-				}
-				return;
-			}*/
+			
 
 
 			if (!c2->active) { return; } //SI ESA COLISION NO ESTA ACTIVA, IGNORA TODO LO DE ABAJO
@@ -352,6 +344,35 @@ update_status ModuleParticles::Update()
 
 		if(particle == nullptr)	continue;
 
+
+		if (particle->collider != nullptr) {
+			if (particle->collider->type == Collider::Type::PLAYER_SWORD_ULTI) {
+
+
+				if ((particle->position.x * SCREEN_SIZE) + particle->anim.GetCurrentFrame().w >= App->render->camera.x + SCREEN_WIDTH * SCREEN_SIZE) {
+					if (particle->speed.x >= 0) {
+						particle->speed.x *= -1;
+					}
+				}
+	
+				if ((particle->position.x * SCREEN_SIZE) + particle->anim.GetCurrentFrame().w <= App->render->camera.x + SCREEN_WIDTH/100 * SCREEN_SIZE) {
+					if (particle->speed.x <= 0) {
+						particle->speed.x *= -1;
+					}
+				}
+				if ((particle->position.y * SCREEN_SIZE) + particle->anim.GetCurrentFrame().h >= App->render->camera.y + SCREEN_HEIGHT * SCREEN_SIZE) {
+					if (particle->speed.y >= 0) {
+						particle->speed.y *= -1;
+					}
+				}
+				if ((particle->position.y * SCREEN_SIZE) <= App->render->camera.y) {
+					particle->position.y =  10;
+					particle->speed.y *= -1;
+				}
+			}
+		}
+
+
 		// Call particle Update. If it has reached its lifetime, destroy it
 		if(particle->Update() == false)
 		{
@@ -362,6 +383,10 @@ update_status ModuleParticles::Update()
 			delete particle;
 			particles[i] = nullptr;
 		}
+
+		
+
+
 	}
 	
 	return update_status::UPDATE_CONTINUE;
@@ -440,6 +465,18 @@ fPoint ModuleParticles::GetPositionParticle(int position) {
 		return fPoint(0, 0);
 	}
 }
+
+fPoint ModuleParticles::GetPositionSpeed(int position) {
+
+	Particle* particle = particles[position];
+	if (particle != nullptr && particle->isAlive) {
+		return particle->speed;
+	}
+	else {
+		return fPoint(0, 0);
+	}
+}
+
 
 void ModuleParticles::DestroyCollision(int position) {
 	Particle* particle = particles[position];

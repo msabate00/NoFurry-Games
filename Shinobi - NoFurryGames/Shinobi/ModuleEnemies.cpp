@@ -42,7 +42,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	
+
 
 	texture = App->textures->Load("Assets/Sprites/SpriteSheet_Enemies.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/EnemiesDie.wav");
@@ -161,7 +161,7 @@ void ModuleEnemies::HandleEnemiesSpawn()
 			//	) || spawnQueue->spawnStart){
 
 			if ((spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN + 50 &&
-					spawnQueue[i].x * SCREEN_SIZE > App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN) || spawnQueue[i].spawnStart){
+				spawnQueue[i].x * SCREEN_SIZE > App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN) || spawnQueue[i].spawnStart) {
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
 			}
@@ -242,13 +242,13 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i] = new EnemyGun(info.x, info.y, info.secondFloor);
 				break;
 
-			/*case ENEMY_TYPE::HOSTAGE:
-				enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor, info.id);
-				break;*/
-			
+				/*case ENEMY_TYPE::HOSTAGE:
+					enemies[i] = new Hostage(info.x, info.y, info.gun, info.points, info.secondFloor, info.id);
+					break;*/
+
 
 			}
-			
+
 			enemies[i]->texture = texture;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
@@ -289,7 +289,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1 && enemies[i]->secondFloor != App->player->isSecondFloor)
 		{
-			
+
 			return; //sale de las coisiones. ESTO DARA PROBLEMAS YA QUE SI SE TIENE QUE CHOCAR CON UNA PARED PERO UENO
 		}
 	}
@@ -355,5 +355,5 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 Enemy* ModuleEnemies::getEnemy(int i) {
 	return enemies[i];
 }
-		
-	
+
+
