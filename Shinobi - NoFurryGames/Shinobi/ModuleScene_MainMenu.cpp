@@ -10,6 +10,7 @@
 #include "ModulePlayer.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleScene_Boss1.h"
+#include "ModuleInterface.h"
 #include "ModuleFadeToBlack.h"
 #include "SDL/include/SDL_scancode.h"
 #include "ModuleInterface.h"
@@ -84,7 +85,7 @@ update_status ModuleScene_MainMenu::Update()
 
 
 	
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->interface_module->coinNum > 0)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->mision1, 2);
 
