@@ -66,28 +66,6 @@ bool ModuleInputName::Start()
 update_status ModuleInputName::Update()
 {
 
-
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
-
-		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
-	}
-	currentAnimation->Update();
-
-	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
-	}
-
-	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
-	}
-
-	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
-	}
-
-
-
-
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_DOWN) {
 
 		if (dardosPositionY < 185) {
