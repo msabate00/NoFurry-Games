@@ -57,6 +57,7 @@ update_status ModuleMapa2::Update()
 		App->interface_module->gameChange = true;
 		App->interface_module->resetTimeHostage = true;
 		App->interface_module->timerPR = 0;
+		App->interface_module->spacePoint = true;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
 	}
 

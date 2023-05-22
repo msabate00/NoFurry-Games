@@ -289,6 +289,7 @@ update_status ModulePlayer::Update()
 		timerGameover += App->deltaTime;
 		//cout << timerGameover << endl;
 		if (timerGameover >= 3000) {
+			App->interface_module->coinNum = 0;
 		App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 		}
 	}
@@ -701,7 +702,7 @@ update_status ModulePlayer::Update()
 	//ATAQUE SHURIKEN
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN) {
 		App->audio->PlayFx(shurikenAtaqueFX);
-
+		App->interface_module->spacePoint = false;
 		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT) {
 			isCrouchedAttacking = true;
 			App->audio->PlayFx(shurikenAtaqueFX);
@@ -869,7 +870,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				if (haveUlti) {
 				App->interface_module->texture_num += 5000;
 				}
-				App->interface_module->texture_num += 20000;
+				if (App->interface_module->spacePoint) {
+					App->interface_module->texture_num += 20000;
+				}
 				sumaPoint = false;
 			}
 			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {
@@ -888,7 +891,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				if (haveUlti) {
 					App->interface_module->texture_num += 5000;
 				}
-				App->interface_module->texture_num += 20000;
+				if (App->interface_module->spacePoint) {
+					App->interface_module->texture_num += 20000;
+				}
 				sumaPoint = false;
 			}
 			if (timerChangeLv2 >= 5000 || App->interface_module->remaining_time <= 0) {

@@ -159,6 +159,7 @@ public:
 	bool gameChangeScene = false;
 	bool resetTimeHostage = true;
 	float timeOver = 0;
+	bool spacePoint = true;
 	//Boos
 	SDL_Texture* Boss_pow = nullptr;
 	SDL_Texture* Boss_life = nullptr;
