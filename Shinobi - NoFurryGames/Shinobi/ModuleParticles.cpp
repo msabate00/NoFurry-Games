@@ -139,14 +139,19 @@ bool ModuleParticles::Start()
 
 
 	ultiEspada.anim.PushBack({ 445, 1110, 20, 58 });
-	ultiEspada.anim.PushBack({ 0, 0, 0, 0 });
 
 	ultiEspada.anim.loop = true;
 	ultiEspada.anim.speed = 0.3f;
 	ultiEspada.lifetime = 90;
 	ultiEspada.speed = fPoint(0, 0);
 
+	ultiNegro.anim.PushBack({ 445, 1110, 20, 58 });
 
+	ultiNegro.anim.PushBack({ 0, 0, 0, 0 });
+
+	ultiNegro.anim.loop = true;
+	ultiNegro.anim.speed = 0.3f;
+	ultiNegro.lifetime = 90;
 
 
 
@@ -370,18 +375,7 @@ update_status ModuleParticles::Update()
 					particle->speed.y *= -1;
 				}
 
-				if (particle->speed.x >= 0 && particle->speed.y >= 0) {
-
-				}
-				if (particle->speed.x < 0 && particle->speed.y >= 0) {
-
-				}
-				if (particle->speed.x >= 0 && particle->speed.y < 0) {
-
-				}
-				if (particle->speed.x < 0 && particle->speed.y < 0) {
-
-				}
+				
 
 
 			}
@@ -416,7 +410,47 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE,&(particle->anim.GetCurrentFrame()));
+			if (particle->collider != nullptr && particle->collider->type == Collider::Type::PLAYER_SWORD_ULTI) {
+
+
+				if (particle->speed.x > 0 && particle->speed.y > 0) {
+					App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 135);
+				}
+				if (particle->speed.x < 0 && particle->speed.y > 0) {
+					App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 225);
+
+				}
+				if (particle->speed.x > 0 && particle->speed.y < 0) {
+					App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 45);
+
+				}
+				if (particle->speed.x < 0 && particle->speed.y < 0) {
+					App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 315);
+				}
+				if (particle->speed.x == 0 && particle->speed.y == 0) {
+					App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 0);
+				}
+				if (particle->speed.x == 0) {
+					if (particle->speed.y > 0) {
+						App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 180);
+					}
+					if (particle->speed.y < 0) {
+						App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 0);
+					}
+				}
+				if (particle->speed.y == 0) {
+					if (particle->speed.x > 0) {
+						App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 0);
+					}
+					if (particle->speed.x < 0) {
+						App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()), 1, 0);
+					}
+				}
+
+			}
+			else {
+				App->render->Blit(texture, particle->position.x, particle->position.y, SDL_FLIP_NONE, &(particle->anim.GetCurrentFrame()));
+			}
 		}
 	}
 
