@@ -696,8 +696,10 @@ void ModuleInterface::printTime(std::string time_string) {
 		snprintf(pointStr, bufferSize, "%d", time_vector[i]);
 
 		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, App->scoreFontYellow, pointStr);//
+		
 		if (time_vector[0] == 0 && time_vector[1] == 0 && time_vector[2] == 0) {
 
+			
 			timeOver += App->deltaTime;
 
 			if (timeOver <= 7000 && gameover != true) {
