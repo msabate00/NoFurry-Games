@@ -67,6 +67,9 @@ bool ModuleScene_Level2::Start()
 
 	//Cajas
 	App->collisions->AddCollider({ 288, 183, 32, 32 }, Collider::Type::WALL); //1 caja
+	App->collisions->AddCollider({ 288, 186, 35, 15 }, Collider::Type::BOX_HELP); //1 caja
+	App->collisions->AddCollider({ 283, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //1 caja
+
 
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
@@ -98,6 +101,27 @@ bool ModuleScene_Level2::Start()
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 28 , false, 500, false, 6, true);
 	if (App->interface_module->hostageTaken[6] == false) 
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
+
+	//Enemies
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 250, FLOOR_LEVEL - 60);
+	
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 340, FLOOR_LEVEL - 60);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 60);
+
+		// El primer spoderman está en 520
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64);
+
+	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 850, FLOOR_LEVEL - 64);
+
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 450, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
 
 
 	//Musica
