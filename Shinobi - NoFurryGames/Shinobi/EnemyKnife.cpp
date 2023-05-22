@@ -41,6 +41,10 @@ Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 
 	attackAnim.PushBack({ 844,20,47,60 });
 	attackAnim.PushBack({ 897,20,47,60 });
+	
+		
+	// crouch
+	//crouch.PushBack({ 889,93,100,47 });
 
 
 	/*attackAnim.PushBack({ 250,13,38,63 });
@@ -134,7 +138,7 @@ void Enemy_Knife::Update()
 	if (App->player->isSecondFloor)
 	{
 		speed = 0;
-		currentAnim = &walkBasic;
+		//currentAnim = &crouch;
 	}	
 	if (App->player->isSecondFloor == false)
 	{
