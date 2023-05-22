@@ -67,6 +67,9 @@ bool ModuleScene_Level2::Start()
 
 	//Cajas
 	App->collisions->AddCollider({ 288, 183, 32, 32 }, Collider::Type::WALL); //1 caja
+	App->collisions->AddCollider({ 288, 186, 35, 15 }, Collider::Type::BOX_HELP); //1 caja
+	App->collisions->AddCollider({ 283, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //1 caja
+
 
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
