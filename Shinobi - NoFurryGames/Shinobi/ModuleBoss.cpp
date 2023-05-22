@@ -213,7 +213,7 @@ bool ModuleBoss::Start()
 	facingRight = false;
 	position.x = 375;
 	position.y = 130;
-	life = 1;
+	life = 8;
 	inmune = false;
 	dead = false;
 	timeContador = 0;
