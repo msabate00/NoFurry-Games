@@ -11,6 +11,7 @@
 #include "ModuleScene_Boss1.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleBoss.h"
+#include "ModuleInterface.h"
 #include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL.h"
@@ -69,6 +70,7 @@ bool ModuleScene_Boss1::Start()
 	//Musica
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-3 (Boss).ogg");
 
+	App->interface_module->resetTimer();
 	return ret;
 }
 
