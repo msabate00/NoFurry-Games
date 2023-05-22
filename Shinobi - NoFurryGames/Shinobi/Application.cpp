@@ -126,6 +126,12 @@ bool Application::Init()
 	scoreFontYellow = fonts->Load("Assets/Interface/Fonts/Yellow.png", lookupTable, 3);
 	debugFontWhite = fonts->Load("Assets/Interface/Fonts/DebugFont.png", lookupTable, 3);
 
+	char lookupTable8px[] = { " ! #$%&'()ªª,-./0123456789:;<=>?ªABCDEFGHIJKLMNOPQRSTUVWXYZªªªªªªabcdefghijklmnopqrstuvwxyzªªªªª"};
+
+	scoreFontBlue = fonts->Load("Assets/Interface/Fonts/real_blue.png", lookupTable8px, 3);
+	scoreFontRed = fonts->Load("Assets/Interface/Fonts/real_red.png", lookupTable8px, 3);
+	scoreFontWhite = fonts->Load("Assets/Interface/Fonts/real_white.png", lookupTable8px, 3);
+
 	return ret;
 }
 

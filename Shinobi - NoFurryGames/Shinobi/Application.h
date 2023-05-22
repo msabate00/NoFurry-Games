@@ -89,6 +89,7 @@ public:
 	int scoreFontBlue = -1;
 	int scoreFontWhite = -1;
 	int scoreFontYellow = -1;
+	int scoreFontYellow8px = -1;
 	int debugFontWhite = -1;
 	char scoreText[10] = { "\0" };
 
