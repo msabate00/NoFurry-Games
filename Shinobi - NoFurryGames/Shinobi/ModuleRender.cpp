@@ -167,7 +167,7 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip flip, SDL_Rect* section, float speed)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip flip, SDL_Rect* section, float speed, double angle)
 {
 	bool ret = true;
 	
@@ -195,7 +195,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_RendererFlip fli
 	
 
 	
-	if (SDL_RenderCopyEx(renderer, texture, section, &rect, 0, &center, flip) != 0)
+	if (SDL_RenderCopyEx(renderer, texture, section, &rect, angle, &center, flip) != 0)
 
 		//Sin el flip
 		//if (SDL_RenderCopy(renderer, texture, section, &rect) != 0)
