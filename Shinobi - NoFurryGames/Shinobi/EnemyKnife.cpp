@@ -131,6 +131,20 @@ void Enemy_Knife::Update()
 
 	}
 
+	//// Salta
+	//if (!jumpsNow)
+	//{
+	//	currentAnim = &walkBasic;
+	//}
+	//else if (jumpsNow)
+	//{
+	//	currentAnim = &jumping;
+	//}
+
+	//if (currentAnim->HasFinished())
+	//{
+	//	jumpsNow = false;
+	//}
 
 
 

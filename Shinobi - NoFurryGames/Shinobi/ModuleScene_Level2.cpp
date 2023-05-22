@@ -103,9 +103,25 @@ bool ModuleScene_Level2::Start()
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
 
 	//Enemies
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 300, FLOOR_LEVEL - 64, false, true); //Enemigo básico 1
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 330, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 360, FLOOR_LEVEL - 64, false, true); //Enemigo básico 3
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 250, FLOOR_LEVEL - 60);
+	
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 340, FLOOR_LEVEL - 60);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 60);
+
+		// El primer spoderman está en 520
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64);
+
+	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 850, FLOOR_LEVEL - 64);
+
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 450, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
 
 
 	//Musica
@@ -116,6 +132,9 @@ bool ModuleScene_Level2::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+
+	App->interface_module->resetTimer();
 	return ret;
 }
 
