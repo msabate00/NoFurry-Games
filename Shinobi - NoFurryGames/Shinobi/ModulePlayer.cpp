@@ -328,7 +328,7 @@ update_status ModulePlayer::Update()
 		/*App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);*/
 
 
-		if (currentAnimation->HasFinished()) {
+		if (ultiEspadaAnim.HasFinished()) {
 
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(10, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(0, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
@@ -349,7 +349,7 @@ update_status ModulePlayer::Update()
 			
 		}
 
-		if (currentAnimation->HasFinished()) {
+		if (ultiEspadaAnim.HasFinished()) {
 			isUlti = false;
 			inmune = false;
 			currentAnimation->Reset();
