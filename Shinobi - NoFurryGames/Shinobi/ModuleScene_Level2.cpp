@@ -99,6 +99,21 @@ bool ModuleScene_Level2::Start()
 	if (App->interface_module->hostageTaken[6] == false) 
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
 
+	//Enemies
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 250, FLOOR_LEVEL - 60);
+	
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 340, FLOOR_LEVEL - 60);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 60);
+
+		// El primer spoderman está en 520
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64);
+
+	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 850, FLOOR_LEVEL - 64);
+
+
 
 	//Musica
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg");
