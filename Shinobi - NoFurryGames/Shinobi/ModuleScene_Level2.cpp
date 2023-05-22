@@ -107,6 +107,12 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 330, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 360, FLOOR_LEVEL - 64, false, true); //Enemigo básico 3
 
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 450, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
+
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
+
 
 	//Musica
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-2.ogg");
