@@ -24,7 +24,12 @@ public:
 	// Destroys the window and uninitializes the SDL library
 	bool CleanUp() override;
 
+	void changeWindowMode();
+
 public:
+
+	bool fullscreen = WIN_FULLSCREEN_DESKTOP;
+
 	//The window we'll be rendering to
 	SDL_Window* window = nullptr;
 

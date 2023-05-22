@@ -167,6 +167,9 @@ update_status Application::Update()
 	if (App->input->keys[SDL_SCANCODE_F6] == KEY_DOWN) {
 		showDebug = !showDebug;
 	}
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_DOWN) {
+		window->changeWindowMode();
+	}
 
 
 	// Cap to 60 FPS

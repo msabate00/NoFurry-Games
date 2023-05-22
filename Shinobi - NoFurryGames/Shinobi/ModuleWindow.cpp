@@ -58,6 +58,37 @@ bool ModuleWindow::Init()
 	return ret;
 }
 
+
+void ModuleWindow::changeWindowMode() {
+	fullscreen = !fullscreen;
+	
+	Uint32 flags = SDL_WINDOW_SHOWN;
+
+	if (WIN_FULLSCREEN == true)
+		flags |= SDL_WINDOW_FULLSCREEN;
+
+	if (WIN_BORDERLESS == true)
+		flags |= SDL_WINDOW_BORDERLESS;
+
+	if (WIN_RESIZABLE == true)
+		flags |= SDL_WINDOW_RESIZABLE;
+
+	if (fullscreen) {
+		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+		//flags |= SDL_WINDOW_FULLSCREEN;
+	}
+	
+	SDL_SetWindowFullscreen(window, flags);
+	
+	
+
+	
+	
+
+
+}
+
+
 bool ModuleWindow::CleanUp()
 {
 	LOG("Destroying SDL window and quitting all SDL systems");
