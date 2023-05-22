@@ -562,10 +562,14 @@ void ModuleInterface::printPlayer1() {
 
 void ModuleInterface::printSkillIcon() {
 
-	bool sur = App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-	if (!sur) {
-		//cout << "error" << endl;
+	if (App->scene_Level2->IsEnabled()) {
+		App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
 	}
+	else {
+		App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+	}
+	
+
 
 
 }
