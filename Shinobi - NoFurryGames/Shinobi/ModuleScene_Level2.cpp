@@ -67,6 +67,9 @@ bool ModuleScene_Level2::Start()
 
 	//Cajas
 	App->collisions->AddCollider({ 288, 183, 32, 32 }, Collider::Type::WALL); //1 caja
+	App->collisions->AddCollider({ 288, 186, 35, 15 }, Collider::Type::BOX_HELP); //1 caja
+	App->collisions->AddCollider({ 283, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //1 caja
+
 
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
@@ -98,6 +101,11 @@ bool ModuleScene_Level2::Start()
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 870, FLOOR_LEVEL - 28 , false, 500, false, 6, true);
 	if (App->interface_module->hostageTaken[6] == false) 
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
+
+	//Enemies
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 300, FLOOR_LEVEL - 64, false, true); //Enemigo básico 1
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 330, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 360, FLOOR_LEVEL - 64, false, true); //Enemigo básico 3
 
 
 	//Musica
