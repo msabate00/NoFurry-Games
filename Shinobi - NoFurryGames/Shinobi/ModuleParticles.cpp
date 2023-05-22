@@ -369,6 +369,21 @@ update_status ModuleParticles::Update()
 					particle->position.y =  10;
 					particle->speed.y *= -1;
 				}
+
+				if (particle->speed.x >= 0 && particle->speed.y >= 0) {
+
+				}
+				if (particle->speed.x < 0 && particle->speed.y >= 0) {
+
+				}
+				if (particle->speed.x >= 0 && particle->speed.y < 0) {
+
+				}
+				if (particle->speed.x < 0 && particle->speed.y < 0) {
+
+				}
+
+
 			}
 		}
 
