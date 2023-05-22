@@ -77,6 +77,7 @@ bool ModuleInterface::Start()
 
 	//App->scene_Level1_SecondFloor->Enable();
 	SkillIcon = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Rojo.png");
+	SkillIconAzul = App->textures->Load("Assets/Interface/Color_use/SkillIcon/Azul.png");
 	HostageIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/rescate.png");
 	LifeIcon = App->textures->Load("Assets/Interface/Color_use/Normal_icon/vida.png");
 	save = App->textures->Load("Assets/Interface/Color_use/Yellow/SAVE.png");
@@ -562,10 +563,14 @@ void ModuleInterface::printPlayer1() {
 
 void ModuleInterface::printSkillIcon() {
 
-	bool sur = App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
-	if (!sur) {
-		//cout << "error" << endl;
+	if (App->scene_Level2->IsEnabled()) {
+		App->render->Blit(SkillIconAzul, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
 	}
+	else {
+		App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
+	}
+	
+
 
 
 }
