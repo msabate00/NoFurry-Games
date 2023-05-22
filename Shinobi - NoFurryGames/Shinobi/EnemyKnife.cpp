@@ -131,6 +131,16 @@ void Enemy_Knife::Update()
 
 	}
 
+	if (App->player->isSecondFloor)
+	{
+		speed = 0;
+		currentAnim = &walkBasic;
+	}	
+	if (App->player->isSecondFloor == false)
+	{
+		speed = 2;
+	}
+
 	//// Salta
 	//if (!jumpsNow)
 	//{

@@ -24,6 +24,7 @@
 #include "ModuleBoss.h"
 #include "ModuleAudio.h"
 #include "Hostage.h"
+#include "ModuleFadeToBlack.h"
 
 #include <string> 
 #include <iostream>
@@ -96,7 +97,7 @@ bool ModuleInterface::Start()
 	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
 
 	timerPR = 0;
-
+	timeOver = false;
 	return ret;
 }
 
@@ -281,7 +282,9 @@ update_status ModuleInterface::PostUpdate()
 	}
 	else if (App->scene_Boss1->IsEnabled()) {
 		//INTERFAZ PARA EL JEFE
-		printSkillIcon();
+		if (App->player->haveUlti) {
+			printSkillIcon();
+		}
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
 		//printTime(getTimeString(elapsed_time).c_str());
@@ -693,10 +696,30 @@ void ModuleInterface::printTime(std::string time_string) {
 		snprintf(pointStr, bufferSize, "%d", time_vector[i]);
 
 		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, App->scoreFontYellow, pointStr);//
+		if (time_vector[0] == 0 && time_vector[1] == 0 && time_vector[2] == 0) {
 
-		/*	std::string filename = "Assets/Interface/Color_use/Yellow/Yellow_Numeros/Yellow_" + std::to_string(time_vector[i]) + ".png";
-			SDL_Texture* Time = App->textures->Load(filename.c_str());
-			App->render->Blit(Time, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);*/
+			timeOver += App->deltaTime;
+
+			if (timeOver <= 7000 && gameover != true) {
+				printTimeOver();
+			}
+			else {
+				
+				timeOver = 0;
+				App->life_num--;
+
+				if (App->life_num <= 0) {
+					App->player->destroyed = true;
+				}
+				else {
+					App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
+				}
+
+				
+			}
+
+		
+		}
 		IconPosition -= 16;
 		if (IconPosition == 54) {
 			App->render->Blit(dosPunt, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
@@ -820,6 +843,22 @@ std::vector<int> ModuleInterface::getDigits(int number) {
 
 }
 
+
+
+void ModuleInterface::printTimeOver(){
+	int IconPosition = 250;
+	
+	if (NameColor) {
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 100, App->scoreFontWhite, "time over");
+		if (timer >= switchTimeInsertCoin) {
+			NameColor = false;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	
+}
+
+
 //Boss
 void ModuleInterface::printBossLife() {
 	int IconPosition = 200;
@@ -848,9 +887,9 @@ void ModuleInterface::stageClear() {
 	App->fonts->BlitText(SCREEN_WIDTH - 180, SCREEN_HEIGHT - 98, App->scoreFontWhite, "pts");
 	
 	}
-
+	if (spacePoint) {
 	App->fonts->BlitText(SCREEN_WIDTH - 370, SCREEN_HEIGHT - 66, App->scoreFontRed, "special bonus 20000pts");
-	
+	}
 
 }
 

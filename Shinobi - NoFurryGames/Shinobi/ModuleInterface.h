@@ -68,8 +68,10 @@ public:
 	int updateTimer(time_t start_time);
 	void stageClear();
 	void printgameOver();
+	void printTimeOver();
 	std::vector<int> getDigits(int number);
 	std::string getTimeString(int elapsed_seconds);
+	
 
 	//Boss
 	void printBossLife();
@@ -156,6 +158,8 @@ public:
 	bool gameover = false;
 	bool gameChangeScene = false;
 	bool resetTimeHostage = true;
+	float timeOver = 0;
+	bool spacePoint = true;
 	//Boos
 	SDL_Texture* Boss_pow = nullptr;
 	SDL_Texture* Boss_life = nullptr;
