@@ -99,6 +99,7 @@ bool ModuleInterface::Start()
 
 	timerPR = 0;
 	timeOver = false;
+
 	return ret;
 }
 
@@ -359,7 +360,7 @@ bool ModuleInterface::CleanUp()
 //Main menu
 
 void ModuleInterface::InsertCoin() {
-	int IconPosition = 300;
+	int IconPosition = 245;
 	timer += App->deltaTime;
 	
 	int bufferSize = snprintf(nullptr, 0, "%d", coinNum) + 1;
@@ -367,7 +368,7 @@ void ModuleInterface::InsertCoin() {
 	snprintf(pointStr, bufferSize, "%d", coinNum);
 
 	if (NameColor) {
-		std::string coinText = "insert coin " + std::string(pointStr);
+		std::string coinText = "INSERT COIN " + std::string(pointStr);
 		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 80, App->scoreFontWhite, coinText.c_str());
 		if (timer >= switchTimeInsertCoin) {
 			NameColor = false;
@@ -378,8 +379,8 @@ void ModuleInterface::InsertCoin() {
 }
 
 void ModuleInterface::player1Ready() {
-	int IconPosition = 300;
-	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 115, App->scoreFontWhite, "player 1 ready");
+	int IconPosition = 240;
+	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 115, App->scoreFontWhite, "PLAYER 1 READY");
 }
 
 
@@ -428,14 +429,6 @@ void ModuleInterface::printNom() {
 
 }
 
-//void ModuleInterface::printLetra() {
-//
-//	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
-//	Letra = App->textures->Load(filename.c_str());
-//
-//	App->render->Blit(Letra, letraGetX(), letraGetY(), SDL_FLIP_NONE, nullptr, 0);
-//
-//}
 
 void ModuleInterface::printLetra() {
 	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
@@ -532,35 +525,6 @@ double ModuleInterface::letraGetY() {
 
 //LV1
 
-void ModuleInterface::printPlayer1() {
-
-	int IconPosition = 360;
-	timer += App->deltaTime;
-
-
-	if (NameColor) {
-		
-			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontBlue, "p1");
-		
-		if (timer >= switchTime) {
-			NameColor = false;
-			timer = 0.0f; // Reset Tiempo Contador
-		}
-	}
-	else {
-		
-			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontWhite, "p1");
-		
-		if (timer >= switchTime) {
-			NameColor = true;
-			timer = 0.0f; // Reset Tiempo Contador
-		}
-	}
-
-}
-
-
-
 void ModuleInterface::printSkillIcon() {
 
 	if (App->scene_Level2->IsEnabled()) {
@@ -569,11 +533,8 @@ void ModuleInterface::printSkillIcon() {
 	else {
 		App->render->Blit(SkillIcon, SCREEN_WIDTH - 100, SCREEN_HEIGHT - 16, SDL_FLIP_NONE, nullptr, 0);
 	}
-	
-
-
-
 }
+
 
 void ModuleInterface::printHostageIcon(int hostage) {
 
@@ -601,10 +562,36 @@ void ModuleInterface::printLifeIcon(int life) {
 
 }
 
+void ModuleInterface::printPlayer1() {
+
+	int IconPosition = 350;
+	timer += App->deltaTime;
+
+
+	if (NameColor) {
+
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 215, App->scoreFontBlue, "P1");
+
+		if (timer >= switchTime) {
+			NameColor = false;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+	else {
+
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 215, App->scoreFontWhite, "P1");
+
+		if (timer >= switchTime) {
+			NameColor = true;
+			timer = 0.0f; // Reset Tiempo Contador
+		}
+	}
+
+}
 
 void ModuleInterface::printNum(int point) {
 
-	int IconPosition = 300;
+	int IconPosition = 320;
 
 
 	int bufferSize = snprintf(nullptr, 0, "%d", point) + 1;
@@ -613,7 +600,7 @@ void ModuleInterface::printNum(int point) {
 
 	if (NameColor) {
 		
-		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontBlue, pointStr);
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 215, App->scoreFontBlue, pointStr);
 		
 		if (timer >= switchTime) {
 			NameColor = false;
@@ -622,7 +609,7 @@ void ModuleInterface::printNum(int point) {
 	}
 	else {
 		
-		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 220, App->scoreFontWhite, pointStr);
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 215, App->scoreFontWhite, pointStr);
 		
 		if (timer >= switchTime) {
 			NameColor = true;
@@ -633,8 +620,8 @@ void ModuleInterface::printNum(int point) {
 	bufferSize = snprintf(nullptr, 0, "%d", rankingNum) + 1;
 	char* rankStr = new char[bufferSize];
 	snprintf(rankStr, bufferSize, "%d", rankingNum);
-	std::string rankText = "h1 " + std::string(rankStr);
-	App->fonts->BlitText(SCREEN_WIDTH - 150, SCREEN_HEIGHT - 220, App->scoreFontRed, rankText.c_str());
+	std::string rankText = "H1 " + std::string(rankStr);
+	App->fonts->BlitText(SCREEN_WIDTH - 260, SCREEN_HEIGHT - 215, App->scoreFontRed, rankText.c_str());
 
 
 }
@@ -717,6 +704,7 @@ void ModuleInterface::printTime(std::string time_string) {
 
 				if (App->life_num <= 0) {
 					App->player->destroyed = true;
+					gameover = true;
 				}
 				else {
 					App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
@@ -853,10 +841,10 @@ std::vector<int> ModuleInterface::getDigits(int number) {
 
 
 void ModuleInterface::printTimeOver(){
-	int IconPosition = 250;
+	int IconPosition = 230;
 	
 	if (NameColor) {
-		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 100, App->scoreFontWhite, "time over");
+		App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 115, App->scoreFontWhite, "TIME OVER");
 		if (timer >= switchTimeInsertCoin) {
 			NameColor = false;
 			timer = 0.0f; // Reset Tiempo Contador
@@ -885,35 +873,41 @@ void ModuleInterface::stageClear() {
 
 	//App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
 	
-	App->fonts->BlitText(SCREEN_WIDTH - 285, SCREEN_HEIGHT - 130, App->scoreFontWhite, "stage clear");
+	App->fonts->BlitText(SCREEN_WIDTH - 235, SCREEN_HEIGHT - 115, App->scoreFontWhite, "STAGE CLEAR");
 	
 	if (App->player->haveUlti) {
 
-	App->render->Blit(SkillIcon, SCREEN_WIDTH - 250, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
-	App->render->Blit(skillPoint, SCREEN_WIDTH - 215, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
-	App->fonts->BlitText(SCREEN_WIDTH - 180, SCREEN_HEIGHT - 98, App->scoreFontWhite, "pts");
+			if (App->scene_Level2->IsEnabled()) {
+				App->render->Blit(SkillIconAzul, SCREEN_WIDTH - 236, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
+			}
+			else {
+				App->render->Blit(SkillIcon, SCREEN_WIDTH - 236, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
+			}
+
+	App->render->Blit(skillPoint, SCREEN_WIDTH - 201, SCREEN_HEIGHT - 98, SDL_FLIP_NONE, nullptr, 0);
+	App->fonts->BlitText(SCREEN_WIDTH - 164, SCREEN_HEIGHT - 94, App->scoreFontWhite, "PTS");
 	
 	}
 	if (spacePoint) {
-	App->fonts->BlitText(SCREEN_WIDTH - 370, SCREEN_HEIGHT - 66, App->scoreFontRed, "special bonus 20000pts");
+	App->fonts->BlitText(SCREEN_WIDTH - 280, SCREEN_HEIGHT - 76, App->scoreFontRed, "SPECIAL BONUS 20000PTS");
 	}
 
 }
 
 void ModuleInterface::printgameOver() {
-	int IconPosition = 250;
+	int IconPosition = 270;
 	gameOvertimer += App->deltaTime;
 
 	//App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 	if (NameColor) {
-		App->render->Blit(gameOverRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 0);
+		App->render->Blit(gameOverRed, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 115, SDL_FLIP_NONE, nullptr, 0);
 		if (gameOvertimer >= switchTimeGameOver) {
 			NameColor = false;
 			gameOvertimer = 0.0f; // Reset Tiempo Contador
 		}
 	}
 	else {
-		App->render->Blit(gameOverWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 100, SDL_FLIP_NONE, nullptr, 0);
+		App->render->Blit(gameOverWhite, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 115, SDL_FLIP_NONE, nullptr, 0);
 		if (gameOvertimer >= switchTimeGameOver) {
 			NameColor = true;
 			gameOvertimer = 0.0f; // Reset Tiempo Contador

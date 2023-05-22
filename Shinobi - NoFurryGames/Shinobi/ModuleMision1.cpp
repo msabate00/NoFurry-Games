@@ -109,7 +109,7 @@ void ModuleMision1::printext() {
 		last_time = current_time;
 	}
 	
-	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite, str_cache.c_str());
+	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite16px, str_cache.c_str());
 	
 }
 
@@ -134,7 +134,7 @@ void ModuleMision1::printMision() {
 	if (App->interface_module->NameColor) {
 		for (int i = 0; i < 2; i++)
 		{
-			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 170, App->scoreFontRed, "mission 1");
+			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 170, App->scoreFontRed16px, "mission 1");
 		}
 		if (App->interface_module->timer >= App->interface_module->switchTime) {
 			App->interface_module->NameColor = false;
@@ -144,7 +144,7 @@ void ModuleMision1::printMision() {
 	else {
 		for (int i = 0; i < 2; i++)
 		{
-			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 170, App->scoreFontWhite, "mission 1");
+			App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 170, App->scoreFontWhite16px, "mission 1");
 		}
 		if (App->interface_module->timer >= App->interface_module->switchTime) {
 			App->interface_module->NameColor = true;

@@ -93,7 +93,6 @@ void ModuleMapaV::printMapaV() {
 			mapaVJumptimer += App->deltaTime;
 			MapaX = 115;
 			MapaY = 5;
-			cout << mapaVJumptimer << endl;
 			if (mapaVJumptimer >= 500) {
 				
 				App->render->Blit(mapaVictoria, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);

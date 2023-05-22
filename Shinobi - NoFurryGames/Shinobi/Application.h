@@ -91,6 +91,10 @@ public:
 	int scoreFontYellow = -1;
 	int scoreFontYellow8px = -1;
 	int debugFontWhite = -1;
+
+	int scoreFontWhite16px = -1;
+	int scoreFontRed16px = -1;
+
 	char scoreText[10] = { "\0" };
 
 	// All the modules stored individually

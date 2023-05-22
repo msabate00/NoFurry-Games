@@ -120,13 +120,14 @@ bool Application::Init()
 
 
 	char lookupTable[] = { "0123456789       abcdefghijklmnopqrstuvwxyz_?,-  " };
-	scoreFontRed = fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
+	scoreFontRed16px = fonts->Load("Assets/Interface/Fonts/Red.png", lookupTable, 3);
 	scoreFontBlue = fonts->Load("Assets/Interface/Fonts/Blue.png", lookupTable, 3);
-	scoreFontWhite = fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);
+	scoreFontWhite16px = fonts->Load("Assets/Interface/Fonts/White.png", lookupTable, 3);
 	scoreFontYellow = fonts->Load("Assets/Interface/Fonts/Yellow.png", lookupTable, 3);
 	debugFontWhite = fonts->Load("Assets/Interface/Fonts/DebugFont.png", lookupTable, 3);
 
-	char lookupTable8px[] = { " ! #$%&'()ªª,-./0123456789:;<=>?ªABCDEFGHIJKLMNOPQRSTUVWXYZªªªªªªabcdefghijklmnopqrstuvwxyzªªªªª"};
+
+	char lookupTable8px[] = { " ! #$%&'()ªª,-./0123456789:;<=>?ªABCDEFGHIJKLMNOPQRSTUVWXYZªªªªªªabcdefghijklmnopqrstuvwxyzªªªª?"};
 
 	scoreFontBlue = fonts->Load("Assets/Interface/Fonts/real_blue.png", lookupTable8px, 3);
 	scoreFontRed = fonts->Load("Assets/Interface/Fonts/real_red.png", lookupTable8px, 3);

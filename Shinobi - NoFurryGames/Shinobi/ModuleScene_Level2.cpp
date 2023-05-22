@@ -108,7 +108,7 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 340, FLOOR_LEVEL - 60);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 60);
 
-		// El primer spoderman está en 520
+		// El primer spoderman est?en 520
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64);

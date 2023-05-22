@@ -179,10 +179,10 @@ void ModuleInputName::printTitle() {
 	int IconPositionY = 220;
 	int IconPositionY2 = 200;
 
-	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 220, App->scoreFontWhite, "your score");
-	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 200, App->scoreFontWhite, "your name");
+	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 220, App->scoreFontWhite16px, "your score");
+	App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - 200, App->scoreFontWhite16px, "your name");
 	//App->fonts->BlitText(SCREEN_WIDTH - 230, SCREEN_HEIGHT - 180, App->scoreFontWhite, "time");
-	App->fonts->BlitText(SCREEN_WIDTH - 130, SCREEN_HEIGHT - 220, App->scoreFontWhite, std::to_string(App->interface_module->texture_num).c_str() );	
+	App->fonts->BlitText(SCREEN_WIDTH - 130, SCREEN_HEIGHT - 220, App->scoreFontWhite16px, std::to_string(App->interface_module->texture_num).c_str() );	
 }
 
 
@@ -195,7 +195,7 @@ void ModuleInputName::printInput() {
 		for (int col = 0; col < 7; col++)
 		{
 			char character[2] = { input_array[row][col], '\0' };
-			App->fonts->BlitText(SCREEN_WIDTH - InputPositionX, SCREEN_HEIGHT - InputPositionY, App->scoreFontWhite, character);
+			App->fonts->BlitText(SCREEN_WIDTH - InputPositionX, SCREEN_HEIGHT - InputPositionY, App->scoreFontWhite16px, character);
 
 			InputPositionX -= 40;
 		}
@@ -326,7 +326,7 @@ void ModuleInputName::printNom() {
 	for (int i = 0; i < myNamelist; i++)
 	{
 		char namecharacter[2] = { myName[i], '\0' };
-		App->fonts->BlitText(SCREEN_WIDTH - NamePositionX, SCREEN_HEIGHT - 200, App->scoreFontWhite, namecharacter);
+		App->fonts->BlitText(SCREEN_WIDTH - NamePositionX, SCREEN_HEIGHT - 200, App->scoreFontWhite16px, namecharacter);
 		NamePositionX -= 16;
 	}
 }

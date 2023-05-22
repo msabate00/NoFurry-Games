@@ -205,7 +205,7 @@ void ModuleRanking::printTitle() {
 			//App->fonts->BlitText(SCREEN_WIDTH - 350, SCREEN_HEIGHT - IconPositionY, App->scoreFontRed, "greatest");
 			App->render->Blit(App->interface_module->LetraNomRed, SCREEN_WIDTH - 245, SCREEN_HEIGHT - IconPositionY, SDL_FLIP_NONE, nullptr, 0);
 			
-			App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - IconPositionY2, App->scoreFontRed, "greatest ranking");
+			App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - IconPositionY2, App->scoreFontRed16px, "greatest ranking");
 		}
 		if (App->interface_module->timer >= App->interface_module->switchTime) {
 			App->interface_module->NameColor = false;
@@ -217,7 +217,7 @@ void ModuleRanking::printTitle() {
 		{
 			//App->fonts->BlitText(SCREEN_WIDTH - 350, SCREEN_HEIGHT - IconPositionY, App->scoreFontWhite, "greatest");
 			App->render->Blit(App->interface_module->LetraNomWhite, SCREEN_WIDTH - 245, SCREEN_HEIGHT - IconPositionY, SDL_FLIP_NONE, nullptr, 0);
-			App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - IconPositionY2, App->scoreFontWhite, "greatest ranking");
+			App->fonts->BlitText(SCREEN_WIDTH - 318, SCREEN_HEIGHT - IconPositionY2, App->scoreFontWhite16px, "greatest ranking");
 			
 		}
 		if (App->interface_module->timer >= App->interface_module->switchTime) {
@@ -237,10 +237,10 @@ void ModuleRanking::printrRanking() {
 		for (int i = 0; i < 10; i++)
 		{
 			if (i == 0) {
-				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed, leaderboard[i].rank.c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 255, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed, std::to_string(leaderboard[i].score).c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed, std::to_string(leaderboard[i].coin).c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed, leaderboard[i].name.c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, leaderboard[i].rank.c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 255, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, std::to_string(leaderboard[i].score).c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, std::to_string(leaderboard[i].coin).c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, leaderboard[i].name.c_str());
 			}
 			else {
 				if (leaderboard[i].score >= 100000) {
@@ -249,10 +249,10 @@ void ModuleRanking::printrRanking() {
 				else {
 					IconPositionY = 239;
 				}
-				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, leaderboard[i].rank.c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - IconPositionY, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, std::to_string(leaderboard[i].score).c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, std::to_string(leaderboard[i].coin).c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite, leaderboard[i].name.c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, leaderboard[i].rank.c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - IconPositionY, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, std::to_string(leaderboard[i].score).c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, std::to_string(leaderboard[i].coin).c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, leaderboard[i].name.c_str());
 			}
 
 			IconPositionrank -= 20;

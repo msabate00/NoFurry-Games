@@ -291,6 +291,7 @@ update_status ModulePlayer::Update()
 		//cout << timerGameover << endl;
 		if (timerGameover >= 3000) {
 			App->interface_module->coinNum = 0;
+			App->interface_module->gameover = false;
 		App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 		}
 	}
