@@ -135,11 +135,10 @@ void Enemy_Knife::Update()
 	{
 		speed = 0;
 		currentAnim = &walkBasic;
-	}
+	}	
 	if (App->player->isSecondFloor == false)
 	{
 		speed = 2;
-		currentAnim = &walkBasic;
 	}
 
 	//// Salta
