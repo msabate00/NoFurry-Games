@@ -136,6 +136,7 @@ public:
 	SDL_Texture* skillPoint = nullptr;
 	SDL_Texture* gameOverRed = nullptr;
 	SDL_Texture* gameOverWhite = nullptr;
+	SDL_Texture* SkillIconAzul = nullptr;
 
 	int hostage_num = 0;
 	bool hostageTaken[7] = { false };
