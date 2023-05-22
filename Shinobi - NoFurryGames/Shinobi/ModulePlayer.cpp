@@ -14,6 +14,7 @@
 #include "Collider.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleEnemies.h"
+#include "ModuleBoss.h"
 #include "Hostage.h"
 #include "Enemy.h"
 #include "ModuleFonts.h"
@@ -327,7 +328,7 @@ update_status ModulePlayer::Update()
 		/*App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);*/
 
 
-		if (currentAnimation->HasFinished()) {
+		if (ultiEspadaAnim.HasFinished()) {
 
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(10, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(0, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
@@ -338,12 +339,17 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
 			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->enemy->KillAll();
+			if (!App->boss->IsEnabled()) {
+				App->enemy->KillAll();
+			}
+			else {
+				App->boss->life -= 2;
+			}
 
 			
 		}
 
-		if (currentAnimation->HasFinished()) {
+		if (ultiEspadaAnim.HasFinished()) {
 			isUlti = false;
 			inmune = false;
 			currentAnimation->Reset();

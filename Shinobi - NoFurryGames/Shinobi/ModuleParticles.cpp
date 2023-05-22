@@ -403,7 +403,7 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			if (particle->collider != nullptr && particle->collider->type == Collider::Type::PLAYER_SWORD_ULTI) {
+			if (!App->player->isChangingZone && particle->collider != nullptr && particle->collider->type == Collider::Type::PLAYER_SWORD_ULTI) {
 
 
 				if (particle->speed.x > 0 && particle->speed.y > 0) {
