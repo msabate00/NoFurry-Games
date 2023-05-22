@@ -116,6 +116,8 @@ bool ModuleScene_Level1::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4
 
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 820, FLOOR_LEVEL - 64); //Enemigo knife
+	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 840, FLOOR_LEVEL - 64); //Enemigo knife 2
+	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 860, FLOOR_LEVEL - 64); //Enemigo knife 3
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 605, FLOOR_LEVEL - 64);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 815, FLOOR_LEVEL - 64);

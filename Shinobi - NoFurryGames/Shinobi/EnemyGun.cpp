@@ -20,9 +20,29 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	walkBasic.loop = true;
 	walkBasic.speed = 0.1f;
 
-	recharge.PushBack({ 4,245,47,58 });
-	recharge.speed = 0.1f;
-	recharge.loop = false;
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 57,243,47,60 });
+	firesGun.PushBack({ 124,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.speed = 0.07f;
+	firesGun.loop = true;
 
 	//salto
 	jumping.PushBack({ 202, 317,34,68 });
@@ -81,12 +101,12 @@ void EnemyGun::Update()
 	// Rango de visi�n - INDV
 	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
-		currentAnim = &recharge;
+		currentAnim = &firesGun;
 		position.x += speed;
 	}
 	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
 	{
-		currentAnim = &recharge;
+		currentAnim = &firesGun;
 		position.x -= speed;
 	}
 
@@ -134,7 +154,7 @@ void EnemyGun::Update()
 
 	// Disparos
 		
-	if (facingLeft && (App->player->position.x + 80) > position.x)
+	if (facingLeft && (App->player->position.x + 150) > position.x)
 	{
 		hasToShot = true;
 	}
@@ -142,13 +162,9 @@ void EnemyGun::Update()
 
 	if (hasToShot && facingLeft)
 	{
-		currentAnim = &recharge;
+		currentAnim = &firesGun;
 		position.x += speed;
 
-		if (currentAnim->HasFinished())
-		{
-			cout << "bang" << endl;
-		}
 	}
 
 	/*if (currentAnim->HasFinished())
