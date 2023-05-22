@@ -39,7 +39,7 @@ private:
 
 	int distanceBetween;
 	int distanceToAttack = 3;
-
+	Animation crouch;
 };
 
 #endif // __ENEMY_KNIFE_H__
