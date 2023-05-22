@@ -108,6 +108,9 @@ bool ModuleScene_Level2::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+
+	App->interface_module->resetTimer();
 	return ret;
 }
 
