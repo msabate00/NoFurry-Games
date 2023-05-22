@@ -109,14 +109,16 @@ update_status ModuleFadeToBlack::PostUpdate()
 
 	
 	if (currentStep == Fade_Step::TO_BLACK) {
-		App->render->Blit(fadeInOut_texture, App->player->position.x - 320, 0, SDL_FLIP_NONE, &rect);
-		App->render->Blit(fadeInOut_texture, App->player->position.x, 0, SDL_FLIP_NONE, &rect);
-		App->render->Blit(fadeInOut_texture, App->player->position.x + 320, 0, SDL_FLIP_NONE, &rect);
+	
+		App->render->Blit(fadeInOut_texture, App->render->camera.x/SCREEN_SIZE - 320, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, App->render->camera.x / SCREEN_SIZE, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, App->render->camera.x / SCREEN_SIZE + 320, 0, SDL_FLIP_NONE, &rect);
 	}
 	else {
-		App->render->Blit(fadeInOut_texture, 0 - 320, 0, SDL_FLIP_NONE, &rect);
-		App->render->Blit(fadeInOut_texture, 0, 0, SDL_FLIP_NONE, &rect);
-		App->render->Blit(fadeInOut_texture, 0 + 320, 0, SDL_FLIP_NONE, &rect);
+	
+		App->render->Blit(fadeInOut_texture, App->render->camera.x / SCREEN_SIZE - 320, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, App->render->camera.x / SCREEN_SIZE, 0, SDL_FLIP_NONE, &rect);
+		App->render->Blit(fadeInOut_texture, App->render->camera.x / SCREEN_SIZE + 320, 0, SDL_FLIP_NONE, &rect);
 	}
 	
 
