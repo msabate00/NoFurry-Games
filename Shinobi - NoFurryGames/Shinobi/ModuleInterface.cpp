@@ -282,7 +282,9 @@ update_status ModuleInterface::PostUpdate()
 	}
 	else if (App->scene_Boss1->IsEnabled()) {
 		//INTERFAZ PARA EL JEFE
-		printSkillIcon();
+		if (App->player->haveUlti) {
+			printSkillIcon();
+		}
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
 		//printTime(getTimeString(elapsed_time).c_str());
@@ -698,13 +700,21 @@ void ModuleInterface::printTime(std::string time_string) {
 
 			timeOver += App->deltaTime;
 
-			if (timeOver <= 7000) {
+			if (timeOver <= 7000 && gameover != true) {
 				printTimeOver();
 			}
 			else {
-				App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
-				//resetTimer();
+				
 				timeOver = 0;
+				App->life_num--;
+
+				if (App->life_num <= 0) {
+					App->player->destroyed = true;
+				}
+				else {
+					App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->activeModule, 20);
+				}
+
 				
 			}
 
@@ -877,9 +887,9 @@ void ModuleInterface::stageClear() {
 	App->fonts->BlitText(SCREEN_WIDTH - 180, SCREEN_HEIGHT - 98, App->scoreFontWhite, "pts");
 	
 	}
-
+	if (spacePoint) {
 	App->fonts->BlitText(SCREEN_WIDTH - 370, SCREEN_HEIGHT - 66, App->scoreFontRed, "special bonus 20000pts");
-	
+	}
 
 }
 

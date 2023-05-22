@@ -53,6 +53,7 @@ update_status ModuleMapa3::Update()
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer();
 		App->interface_module->gameChange = true;
+		App->interface_module->spacePoint = true;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 
