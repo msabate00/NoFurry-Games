@@ -66,7 +66,7 @@ bool ModuleScene_MainMenu::Start()
 	currentAnimation = &eyesAnimation;
 
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 7; i++) {
 		App->interface_module->hostageTaken[i] = false;
 	}
 	
