@@ -113,7 +113,14 @@ update_status ModuleInterface::Update()
 
 
 	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
-		coinNum++;
+		if (coinNum == 9) {
+			coinNum = 9;
+		}
+		else {
+			coinNum++;
+		}
+		
+
 		App->audio->PlayFx(monedaFX);
 	}
 

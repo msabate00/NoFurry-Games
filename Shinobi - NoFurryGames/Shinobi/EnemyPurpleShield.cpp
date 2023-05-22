@@ -31,6 +31,12 @@ EnemyPurpleShield::EnemyPurpleShield(int x, int y, bool secondFloor) : Enemy(x, 
 	attackPurple.PushBack({ 453, 253,47,70 });
 	attackPurple.loop = false;
 
+	jumping.PushBack({ 282, 331, 41, 70 });
+	jumping.PushBack({ 329, 331, 41, 70 });
+	jumping.PushBack({ 376, 331, 41, 70 });
+	jumping.loop = true;
+	jumping.speed = 0.1f;
+
 	attackPurple.speed = 0.1f;
 
 	//muerte

@@ -116,7 +116,7 @@ update_status ModuleRanking::Update()
 
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
-
+		App->interface_module->coinNum = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 	currentAnimation->Update();
