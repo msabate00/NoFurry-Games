@@ -21,10 +21,28 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	walkBasic.speed = 0.1f;
 
 	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
 	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
 	firesGun.PushBack({ 4,243,47,60 });
-	firesGun.speed = 1.0f;
-	firesGun.loop = false;
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 4,243,47,60 });
+	firesGun.PushBack({ 95,351,47,60 });
+	firesGun.PushBack({ 57,243,47,60 });
+	firesGun.PushBack({ 124,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.speed = 0.07f;
+	firesGun.loop = true;
 
 	//salto
 	jumping.PushBack({ 202, 317,34,68 });
