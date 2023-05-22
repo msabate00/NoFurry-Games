@@ -374,10 +374,6 @@ update_status ModuleParticles::Update()
 					particle->position.y =  10;
 					particle->speed.y *= -1;
 				}
-
-				
-
-
 			}
 		}
 
@@ -392,9 +388,6 @@ update_status ModuleParticles::Update()
 			delete particle;
 			particles[i] = nullptr;
 		}
-
-		
-
 
 	}
 	

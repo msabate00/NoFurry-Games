@@ -165,7 +165,7 @@ void EnemyGun::Update()
 		currentAnim = &firesGun;
 		position.x += speed;
 
-		App->particles->AddParticle(App->particles->enemyShotL, position.x + 46, position.y - currentAnim->GetCurrentFrame().h + 12, Collider::Type::ENEMY_SHOT, 0);
+	//	App->particles->AddParticle(App->particles->enemyShotL, position.x + 46, position.y - currentAnim->GetCurrentFrame().h + 12, Collider::Type::ENEMY_SHOT, 0);
 
 	}
 
