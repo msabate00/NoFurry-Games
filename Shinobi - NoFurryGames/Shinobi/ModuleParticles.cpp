@@ -263,8 +263,21 @@ bool ModuleParticles::Start()
 	bulletDying.anim.speed = 0.5f;
 	bulletDying.speed = fPoint(0, 0);
 
+	//Balas
 
+	enemyShotL.anim.PushBack({ 447, 64, 13, 8 });
+	enemyShotL.anim.PushBack({ 464, 64, 13, 8 });
+	enemyShotL.anim.loop = true;
+	enemyShotL.anim.speed = 0.3f;
+	enemyShotL.lifetime = 80;
+	enemyShotL.speed = fPoint(-4, 0);
 
+	enemyShotR.anim.PushBack({ 447, 64, 13, 8 });
+	enemyShotR.anim.PushBack({ 464, 64, 13, 8 });
+	enemyShotR.anim.loop = true;
+	enemyShotR.anim.speed = 0.3f;
+	enemyShotR.lifetime = 80;
+	enemyShotR.speed = fPoint(-4, 0);
 
 
 

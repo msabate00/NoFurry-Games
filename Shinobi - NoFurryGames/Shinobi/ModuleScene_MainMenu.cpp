@@ -91,6 +91,8 @@ update_status ModuleScene_MainMenu::Update()
 
 	}
 
+	currentAnimation->Update();
+
 	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
@@ -102,9 +104,6 @@ update_status ModuleScene_MainMenu::Update()
 	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
-	
-	currentAnimation->Update();
-	
 
 
 	return update_status::UPDATE_CONTINUE;

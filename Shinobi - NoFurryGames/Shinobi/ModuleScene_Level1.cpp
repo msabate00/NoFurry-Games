@@ -111,6 +111,9 @@ bool ModuleScene_Level1::Start()
 
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64, false ,true); //Enemigo básico 1
+	
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 365, FLOOR_LEVEL - 64, false, true); //Enemigo auxiliar
+
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64); //Enemigo básico 3
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4
@@ -162,9 +165,21 @@ update_status ModuleScene_Level1::Update()
 		}
 	}
 
+
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
-		Mix_FadeOutMusic(10);
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 	return update_status::UPDATE_CONTINUE;
 

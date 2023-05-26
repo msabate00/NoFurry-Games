@@ -119,6 +119,13 @@ void Enemy::Update()
 			colliderRange->SetSize(currentAnim->GetCurrentFrame().w + attackRange * 2, currentAnim->GetCurrentFrame().h);
 		}
 
+
+		if (bang) 
+		{
+			cout << "BANG!" << endl;
+			App->particles->AddParticle(App->particles->enemyShotL, position.x, position.y - currentAnim->GetCurrentFrame().h + 74, Collider::Type::ENEMY_SHOT, 0);
+
+		}
 		
 }
 

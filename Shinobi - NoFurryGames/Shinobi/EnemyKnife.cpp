@@ -160,7 +160,7 @@ void Enemy_Knife::Update()
 	//	jumpsNow = false;
 	//}
 
-	cout << "X: " << position.x << " Y: " << position.y << " SPEED: " << speed << endl;;
+	
 
 	Enemy::Update();
 }
