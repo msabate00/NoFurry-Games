@@ -37,16 +37,16 @@ public:
 
 public:
 	// Position of the player in the map
-	iPoint position;
-	iPoint positionBefore;
+	fPoint position;
+	fPoint positionBefore;
 
 	int timeContador = 0;
 
 	// The speed in which we move the player (pixels per frame)
-	int speed = 2;
+	float speed = 2;
 	int crouchedSpeed = 1;
 
-	float jumpForce = 4.8f;
+	float jumpForce = 5.5f;
 	float currJumpForce = 0;
 	float maxFallSpeed = -5;
 	bool isJumping = false;

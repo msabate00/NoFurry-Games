@@ -70,8 +70,8 @@ Enemy_Knife::Enemy_Knife(int x, int y, bool secondFloor) : Enemy(x, y, secondFlo
 	facingLeft = true;
 	moveToDie = false;
 
-	speed = 2;
-
+	speed = 1.5f;
+	initialSpeed = speed;
 	viewRange = 250;
 	wanderRange = 50;
 	attackRange = 0;
@@ -142,7 +142,7 @@ void Enemy_Knife::Update()
 	}	
 	if (App->player->isSecondFloor == false)
 	{
-		speed = 2;
+		speed = initialSpeed;
 	}
 
 	//// Salta
@@ -160,7 +160,7 @@ void Enemy_Knife::Update()
 	//	jumpsNow = false;
 	//}
 
-
+	
 
 	Enemy::Update();
 }

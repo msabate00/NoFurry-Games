@@ -62,7 +62,8 @@ public:
 
 
 	int points;
-	int speed = 1;
+	float speed = 1;
+	float initialSpeed;
 	int viewRange = 220;	//Distancia a la que ve el jugador
 	int wanderRange = 20;	//Distancia a la que va a estar deambulando alrededor del jugador
 	int attackRange = 20;	//Distancia a la que puede atacar al jugador
@@ -72,10 +73,10 @@ public:
 public:
 
 	// The current position in the world
-	iPoint position;
+	fPoint position;
 	ENEMY_TYPE type;
 
-	iPoint diePos;
+	fPoint diePos;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
@@ -95,7 +96,7 @@ protected:
 	Collider* colliderRange = nullptr;
 
 	// Original spawn position. Stored for movement calculations
-	iPoint spawnPos;
+	fPoint spawnPos;
 };
 
 #endif // __ENEMY_H__

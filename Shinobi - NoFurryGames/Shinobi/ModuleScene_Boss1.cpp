@@ -76,14 +76,6 @@ bool ModuleScene_Boss1::Start()
 
 update_status ModuleScene_Boss1::Update()
 {
-
-	
-
-	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
-	}
-
-
 	return update_status::UPDATE_CONTINUE;
 }
 
