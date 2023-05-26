@@ -72,40 +72,40 @@ bool ModuleRanking::Start()
 	leaderboard[9].rank = "10th";
 
 	//Score
-	leaderboard[0].score = 100000;
-	leaderboard[1].score = 90000;
-	leaderboard[2].score = 80000;
-	leaderboard[3].score = 70000;
-	leaderboard[4].score = 60000;
-	leaderboard[5].score = 50000;
-	leaderboard[6].score = 40000;
-	leaderboard[7].score = 30000;
-	leaderboard[8].score = 20000;
-	leaderboard[9].score = 10000;
+	leaderboard[0].score = 103010;
+	leaderboard[1].score = 96050;
+	leaderboard[2].score = 79060;
+	leaderboard[3].score = 70400;
+	leaderboard[4].score = 68020;
+	leaderboard[5].score = 52039;
+	leaderboard[6].score = 44560;
+	leaderboard[7].score = 37050;
+	leaderboard[8].score = 20190;
+	leaderboard[9].score = 12340;
 
 	//Coin
-	leaderboard[0].coin = 05;
-	leaderboard[1].coin = 05;
-	leaderboard[2].coin = 05;
-	leaderboard[3].coin = 05;
-	leaderboard[4].coin = 05;
-	leaderboard[5].coin = 05;
-	leaderboard[6].coin = 05;
-	leaderboard[7].coin = 05;
-	leaderboard[8].coin = 05;
-	leaderboard[9].coin = 05;
+	leaderboard[0].coin = 3;
+	leaderboard[1].coin = 2;
+	leaderboard[2].coin = 4;
+	leaderboard[3].coin = 1;
+	leaderboard[4].coin = 9;
+	leaderboard[5].coin = 1;
+	leaderboard[6].coin = 7;
+	leaderboard[7].coin = 5;
+	leaderboard[8].coin = 5;
+	leaderboard[9].coin = 4;
 
 	//Name
-	leaderboard[0].name = "aaa";
-	leaderboard[1].name = "bbb";
-	leaderboard[2].name = "ccc";
-	leaderboard[3].name = "ddd";
-	leaderboard[4].name = "eee";
-	leaderboard[5].name = "fff";
-	leaderboard[6].name = "ggg";
-	leaderboard[7].name = "hhh";
-	leaderboard[8].name = "iii";
-	leaderboard[9].name = "jjj";
+	leaderboard[0].name = "lin";
+	leaderboard[1].name = "kh2";
+	leaderboard[2].name = "hdl";
+	leaderboard[3].name = "tpm";
+	leaderboard[4].name = "edu";
+	leaderboard[5].name = "miku";
+	leaderboard[6].name = "upc";
+	leaderboard[7].name = "eli";
+	leaderboard[8].name = "furry";
+	leaderboard[9].name = "ram";
 
 	insert_rank(App->interface_module->texture_num, App->interface_module->coinNum, App->inputname->myName);
 	return ret;
@@ -120,7 +120,17 @@ update_status ModuleRanking::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 	currentAnimation->Update();
+	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
+	}
 
+	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 

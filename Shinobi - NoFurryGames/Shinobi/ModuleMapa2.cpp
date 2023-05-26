@@ -61,7 +61,6 @@ update_status ModuleMapa2::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
 	}
 
-
 	return update_status::UPDATE_CONTINUE;
 }
 
