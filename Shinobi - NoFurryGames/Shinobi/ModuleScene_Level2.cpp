@@ -161,10 +161,6 @@ update_status ModuleScene_Level2::Update()
 	}
 
 
-	if (App->input->keys[SDL_SCANCODE_F8] == KEY_DOWN) {
-		Mix_FadeOutMusic(10);
-		App->fade->FadeToBlack(this, (Module*)App->mapa2, 20);
-	}
 	return update_status::UPDATE_CONTINUE;
 
 

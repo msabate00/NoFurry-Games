@@ -162,10 +162,6 @@ update_status ModuleScene_Level1::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
-		Mix_FadeOutMusic(10);
-		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
-	}
 	return update_status::UPDATE_CONTINUE;
 
 
