@@ -547,7 +547,8 @@ body .shell-main-bottom-bottom ul li {
 }
 
 body .shell-main-bottom-bottom ul li span {
-  font-size: 10px;
+      font-size: 20px;
+    text-align: center;
 }
 
 body .shell-main-bottom-bottom ul li:hover {
