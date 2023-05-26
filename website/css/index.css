@@ -79,7 +79,7 @@ body .shell-main-nav {
 }
 
 body .shell-main-nav .logo {
-  width: 220px;
+  width: 300px;
   height: 100%;
   position: absolute;
   left: 5%;
@@ -360,8 +360,9 @@ body .shell-main-header-right {
   width: 40%;
   height: 95%;
   background-size: cover;
-  background-image: url("../image/top.png");
+  background-image: url("../image/top.jpg");
   border: 5px solid #000;
+    background-position: center;
 }
 
 body .shell-main-content {
