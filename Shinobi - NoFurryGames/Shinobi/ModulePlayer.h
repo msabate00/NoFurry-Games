@@ -46,7 +46,7 @@ public:
 	float speed = 2;
 	int crouchedSpeed = 1;
 
-	float jumpForce = 4.8f;
+	float jumpForce = 5.5f;
 	float currJumpForce = 0;
 	float maxFallSpeed = -5;
 	bool isJumping = false;
