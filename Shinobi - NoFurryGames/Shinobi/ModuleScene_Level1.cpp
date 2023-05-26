@@ -161,6 +161,12 @@ update_status ModuleScene_Level1::Update()
 			App->boss_endLevel->Enable();
 		}
 	}
+
+
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
+		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+	}
+
 	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
 	}
