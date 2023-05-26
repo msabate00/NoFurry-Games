@@ -119,6 +119,11 @@ void Enemy::Update()
 			colliderRange->SetSize(currentAnim->GetCurrentFrame().w + attackRange * 2, currentAnim->GetCurrentFrame().h);
 		}
 
+
+		if (bang) 
+		{
+			cout << "BANG!" << endl;
+		}
 		
 }
 

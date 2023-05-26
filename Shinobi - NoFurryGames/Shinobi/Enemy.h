@@ -53,6 +53,8 @@ public:
 	bool boxCollision = false;
 	bool needsToAvoidFlip = false;
 
+	bool bang = false;	// Para el enemigo de la pistolita ;)
+
 	bool ignorePlayer;
 
 

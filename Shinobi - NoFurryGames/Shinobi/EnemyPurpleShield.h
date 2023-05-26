@@ -24,6 +24,8 @@ public:
 
 	int lifeCounter = 2;
 
+	int shotCounter = 300;
+
 
 private:
 	// The position (as ratio) in the wave at a specific moment
