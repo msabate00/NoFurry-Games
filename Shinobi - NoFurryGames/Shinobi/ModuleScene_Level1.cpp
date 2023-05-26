@@ -111,6 +111,9 @@ bool ModuleScene_Level1::Start()
 
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64, false ,true); //Enemigo básico 1
+	
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 365, FLOOR_LEVEL - 64, false, true); //Enemigo auxiliar
+
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64); //Enemigo básico 3
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4

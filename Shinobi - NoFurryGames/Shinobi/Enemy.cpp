@@ -123,6 +123,8 @@ void Enemy::Update()
 		if (bang) 
 		{
 			cout << "BANG!" << endl;
+			App->particles->AddParticle(App->particles->enemyShotL, position.x, position.y - currentAnim->GetCurrentFrame().h + 74, Collider::Type::ENEMY_SHOT, 0);
+
 		}
 		
 }
