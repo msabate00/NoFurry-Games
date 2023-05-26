@@ -145,10 +145,9 @@ void EnemyGun::Update()
 		jumpsNow = false;
 	}
 
-
-	// Disparos hacia la derecha
+	// Disparos hacia la izquierda
 		
-	if (facingLeft && (App->player->position.x + 150) > position.x)
+	if (facingLeft && (App->player->position.x + 150) > position.x && (App->player->isSecondFloor == false))
 	{
 		hasToShot = true;
 	}
@@ -169,14 +168,49 @@ void EnemyGun::Update()
 				shotCounter = 210;
 				bang = true;
 			}
-		}
-
-	//	App->particles->AddParticle(App->particles->enemyShotL, position.x + 46, position.y - currentAnim->GetCurrentFrame().h + 12, Collider::Type::ENEMY_SHOT, 0);
-	 
+		} 
 	}
+
 	else if (!hasToShot)
 	{
 		shotCounter = 210;
+	}
+
+	// Disparos hacia la derecha
+
+	if (!facingLeft && (App->player->position.x - 150) < position.x && (App->player->isSecondFloor == false))
+	{
+		hasToShot = true;
+	}
+	else hasToShot = false;
+
+	if (hasToShot && !facingLeft)
+	{
+		currentAnim = &firesGun;
+		position.x -= speed;
+
+		if (shotCounter > 0)
+		{
+			shotCounter--;
+			bang = false;
+
+			if (shotCounter == 0)
+			{
+				shotCounter = 210;
+				bang = true;
+			}
+		}
+	}
+
+	/*else if (!hasToShot)
+	{
+		shotCounter = 210;
+	}*/
+
+	if (App->player->destroyed)
+	{
+		hasToShot = false;
+		currentAnim = &walkBasic;
 	}
 
 	Enemy::Update();
