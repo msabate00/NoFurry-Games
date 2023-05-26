@@ -34,13 +34,7 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	firesGun.PushBack({ 95,351,47,60 });
 	firesGun.PushBack({ 57,243,47,60 });
 	firesGun.PushBack({ 124,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
-	firesGun.PushBack({ 184,243,47,60 });
+	firesGun.PushBack({ 124,243,47,60 });
 	firesGun.speed = 0.07f;
 	firesGun.loop = true;
 
@@ -152,7 +146,7 @@ void EnemyGun::Update()
 	}
 
 
-	// Disparos
+	// Disparos hacia la derecha
 		
 	if (facingLeft && (App->player->position.x + 150) > position.x)
 	{
@@ -160,26 +154,30 @@ void EnemyGun::Update()
 	}
 	else hasToShot = false;
 
-	if (hasToShot && facingLeft)
+	if (hasToShot && facingLeft)	
 	{
 		currentAnim = &firesGun;
 		position.x += speed;
 
-	//	App->particles->AddParticle(App->particles->enemyShotL, position.x + 46, position.y - currentAnim->GetCurrentFrame().h + 12, Collider::Type::ENEMY_SHOT, 0);
-		 
-	}
-
-	/*if (currentAnim->HasFinished())
-	{
-		currentAnim = &attackAnim;
-		if (currentAnim->HasFinished())
+		if (shotCounter > 0)
 		{
-			hasToShot = false;
+			shotCounter--;
+			bang = false;
+			
+			if (shotCounter == 0)
+			{
+				shotCounter = 210;
+				bang = true;
+			}
 		}
-	}*/
 
-
-	
+	//	App->particles->AddParticle(App->particles->enemyShotL, position.x + 46, position.y - currentAnim->GetCurrentFrame().h + 12, Collider::Type::ENEMY_SHOT, 0);
+	 
+	}
+	else if (!hasToShot)
+	{
+		shotCounter = 210;
+	}
 
 	Enemy::Update();
 }
