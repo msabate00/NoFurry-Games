@@ -298,13 +298,26 @@ update_status ModulePlayer::Update()
 {
 
 	
+	
+
+
+	//Aplica la gravedad a su altura
+	//position.y += GRAVITY;
+	currJumpForce += -GRAVITY;
+	float grav = GRAVITY;
+	if (currJumpForce < -grav) {
+		isJumping = true;
+	}
+	position.y -= currJumpForce;
+	
+
 	if (gameOver) {
 		timerGameover += App->deltaTime;
 		//cout << timerGameover << endl;
 		if (timerGameover >= 3000) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
-		App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 		}
 	}
 	if (isChangingZone) {
@@ -322,16 +335,6 @@ update_status ModulePlayer::Update()
 		return update_status::UPDATE_CONTINUE;
 	}
 
-
-	//Aplica la gravedad a su altura
-	//position.y += GRAVITY;
-	currJumpForce += -GRAVITY;
-	float grav = GRAVITY;
-	if (currJumpForce < -grav) {
-		isJumping = true;
-	}
-	position.y -= currJumpForce;
-	
 
 	if (isUlti) {
 
