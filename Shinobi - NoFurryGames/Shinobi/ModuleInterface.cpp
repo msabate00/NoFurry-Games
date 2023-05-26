@@ -115,7 +115,7 @@ update_status ModuleInterface::Update()
 	int elapsed_time = updateTimer(start_time);
 
 
-	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN && App->scene_MainMenu->IsEnabled()) {
 		if (coinNum == 9) {
 			coinNum = 9;
 		}
