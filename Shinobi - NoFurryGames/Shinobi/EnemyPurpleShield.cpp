@@ -61,6 +61,7 @@ void EnemyPurpleShield::Update()
 	if (App->player->isSecondFloor == false)
 	{
 		currentAnim = &staticAnim;
+		facingLeft = true;
 	}
 
 	if (App->player->isSecondFloor)

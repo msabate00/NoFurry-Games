@@ -47,6 +47,7 @@ bool ModuleEnemies::Start()
 	texture = App->textures->Load("Assets/Sprites/SpriteSheet_Enemies.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/EnemiesDie.wav");
 
+	
 	return true;
 }
 
