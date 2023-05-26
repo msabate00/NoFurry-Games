@@ -182,7 +182,7 @@ void ModuleBossEndLevel::SpawnFireball() {
 		
 		if (firstParticle) {
 			currentParticlePosition = fPoint(position.x, position.y - currentAnimation->GetCurrentFrame().h/2);
-			currentParticleDirection.x = particleSpeed;
+			currentParticleDirection.x = -particleSpeed;
 			currentParticleDirection.y = 0;
 			int ran = rand() % 3;
 			switch (ran) {

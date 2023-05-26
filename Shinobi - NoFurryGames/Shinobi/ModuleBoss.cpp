@@ -217,11 +217,25 @@ bool ModuleBoss::Start()
 	inmune = false;
 	dead = false;
 	timeContador = 0;
+	timeContador2 = 0;
 
 	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
 	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss");
 	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted");
 	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die");
+
+
+
+	currentParticleDirection = fPoint(0, 0);
+	currentParticlePosition = fPoint(0, 0);
+	firstParticle = true;
+
+
+	
+	currentParticleDirection2 = fPoint(0, 0);
+	currentParticlePosition2 = fPoint(0, 0);
+	firstParticle2 = true;
+
 
 	generalDying.Reset();
 

@@ -72,8 +72,14 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	//jump anim
 	jumpAnim.PushBack({ 10, 357, 33, 58 });
 	jumpAnim.PushBack({ 47, 357, 33, 58 });
+	jumpAnim.PushBack({ 47, 357, 33, 58 });
+	jumpAnim.PushBack({ 47, 357, 33, 58 });
+	jumpAnim.PushBack({ 47, 357, 33, 58 });
+	jumpAnim.PushBack({ 47, 357, 33, 58 });
 	jumpAnim.PushBack({ 84, 357, 33, 58 });
+
 	jumpAnim.speed = 0.035f;
+	jumpAnim.loop = false;
 
 	jumpAttackAnim.PushBack({ 190, 357, 49, 59 });
 	jumpAttackAnim.PushBack({ 243, 357, 49, 59 });
@@ -128,7 +134,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	PistolaforwardAnim.PushBack({ 524, 112, 35, 60 });
 	PistolaforwardAnim.PushBack({ 563, 112, 35, 60 });
 	PistolaforwardAnim.PushBack({ 602, 112, 35, 60 });
-	PistolaforwardAnim.speed = 0.1f;
+	PistolaforwardAnim.speed = 0.17f;
 
 	Pistolacrouched_idleAnim.PushBack({ 506, 210, 42, 36 });
 	Pistolacrouched_idleAnim.speed = 0.2f;
@@ -145,6 +151,11 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 
 	PistolajumpAnim.PushBack({ 423, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
+	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
 	PistolajumpAnim.PushBack({ 462, 357, 35, 58 });
 	PistolajumpAnim.PushBack({ 501, 357, 35, 58 });
 	PistolajumpAnim.speed = 0.035f;
@@ -287,13 +298,26 @@ update_status ModulePlayer::Update()
 {
 
 	
+	
+
+
+	//Aplica la gravedad a su altura
+	//position.y += GRAVITY;
+	currJumpForce += -GRAVITY;
+	float grav = GRAVITY;
+	if (currJumpForce < -grav) {
+		isJumping = true;
+	}
+	position.y -= currJumpForce;
+	
+
 	if (gameOver) {
 		timerGameover += App->deltaTime;
 		//cout << timerGameover << endl;
 		if (timerGameover >= 3000) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
-		App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 		}
 	}
 	if (isChangingZone) {
@@ -311,16 +335,6 @@ update_status ModulePlayer::Update()
 		return update_status::UPDATE_CONTINUE;
 	}
 
-
-	//Aplica la gravedad a su altura
-	//position.y += GRAVITY;
-	currJumpForce += -GRAVITY;
-	float grav = GRAVITY;
-	if (currJumpForce < -grav) {
-		isJumping = true;
-	}
-	position.y -= currJumpForce;
-	
 
 	if (isUlti) {
 
@@ -706,6 +720,9 @@ update_status ModulePlayer::Update()
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && !isJumping) {
 		App->audio->PlayFx(saltarFX);
+		jumpAnim.Reset();
+		PistolajumpAnim.Reset();
+
 		isJumping = true;
 		currJumpForce = jumpForce;
 		

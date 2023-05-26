@@ -131,13 +131,13 @@
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+      <Filter>Source Files\Modules\Gameplay\Entities</Filter>
     </ClCompile>
     <ClCompile Include="ModuleHostage.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+      <Filter>Source Files\Modules\Gameplay\Entities</Filter>
     </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+      <Filter>Source Files\Modules\Gameplay\Entities</Filter>
     </ClCompile>
     <ClCompile Include="ModuleBossEndLevel.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
@@ -280,13 +280,13 @@
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+      <Filter>Source Files\Modules\Gameplay\Entities</Filter>
     </ClInclude>
     <ClInclude Include="ModuleHostage.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+      <Filter>Source Files\Modules\Gameplay\Entities</Filter>
     </ClInclude>
     <ClInclude Include="ModulePlayer.h">
-      <Filter>Source Files\Modules\Gameplay\Scenes\Entities</Filter>
+      <Filter>Source Files\Modules\Gameplay\Entities</Filter>
     </ClInclude>
     <ClInclude Include="ModuleBossEndLevel.h">
       <Filter>Source Files\Modules\Gameplay\Scenes\Boss</Filter>
@@ -371,7 +371,7 @@
     <Filter Include="Source Files\Resource Files">
       <UniqueIdentifier>{bb6b0c0d-b113-4377-bfbc-5c023888d8b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Modules\Gameplay\Scenes\Entities">
+    <Filter Include="Source Files\Modules\Gameplay\Entities">
       <UniqueIdentifier>{306b9962-84af-4fc0-815d-ee0934e4a902}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
