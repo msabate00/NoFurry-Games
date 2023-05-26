@@ -127,7 +127,6 @@ void Enemy::Draw()
 	
 	/*if (currentAnim != nullptr) 
 	{
-		
 		App->render->Blit(texture, position.x, position.y, SDL_FLIP_NONE, &(currentAnim->GetCurrentFrame()));
 	}*/
 
