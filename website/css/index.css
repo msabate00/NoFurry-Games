@@ -61,6 +61,7 @@ body .shell-main::after {
   width: 250px;
   height: 50%;
   background-image: linear-gradient(to bottom, #6B6B35, #6B6B35, #6B6B35);
+
   position: absolute;
   transform: translate(145%);
   z-index: -999;
@@ -286,7 +287,7 @@ body .shell-main-header-left::before {
   content: '';
   width: 250px;
   height: 250px;
-  border: 20px solid rgba(0, 255, 255, 0.3);
+  border: 20px solid #6B6B35;
   position: absolute;
   bottom: -30px;
   left: -140px;
@@ -477,14 +478,14 @@ body .shell-main-bottom {
 
 body .shell-main-bottom h2 {
   font: 100 34px 'font';
-  color: #48afa5;
+  color: #d40000;
   letter-spacing: 5px;
   margin-left: 100px;
 }
 
 body .shell-main-bottom h2 span {
   font-size: 80px;
-  color: turquoise;
+ color: #F80000;
 }
 
 body .shell-main-bottom-bottom {
