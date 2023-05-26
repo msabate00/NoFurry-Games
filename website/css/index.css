@@ -18,8 +18,9 @@ body .shell-top .word {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 700px;
-  height: 220px;
+      width: 800px;
+    text-align: center;
+
   border: solid 10px rgba(255, 255, 255, 0.199);
   display: flex;
   justify-content: center;
@@ -49,7 +50,7 @@ body .shell-main::before {
   content: '';
   width: 250px;
   height: 50%;
-  background-image: linear-gradient(to bottom, #a1e6ff, #a8ffe2, #a1e6ff);
+  background-image: linear-gradient(to bottom, #6B6B35, #6B6B35, #6B6B35);
   position: absolute;
   transform: translate(-145%, 0);
   z-index: -999;
@@ -287,7 +288,7 @@ body .shell-main-header-left::before {
   content: '';
   width: 250px;
   height: 250px;
-  border: 20px solid #6B6B35;
+  border: 20px solid #6B6B354d;
   position: absolute;
   bottom: -30px;
   left: -140px;
@@ -341,11 +342,12 @@ body .shell-main-header-left-top h2 {
 }
 
 body .shell-main-header-left-top span {
-  -webkit-text-fill-color: rgba(0, 0, 0, 0.2);
-  -webkit-text-stroke-color: #3aaf88;
-  -webkit-text-stroke-width: 1px;
-  margin-left: 20px;
-  font: 600 40px '';
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.2);
+    -webkit-text-stroke-color: #ffffff;
+    -webkit-text-stroke-width: 1px;
+    margin-left: 43px;
+    font: 600 75px '';
+    margin-top: -15px;
 }
 
 body .shell-main-header-left-bottom {
@@ -501,7 +503,7 @@ body .shell-main-bottom-bottom::before {
   content: '';
   width: 250px;
   height: 250px;
-  border: 20px solid rgba(0, 255, 255, 0.3);
+  border: 20px solid #6B6B354d;
   position: absolute;
   border-radius: 10px;
   right: 70px;
@@ -591,7 +593,7 @@ body .shell-main-image {
 
 body .shell-main-image h2 {
   font-size: 30px;
-  color: turquoise;
+  color: #d40000;
 }
 
 body .shell-main-image span {
@@ -609,6 +611,7 @@ body .shell-main-image-left {
   left: 100px;
   top: 200px;
   width: 320px;
+    z-index: 10000;
 }
 
 body .shell-main-image-right {
@@ -616,6 +619,7 @@ body .shell-main-image-right {
   right: 5px;
   top: 675px;
   width: 600px;
+    z-index: 10000;
 }
 
 body .shell-main-image-auto {
