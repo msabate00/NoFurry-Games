@@ -70,6 +70,8 @@ public:
 
 	Particle ultiNegro;
 	Particle ultiEspada;
+	Particle ultiTornado;
+	Particle ultiTornadoatack;
 	Particle ulti;
 
 	Particle shurikenR;

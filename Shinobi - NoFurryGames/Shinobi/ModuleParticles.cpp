@@ -145,8 +145,61 @@ bool ModuleParticles::Start()
 	ultiEspada.lifetime = 90;
 	ultiEspada.speed = fPoint(0, 0);
 
-	ultiNegro.anim.PushBack({ 445, 1110, 20, 58 });
+	
+	
+	ultiTornado.anim.PushBack({ 528, 2098, 44, 208 });
+	ultiTornado.anim.PushBack({ 578, 2098, 44, 208 });
+	ultiTornado.anim.PushBack({ 628, 2098, 44, 208 });
+	ultiTornado.anim.PushBack({ 678, 2098, 44, 208 });
+	ultiTornado.anim.PushBack({ 728, 2098, 44, 208 });
+	ultiTornado.anim.PushBack({ 28, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 78, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 128, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 178, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 228, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 278, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 328, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 378, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 428, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 478, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 528, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 578, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 628, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 678, 2312, 44, 208 });
+	ultiTornado.anim.PushBack({ 728, 2312, 44, 208 });
 
+	ultiTornado.anim.PushBack({ 28, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 78, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 128, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 178, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 228, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 278, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 328, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 378, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 428, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 478, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 528, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 578, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 628, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 678, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 728, 2526, 44, 208 });
+
+	ultiTornado.anim.loop = false;
+	ultiTornado.anim.speed = 0.03f;
+	ultiTornado.lifetime = 9000;
+	ultiTornado.speed = fPoint(0, 0);
+
+	ultiTornadoatack.anim.PushBack({ 626, 1157, 33, 11 });
+	ultiTornadoatack.anim.PushBack({ 665, 1157, 33, 11 });
+	ultiTornadoatack.anim.PushBack({ 704, 1157, 33, 11 });
+	ultiTornadoatack.anim.PushBack({ 743, 1157, 33, 11 });
+
+	ultiTornadoatack.anim.loop = true;
+	ultiTornadoatack.anim.speed = 0.3f;
+	ultiTornadoatack.lifetime = 90;
+	ultiTornadoatack.speed = fPoint(0, 0);
+
+	ultiNegro.anim.PushBack({ 445, 1110, 20, 58 });
 	ultiNegro.anim.PushBack({ 0, 0, 0, 0 });
 
 	ultiNegro.anim.loop = true;
@@ -224,7 +277,7 @@ bool ModuleParticles::Start()
 	enemyShotR.anim.loop = true;
 	enemyShotR.anim.speed = 0.3f;
 	enemyShotR.lifetime = 80;
-	enemyShotR.speed = fPoint(-4, 0);
+	enemyShotR.speed = fPoint(4, 0);
 
 
 
