@@ -648,6 +648,7 @@ body .shell-main-image-img img:nth-child(1) {
   height: 470px;
   transform: translate(-170px, 200px);
   z-index: 9;
+  border: 5px solid #000;
 }
 
 body .shell-main-image-img img:nth-child(2) {
@@ -655,6 +656,7 @@ body .shell-main-image-img img:nth-child(2) {
   height: 400px;
   z-index: 8;
   transform: translate(0px, -100px);
+  border: 5px solid #000;
 }
 
 body .shell-main-image-img img:nth-child(3) {
@@ -663,6 +665,7 @@ body .shell-main-image-img img:nth-child(3) {
   height: 400px;
   /* right: 667px; */
   transform: translate(399px, 0px);
+  border: 5px solid #000;
 }
 
 
