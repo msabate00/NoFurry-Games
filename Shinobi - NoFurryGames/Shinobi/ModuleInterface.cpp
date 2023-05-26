@@ -556,7 +556,7 @@ void ModuleInterface::printLifeIcon(int life) {
 
 
 	int IconPosition = 350;
-	for (int i = 0; i < life; i++)
+	for (int i = 0; i < life-1; i++)
 	{
 		App->render->Blit(LifeIcon, SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 200, SDL_FLIP_NONE, nullptr, 0);
 		IconPosition -= 8;
