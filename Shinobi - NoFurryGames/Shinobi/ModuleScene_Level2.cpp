@@ -70,8 +70,17 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 288, 186, 35, 15 }, Collider::Type::BOX_HELP); //1 caja
 	App->collisions->AddCollider({ 283, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //1 caja
 
+	App->collisions->AddCollider({ 571, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - IZQUIERDA
+	App->collisions->AddCollider({ 608, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - DERECHA
 
-	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
+	App->collisions->AddCollider({ 891, 186, 35, 15 }, Collider::Type::BOX_HELP); //MONTON 1 - IZQUIERDA
+	App->collisions->AddCollider({ 960, 186, 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1024, 186, 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1120, 186, 35, 15 }, Collider::Type::BOX_HELP);
+
+
+
+	App->collisions->AddCollider({ 576, 184, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
 	App->collisions->AddCollider({ 896, 183, 512, 32 }, Collider::Type::WALL); // Fila Cajas Abajo
 	App->collisions->AddCollider({ 960, 151, 352, 32 }, Collider::Type::WALL); // Fila Cajas Medio

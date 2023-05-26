@@ -938,10 +938,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	else {
 		enemyInRange = false;
 	}
-
-
-
-
 }
 
 bool ModulePlayer::CleanUp() {
