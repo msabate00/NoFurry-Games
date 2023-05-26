@@ -252,8 +252,8 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
-	rangeCollider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER_RANGE, this);
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 32, 16 }, Collider::Type::PLAYER, this);
+	rangeCollider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 32, 16 }, Collider::Type::PLAYER_RANGE, this);
 
 	position.x = 100;
 	position.y = FLOOR_LEVEL;
