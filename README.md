@@ -2,7 +2,7 @@
 
 
 
-No Furry Games is a project team of the subject “Project I” in CITM University: Videogames Design & Developments degree. The first job of this team is to recreate the arcade game Shinobi using SDL.
+No Furry Games is a project team of the subject “Project I” in CITM University: Videogames Design & Developments degree. The first job of this team is to recreate the arcade game Shinobi using SDL. *[Website](https://msabate00.github.io/NoFurry-Games/)
 
 <br>
 <img src="https://user-images.githubusercontent.com/71668554/222898635-b7081866-73b9-4812-b494-af6adea35345.png" width="300px">
@@ -61,6 +61,4 @@ Was a game that required above average skill as it did not have the same versati
 <li><a href="https://github.com/msabate00/NoFurry-Games/wiki/Audio">Audio</a></li>
 </ul>
 
-                  </div>
-                </div>
-              </div>
+               
