@@ -224,7 +224,7 @@ bool ModuleParticles::Start()
 	enemyShotR.anim.loop = true;
 	enemyShotR.anim.speed = 0.3f;
 	enemyShotR.lifetime = 80;
-	enemyShotR.speed = fPoint(-4, 0);
+	enemyShotR.speed = fPoint(4, 0);
 
 
 

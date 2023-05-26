@@ -120,11 +120,14 @@ void Enemy::Update()
 		}
 
 
-		if (bang) 
+		if (bang && facingLeft) 
 		{
-			cout << "BANG!" << endl;
-			App->particles->AddParticle(App->particles->enemyShotL, position.x, position.y - currentAnim->GetCurrentFrame().h + 74, Collider::Type::ENEMY_SHOT, 0);
+			App->particles->AddParticle(App->particles->enemyShotL, position.x, position.y - currentAnim->GetCurrentFrame().h + 78, Collider::Type::ENEMY_SHOT, 0);
+		}
 
+		else if (bang && !facingLeft)
+		{
+			App->particles->AddParticle(App->particles->enemyShotR, position.x + 20, position.y - currentAnim->GetCurrentFrame().h + 78, Collider::Type::ENEMY_SHOT, 0);
 		}
 		
 }
