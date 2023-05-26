@@ -60,7 +60,7 @@ body .shell-main::after {
   content: '';
   width: 250px;
   height: 50%;
-  background-image: linear-gradient(to bottom, #a1e6ff, #a8ffe2, #a1e6ff);
+  background-image: linear-gradient(to bottom, #6B6B35, #6B6B35, #6B6B35);
   position: absolute;
   transform: translate(145%);
   z-index: -999;
@@ -267,7 +267,7 @@ body .shell-main-header-left {
   align-items: center;
   flex-direction: column;
   box-shadow: 0 0 15px rgba(95, 95, 95, 0.5);
-  background-color: white;
+  background-color: #C29460;
   overflow: hidden;
 }
 
