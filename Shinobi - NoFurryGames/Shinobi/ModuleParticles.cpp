@@ -183,10 +183,25 @@ bool ModuleParticles::Start()
 	ultiTornado.anim.PushBack({ 628, 2526, 44, 208 });
 	ultiTornado.anim.PushBack({ 678, 2526, 44, 208 });
 	ultiTornado.anim.PushBack({ 728, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 28, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 78, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 128, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 178, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 228, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 278, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 328, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 378, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 428, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 478, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 528, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 578, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 628, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 678, 2526, 44, 208 });
+	ultiTornado.anim.PushBack({ 728, 2526, 44, 208 });
 
 	ultiTornado.anim.loop = false;
-	ultiTornado.anim.speed = 0.03f;
-	ultiTornado.lifetime = 9000;
+	ultiTornado.anim.speed = 0.5f;
+	ultiTornado.lifetime = 105;
 	ultiTornado.speed = fPoint(0, 0);
 
 	ultiTornadoatack.anim.PushBack({ 626, 1157, 33, 11 });

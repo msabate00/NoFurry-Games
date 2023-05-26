@@ -9,6 +9,7 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleCollisions.h"
+#include "ModuleScene_Boss1.h"
 #include "ModuleMapa2.h"
 #include "ModuleAudio.h"
 #include "Collider.h"
@@ -331,17 +332,34 @@ update_status ModulePlayer::Update()
 
 		if (ultiEspadaAnim.HasFinished()) {
 
-			/*App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(10, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(0, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-10, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(5, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-5, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
-			*/
-			App->particles->AddParticle(App->particles->ultiTornado, position.x, 10, fPoint(0, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+			if(App->scene_Level1->IsEnabled() || App->scene_Boss1->IsEnabled())
+			{
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(10, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(0, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-10, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(5, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-5, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -10), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(-15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiEspada, position.x, position.y - currentAnimation->GetCurrentFrame().h + 12, fPoint(15, -5), Collider::Type::PLAYER_SWORD_ULTI, 0);
+			}
+			else if (App->scene_Level2->IsEnabled()) {
+
+				App->particles->AddParticle(App->particles->ultiTornado, position.x, 10, fPoint(0, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 13, fPoint(7, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 90, fPoint(3, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 180, fPoint(8, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 50, fPoint(9, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 77, fPoint(13, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 33, fPoint(15, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 133, fPoint(-8, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 100, fPoint(-2, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 164, fPoint(-14, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+				App->particles->AddParticle(App->particles->ultiTornadoatack, position.x, 69, fPoint(-16, 0), Collider::Type::PLAYER_SWORD_ULTI, 0);
+
+			}
 			
 			if (!App->boss->IsEnabled()) {
 				App->enemy->KillAll();
@@ -938,10 +956,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	else {
 		enemyInRange = false;
 	}
-
-
-
-
 }
 
 bool ModulePlayer::CleanUp() {
