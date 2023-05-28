@@ -61,9 +61,9 @@ bool ModuleScene_Intro2::Start()
 
 update_status ModuleScene_Intro2::Update()
 {
-
+	GamePad& pad = App->input->pads[0];
 	
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
 

@@ -47,10 +47,10 @@ bool ModuleMapa3::Start()
 
 update_status ModuleMapa3::Update()
 {
-
+	GamePad& pad = App->input->pads[0];
 	App->interface_module->timer += App->deltaTime;
 
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 3000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b || App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer();
 		App->interface_module->gameChange = true;
 		App->interface_module->spacePoint = true;

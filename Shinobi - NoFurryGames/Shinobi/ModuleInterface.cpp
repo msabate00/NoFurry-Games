@@ -111,11 +111,12 @@ update_status ModuleInterface::PreUpdate()
 
 update_status ModuleInterface::Update()
 {
+	GamePad& pad = App->input->pads[0];
 
 	int elapsed_time = updateTimer(start_time);
 
 
-	if (App->input->keys[SDL_SCANCODE_1] == KEY_DOWN && App->scene_MainMenu->IsEnabled()) {
+	if ((App->input->keys[SDL_SCANCODE_1] == KEY_DOWN || pad.start) && App->scene_MainMenu->IsEnabled()) {
 		if (coinNum == 9) {
 			coinNum = 9;
 		}

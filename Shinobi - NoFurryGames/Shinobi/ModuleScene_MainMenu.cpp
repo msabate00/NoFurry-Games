@@ -80,12 +80,12 @@ bool ModuleScene_MainMenu::Start()
 
 update_status ModuleScene_MainMenu::Update()
 {
-
+	GamePad& pad = App->input->pads[0];
 	App->life_num = 3;
 
 
 	
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN && App->interface_module->coinNum > 0)
+	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a ||pad.b) && App->interface_module->coinNum > 0)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->mision1, 2);
 

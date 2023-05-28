@@ -50,10 +50,10 @@ bool ModuleMapaV::Start()
 
 update_status ModuleMapaV::Update()
 {
-
+	GamePad& pad = App->input->pads[0];
 	App->interface_module->timer += App->deltaTime;
 
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || App->interface_module->timer >= 5000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN  || pad.a || pad.b || App->interface_module->timer >= 5000) {
 		App->fade->FadeToBlack(this, (Module*)App->inputname, 20);
 	}
 
