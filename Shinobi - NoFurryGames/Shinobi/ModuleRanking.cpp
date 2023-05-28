@@ -113,9 +113,9 @@ bool ModuleRanking::Start()
 
 update_status ModuleRanking::Update()
 {
+	GamePad& pad = App->input->pads[0];
 
-
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b) {
 		App->interface_module->coinNum = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
 	}
