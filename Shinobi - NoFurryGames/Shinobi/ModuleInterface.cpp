@@ -510,7 +510,7 @@ double ModuleInterface::letraGetY() {
 	else {
 		letraY = CENTER_Y + B * cos(angle * M_PI / 270.0);
 		angle += ROTATION_SPEED;
-		B = B - 0.6, 5;
+		B = B - 0.6;
 		//cout << "Y: " << letraY << endl;
 	}
 
