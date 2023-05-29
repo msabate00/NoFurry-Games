@@ -69,6 +69,10 @@ public:
 	int marginCollider = 10;
 	int rangeLength = 8;
 
+
+	//Mando
+	bool x_pressed = false;
+
 	
 
 	// The player spritesheet loaded into an SDL_Texture

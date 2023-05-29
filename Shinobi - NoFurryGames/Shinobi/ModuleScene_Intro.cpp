@@ -71,7 +71,7 @@ update_status ModuleScene_Intro::Update()
 		App->audio->PlayMusic("Assets/Audio/Music/Mission 1-1.ogg");
 	}
 
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Intro2, 20);
 	}
 

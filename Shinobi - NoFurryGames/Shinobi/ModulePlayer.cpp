@@ -454,7 +454,7 @@ update_status ModulePlayer::Update()
 
 	//CAMBIANDO DE ALTURA
 	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b) &&
-		(App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT || pad.l_y < -0.2f) &&
+		(App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT || pad.l_y < -0.2f || pad.up) &&
 		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y > 110 && App->scene_Level1->IsEnabled()) {
 		
 
@@ -468,7 +468,7 @@ update_status ModulePlayer::Update()
 	}
 
 	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b) &&
-		(App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) &&
+		(App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) &&
 		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y <= 110 && App->scene_Level1->IsEnabled()) {
 		
 		
@@ -536,11 +536,11 @@ update_status ModulePlayer::Update()
 			{
 				currentAnimation = &PistolajumpAttackAnim;
 			}
-			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || pad.l_x > 0.2f) {
+			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || pad.l_x > 0.2f || pad.right) {
 				position.x += speed;
 				facingRight = true;
 			}
-			else if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || pad.l_x < -0.2f) {
+			else if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || pad.l_x < -0.2f || pad.left) {
 				position.x -= speed;
 				facingRight = false;
 			}
@@ -628,12 +628,12 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT || pad.l_y < -0.2f) {
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT || pad.l_y < -0.2f || pad.up) {
 		currentAnimation = &watching_UpAnimation;
 	}
 
 	//MOVERSE A LA DERECHA
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || pad.l_x > 0.2f)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || pad.l_x > 0.2f || pad.right)
 	{
 		if (!holdingGun) {
 			currentAnimation = &forwardAnim;
@@ -647,7 +647,7 @@ update_status ModulePlayer::Update()
 	}
 
 	//MOVERSE A LA IZQUIERDA
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || pad.l_x < -0.2f)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || pad.l_x < -0.2f || pad.left)
 	{
 		if (!holdingGun) {
 			currentAnimation = &forwardAnim;
@@ -660,7 +660,7 @@ update_status ModulePlayer::Update()
 		facingRight = false;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) {
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) {
 		if (!holdingGun) {
 			currentAnimation = &crouched_idleAnim;
 		}
@@ -676,7 +676,7 @@ update_status ModulePlayer::Update()
 		}
 
 
-		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || pad.l_x < -0.2f || pad.l_x > 0.2f) {
+		if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || pad.l_x < -0.2f || pad.l_x > 0.2f || pad.right || pad.left) {
 			
 			if (!holdingGun) {
 				currentAnimation = &crouched_forwardAnim;
@@ -684,7 +684,7 @@ update_status ModulePlayer::Update()
 			else {
 				currentAnimation = &Pistolacrouched_forwardAnim;
 			}
-			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || pad.l_x > 0.2f) {
+			if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || pad.l_x > 0.2f || pad.right) {
 				position.x -= crouchedSpeed;
 			}
 			else {
@@ -747,7 +747,9 @@ update_status ModulePlayer::Update()
 
 
 	//ATAQUE SHURIKEN
-	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN || pad.x) {
+	
+	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN || pad.x_down) {
+		
 		App->audio->PlayFx(shurikenAtaqueFX);
 		App->interface_module->spacePoint = false;
 		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) {
@@ -777,6 +779,9 @@ update_status ModulePlayer::Update()
 			}
 		}
 	}
+
+
+
 
 
 

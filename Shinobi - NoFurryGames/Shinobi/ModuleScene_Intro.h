@@ -47,6 +47,8 @@ public:
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
 
+	
+
 };
 
 #endif

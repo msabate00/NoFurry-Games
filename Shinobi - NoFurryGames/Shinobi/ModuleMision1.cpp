@@ -62,7 +62,7 @@ update_status ModuleMision1::Update()
 	GamePad& pad = App->input->pads[0];
 	mis1Jumptimer += App->deltaTime;
 	
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b || mis1Jumptimer >= 3000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down || mis1Jumptimer >= 3000) {
 		mis1Jumptimer = 999999;
 		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
 	}
