@@ -55,15 +55,10 @@ public:
 	std::string str_cache = "";
 	Uint32 last_time = 0;
 
-	//Efectos
-	uint typewriterFX;
-	uint ONE_FX;
-	uint Mision_FinishedFX;
-	uint Mision_soundFX;
 
+	uint Mission1FX = 0;
 	bool EfectoSonidoMision = true;
-	bool EfectoSonidoONE = true;
-	bool EfectoSonidoTypewriter = true;
+
 
 	float mis1Jumptimer = 0.0f;
 
