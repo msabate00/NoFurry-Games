@@ -520,7 +520,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-
+	
 	
 
 	if (isAttacking) {
@@ -548,10 +548,11 @@ update_status ModulePlayer::Update()
 
 		}
 		else {
-
+			
 			if (enemyInRange) {
 				//ANIMACION DE ATAQUE KATANA HACER
 				currentAnimation = &EspadaAnim;
+				ComprobarataqueFX = true;
 				inmune = true;
 
 			}else if (!holdingGun) {
@@ -590,11 +591,9 @@ update_status ModulePlayer::Update()
 
 		if (enemyInRange && !holdingGun) {
 			//ANIMACION DE ATAQUE KATANA HACER
-
-			
 			inmune = true;
 			currentAnimation = &PatadaAnim;
-
+			ComprobarataqueFX = true;
 		}
 		else if (enemyInRange && holdingGun) {
 			currentAnimation = &EspadaCrouchAnim;
@@ -626,8 +625,13 @@ update_status ModulePlayer::Update()
 			return update_status::UPDATE_CONTINUE;
 		}
 	}
-
-
+	/* Sonido Ataque katana
+	if (ComprobarataqueFX)
+	{
+		App->audio->PlayFx(ataqueFX);
+		ComprobarataqueFX = false;
+	}
+	*/
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT || pad.l_y < -0.2f || pad.up) {
 		currentAnimation = &watching_UpAnimation;
 	}

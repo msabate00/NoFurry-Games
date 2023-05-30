@@ -138,6 +138,8 @@ public:
 	uint ataqueFX = 0;
 	uint morirFX = 0;
 	uint efectoSaltoPlataformaFX = 0;
+	bool ComprobarataqueFX = false;
+
 
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
