@@ -79,6 +79,8 @@ public:
 	int letraposX;
 	int letraposY;
 
+	uint scoreboardFX = 0;
+
 	char myName[4];
 	int myNamelist = 0;
 

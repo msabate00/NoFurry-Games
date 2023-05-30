@@ -60,7 +60,7 @@ public:
 	bool facingRight = false;
 	bool triggered = false;
 	
-
+	uint BoladeFuegoFX = 0;
 
 	float particleSpeed = 2.0f;
 	float particleAdjustmen = 0.03f;

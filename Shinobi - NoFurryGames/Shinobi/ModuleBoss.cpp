@@ -248,6 +248,7 @@ update_status ModuleBoss::Update()
 	//App->particlesBoss->DestroyCollision(fireBallParticle);
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
 	}
 
 	if (dead) {
@@ -266,6 +267,7 @@ update_status ModuleBoss::Update()
 			if (timerChangeFinal >= 5000 || App->interface_module->remaining_time == 0) {
 				App->interface_module->gameChange = true;
 				App->fade->FadeToBlack(App->activeModule, App->mapaV);
+				App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
 			}
 		}
 		current_head_Animation->Update();
@@ -282,7 +284,7 @@ update_status ModuleBoss::Update()
 	//BOLA DI FOGO 1
 	int aux = BOSS_PARTICLE_DURATION;
 	if (timeContador % aux == 0) {
-
+		App->audio->PlayFx(RecieveDamageFX);
 		//animacion ataque
 		if (attacking == -1) {
 			int ran = (rand() % 2) + 1; //1-3
@@ -367,7 +369,7 @@ update_status ModuleBoss::Update()
 
 	if (timeContador2 % (aux+30) == 0) {
 		firstParticle2 = true;
-		
+		App->audio->PlayFx(FuegoFX);
 		if (firstParticle2) {
 			
 			currentParticlePosition2 = fPoint(position.x, position.y+20);

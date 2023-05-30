@@ -58,6 +58,7 @@ update_status ModuleMapa3::Update()
 		App->interface_module->spacePoint = true;
 		App->interface_module->timerPR = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
+		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
 	}
 
 	return update_status::UPDATE_CONTINUE;

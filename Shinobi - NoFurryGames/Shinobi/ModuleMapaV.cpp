@@ -38,6 +38,7 @@ bool ModuleMapaV::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
 
 	MapaX = -20;
 	MapaY = -130;
