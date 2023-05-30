@@ -60,6 +60,7 @@ bool ModuleInputName::Start()
 	dardosRed = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosRed.png");
 	ED = App->textures->Load("Assets/Interface/Color_use/SkillIcon/ED.png");
 
+	scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX.wav");
 	return ret;
 }
 
@@ -70,15 +71,18 @@ update_status ModuleInputName::Update()
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_DOWN || pad.l_y < -0.2f || pad.up_down) {
 
 		if (dardosPositionY < 185) {
+			App->audio->PlayFx(scoreboardFX);
 			dardosPositionY += 30;
 		}
 	}
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_DOWN || pad.l_y > 0.2f || pad.down_down) {
 		if (dardosPositionX == 215 && dardosPositionY == 65) {
+			App->audio->PlayFx(scoreboardFX);
 			dardosPositionY -= 30;
 		}
 		else {
 			if (dardosPositionY > 65) {
+				App->audio->PlayFx(scoreboardFX);
 				dardosPositionY -= 30;
 			}
 		}
@@ -88,6 +92,7 @@ update_status ModuleInputName::Update()
 		if (dardosPositionX == 215 && dardosPositionY == 35) {}
 		else {
 			if (dardosPositionX < 335 ) {
+				App->audio->PlayFx(scoreboardFX);
 				dardosPositionX += 40;
 			}
 		}
@@ -97,6 +102,7 @@ update_status ModuleInputName::Update()
 		if (dardosPositionX == 215 && dardosPositionY == 35) {}
 		else {
 			if (dardosPositionX > 95) {
+				App->audio->PlayFx(scoreboardFX);
 				dardosPositionX -= 40;
 			}
 		}
