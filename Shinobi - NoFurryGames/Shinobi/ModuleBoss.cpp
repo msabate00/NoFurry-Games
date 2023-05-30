@@ -283,8 +283,9 @@ update_status ModuleBoss::Update()
 
 	//BOLA DI FOGO 1
 	int aux = BOSS_PARTICLE_DURATION;
+	App->audio->PlayFx(FuegoFX);
 	if (timeContador % aux == 0) {
-		App->audio->PlayFx(RecieveDamageFX);
+
 		//animacion ataque
 		if (attacking == -1) {
 			int ran = (rand() % 2) + 1; //1-3
