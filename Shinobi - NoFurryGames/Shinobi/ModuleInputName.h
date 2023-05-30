@@ -81,6 +81,8 @@ public:
 
 	char myName[4];
 	int myNamelist = 0;
+
+	char namecharacter[2] = "";
 };
 
 #endif

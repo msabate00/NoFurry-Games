@@ -45,6 +45,8 @@ bool ModuleMapaV::Start()
 
 	currentAnimation = &backgroundAnim;
 
+	timerMapaV = 0.0f;
+
 	return ret;
 }
 
@@ -71,9 +73,9 @@ update_status ModuleMapaV::PostUpdate()
 
 
 void ModuleMapaV::printMapaV() {
-	App->interface_module->timer += App->deltaTime;
+	timerMapaV += App->deltaTime;
 
-	if (App->interface_module->timer >= 1000) {
+	if (timerMapaV >= 1000) {
 		App->render->Blit(mapaRed, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		
 		if (MapaX < 118 && MapaX > 112 && MapaY < 8 && MapaY > 2 ) {
@@ -81,11 +83,11 @@ void ModuleMapaV::printMapaV() {
 			mapaVJumptimer += App->deltaTime;
 			MapaX = 115;
 			MapaY = 5;
-			if (mapaVJumptimer >= 500) {
+			if (mapaVJumptimer >= 1000) {
 				
 				App->render->Blit(mapaVictoria, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 			}
-			if (mapaVJumptimer >= 1000) {
+			if (mapaVJumptimer >= 2000) {
 
 				MapaX += 16;
 				MapaY += 16;

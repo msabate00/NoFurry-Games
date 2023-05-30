@@ -220,7 +220,7 @@ update_status ModuleInterface::PostUpdate()
 			
 	}
 	else if (App->scene_Level2->IsEnabled()) {
-
+		timerPR += App->deltaTime;
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
 		if (App->player->haveUlti) {
@@ -245,7 +245,7 @@ update_status ModuleInterface::PostUpdate()
 				App->interface_module->remaining_time = 0;
 			}
 		}
-		timerPR += App->deltaTime;
+		
 		
 
 		if (timerPR <= 1000) {
@@ -281,6 +281,7 @@ update_status ModuleInterface::PostUpdate()
 	}
 	else if (App->scene_Boss1->IsEnabled()) {
 		//INTERFAZ PARA EL JEFE
+		timerPR += App->deltaTime;
 		if (App->player->haveUlti) {
 			printSkillIcon();
 		}
@@ -299,6 +300,18 @@ update_status ModuleInterface::PostUpdate()
 			stageClear();
 			if (App->interface_module->remaining_time <= 0) {
 				App->interface_module->remaining_time = 0;
+			}
+		}
+
+		if (timerPR <= 1000) {
+			player1Ready();
+		}
+		else {
+			if (timerPR > 2000) {
+				timerPR = 0;
+			}
+			else {
+				timerPR = 1001;
 			}
 		}
 		printPlayer1();

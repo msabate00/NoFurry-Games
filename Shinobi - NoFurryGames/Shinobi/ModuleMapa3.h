@@ -54,7 +54,7 @@ public:
 
 	int MapaX = -15;
 	int MapaY = -130;//-15
-
+	float timerMapa3 = 0.0f;
 
 
 };

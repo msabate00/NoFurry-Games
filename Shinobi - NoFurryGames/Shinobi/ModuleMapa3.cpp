@@ -40,7 +40,8 @@ bool ModuleMapa3::Start()
 
 	MapaX = -15;
 	MapaY = -130;
-
+	
+	timerMapa3 = 0.0f;
 
 	return ret;
 }
@@ -50,10 +51,12 @@ update_status ModuleMapa3::Update()
 	GamePad& pad = App->input->pads[0];
 	App->interface_module->timer += App->deltaTime;
 
+
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down || App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer();
 		App->interface_module->gameChange = true;
 		App->interface_module->spacePoint = true;
+		App->interface_module->timerPR = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
 	}
 
@@ -70,17 +73,17 @@ update_status ModuleMapa3::PostUpdate()
 
 
 void ModuleMapa3::printMapa3() {
-	App->interface_module->timer += App->deltaTime;
+	timerMapa3 += App->deltaTime;
 
 
-	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
+	if (App->interface_module->NameColor && timerMapa3 >= 500) {
 
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = false;
 		if (MapaX < 122 && MapaX > 116 && MapaY < 12 && MapaY > 4) {
 			MapaX = 119;
 			MapaY = 9;
-			if (App->interface_module->timer >= 3000) {
+			if (timerMapa3 >= 2000) {
 
 				MapaX += 16;
 				MapaY += 16;
@@ -100,7 +103,7 @@ void ModuleMapa3::printMapa3() {
 			MapaX = 119;
 			MapaY = 9;
 
-			if (App->interface_module->timer >= 3000) {
+			if (timerMapa3 >= 3000) {
 
 				MapaX += 16;
 				MapaY += 16;

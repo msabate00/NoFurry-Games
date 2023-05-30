@@ -57,7 +57,7 @@ public:
 	int MapaY = -130;//-15
 	float mapaVJumptimer = 0.0f;
 
-
+	float timerMapaV = 0.0f;
 };
 
 #endif

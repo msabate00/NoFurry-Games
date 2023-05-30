@@ -54,7 +54,7 @@ public:
 	int MapaX = -70;
 	int MapaY = SCREEN_HEIGHT - 15;
 	
-
+	float timerMapa1 = 0.0f;
 
 };
 

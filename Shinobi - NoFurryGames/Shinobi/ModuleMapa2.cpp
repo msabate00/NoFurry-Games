@@ -42,6 +42,7 @@ bool ModuleMapa2::Start()
 	MapaX = SCREEN_WIDTH - 25;
 	MapaY = SCREEN_HEIGHT + 25;
 
+	timerMapa2 = 0;
 	return ret;
 }
 
@@ -74,9 +75,9 @@ update_status ModuleMapa2::PostUpdate()
 
 
 void ModuleMapa2::printMapa2() {
-	App->interface_module->timer += App->deltaTime;
+	timerMapa2 += App->deltaTime;
 
-	if (App->interface_module->NameColor && App->interface_module->timer >= 1000) {
+	if (App->interface_module->NameColor && timerMapa2 >= 500) {
 
 		App->render->Blit(mapaWhite, MapaX, MapaY, SDL_FLIP_NONE, nullptr, 1);
 		App->interface_module->NameColor = false;
@@ -84,7 +85,7 @@ void ModuleMapa2::printMapa2() {
 			MapaX = 119;
 			MapaY = 9;
 
-			if (App->interface_module->timer >= 3000) {
+			if (timerMapa2 >= 2000) {
 
 				MapaX -= 16;
 				MapaY -= 16;
@@ -104,7 +105,7 @@ void ModuleMapa2::printMapa2() {
 			MapaX = 119;
 			MapaY = 9;
 
-			if (App->interface_module->timer >= 3000) {
+			if (timerMapa2 >= 2000) {
 
 				MapaX -= 16;
 				MapaY -= 16;
