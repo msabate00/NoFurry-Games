@@ -67,6 +67,7 @@ public:
 	float timerIconChange = 0.0f;
 	float timerColorChange = 0.0f;
 
+	int insert_index = -1;
 
 
 };

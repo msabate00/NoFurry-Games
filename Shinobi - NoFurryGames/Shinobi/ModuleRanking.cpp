@@ -225,23 +225,25 @@ void ModuleRanking::printTitle() {
 void ModuleRanking::printrRanking() {
 	int IconPositionY;
 	int IconPositionrank = 160;
+
+	//cout << "ranking" << insert_index+1 << endl;
 		App->render->Blit(ranking, SCREEN_WIDTH - 325, SCREEN_HEIGHT - 180, SDL_FLIP_NONE, nullptr, 0);
 
 		for (int i = 0; i < 10; i++)
 		{
-			if (i == 0) {
+			if (leaderboard[i].score >= 100000) {
+				IconPositionY = 255;
+			}
+			else {
+				IconPositionY = 239;
+			}
+			if (i == insert_index) {
 				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, leaderboard[i].rank.c_str());
-				App->fonts->BlitText(SCREEN_WIDTH - 255, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, std::to_string(leaderboard[i].score).c_str());
+				App->fonts->BlitText(SCREEN_WIDTH - IconPositionY, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, std::to_string(leaderboard[i].score).c_str());
 				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, std::to_string(leaderboard[i].coin).c_str());
 				App->fonts->BlitText(SCREEN_WIDTH - 100, SCREEN_HEIGHT - IconPositionrank, App->scoreFontRed16px, leaderboard[i].name.c_str());
 			}
 			else {
-				if (leaderboard[i].score >= 100000) {
-					IconPositionY = 255;
-				}
-				else {
-					IconPositionY = 239;
-				}
 				App->fonts->BlitText(SCREEN_WIDTH - 328, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, leaderboard[i].rank.c_str());
 				App->fonts->BlitText(SCREEN_WIDTH - IconPositionY, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, std::to_string(leaderboard[i].score).c_str());
 				App->fonts->BlitText(SCREEN_WIDTH - 140, SCREEN_HEIGHT - IconPositionrank, App->scoreFontWhite16px, std::to_string(leaderboard[i].coin).c_str());
@@ -274,7 +276,7 @@ std::string getRankSuffix(int rank) {
 
 
 void ModuleRanking::insert_rank(int new_score, int new_coin, const std::string& new_name) {
-	int insert_index = -1;
+
 
 	for (int i = 0; i < 10; i++) {
 		if (new_score > leaderboard[i].score) {
@@ -296,4 +298,6 @@ void ModuleRanking::insert_rank(int new_score, int new_coin, const std::string& 
 		leaderboard[insert_index].name = new_name;
 		leaderboard[insert_index].rank = std::to_string(std::stoi(leaderboard[insert_index + 1].rank) - 1) + getRankSuffix(std::stoi(leaderboard[insert_index + 1].rank) - 1);
 	}
+
+	
 }

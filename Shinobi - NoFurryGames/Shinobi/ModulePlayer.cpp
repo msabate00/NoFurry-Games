@@ -917,7 +917,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->interface_module->gameChange = false;
 
 			if (timerChangeLv2 <= 20 && sumaPoint) {
-				cout << "lv1" << endl;
 				if (haveUlti) {
 				App->interface_module->texture_num += 5000;
 				}
@@ -938,7 +937,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->interface_module->gameChange = false;
 			
 			if (timerChangeLv2 <= 20 && sumaPoint) {
-				cout << "lv2" << endl;
 				if (haveUlti) {
 					App->interface_module->texture_num += 5000;
 				}

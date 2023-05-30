@@ -339,7 +339,7 @@ void ModuleInputName::printNom() {
 	for (int i = 0; i < myNamelist; i++)
 	{
 		char namecharacter[2] = { myName[i], '\0' };
-		App->fonts->BlitText(SCREEN_WIDTH - NamePositionX, SCREEN_HEIGHT - 200, App->scoreFontWhite16px, namecharacter);
+		App->fonts->BlitText(SCREEN_WIDTH - NamePositionX, SCREEN_HEIGHT - 200, App->scoreFontGreen16px, namecharacter);
 		NamePositionX -= 16;
 	}
 }

@@ -86,7 +86,7 @@ update_status ModuleScene_Intro::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F7] == KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->mapaV, 20);
+		App->fade->FadeToBlack(this, (Module*)App->inputname, 20);
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {

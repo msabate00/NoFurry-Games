@@ -87,12 +87,14 @@ public:
 	//Fonts
 	int scoreFontRed = -1;
 	int scoreFontBlue = -1;
+	int scoreFontGreen = -1;
 	int scoreFontWhite = -1;
 	int scoreFontYellow = -1;
 	int scoreFontYellow8px = -1;
 	int debugFontWhite = -1;
 
 	int scoreFontWhite16px = -1;
+	int scoreFontGreen16px = -1;
 	int scoreFontRed16px = -1;
 
 	char scoreText[10] = { "\0" };

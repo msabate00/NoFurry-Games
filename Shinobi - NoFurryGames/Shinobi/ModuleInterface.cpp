@@ -221,10 +221,6 @@ update_status ModuleInterface::PostUpdate()
 	}
 	else if (App->scene_Level2->IsEnabled()) {
 
-
-
-
-		
 		//INTERFAZ PARA EL NIVEL 2
 			//INTERFAZ PARA EL NIVEL 1
 		if (App->player->haveUlti) {
@@ -290,7 +286,6 @@ update_status ModuleInterface::PostUpdate()
 		}
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
-		//printTime(getTimeString(elapsed_time).c_str());
 		if (gameover) {
 			printgameOver();
 		}
@@ -497,7 +492,7 @@ double ModuleInterface::letraGetX() {
 	}
 
 	if (A < 0) {
-		// 停止在 (148, 34)
+		
 		letraX = 148;
 	}
 	return letraX;
@@ -516,7 +511,7 @@ double ModuleInterface::letraGetY() {
 	}
 
 	if (B < 0) {
-		// 停止在 (148, 34)
+		
 		letraY = 34;
 	}
 
