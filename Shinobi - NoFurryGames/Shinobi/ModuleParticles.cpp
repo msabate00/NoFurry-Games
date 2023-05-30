@@ -257,9 +257,9 @@ bool ModuleParticles::Start()
 	bulletR.lifetime = 80;
 	bulletR.speed = fPoint(4, 0);
 
-	bulletL.anim.PushBack({ 279, 297, 14, 7 });
-	bulletL.anim.PushBack({ 297, 297, 14, 7 });
-	bulletL.anim.PushBack({ 315, 297, 14, 7 });
+	bulletL.anim.PushBack({ 279, 306, 14, 7 });
+	bulletL.anim.PushBack({ 297, 306, 14, 7 });
+	bulletL.anim.PushBack({ 315, 306, 14, 7 });
 	bulletL.anim.loop = true;
 	bulletL.anim.speed = 0.3f;
 	bulletL.lifetime = 80;
