@@ -67,13 +67,13 @@ update_status ModuleInputName::Update()
 {
 	GamePad& pad = App->input->pads[0];
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_DOWN || pad.l_y < -0.2f) {
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_DOWN || pad.l_y < -0.2f || pad.up_down) {
 
 		if (dardosPositionY < 185) {
 			dardosPositionY += 30;
 		}
 	}
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_DOWN || pad.l_y > 0.2f) {
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_DOWN || pad.l_y > 0.2f || pad.down_down) {
 		if (dardosPositionX == 215 && dardosPositionY == 65) {
 			dardosPositionY -= 30;
 		}
@@ -84,7 +84,7 @@ update_status ModuleInputName::Update()
 		}
 
 	}
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_DOWN || pad.l_x < -0.2f) {
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_DOWN || pad.l_x < -0.2f || pad.left_down) {
 		if (dardosPositionX == 215 && dardosPositionY == 35) {}
 		else {
 			if (dardosPositionX < 335 ) {
@@ -93,7 +93,7 @@ update_status ModuleInputName::Update()
 		}
 
 	}
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_DOWN || pad.l_x > 0.2f) {
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_DOWN || pad.l_x > 0.2f || pad.right_down) {
 		if (dardosPositionX == 215 && dardosPositionY == 35) {}
 		else {
 			if (dardosPositionX > 95) {
@@ -103,7 +103,7 @@ update_status ModuleInputName::Update()
 
 	}
 
-	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN || pad.a ) {
+	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN || pad.a_down ) {
 		if (dardosPositionX == 215 && dardosPositionY == 35) {
 
 			App->fade->FadeToBlack(this, (Module*)App->ranking, 20);
@@ -113,7 +113,7 @@ update_status ModuleInputName::Update()
 		printNomSelect(dardosPositionX, dardosPositionY);
 		}
 	}
-	if (App->input->keys[SDL_SCANCODE_X] == KEY_DOWN || pad.b) {
+	if (App->input->keys[SDL_SCANCODE_X] == KEY_DOWN || pad.b_down) {
 		deleteNom();
 	}
 

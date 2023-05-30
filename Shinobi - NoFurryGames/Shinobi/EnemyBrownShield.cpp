@@ -40,6 +40,11 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 	Death.PushBack({ 519, 331, 39, 65 });
 	Death.loop = false;
 	Death.speed = 0.1f;
+
+	staticAnim.PushBack({ 314, 100, 48, 73 });
+	staticAnim.PushBack({ 368, 100, 48, 73 });
+	staticAnim.loop = true;
+	staticAnim.speed = 0.1f;
 	
 	collider = App->collisions->AddCollider({ 0, 0,44,65 }, Collider::Type::ENEMY, (Module*)App->enemy);
 }
@@ -47,122 +52,96 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 void EnemyBrownShield::Update()
 {
 
-	//REHACER TODO LO QUE HAY AQUI
-	//Gravedad
-	jumpSpeed += -GRAVITY;
-	float grav = GRAVITY;
-	if (jumpSpeed < -grav) {
-		isJumping = true;
-	}
-	position.y -= jumpSpeed;
-
-	// Enemigo se queda quieto si el jugador no está en su rango de visión
-	if (position.x - App->player->position.x > 150)
+	if (App->player->isSecondFloor == false)
 	{
 		currentAnim = &staticAnim;
-		position.x += 0;
 		facingLeft = true;
 	}
-	// Cuando entra en el rango, se mueve
-	else
-	{
-		cout << "entra" << endl;
-			// Mover hacia delante
-			for (int i = 0; i < 10; i++) {
-				currentAnim = &walkBasic;
-				position.x -= 1;
-				facingLeft = true;
-				int o = 0;
-				cout << "delante" << endl;
 
-			}
-
-			// Mover hacia atrás
-			for (int o = 0; o < 10; o++) {
-				currentAnim = &walkBasic;
-				position.x += 1;
-				facingLeft = true;
-				int i = 0;
-			}
-
-	
-	}
-
-	//Si el enemigo queda por detrás del jugador, este primero cambia su dirección
-	if ((position.x + 40) < App->player->position.x)
+	if (App->player->isSecondFloor)
 	{
-		currentAnim = &walkBasic;
-		position.x += 2;
-		facingLeft = false;
-	}
-
-	// Lo siguiente es para que no se mueva al morir
-	if (killed)
-	{
-		position.x += 0;
-	}
-	
-	if (killed && currentAnim == &walkBasic)
-	{
-		position.x += 1;
-	}
-
-	if (killed && !facingLeft)
-	{
-		position.x -= 2;
-	}
-	
-	
-	/*if (this->setHasReceivedDamage)
-	{
-		if (!moveToDie)
-		{
-			diePos = { position.x, position.y + currentAnim->GetCurrentFrame().h };
-			moveToDie = true;
+		// Gravedad - INDV
+		jumpSpeed += -GRAVITY;
+		float grav = GRAVITY;
+		if (jumpSpeed < -grav) {
+			isJumping = true;
 		}
-		currentAnim = &Death;
-		position.y = diePos.y - currentAnim->GetCurrentFrame().h;
+		position.y -= jumpSpeed;
+
+
+		// Rango de visión - INDV
+		if (facingLeft && App->player->position.x < (position.x - viewRange))
+		{
+			currentAnim = &staticAnim;
+			position.x += speed;
+		}
+		else if (!facingLeft && App->player->position.x > (position.x + viewRange))
+		{
+			currentAnim = &staticAnim;
+			position.x -= speed;
+		}
+
+		// Cuando entra en el rango, se mueve
+		else
+		{
+			// Si el enemigo queda por detrás del jugador, este primero cambia su dirección
+			if (position.x < App->player->position.x - wanderRange && facingLeft)
+			{
+				facingLeft = false;
+			}
+			if (position.x > App->player->position.x + wanderRange && !facingLeft)
+			{
+				facingLeft = true;
+			}
+		}
+
+		//Movimiento dependiendo para donde esta mirando
+		if (!setHasReceivedDamage && !isAttacking) {
+			if (facingLeft) {
+				position.x -= speed;
+			}
+			else {
+				position.x += speed;
+			}
+		}
+
+		// Salta
+		if (!jumpsNow)
+		{
+			currentAnim = &walkBasic;
+		}
+		else if (jumpsNow)
+		{
+			currentAnim = &jumping;
+		}
 
 		if (currentAnim->HasFinished())
 		{
-			currentAnim = &Disapear;
+			jumpsNow = false;
+		}
+
+		// Ataque :)
+		if (isAttacking) {
+			currentAnim = &attackBrown;
+
+			if (currentAnim->HasFinished()) {
+				isAttacking = false;
+				currentAnim->Reset();
+			}
+		}
+
+		// Si lo mata, quedarse quieto
+		if (facingLeft && App->player->destroyed)
+		{
+			currentAnim = &staticAnim;
+			position.x += speed;
+		}
+		else if (!facingLeft && App->player->destroyed)
+		{
+			currentAnim = &staticAnim;
+			position.x -= speed;
 		}
 	}
-	else
-	{
-
-		currentAnim = &idleBrown;
-		facingLeft = true;
-
-	}
-
-	if ((position.x - App->player->position.x) <= 80)
-	{
-		currentAnim = &walkBasic;
-		position.x += 1;
-		facingLeft = false;
-	}
-	else currentAnim = &idleBrown;*/
-	
-
-	/*if (!this->setHasReceivedDamage)
-	{
-		currentAnim = &walkBasic;
-		position.x -= 1;
-		facingLeft = true;
-
-	}
-	if (position.x > App->player->position.x)
-	{
-		position.x += 2;
-		facingLeft = true;
-		lookForPlayer = 10;
-	}
-	else{
-		position.x += 2;
-		facingLeft = false;
-		lookForPlayer = 10;
-	}*/
 
 
 	Enemy::Update();

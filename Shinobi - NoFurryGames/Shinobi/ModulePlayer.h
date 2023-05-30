@@ -69,6 +69,10 @@ public:
 	int marginCollider = 10;
 	int rangeLength = 8;
 
+
+	//Mando
+	bool x_pressed = false;
+
 	
 
 	// The player spritesheet loaded into an SDL_Texture
@@ -134,6 +138,8 @@ public:
 	uint ataqueFX = 0;
 	uint morirFX = 0;
 	uint efectoSaltoPlataformaFX = 0;
+	bool ComprobarataqueFX = false;
+
 
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };

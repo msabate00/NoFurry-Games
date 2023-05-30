@@ -35,17 +35,14 @@ ModuleMision1::~ModuleMision1()
 // Load assets
 bool ModuleMision1::Start()
 {
-
 	bool ret = true;
 	
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	
-	Mision_FinishedFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/Finished.wav");
-	typewriterFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/typewriter.wav");
-	Mision_soundFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/Mission.wav");
-	ONE_FX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/1.wav");
+
+	Mission1FX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/MISSION-1(intro).wav");
+	App->audio->PlayFx(Mission1FX);
 
 	SDL_SetRenderDrawColor(App->render->renderer, 128, 128, 128, 255);
 	SDL_RenderClear(App->render->renderer);
@@ -62,7 +59,7 @@ update_status ModuleMision1::Update()
 	GamePad& pad = App->input->pads[0];
 	mis1Jumptimer += App->deltaTime;
 	
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b || mis1Jumptimer >= 3000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down || mis1Jumptimer >= 3000) {
 		mis1Jumptimer = 999999;
 		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
 	}
@@ -77,6 +74,7 @@ update_status ModuleMision1::Update()
 update_status ModuleMision1::PostUpdate()
 {
 	//App->render->Blit(textureBackground2, 0, 0, SDL_FLIP_NONE, &background, 1);
+
 	printext();	
 	printMision();
 		return update_status::UPDATE_CONTINUE;
@@ -106,20 +104,6 @@ void ModuleMision1::printMision() {
 	int IconPosition = 260;
 	App->interface_module->timer += App->deltaTime;
 	
-	//Efectos sonido
-	if (EfectoSonidoMision == true && Mix_Playing(-1) == false)
-	{
-		App->audio->PlayFx(Mision_soundFX);
-		EfectoSonidoMision = false;
-	}
-
-	if (EfectoSonidoONE == true && Mix_Playing(-1) == false)
-	{
-		Mix_HaltChannel(1);
-		App->audio->PlayFx(ONE_FX);
-		EfectoSonidoONE = false;
-	}
-
 	if (App->interface_module->NameColor) {
 		for (int i = 0; i < 2; i++)
 		{

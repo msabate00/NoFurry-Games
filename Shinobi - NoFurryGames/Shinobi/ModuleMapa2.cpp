@@ -51,7 +51,7 @@ update_status ModuleMapa2::Update()
 
 	App->interface_module->timer += App->deltaTime;
 
-	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b || App->interface_module->timer >= 3000) {
+	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down || App->interface_module->timer >= 3000) {
 		App->interface_module->resetTimer(); 
 		App->interface_module->hostage_num = 3;
 		App->interface_module->gameChange = true;
