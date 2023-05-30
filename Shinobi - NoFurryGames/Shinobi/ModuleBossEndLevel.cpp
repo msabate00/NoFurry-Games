@@ -74,7 +74,7 @@ bool ModuleBossEndLevel::Start()
 
 	//collider = App->collisions->AddCollider({ 0,0,39,60 }, Collider::Type::PLAYER, this);
 
-
+	BoladeFuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss.wav");
 	currentParticleDirection = fPoint(-2, 0);
 	currentParticlePosition = fPoint(0, 0);
 
@@ -101,6 +101,7 @@ update_status ModuleBossEndLevel::Update()
 		triggered = true;
 		firstParticle = true;
 		SpawnFireball();
+		App->audio->PlayFx(BoladeFuegoFX);
 		//lanzar bola di fogo
 		currentAnimation = &attackAnim;
 
@@ -117,6 +118,7 @@ update_status ModuleBossEndLevel::Update()
 			currentAnimation = &attackAnim;
 		}
 		SpawnFireball();
+		App->audio->PlayFx(BoladeFuegoFX);
 	}
 
 

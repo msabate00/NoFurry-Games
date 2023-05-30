@@ -59,7 +59,7 @@ bool ModuleInputName::Start()
 	dardosWhite = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosWhite.png");
 	dardosRed = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosRed.png");
 	ED = App->textures->Load("Assets/Interface/Color_use/SkillIcon/ED.png");
-
+	App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
 	scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX.wav");
 	return ret;
 }
