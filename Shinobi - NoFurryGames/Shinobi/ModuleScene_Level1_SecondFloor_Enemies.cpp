@@ -62,6 +62,10 @@ bool ModuleScene_Level1_SecondFloor_Enemies::Start()
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1550, FLOOR_LEVEL - 141, false, 1000, true, 4, true);
 
 	//Enemies
+	
+	
+	
+	
 	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 950, FLOOR_LEVEL - 180, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 1500, FLOOR_LEVEL - 180, true);
 
