@@ -62,7 +62,7 @@ public:
 
 	float mis1Jumptimer = 0.0f;
 
-
+	float timerText = 0.0f;
 
 };
 

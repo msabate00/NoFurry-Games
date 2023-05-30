@@ -50,6 +50,8 @@ bool ModuleMision1::Start()
 	mis1Jumptimer = 0;
 	dosComa = App->textures->Load("Assets/Interface/Color_use/White/Icon/DosComa.png");
 	currentAnimation = &backgroundAnim;
+	timerText = 0;
+	str_cache = "";
 	return ret;
 }
 
@@ -80,25 +82,37 @@ update_status ModuleMision1::PostUpdate()
 		return update_status::UPDATE_CONTINUE;
 }
 
+//void ModuleMision1::printext() {
+//	
+//	int IconPosition = 360;
+//
+//	Uint32 current_time = 0;
+//	current_time = SDL_GetTicks();
+//	
+//	cout << SDL_GetTicks() << endl;
+//	if (current_time - last_time > 50 && str_cache.length() < len) {
+//	
+//		
+//		str_cache += str[str_cache.length()];
+//
+//
+//		last_time = current_time;
+//	}
+//	
+//	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite16px, str_cache.c_str());
+//	
+//}
 void ModuleMision1::printext() {
-	
 	int IconPosition = 360;
-	App->interface_module->timer += App->deltaTime;
-
-	Uint32 current_time = SDL_GetTicks();
-
-	if (current_time - last_time > 50 && str_cache.length() < len) {
-	
-		
+	timerText += App->deltaTime;
+	if (timerText > 80 && str_cache.length() < len) {
 		str_cache += str[str_cache.length()];
-
-
-		last_time = current_time;
+		timerText = 0;
 	}
-	
 	App->fonts->BlitText(SCREEN_WIDTH - IconPosition, SCREEN_HEIGHT - 110, App->scoreFontWhite16px, str_cache.c_str());
-	
 }
+
+
 
 void ModuleMision1::printMision() {
 	int IconPosition = 260;
