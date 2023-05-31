@@ -260,6 +260,7 @@ bool ModulePlayer::Start()
 	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
 	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
 	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
+	StageClearFX = App->audio->LoadFx("Assets/Audio/Music/Stage Clear.ogg");
 
 	currentAnimation = &idleAnim;
 
@@ -321,12 +322,18 @@ update_status ModulePlayer::Update()
 			App->interface_module->gameover = false;
 			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 			Mix_HaltMusic();
-			
 		}
 	}
 	if (isChangingZone) {
 		inmune = true;
-		Mix_HaltMusic();
+		
+
+		if (ComprovarSOnido == true)
+		{
+			Mix_HaltMusic();
+			App->audio->PlayFx(StageClearFX);
+			ComprovarSOnido = false;
+		}
 
 		currentAnimation = &idleAnim;
 
