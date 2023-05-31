@@ -23,6 +23,7 @@
 
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_render.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 #include <iostream>
 
@@ -313,16 +314,18 @@ update_status ModulePlayer::Update()
 
 	if (gameOver) {
 		timerGameover += App->deltaTime;
+		App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 		//cout << timerGameover << endl;
 		if (timerGameover >= 3000) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
 			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+			
 		}
 	}
 	if (isChangingZone) {
 		inmune = true;
-
+		App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
 		currentAnimation = &idleAnim;
 
 		collider->SetPos(position.x + marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
