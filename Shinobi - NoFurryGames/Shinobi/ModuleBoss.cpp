@@ -285,7 +285,6 @@ update_status ModuleBoss::Update()
 	int aux = BOSS_PARTICLE_DURATION;
 	
 	if (timeContador % aux == 0) {
-		//App->audio->PlayFx(FuegoFX);
 		//animacion ataque
 		if (attacking == -1) {
 			int ran = (rand() % 2) + 1; //1-3
@@ -370,7 +369,6 @@ update_status ModuleBoss::Update()
 
 	if (timeContador2 % (aux+30) == 0) {
 		firstParticle2 = true;
-		//App->audio->PlayFx(FuegoFX);
 		if (firstParticle2) {
 			
 			currentParticlePosition2 = fPoint(position.x, position.y+20);
@@ -510,7 +508,6 @@ update_status ModuleBoss::Update()
 			current_torso_Animation = &torso_DamageAnim;
 			current_legs_Animation = &legs_DamageAnim;
 			stunnedTime--;
-			App->audio->PlayFx(RecieveDamageFX);
 		}
 		else {
 			stunned = false;
@@ -614,14 +611,12 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == head_Collider && c2->type == Collider::Type::PLAYER_SHOT && !inmune) {
 		inmune = true;
 		stunned = true;
-		App->audio->PlayFx(RecieveDamageFX);
 		life--;
 		
 		if (life <= 0) {//morir
 			
 			current_head_Animation = &generalDying;
 			App->audio->PlayFx(Boss_DieFX);
-			Mix_FadeOutMusic(10);
 			//App->fade->FadeToBlack(App->activeModule, App->mapaV);
 			dead = true;
 		}

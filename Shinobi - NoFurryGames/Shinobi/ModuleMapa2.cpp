@@ -14,6 +14,7 @@
 #include "ModuleInterface.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 #include <string> 
 #include <vector>
 #include <iostream>
@@ -37,7 +38,7 @@ bool ModuleMapa2::Start()
 	App->render->camera.y = 0;
 
 	currentAnimation = &backgroundAnim;
-
+	Mix_HaltMusic();
 
 	MapaX = SCREEN_WIDTH - 25;
 	MapaY = SCREEN_HEIGHT + 25;
@@ -53,6 +54,7 @@ update_status ModuleMapa2::Update()
 	App->interface_module->timer += App->deltaTime;
 
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down || App->interface_module->timer >= 3000) {
+		Mix_HaltMusic();
 		App->interface_module->resetTimer(); 
 		App->interface_module->hostage_num = 3;
 		App->interface_module->gameChange = true;

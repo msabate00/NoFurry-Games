@@ -33,6 +33,7 @@
 #include <thread>
 #include "Hostage.h"
 #include "SDL/include/SDL_scancode.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 
 
 #include "SDL/include/SDL_render.h"
@@ -178,6 +179,16 @@ update_status ModuleInterface::PostUpdate()
 			texture_num += 30;
 		}
 		stageClear();
+		/*
+		if (Mix_PlayingMusic() == 1)
+		{
+			App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
+		}
+		else
+		{
+			Mix_HaltMusic();
+		}
+		*/
 		if (App->interface_module->remaining_time <= 0) {
 			App->interface_module->remaining_time = 0;
 		}
@@ -881,13 +892,6 @@ void ModuleInterface::printBossLife() {
 }
 
 void ModuleInterface::stageClear() {
-
-	if (StageClearFX)
-	{
-		App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
-		StageClearFX = false;
-	}
-
 	
 	App->fonts->BlitText(SCREEN_WIDTH - 235, SCREEN_HEIGHT - 115, App->scoreFontWhite, "STAGE CLEAR");
 	

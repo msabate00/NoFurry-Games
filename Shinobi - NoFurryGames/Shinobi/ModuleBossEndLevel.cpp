@@ -177,10 +177,8 @@ void ModuleBossEndLevel::SpawnFireball() {
 
 	//BOLA DI FOGO 1
 	int aux = BOSS_PARTICLE_DURATION;
-	//App->audio->PlayFx(BoladeFuegoFX);
 	if (firstParticle) {
 
-		
 		if (firstParticle) {
 			currentParticlePosition = fPoint(position.x, position.y - currentAnimation->GetCurrentFrame().h/2);
 			currentParticleDirection.x = -particleSpeed;
