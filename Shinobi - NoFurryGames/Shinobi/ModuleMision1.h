@@ -55,7 +55,7 @@ public:
 	std::string str_cache = "";
 	Uint32 last_time = 0;
 
-
+	uint soundEffect = 0;
 	uint Mission1FX = 0;
 	bool EfectoSonidoMision = true;
 

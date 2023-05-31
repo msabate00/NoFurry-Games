@@ -60,8 +60,8 @@ update_status ModuleMision1::Update()
 
 	GamePad& pad = App->input->pads[0];
 	mis1Jumptimer += App->deltaTime;
-	
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down || mis1Jumptimer >= 3000) {
+		
 		mis1Jumptimer = 999999;
 		App->fade->FadeToBlack(this, (Module*)App->mapa1, 20);
 	}
@@ -137,6 +137,10 @@ void ModuleMision1::printMision() {
 			App->interface_module->NameColor = true;
 			App->interface_module->timer = 0.0f; // Reset Tiempo Contador
 		}
+	}
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN)
+	{
+			Mix_HaltMusic();
 	}
 
 }

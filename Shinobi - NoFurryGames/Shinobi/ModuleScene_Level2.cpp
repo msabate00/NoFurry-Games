@@ -55,7 +55,9 @@ bool ModuleScene_Level2::Start()
 	App->player->Enable();
 	App->enemy->Enable();
 	App->hostages->Enable();
-	
+
+	Mix_HaltMusic();
+
 	bool ret = true;
 
 	stageTexture = App->textures->Load("Assets/Maps/Level2/Nivel2_wide.png");

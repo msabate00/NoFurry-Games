@@ -261,6 +261,7 @@ bool ModulePlayer::Start()
 	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
 	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
 	StageClearFX = App->audio->LoadFx("Assets/Audio/Music/Stage Clear.ogg");
+	GameOverFX = App->audio->LoadFx("Assets/Audio/Music/Game_Over.ogg");
 
 	currentAnimation = &idleAnim;
 
@@ -317,17 +318,21 @@ update_status ModulePlayer::Update()
 	if (gameOver) {
 		timerGameover += App->deltaTime;
 		//cout << timerGameover << endl;
-		if (timerGameover >= 3000) {
+		if (ComprovarSOnido == true)
+		{
+			Mix_HaltMusic();
+			App->audio->PlayFx(GameOverFX);
+			ComprovarSOnido = false;
+		}
+		if (timerGameover >= 30000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
 			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
-			Mix_HaltMusic();
 		}
 	}
 	if (isChangingZone) {
 		inmune = true;
 		
-
 		if (ComprovarSOnido == true)
 		{
 			Mix_HaltMusic();
@@ -346,7 +351,7 @@ update_status ModulePlayer::Update()
 
 		return update_status::UPDATE_CONTINUE;
 	}
-
+	ComprovarSOnido = true;
 
 	if (isUlti) {
 
