@@ -69,6 +69,7 @@ public:
 	float firstParticle = true;
 	int fireBallParticle = -1;
 	Collider* fireBall_Collider = nullptr;
+	Collider* bossWall = nullptr;
 
 	int timeContador;
 

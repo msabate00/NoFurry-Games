@@ -290,6 +290,7 @@ bool ModulePlayer::Start()
 	DeathAnim.Reset();
 	currentAnimation = &idleAnim;
 	sumaPoint = true;
+	inmune = false;
 
 
 	return ret;
@@ -862,7 +863,15 @@ update_status ModulePlayer::PostUpdate()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 
+
+
+
 	if (!c2->active) { return; }
+
+
+	
+
+
 	if (c1 == collider && c2->type == Collider::WALL)
 	{
 		if(c2->GetRect().y <= 103){ 
@@ -900,6 +909,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == collider && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::BOSS_PROYECTILE || c2->type == Collider::Type::ENEMY_SHOT) && !destroyed && !inmune && !App->godMode)
 	{
 
+
+		
+
 		if (c2->type == Collider::Type::ENEMY) {
 			for (uint i = 0; i < MAX_ENEMIES; i++) {
 
@@ -915,9 +927,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 			}
 		}
+
 		holdingGun = false;
 		destroyed = true;
 		App->life_num--;
+
+	
+
 	}
 
 	if (c1 == collider && c2->type == Collider::Type::CHANGE_LEVEL) {

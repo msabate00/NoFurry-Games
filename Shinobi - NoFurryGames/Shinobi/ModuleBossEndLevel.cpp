@@ -89,6 +89,8 @@ bool ModuleBossEndLevel::Start()
 	attackAnim.Reset();
 	walkAnim.Reset();
 
+	bossWall = App->collisions->AddCollider({ 30,30,20,20 }, Collider::Type::WALL, this);
+
 	return ret;
 }
 
@@ -122,6 +124,11 @@ update_status ModuleBossEndLevel::Update()
 
 	timeContador++;
 
+
+	bossWall->SetPos(position.x+30, position.y- currentAnimation->GetCurrentFrame().h);
+	bossWall->SetSize(30, currentAnimation->GetCurrentFrame().h);
+	
+
 	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
@@ -151,7 +158,7 @@ void ModuleBossEndLevel::OnCollision(Collider* c1, Collider* c2)
 {
 
 	
-	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {
+	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL && c2 != bossWall) {
 		if (c2->GetRect().y > c1->GetRect().y) {
 			currentParticleDirection.y *= -1;
 			
