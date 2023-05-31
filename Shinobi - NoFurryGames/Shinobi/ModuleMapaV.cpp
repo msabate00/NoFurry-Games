@@ -15,6 +15,7 @@
 #include "ModuleInputName.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 #include <string> 
 #include <vector>
 #include <iostream>
@@ -38,7 +39,7 @@ bool ModuleMapaV::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+	Mix_HaltMusic();
 
 	MapaX = -20;
 	MapaY = -130;

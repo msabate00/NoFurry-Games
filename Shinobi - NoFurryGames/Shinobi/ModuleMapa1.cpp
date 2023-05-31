@@ -14,6 +14,7 @@
 #include "ModuleInterface.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 #include <string> 
 #include <vector>
 #include <iostream>
@@ -44,6 +45,9 @@ bool ModuleMapa1::Start()
 	MapaY = SCREEN_HEIGHT - 15;
 
 	timerMapa1 = 0;
+
+	Mix_HaltMusic();
+
 	return ret;
 }
 

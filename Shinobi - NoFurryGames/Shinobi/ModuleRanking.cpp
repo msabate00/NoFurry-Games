@@ -118,22 +118,22 @@ update_status ModuleRanking::Update()
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down) {
 		App->interface_module->coinNum = 0;
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
-		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+		Mix_HaltMusic();
 	}
 	currentAnimation->Update();
 	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
-		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+		Mix_HaltMusic();
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
-		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+		Mix_HaltMusic();
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
-		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+		Mix_HaltMusic();
 	}
 	return update_status::UPDATE_CONTINUE;
 }

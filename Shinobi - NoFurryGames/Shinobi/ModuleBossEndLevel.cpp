@@ -101,7 +101,6 @@ update_status ModuleBossEndLevel::Update()
 		triggered = true;
 		firstParticle = true;
 		SpawnFireball();
-		App->audio->PlayFx(BoladeFuegoFX);
 		//lanzar bola di fogo
 		currentAnimation = &attackAnim;
 
@@ -118,7 +117,6 @@ update_status ModuleBossEndLevel::Update()
 			currentAnimation = &attackAnim;
 		}
 		SpawnFireball();
-		App->audio->PlayFx(BoladeFuegoFX);
 	}
 
 
@@ -179,6 +177,7 @@ void ModuleBossEndLevel::SpawnFireball() {
 
 	//BOLA DI FOGO 1
 	int aux = BOSS_PARTICLE_DURATION;
+	//App->audio->PlayFx(BoladeFuegoFX);
 	if (firstParticle) {
 
 		

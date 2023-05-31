@@ -60,7 +60,7 @@ bool ModuleInputName::Start()
 	dardosRed = App->textures->Load("Assets/Interface/Color_use/SkillIcon/dardosRed.png");
 	ED = App->textures->Load("Assets/Interface/Color_use/SkillIcon/ED.png");
 	myName[4] = NULL;
-	App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+	Mix_HaltMusic();
 	scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX.wav");
 	return ret;
 }

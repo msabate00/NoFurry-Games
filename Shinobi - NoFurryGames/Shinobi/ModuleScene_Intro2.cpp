@@ -13,6 +13,7 @@
 #include "SDL/include/SDL_scancode.h"
 
 #include "SDL/include/SDL.h"
+#include "SDL_mixer/include/SDL_mixer.h"
 #include <string> 
 #include <vector>
 #include <iostream>
@@ -49,7 +50,7 @@ bool ModuleScene_Intro2::Start()
 	bool ret = true;
 	//textureBackground2 = App->textures->Load("Assets/Interface/Menu/fondo.png");
 	textureBackground = App->textures->Load("Assets/Interface/Menu/intro2.png");
-
+	Mix_HaltMusic();
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -65,6 +66,7 @@ update_status ModuleScene_Intro2::Update()
 	
 	if (currentAnimation->HasFinished() || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
+		Mix_HaltMusic();
 	}
 
 	currentAnimation->Update();
@@ -72,14 +74,17 @@ update_status ModuleScene_Intro2::Update()
 
 	if (App->input->keys[SDL_SCANCODE_F9] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level1, 20);
+		Mix_HaltMusic();
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F10] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Level2, 20);
+		Mix_HaltMusic();
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F11] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_Boss1, 20);
+		Mix_HaltMusic();
 	}
 
 

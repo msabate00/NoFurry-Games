@@ -882,7 +882,12 @@ void ModuleInterface::printBossLife() {
 
 void ModuleInterface::stageClear() {
 
-	//App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
+	if (StageClearFX)
+	{
+		App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
+		StageClearFX = false;
+	}
+
 	
 	App->fonts->BlitText(SCREEN_WIDTH - 235, SCREEN_HEIGHT - 115, App->scoreFontWhite, "STAGE CLEAR");
 	

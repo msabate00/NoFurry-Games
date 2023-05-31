@@ -248,7 +248,7 @@ update_status ModuleBoss::Update()
 	//App->particlesBoss->DestroyCollision(fireBallParticle);
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
-		App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+		Mix_HaltMusic();
 	}
 
 	if (dead) {
@@ -267,7 +267,7 @@ update_status ModuleBoss::Update()
 			if (timerChangeFinal >= 5000 || App->interface_module->remaining_time == 0) {
 				App->interface_module->gameChange = true;
 				App->fade->FadeToBlack(App->activeModule, App->mapaV);
-				App->audio->PlayMusic("Assets/Audio/Music/SinMusica.ogg");
+				Mix_HaltMusic();
 			}
 		}
 		current_head_Animation->Update();
