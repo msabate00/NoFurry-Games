@@ -331,6 +331,7 @@ update_status ModulePlayer::Update()
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
 			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+			Mix_HaltMusic();
 		}
 	}
 	if (isChangingZone) {
