@@ -71,10 +71,12 @@ void EnemyBrownShield::Update()
 		if (facingLeft && App->player->position.x < (position.x - viewRange))
 		{
 			currentAnim = &staticAnim;
+			throwSword = 160;
 		}
 		else if (!facingLeft && App->player->position.x > (position.x + viewRange))
 		{
 			currentAnim = &staticAnim;
+			throwSword = 160;
 		}
 
 		// Cuando entra en el rango, se mueve
@@ -146,7 +148,7 @@ void EnemyBrownShield::Update()
 
 				if (throwSword == 0)
 				{
-					throwSword = 90;
+					throwSword = 160;
 					sword = true;
 				}
 			}
@@ -154,12 +156,12 @@ void EnemyBrownShield::Update()
 
 		else if (!attacksNow)
 		{
-			throwSword = 90;
+			throwSword = 160;
 		}
 
 		// Disparos hacia la derecha
 
-		if (!facingLeft && (App->player->position.x - 250) < position.x && (App->player->isSecondFloor == false))
+		if (!facingLeft && (App->player->position.x - 200) < position.x && (App->player->isSecondFloor == false))
 		{
 			attacksNow = true;
 		}
@@ -176,11 +178,13 @@ void EnemyBrownShield::Update()
 
 				if (throwSword == 0)
 				{
-					throwSword = 90;
+					throwSword = 160;
 					sword = true;
 				}
 			}
 		}
+
+
 	
 	Enemy::Update();
 }
