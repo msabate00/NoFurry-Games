@@ -24,14 +24,6 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 	firesGun.PushBack({ 95,351,47,60 });
 	firesGun.PushBack({ 4,243,47,60 });
 	firesGun.PushBack({ 95,351,47,60 });
-	firesGun.PushBack({ 4,243,47,60 });
-	firesGun.PushBack({ 95,351,47,60 });
-	firesGun.PushBack({ 4,243,47,60 });
-	firesGun.PushBack({ 95,351,47,60 });
-	firesGun.PushBack({ 4,243,47,60 });
-	firesGun.PushBack({ 95,351,47,60 });
-	firesGun.PushBack({ 4,243,47,60 });
-	firesGun.PushBack({ 95,351,47,60 });
 	firesGun.PushBack({ 57,243,47,60 });
 	firesGun.PushBack({ 124,243,47,60 });
 	firesGun.PushBack({ 124,243,47,60 });
@@ -147,7 +139,7 @@ void EnemyGun::Update()
 
 	// Disparos hacia la izquierda
 		
-	if (facingLeft && (App->player->position.x + 150) > position.x && (App->player->isSecondFloor == false))
+	if (facingLeft && (App->player->position.x + 250) > position.x && (App->player->isSecondFloor == false))
 	{
 		hasToShot = true;
 	}
@@ -165,7 +157,7 @@ void EnemyGun::Update()
 			
 			if (shotCounter == 0)
 			{
-				shotCounter = 210;
+				shotCounter = 90;
 				bang = true;
 			}
 		} 
@@ -173,12 +165,12 @@ void EnemyGun::Update()
 
 	else if (!hasToShot)
 	{
-		shotCounter = 210;
+		shotCounter = 90;
 	}
 
 	// Disparos hacia la derecha
 
-	if (!facingLeft && (App->player->position.x - 150) < position.x && (App->player->isSecondFloor == false))
+	if (!facingLeft && (App->player->position.x - 250) < position.x && (App->player->isSecondFloor == false))
 	{
 		hasToShot = true;
 	}
@@ -196,7 +188,7 @@ void EnemyGun::Update()
 
 			if (shotCounter == 0)
 			{
-				shotCounter = 210;
+				shotCounter = 90;
 				bang = true;
 			}
 		}
@@ -211,6 +203,7 @@ void EnemyGun::Update()
 	{
 		hasToShot = false;
 		currentAnim = &walkBasic;
+		shotCounter = 90;
 	}
 
 	Enemy::Update();

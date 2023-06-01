@@ -46,6 +46,7 @@ const Collider* Enemy::GetColliderRange() const
 
 void Enemy::Update()
 {
+		
 		/*if (!isAttacking && !isJumping && App->player->isSecondFloor == true)
 		{
 			currentAnim = &walkBasic;
@@ -230,8 +231,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	}
 
 
-	/*else 
-	{
+	/*else{
 		(facingLeft) ? position.x -= 1 : position.x += 1;
 		!isAttacking;
 	}*/

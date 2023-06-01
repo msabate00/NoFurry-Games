@@ -145,17 +145,17 @@ void Enemy_Basic::Update()
 	}
 	
 	// Ataque :)
-	if (isAttacking) 
+	if (isAttacking)
 	{
-
 		currentAnim = &attackAnim;
 		/*cout << "ataca" << endl;*/
 
 		if (currentAnim->HasFinished())
 		{
+			currentAnim = &walkBasic;
 			isAttacking = false;
 		}
-	} 
+	}
 	
 	Enemy::Update();
 }

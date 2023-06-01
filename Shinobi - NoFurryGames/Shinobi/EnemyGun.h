@@ -20,7 +20,7 @@ public:
 
 	bool hasToShot = false;
 
-	int shotCounter = 210;
+	int shotCounter = 90;
 
 
 	iPoint diePos;
