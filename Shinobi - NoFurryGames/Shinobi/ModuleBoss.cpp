@@ -220,10 +220,9 @@ bool ModuleBoss::Start()
 	timeContador2 = 0;
 
 	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
-	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss");
-	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted");
-	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die");
-
+	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss.wav");
+	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted.wav");
+	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die.wav");
 
 
 	currentParticleDirection = fPoint(0, 0);
@@ -244,7 +243,12 @@ bool ModuleBoss::Start()
 
 update_status ModuleBoss::Update()
 {
-	
+	if (ComprobarSonido3 == true)
+	{
+		App->audio->PlayFx(RecieveDamage_2FX);
+		cout << "AAAAAAAAA" << endl;
+		ComprobarSonido3 = false;
+	}
 	//App->particlesBoss->DestroyCollision(fireBallParticle);
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_DOWN) {
 		App->fade->FadeToBlack(this, (Module*)App->scene_MainMenu, 20);
@@ -252,22 +256,28 @@ update_status ModuleBoss::Update()
 	}
 
 	if (dead) {
+		if (ComprobarSonido == true)
+		{
+			App->audio->PlayFx(Boss_DieFX);
+			ComprobarSonido = false;
+		}
+
 		current_head_Animation = &generalDying;
 		current_torso_Animation = &torso_dead;
 		current_legs_Animation = &legs_dead;
 		if (current_head_Animation->HasFinished()) {
-
 			timerChangeFinal += App->deltaTime;
 			App->interface_module->gameChange = false;
 
 			if (timerChangeFinal <= 20) {
 				App->interface_module->texture_num += 5000;
 				App->interface_module->texture_num += 20000;
+				App->audio->PlayMusic("Assets/Audio/Music/Boss_Clear.ogg");
 			}
 			if (timerChangeFinal >= 5000 || App->interface_module->remaining_time == 0) {
 				App->interface_module->gameChange = true;
 				App->fade->FadeToBlack(App->activeModule, App->mapaV);
-				Mix_HaltMusic();
+
 			}
 		}
 		current_head_Animation->Update();
@@ -289,6 +299,7 @@ update_status ModuleBoss::Update()
 		if (attacking == -1) {
 			int ran = (rand() % 2) + 1; //1-3
 				attacking = ran;
+				App->audio->PlayFx(FuegoFX);
 		}
 
 		firstParticle = true;
@@ -379,12 +390,15 @@ update_status ModuleBoss::Update()
 			switch (ran) {
 			case 0:
 				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition2.x, currentParticlePosition2.y);
+				App->audio->PlayFx(FuegoFX);
 				break;
 			case 1:
 				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition2.x, currentParticlePosition2.y);
+				App->audio->PlayFx(FuegoFX);
 				break;
 			case 2:
 				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition2.x, currentParticlePosition2.y);
+				App->audio->PlayFx(FuegoFX);
 				break;
 			}
 			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE2, this);
@@ -508,6 +522,14 @@ update_status ModuleBoss::Update()
 			current_torso_Animation = &torso_DamageAnim;
 			current_legs_Animation = &legs_DamageAnim;
 			stunnedTime--;
+			if (ComprobarSonido2 == true)
+			{
+				App->audio->PlayFx(RecieveDamageFX);
+				ComprobarSonido2 = false;
+				cout << "CCCCCCCCCCC" << endl;
+			}
+
+			
 		}
 		else {
 			stunned = false;
@@ -522,9 +544,8 @@ update_status ModuleBoss::Update()
 		inmuneTime = TOTAL_INMUNE_TIME;
 		stunnedTime = TOTAL_STUNNED_TIME;
 		inmune = false;
+		ComprobarSonido2 = true;
 	}
-	
-
 
 	current_head_Animation->Update();
 	current_torso_Animation->Update();
@@ -616,10 +637,14 @@ void ModuleBoss::OnCollision(Collider* c1, Collider* c2)
 		if (life <= 0) {//morir
 			
 			current_head_Animation = &generalDying;
-			App->audio->PlayFx(Boss_DieFX);
 			//App->fade->FadeToBlack(App->activeModule, App->mapaV);
 			dead = true;
 		}
+	}
+
+	if (c1 == legs_Collider && c2->type == Collider::Type::PLAYER_SHOT)
+	{
+		ComprobarSonido3 = true;
 	}
 
 	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL) {

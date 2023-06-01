@@ -116,6 +116,9 @@ public:
 	uint FuegoFX = 0;
 	uint RecieveDamage_2FX = 0;
 	uint Boss_DieFX = 0;
+	bool ComprobarSonido = true;
+	bool ComprobarSonido2 = true;
+	bool ComprobarSonido3 = false;
 
 	float timerChangeFinal = 0;
 
