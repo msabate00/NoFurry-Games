@@ -246,7 +246,6 @@ update_status ModuleBoss::Update()
 	if (ComprobarSonido3 == true)
 	{
 		App->audio->PlayFx(RecieveDamage_2FX);
-		cout << "AAAAAAAAA" << endl;
 		ComprobarSonido3 = false;
 	}
 	//App->particlesBoss->DestroyCollision(fireBallParticle);
@@ -526,7 +525,6 @@ update_status ModuleBoss::Update()
 			{
 				App->audio->PlayFx(RecieveDamageFX);
 				ComprobarSonido2 = false;
-				cout << "CCCCCCCCCCC" << endl;
 			}
 
 			
