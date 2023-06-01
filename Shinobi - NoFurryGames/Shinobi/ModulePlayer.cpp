@@ -352,13 +352,19 @@ update_status ModulePlayer::Update()
 
 		return update_status::UPDATE_CONTINUE;
 	}
-	ComprovarSOnido = true;
 
 	if (isUlti) {
 
 		inmune = true;
 		currentAnimation = &ultiEspadaAnim;
-		App->audio->PlayFx(ULTIFX);
+		if (ComprovarSOnido == true)
+		{
+			App->audio->PlayFx(ULTIFX);
+			//cout << "AAAAAAAAAAA" << endl;
+			ComprovarSOnido = false;
+
+		}
+
 		/*App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);*/
 
 
@@ -818,7 +824,7 @@ update_status ModulePlayer::Update()
 		holdingGun = !holdingGun;
 	}
 
-
+	ComprovarSOnido = true;
 	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;
