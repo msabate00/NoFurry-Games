@@ -163,7 +163,6 @@ public:
 	bool resetTimeHostage = true;
 	float timeOver = 0;
 	bool spacePoint = true;
-	bool StageClearFX = true;
 	//Boos
 	SDL_Texture* Boss_pow = nullptr;
 	SDL_Texture* Boss_life = nullptr;

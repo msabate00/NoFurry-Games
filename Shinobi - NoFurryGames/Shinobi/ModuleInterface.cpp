@@ -185,16 +185,6 @@ update_status ModuleInterface::PostUpdate()
 			texture_num += 30;
 		}
 		stageClear();
-		/*
-		if (Mix_PlayingMusic() == 1)
-		{
-			App->audio->PlayMusic("Assets/Audio/Music/Stage Clear.ogg");
-		}
-		else
-		{
-			Mix_HaltMusic();
-		}
-		*/
 		if (App->interface_module->remaining_time <= 0) {
 			App->interface_module->remaining_time = 0;
 		}
