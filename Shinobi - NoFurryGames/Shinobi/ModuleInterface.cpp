@@ -117,17 +117,26 @@ update_status ModuleInterface::Update()
 	int elapsed_time = updateTimer(start_time);
 
 
-	if ((App->input->keys[SDL_SCANCODE_1] == KEY_DOWN || pad.start_down) && App->scene_MainMenu->IsEnabled()) {
-		if (coinNum == 9) {
-			coinNum = 9;
-		}
-		else {
-			coinNum++;
-		}
-		
+	static bool MonedaFX = false;
 
-		App->audio->PlayFx(monedaFX);
+	if ((App->input->keys[SDL_SCANCODE_1] == KEY_DOWN || pad.start_down) && App->scene_MainMenu->IsEnabled()) {
+		if (coinNum <= 9) {
+			if (coinNum == 9 && !MonedaFX) {
+				App->audio->PlayFx(monedaFX);
+				MonedaFX = true;
+			}
+			else if (coinNum != 9) {
+				App->audio->PlayFx(monedaFX);
+				MonedaFX = true;
+			}
+		}
+		if (coinNum < 9) {
+			coinNum++;
+			MonedaFX = false;
+		}
 	}
+
+
 
 	return update_status::UPDATE_CONTINUE;
 }
