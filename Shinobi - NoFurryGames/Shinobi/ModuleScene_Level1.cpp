@@ -126,7 +126,7 @@ bool ModuleScene_Level1::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1694, FLOOR_LEVEL - 64);
 
 
-	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 290, FLOOR_LEVEL - 64, false, true); //Enemigo básico 1
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 300, FLOOR_LEVEL - 75, false, true); //Enemigo brownshield prueba
 
 
 	if (App->player->position.x >= 1210) // <----- ESTO NO FUNCIONA, YA QUE ESTA EN EL START

@@ -21,6 +21,9 @@ public:
 	bool secondFloor = false;
 	int points = 100;
 
+	bool attacksNow = false;
+	int throwSword = 50;
+
 
 private:
 	// The position (as ratio) in the wave at a specific moment

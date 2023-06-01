@@ -85,6 +85,9 @@ public:
 	Particle enemyShotR;
 	Particle enemyShotL;
 
+	Particle enemySwordR;
+	Particle enemySwordL;
+
 	Particle bonus200;
 	Particle bonus500;
 	Particle bonus1000;

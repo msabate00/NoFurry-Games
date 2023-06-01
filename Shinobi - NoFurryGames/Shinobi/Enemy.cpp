@@ -130,6 +130,18 @@ void Enemy::Update()
 		{
 			App->particles->AddParticle(App->particles->enemyShotR, position.x + 20, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SHOT, 0);
 		}
+
+
+
+		if (sword && facingLeft)
+		{
+			App->particles->AddParticle(App->particles->enemySwordL, position.x, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+		}
+
+		else if (sword && !facingLeft)
+		{
+			App->particles->AddParticle(App->particles->enemySwordR, position.x + 20, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+		}
 		
 }
 

@@ -54,6 +54,7 @@ public:
 	bool needsToAvoidFlip = false;
 
 	bool bang = false;	// Para el enemigo de la pistolita ;)
+	bool sword = false;
 
 	bool ignorePlayer;
 

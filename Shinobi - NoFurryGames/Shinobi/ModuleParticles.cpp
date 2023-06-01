@@ -294,6 +294,23 @@ bool ModuleParticles::Start()
 	enemyShotR.lifetime = 80;
 	enemyShotR.speed = fPoint(4, 0);
 
+	enemySwordL.anim.PushBack({ 500, 53, 38, 16 });
+	enemySwordL.anim.PushBack({ 546, 53, 38, 16 });
+	enemySwordL.anim.PushBack({ 592, 53, 38, 16 });
+	enemySwordL.anim.loop = true;
+	enemySwordL.anim.speed = 0.3f;
+	enemySwordL.lifetime = 80;
+	enemySwordL.speed = fPoint(-4, 0);
+
+	enemySwordR.anim.PushBack({ 500, 53, 38, 16 });
+	enemySwordR.anim.PushBack({ 546, 53, 38, 16 });
+	enemySwordR.anim.PushBack({ 592, 53, 38, 16 });
+	enemySwordR.anim.loop = true;
+	enemySwordR.anim.speed = 0.3f;
+	enemySwordR.lifetime = 80;
+	enemySwordR.speed = fPoint(4, 0);
+
+
 
 
 	bonus200.anim.PushBack({ 28,2095,38,17 });

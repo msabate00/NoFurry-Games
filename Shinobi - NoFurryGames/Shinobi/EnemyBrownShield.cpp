@@ -13,17 +13,27 @@ using namespace std;
 EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, ENEMY_TYPE::BROWNSHIELD)
 {
 	
-	walkBasic.PushBack({282, 332, 41, 51});
+	/*walkBasic.PushBack({282, 332, 41, 51});
 	walkBasic.PushBack({ 329, 332, 41, 51 });
 	walkBasic.PushBack({ 376, 332, 41, 51 });
 	walkBasic.loop = true;
-	walkBasic.speed = 0.1f;
+	walkBasic.speed = 0.1f;*/
 	
-	staticAnim.PushBack({ 509, 258,33,65 });
-	staticAnim.PushBack({ 548, 258,33,65 });
+	staticAnim.PushBack({ 314, 100, 48, 73 });
+	staticAnim.PushBack({ 368, 100, 48, 73 });
 	staticAnim.loop = true;
-	staticAnim.speed = 0.012f;
+	staticAnim.speed = 0.01f;
 
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
 	attackBrown.PushBack({ 314, 18, 48,73 });
 	attackBrown.PushBack({ 368, 18, 48,73 });
 	attackBrown.PushBack({ 422, 18, 48,73 });
@@ -40,17 +50,14 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 	Death.PushBack({ 532, 100, 39, 65 });
 	Death.loop = false;
 	Death.speed = 0.1f;
-
-	staticAnim.PushBack({ 314, 100, 48, 73 });
-	staticAnim.PushBack({ 368, 100, 48, 73 });
-	staticAnim.loop = true;
-	staticAnim.speed = 0.1f;
 	
 	collider = App->collisions->AddCollider({ 0, 0,44,65 }, Collider::Type::ENEMY, (Module*)App->enemy);
 }
 
 void EnemyBrownShield::Update()
 {
+
+		
 
 		// Gravedad - INDV
 		jumpSpeed += -GRAVITY;
@@ -60,17 +67,14 @@ void EnemyBrownShield::Update()
 		}
 		position.y -= jumpSpeed;
 
-
 		// Rango de visión - INDV
 		if (facingLeft && App->player->position.x < (position.x - viewRange))
 		{
 			currentAnim = &staticAnim;
-			position.x += speed;
 		}
 		else if (!facingLeft && App->player->position.x > (position.x + viewRange))
 		{
 			currentAnim = &staticAnim;
-			position.x -= speed;
 		}
 
 		// Cuando entra en el rango, se mueve
@@ -87,55 +91,97 @@ void EnemyBrownShield::Update()
 			}
 		}
 
-		//Movimiento dependiendo para donde esta mirando
-		if (!setHasReceivedDamage && !isAttacking) {
-			if (facingLeft) {
-				position.x -= speed;
-			}
-			else {
-				position.x += speed;
-			}
-		}
+		////Movimiento dependiendo para donde esta mirando
+		///*if (!setHasReceivedDamage && !isAttacking) {
+		//	if (facingLeft) {
+		//		position.x -= speed;
+		//	}
+		//	else {
+		//		position.x += speed;
+		//	}
+		//}*/
 
 		// Salta
 		if (!jumpsNow)
 		{
-			currentAnim = &walkBasic;
+			currentAnim = &staticAnim;
 		}
 		else if (jumpsNow)
 		{
-			currentAnim = &jumping;
+			currentAnim = &staticAnim;
 		}
 
-		if (currentAnim->HasFinished())
+		/*if (currentAnim->HasFinished())
 		{
 			jumpsNow = false;
+		}*/
+
+		//// Ataque :)
+		//if (isAttacking) {
+		//	currentAnim = &attackBrown;
+
+		//	if (currentAnim->HasFinished()) {
+		//		isAttacking = false;
+		//		currentAnim->Reset();
+		//	}
+		//}
+
+	
+		// Disparos hacia la izquierda
+
+		if (facingLeft && (App->player->position.x + 200) > position.x && (App->player->isSecondFloor == false))
+		{
+			attacksNow = true;
 		}
+		else attacksNow = false;
 
-		// Ataque :)
-		if (isAttacking) {
+		if (attacksNow && facingLeft)
+		{
 			currentAnim = &attackBrown;
+			
+			if (throwSword > 0)
+			{
+				throwSword--;
+				sword = false;
 
-			if (currentAnim->HasFinished()) {
-				isAttacking = false;
-				currentAnim->Reset();
+				if (throwSword == 0)
+				{
+					throwSword = 90;
+					sword = true;
+				}
 			}
 		}
 
-		// Si lo mata, quedarse quieto
-		if (facingLeft && App->player->destroyed)
+		else if (!attacksNow)
 		{
-			currentAnim = &staticAnim;
-			position.x += speed;
+			throwSword = 90;
 		}
-		else if (!facingLeft && App->player->destroyed)
+
+		// Disparos hacia la derecha
+
+		if (!facingLeft && (App->player->position.x - 250) < position.x && (App->player->isSecondFloor == false))
 		{
-			currentAnim = &staticAnim;
-			position.x -= speed;
+			attacksNow = true;
+		}
+		else attacksNow = false;
+
+		if (attacksNow && !facingLeft)
+		{
+			currentAnim = &attackBrown;
+
+			if (throwSword > 0)
+			{
+				throwSword--;
+				sword = false;
+
+				if (throwSword == 0)
+				{
+					throwSword = 90;
+					sword = true;
+				}
+			}
 		}
 	
-
-
 	Enemy::Update();
 }
 
