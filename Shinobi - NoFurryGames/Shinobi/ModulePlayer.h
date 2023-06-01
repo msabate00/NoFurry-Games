@@ -140,6 +140,7 @@ public:
 	uint efectoSaltoPlataformaFX = 0;
 	uint StageClearFX = 0;
 	uint GameOverFX = 0;
+	uint ULTIFX = 0;
 	bool ComprobarataqueFX = false;
 
 	bool ComprovarSOnido = true;

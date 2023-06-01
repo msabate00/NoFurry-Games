@@ -124,7 +124,7 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 
 uint ModuleAudio::LoadFx(const char* path)
 {
-	uint ret = 0;
+	uint ret = MAX_FX; // Valor especial para indicar un error
 	Mix_Chunk* chunk = Mix_LoadWAV(path);
 
 	if (chunk == nullptr)
@@ -141,6 +141,12 @@ uint ModuleAudio::LoadFx(const char* path)
 				break;
 			}
 		}
+
+		if (ret == MAX_FX)
+		{
+			LOG("Cannot load more sound effects. Maximum reached.");
+			Mix_FreeChunk(chunk); // Liberar el chunk cargado si no hay espacio
+		}
 	}
 
 	return ret;
@@ -148,13 +154,13 @@ uint ModuleAudio::LoadFx(const char* path)
 
 bool ModuleAudio::PlayFx(uint index, int repeat)
 {
-	bool ret = false;
-
-	if (soundFx[index] != nullptr)
+	if (index >= MAX_FX || soundFx[index] == nullptr)
 	{
-		Mix_PlayChannel(-1, soundFx[index], repeat);
-		ret = true;
+		LOG("Invalid sound effect index");
+		return false;
 	}
 
-	return ret;
+	Mix_PlayChannel(-1, soundFx[index], repeat);
+	return true;
 }
+

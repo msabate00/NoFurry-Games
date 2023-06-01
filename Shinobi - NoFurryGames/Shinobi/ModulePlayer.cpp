@@ -262,6 +262,7 @@ bool ModulePlayer::Start()
 	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
 	StageClearFX = App->audio->LoadFx("Assets/Audio/Music/Stage Clear.ogg");
 	GameOverFX = App->audio->LoadFx("Assets/Audio/Music/Game_Over.ogg");
+	ULTIFX = App->audio->LoadFx("Assets/Audio/Effects/main character/ULTIFX.wav");
 
 	currentAnimation = &idleAnim;
 
@@ -357,7 +358,7 @@ update_status ModulePlayer::Update()
 
 		inmune = true;
 		currentAnimation = &ultiEspadaAnim;
-		
+		App->audio->PlayFx(ULTIFX);
 		/*App->particles->AddParticle(App->particles->ulti, position.x - 30, position.y - currentAnimation->GetCurrentFrame().h, Collider::Type::NONE, 0);*/
 
 

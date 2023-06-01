@@ -116,7 +116,6 @@ update_status ModuleInterface::Update()
 
 	int elapsed_time = updateTimer(start_time);
 
-
 	static bool MonedaFX = false;
 
 	if ((App->input->keys[SDL_SCANCODE_1] == KEY_DOWN || pad.start_down) && App->scene_MainMenu->IsEnabled()) {
@@ -135,8 +134,6 @@ update_status ModuleInterface::Update()
 			MonedaFX = false;
 		}
 	}
-
-
 
 	return update_status::UPDATE_CONTINUE;
 }
