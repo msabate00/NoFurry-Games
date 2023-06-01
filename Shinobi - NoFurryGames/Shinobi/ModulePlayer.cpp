@@ -254,6 +254,8 @@ bool ModulePlayer::Start()
 	///////////////////////
 	//      SONIDOS      //
 	///////////////////////
+	App->audio->SetMusicVolume(20);
+
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
 	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
 	efectoSaltoPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Efecto_SaltoPlataforma.wav");
@@ -359,6 +361,7 @@ update_status ModulePlayer::Update()
 		currentAnimation = &ultiEspadaAnim;
 		if (ComprovarSOnido == true)
 		{
+			
 			App->audio->PlayFx(ULTIFX);
 			//cout << "AAAAAAAAAAA" << endl;
 			ComprovarSOnido = false;
