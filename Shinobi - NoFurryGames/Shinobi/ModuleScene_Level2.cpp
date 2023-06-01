@@ -122,8 +122,7 @@ bool ModuleScene_Level2::Start()
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
 
 	//Enemies
-	
-	
+		
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 330, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 365, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 390, FLOOR_LEVEL - 64, false, true);
@@ -139,13 +138,13 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1215, FLOOR_LEVEL - 180, false, true);
 
-	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 850, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 250, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 1665, FLOOR_LEVEL - 180, false, true);
+
 
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 1215, FLOOR_LEVEL - 180, false, true);
 
-
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
-
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
 
