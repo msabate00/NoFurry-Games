@@ -24,20 +24,20 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 	staticAnim.loop = true;
 	staticAnim.speed = 0.012f;
 
-	attackBrown.PushBack({ 314, 18,48,73 });
+	attackBrown.PushBack({ 314, 18, 48,73 });
 	attackBrown.PushBack({ 368, 18, 48,73 });
-	attackBrown.PushBack({ 422, 18,48,73 });
-	attackBrown.PushBack({ 476, 18,73,73 });
-	attackBrown.PushBack({ 555, 18,48,73 });
-	attackBrown.PushBack({ 609, 18,48,73 });
+	attackBrown.PushBack({ 422, 18, 48,73 });
+	attackBrown.PushBack({ 476, 18, 73,73 });
+	attackBrown.PushBack({ 555, 18, 48,73 });
+	attackBrown.PushBack({ 609, 18, 48,73 });
 	
 	attackBrown.speed = 0.1f;
 
 	//muerte
 
-	Death.PushBack({ 429, 331, 39, 65 });
-	Death.PushBack({ 474, 331, 39, 65 });
-	Death.PushBack({ 519, 331, 39, 65 });
+	Death.PushBack({ 422, 100, 39, 65 });
+	Death.PushBack({ 477, 100, 39, 65 });
+	Death.PushBack({ 532, 100, 39, 65 });
 	Death.loop = false;
 	Death.speed = 0.1f;
 
@@ -52,14 +52,6 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 void EnemyBrownShield::Update()
 {
 
-	if (App->player->isSecondFloor == false)
-	{
-		currentAnim = &staticAnim;
-		facingLeft = true;
-	}
-
-	if (App->player->isSecondFloor)
-	{
 		// Gravedad - INDV
 		jumpSpeed += -GRAVITY;
 		float grav = GRAVITY;
@@ -141,7 +133,7 @@ void EnemyBrownShield::Update()
 			currentAnim = &staticAnim;
 			position.x -= speed;
 		}
-	}
+	
 
 
 	Enemy::Update();
