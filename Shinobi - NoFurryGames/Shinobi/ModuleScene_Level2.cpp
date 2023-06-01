@@ -122,22 +122,29 @@ bool ModuleScene_Level2::Start()
 		App->hostages->AddHostage(HOSTAGE_TYPE::HOSTAGE, 1650, FLOOR_LEVEL - 93, false, 1000, false, 7, true);
 
 	//Enemies
-	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 250, FLOOR_LEVEL - 60);
 	
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 340, FLOOR_LEVEL - 60);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 60);
+	
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 330, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 365, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 390, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 480, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 650, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1054, FLOOR_LEVEL - 180, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1090, FLOOR_LEVEL - 180, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1122, FLOOR_LEVEL - 180, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1530, FLOOR_LEVEL - 64, false, true);
 
-		// El primer spoderman est?en 520
-
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1215, FLOOR_LEVEL - 180, false, true);
 
 	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 850, FLOOR_LEVEL - 64);
 
+	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 1215, FLOOR_LEVEL - 180, false, true);
+
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 450, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
