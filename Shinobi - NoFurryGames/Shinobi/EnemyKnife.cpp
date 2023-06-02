@@ -145,6 +145,18 @@ void Enemy_Knife::Update()
 		speed = initialSpeed;
 	}
 
+
+	if (App->player->destroyed && facingLeft)
+	{
+		position.x--;
+		currentAnim = &walkBasic;
+	}
+	else if (App->player->destroyed && !facingLeft)
+	{
+		position.x++;
+		currentAnim = &walkBasic;
+	}
+
 	//// Salta
 	//if (!jumpsNow)
 	//{

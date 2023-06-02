@@ -88,12 +88,12 @@ void EnemyGun::Update()
 	if (facingLeft && App->player->position.x < (position.x - viewRange))
 	{
 		currentAnim = &firesGun;
-		position.x += speed;
+		/*position.x += speed;*/
 	}
 	else if (!facingLeft && App->player->position.x > (position.x + viewRange))
 	{
 		currentAnim = &firesGun;
-		position.x -= speed;
+		/*position.x -= speed;*/
 	}
 
 	// Cuando entra en el rango, se mueve
@@ -103,10 +103,12 @@ void EnemyGun::Update()
 		if (position.x < App->player->position.x - wanderRange && facingLeft)
 		{
 			facingLeft = false;
+			
 		}
 		if (position.x > App->player->position.x + wanderRange && !facingLeft)
 		{
 			facingLeft = true;
+			
 		}
 	}
 
@@ -115,15 +117,15 @@ void EnemyGun::Update()
 	{
 		if (facingLeft)
 		{
-			position.x -= speed;
+			
 		}
 		else {
-			position.x += speed;
+			
 		}
 	}
 
 	// Salta
-	if (!jumpsNow)
+	/*if (!jumpsNow)
 	{
 		currentAnim = &walkBasic;
 	}
@@ -135,7 +137,7 @@ void EnemyGun::Update()
 	if (currentAnim->HasFinished())
 	{
 		jumpsNow = false;
-	}
+	}*/
 
 	// Disparos hacia la izquierda
 		
@@ -148,7 +150,7 @@ void EnemyGun::Update()
 	if (hasToShot && facingLeft)	
 	{
 		currentAnim = &firesGun;
-		position.x += speed;
+		position.x += 0;
 
 		if (shotCounter > 0)
 		{
@@ -163,10 +165,10 @@ void EnemyGun::Update()
 		} 
 	}
 
-	else if (!hasToShot)
+	/*else if (!hasToShot)
 	{
 		shotCounter = 90;
-	}
+	}*/
 
 	// Disparos hacia la derecha
 
@@ -179,7 +181,7 @@ void EnemyGun::Update()
 	if (hasToShot && !facingLeft)
 	{
 		currentAnim = &firesGun;
-		position.x -= speed;
+		position.x += 0;
 
 		if (shotCounter > 0)
 		{
@@ -196,7 +198,7 @@ void EnemyGun::Update()
 
 	/*else if (!hasToShot)
 	{
-		shotCounter = 210;
+		shotCounter = 90;
 	}*/
 
 	if (App->player->destroyed)

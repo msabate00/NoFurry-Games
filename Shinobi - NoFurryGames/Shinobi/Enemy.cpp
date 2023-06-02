@@ -150,7 +150,7 @@ void Enemy::Draw()
 	
 	/*if (currentAnim != nullptr) 
 	{
-		App->render->Blit(texture, position.x, position.y, SDL_FLIP_NONE, &(currentAnim->GetCurrentFrame()));
+		App->render->Blit(texture, position.x, position.y, SDL_FLIP_ NONE, &(currentAnim->GetCurrentFrame()));
 	}*/
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
@@ -184,7 +184,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 7;
+			position.y -= 4;
 		}
 	}
 	if (c2->type == Collider::Type::BOX_HELP_RIGHT)
@@ -192,7 +192,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (!facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 7;
+			position.y -= 6;
 		}
 	}
 	

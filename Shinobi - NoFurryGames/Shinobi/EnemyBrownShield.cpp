@@ -154,10 +154,10 @@ void EnemyBrownShield::Update()
 			}
 		}
 
-		else if (!attacksNow)
+		/*else if (!attacksNow)
 		{
 			throwSword = 160;
-		}
+		}*/
 
 		// Disparos hacia la derecha
 
