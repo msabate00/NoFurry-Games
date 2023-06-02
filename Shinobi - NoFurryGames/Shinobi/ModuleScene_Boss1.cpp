@@ -72,6 +72,7 @@ bool ModuleScene_Boss1::Start()
 	App->audio->PlayMusic("Assets/Audio/Music/Mission 1-3 (Boss).ogg");
 
 	App->interface_module->resetTimer();
+
 	return ret;
 }
 

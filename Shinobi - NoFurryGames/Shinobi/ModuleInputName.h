@@ -80,6 +80,9 @@ public:
 	int letraposY;
 
 	uint scoreboardFX = 0;
+	uint scoreboardFX2 = 0;
+	uint Music_scoreboardFX = 0;
+	int contador1 = 0;
 
 	char myName[4];
 	int myNamelist = 0;

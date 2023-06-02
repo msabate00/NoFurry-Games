@@ -160,6 +160,7 @@ bool ModuleScene_Level2::Start()
 
 
 	App->interface_module->resetTimer();
+
 	return ret;
 }
 

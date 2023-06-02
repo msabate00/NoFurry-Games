@@ -158,7 +158,7 @@ void ModuleBossEndLevel::OnCollision(Collider* c1, Collider* c2)
 {
 
 	
-	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL && c2 != bossWall) {
+	if (c1->type == Collider::Type::BOSS_PROYECTILE && c2->active && c2->type == Collider::Type::WALL && c2 != bossWall && c2->GetRect().y > SCREEN_HEIGHT-100) {
 		if (c2->GetRect().y > c1->GetRect().y) {
 			currentParticleDirection.y *= -1;
 			

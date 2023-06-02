@@ -62,6 +62,8 @@ bool ModuleInputName::Start()
 	myName[4] = NULL;
 	Mix_HaltMusic();
 	scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX.wav");
+	scoreboardFX2 = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX2.wav");
+	Music_scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/Musica_Scoreboard.wav");
 	return ret;
 }
 
@@ -114,9 +116,15 @@ update_status ModuleInputName::Update()
 		if (dardosPositionX == 215 && dardosPositionY == 35) {
 
 			App->fade->FadeToBlack(this, (Module*)App->ranking, 20);
+			App->audio->PlayFx(Music_scoreboardFX);
 		}
 		else {
-		
+			if (contador1 <= 3)
+			{
+				App->audio->PlayFx(scoreboardFX2);
+				contador1++;
+			}
+
 		printNomSelect(dardosPositionX, dardosPositionY);
 		}
 	}

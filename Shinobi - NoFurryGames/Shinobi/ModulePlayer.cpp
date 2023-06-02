@@ -254,7 +254,7 @@ bool ModulePlayer::Start()
 	///////////////////////
 	//      SONIDOS      //
 	///////////////////////
-	App->audio->SetMusicVolume(20);
+	App->audio->SetMusicVolume(25);
 
 	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
 	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
@@ -305,8 +305,6 @@ update_status ModulePlayer::Update()
 {
 	GamePad& pad = App->input->pads[0];
 	
-	
-
 
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
@@ -324,13 +322,15 @@ update_status ModulePlayer::Update()
 		if (ComprovarSOnido == true)
 		{
 			Mix_HaltMusic();
-			App->audio->PlayFx(GameOverFX);
+			App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 			ComprovarSOnido = false;
 		}
-		if (timerGameover >= 30000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+		if (timerGameover >= 6000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
+			timerGameover = 0;
 			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
+			Mix_HaltMusic();
 		}
 	}
 	if (isChangingZone) {
@@ -783,7 +783,7 @@ update_status ModulePlayer::Update()
 		
 		App->audio->PlayFx(shurikenAtaqueFX);
 		App->interface_module->spacePoint = false;
-		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) {
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) {
 			isCrouchedAttacking = true;
 			App->audio->PlayFx(shurikenAtaqueFX);
 		}
@@ -828,6 +828,7 @@ update_status ModulePlayer::Update()
 	}
 
 	ComprovarSOnido = true;
+	hasPlayedDeathSound = true;
 	currentAnimation->Update();
 
 	return update_status::UPDATE_CONTINUE;

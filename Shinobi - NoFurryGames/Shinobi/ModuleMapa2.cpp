@@ -44,6 +44,8 @@ bool ModuleMapa2::Start()
 	MapaY = SCREEN_HEIGHT + 25;
 
 	timerMapa2 = 0;
+
+
 	return ret;
 }
 
