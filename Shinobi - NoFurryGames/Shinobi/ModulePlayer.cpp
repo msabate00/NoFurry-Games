@@ -783,7 +783,7 @@ update_status ModulePlayer::Update()
 		
 		App->audio->PlayFx(shurikenAtaqueFX);
 		App->interface_module->spacePoint = false;
-		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) {
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) {
 			isCrouchedAttacking = true;
 			App->audio->PlayFx(shurikenAtaqueFX);
 		}
