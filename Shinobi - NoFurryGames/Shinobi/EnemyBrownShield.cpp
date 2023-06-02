@@ -184,6 +184,13 @@ void EnemyBrownShield::Update()
 			}
 		}
 
+		if (App->player->destroyed)
+		{
+			attacksNow = false;
+			currentAnim = &staticAnim;
+			throwSword = 160;
+		}
+
 
 	
 	Enemy::Update();

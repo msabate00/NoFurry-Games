@@ -43,7 +43,7 @@ private:
 	int distanceBetween;
 	int distanceToAttack = 3;
 
-	Animation firesGun;
+	Animation firesGun, recharging;
 
 };
 

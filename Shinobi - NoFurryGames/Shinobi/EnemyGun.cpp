@@ -44,6 +44,11 @@ EnemyGun::EnemyGun(int x, int y, bool secondFloor) : Enemy(x, y, secondFloor, EN
 
 	Disapear.PushBack({ 0,0,0,0 });
 
+	recharging.PushBack({ 4,243,47,60 });
+	recharging.PushBack({ 95,351,47,60 });
+	recharging.loop = true;
+	recharging.speed = 0.1f;
+
 	//ataque
 
 	attackAnim.PushBack({ 124,252,54,51 });
@@ -204,7 +209,7 @@ void EnemyGun::Update()
 	if (App->player->destroyed)
 	{
 		hasToShot = false;
-		currentAnim = &walkBasic;
+		currentAnim = &recharging;
 		shotCounter = 90;
 	}
 
