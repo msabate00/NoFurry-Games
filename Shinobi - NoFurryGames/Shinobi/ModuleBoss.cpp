@@ -243,6 +243,14 @@ bool ModuleBoss::Start()
 
 update_status ModuleBoss::Update()
 {
+
+	if (life <= 0 && !dead) {//morir
+
+		current_head_Animation = &generalDying;
+		//App->fade->FadeToBlack(App->activeModule, App->mapaV);
+		dead = true;
+	}
+
 	if (ComprobarSonido3 == true)
 	{
 		App->audio->PlayFx(RecieveDamage_2FX);

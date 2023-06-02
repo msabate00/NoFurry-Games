@@ -325,7 +325,7 @@ update_status ModulePlayer::Update()
 			App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 			ComprovarSOnido = false;
 		}
-		if (timerGameover >= 6000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+		if (timerGameover >= 6000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down || pad.b_down) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
 			timerGameover = 0;
