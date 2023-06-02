@@ -293,6 +293,8 @@ update_status ModuleInterface::PostUpdate()
 	else if (App->scene_Boss1->IsEnabled()) {
 		//INTERFAZ PARA EL JEFE
 		timerPR += App->deltaTime;
+
+		cout << timerPR << endl;
 		if (App->player->haveUlti) {
 			printSkillIcon();
 		}
@@ -318,7 +320,7 @@ update_status ModuleInterface::PostUpdate()
 			player1Ready();
 		}
 		else {
-			if (timerPR > 2000) {
+			if (timerPR > 4000) {
 				timerPR = 0;
 			}
 			else {
