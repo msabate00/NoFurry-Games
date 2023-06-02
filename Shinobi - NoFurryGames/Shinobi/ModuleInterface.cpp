@@ -237,6 +237,10 @@ update_status ModuleInterface::PostUpdate()
 		printLifeIcon(App->life_num);
 		printNum(texture_num);
 		printPlayer1();
+
+		if (gameover) {
+			printgameOver();
+		}
 	
 		if (gameChange) {
 			printTime(getTimeString(elapsed_time).c_str());

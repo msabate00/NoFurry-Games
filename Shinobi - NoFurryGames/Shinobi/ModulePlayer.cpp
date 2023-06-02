@@ -305,8 +305,6 @@ update_status ModulePlayer::Update()
 {
 	GamePad& pad = App->input->pads[0];
 	
-	
-
 
 	//Aplica la gravedad a su altura
 	//position.y += GRAVITY;
@@ -327,9 +325,10 @@ update_status ModulePlayer::Update()
 			App->audio->PlayMusic("Assets/Audio/Music/Game_Over.ogg");
 			ComprovarSOnido = false;
 		}
-		if (timerGameover >= 4000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
+		if (timerGameover >= 6000 || App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN) {
 			App->interface_module->coinNum = 0;
 			App->interface_module->gameover = false;
+			timerGameover = 0;
 			App->fade->FadeToBlack((Module*)App->activeModule, (Module*)App->scene_MainMenu, 20);
 			Mix_HaltMusic();
 		}
