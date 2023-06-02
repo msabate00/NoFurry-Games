@@ -119,7 +119,12 @@ update_status ModuleInputName::Update()
 			App->audio->PlayFx(Music_scoreboardFX);
 		}
 		else {
-			App->audio->PlayFx(scoreboardFX2);
+			if (contador1 <= 3)
+			{
+				App->audio->PlayFx(scoreboardFX2);
+				contador1++;
+			}
+
 		printNomSelect(dardosPositionX, dardosPositionY);
 		}
 	}
