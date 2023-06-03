@@ -136,13 +136,13 @@ void Enemy::Update()
 
 		if (sword && facingLeft)
 		{
-			App->particles->AddParticle(App->particles->enemySwordL, position.x, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+			App->particles->AddParticle(App->particles->enemySwordL, position.x, position.y - currentAnim->GetCurrentFrame().h + 85, Collider::Type::ENEMY_SWORD, 0);
 			if (swordSwap > 0)
 			{
 				swordSwap--;
 				if (swordSwap == 0)
 				{
-					App->particles->AddParticle(App->particles->enemySwordR, position.x, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+					App->particles->AddParticle(App->particles->enemySwordR, position.x, position.y - currentAnim->GetCurrentFrame().h + 85, Collider::Type::ENEMY_SWORD, 0);
 					swordSwap = 50;
 				}
 			}
@@ -150,7 +150,7 @@ void Enemy::Update()
 
 		else if (sword && !facingLeft)
 		{
-			App->particles->AddParticle(App->particles->enemySwordR, position.x + 30, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+			App->particles->AddParticle(App->particles->enemySwordR, position.x + 30, position.y - currentAnim->GetCurrentFrame().h + 85, Collider::Type::ENEMY_SWORD, 0);
 		}
 		
 }
@@ -194,7 +194,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 4;
+			position.y -= 6;
 		}
 	}
 	if (c2->type == Collider::Type::BOX_HELP_RIGHT)

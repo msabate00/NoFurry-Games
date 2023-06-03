@@ -73,7 +73,7 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 283, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //1 caja
 
 	App->collisions->AddCollider({ 573, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - IZQUIERDA
-	App->collisions->AddCollider({ 610, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - DERECHA
+	App->collisions->AddCollider({ 612, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - DERECHA
 
 	App->collisions->AddCollider({ 893, 186, 35, 15 }, Collider::Type::BOX_HELP); //MONTON 1 - IZQUIERDA
 	App->collisions->AddCollider({ 957, 154, 35, 15 }, Collider::Type::BOX_HELP);
@@ -90,7 +90,7 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 1664, 154, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
 	App->collisions->AddCollider({ 1696, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
 
-	App->collisions->AddCollider({ 576, 184, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
+	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
 	App->collisions->AddCollider({ 896, 183, 512, 32 }, Collider::Type::WALL); // Fila Cajas Abajo
 	App->collisions->AddCollider({ 960, 151, 352, 32 }, Collider::Type::WALL); // Fila Cajas Medio
@@ -147,6 +147,7 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1564, FLOOR_LEVEL - 180, false, true);
 
 
 	//Musica

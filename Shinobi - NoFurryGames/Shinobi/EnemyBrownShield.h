@@ -22,7 +22,7 @@ public:
 	int points = 100;
 
 	bool attacksNow = false;
-	int throwSword = 80;
+	int throwSword = 90;
 
 
 private:

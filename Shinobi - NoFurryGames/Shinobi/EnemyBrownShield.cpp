@@ -142,7 +142,7 @@ void EnemyBrownShield::Update()
 
 				if (throwSword == 0)
 				{
-					throwSword = 80;
+					throwSword = 90;
 					sword = true;
 				}
 			}
@@ -172,7 +172,7 @@ void EnemyBrownShield::Update()
 
 				if (throwSword == 0)
 				{
-					throwSword = 80;
+					throwSword = 90;
 					sword = true;
 				}
 			}
@@ -182,7 +182,7 @@ void EnemyBrownShield::Update()
 		{
 			attacksNow = false;
 			currentAnim = &staticAnim;
-			throwSword = 80;
+			throwSword = 90;
 		}
 
 
