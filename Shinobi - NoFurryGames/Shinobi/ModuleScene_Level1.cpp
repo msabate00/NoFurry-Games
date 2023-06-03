@@ -112,27 +112,24 @@ bool ModuleScene_Level1::Start()
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64, false ,true); //Enemigo básico 1
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64); //Enemigo básico 3
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64); //Enemigo básico 4
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64, false, true); //Enemigo básico 3
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
 
-	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 820, FLOOR_LEVEL - 64); //Enemigo knife
+	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 820, FLOOR_LEVEL - 64, false, true); //Enemigo knife
 	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 840, FLOOR_LEVEL - 64); //Enemigo knife 2
 	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 860, FLOOR_LEVEL - 64); //Enemigo knife 3
 
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 605, FLOOR_LEVEL - 64);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 815, FLOOR_LEVEL - 64);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1020, FLOOR_LEVEL - 64);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1522, FLOOR_LEVEL - 64);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1694, FLOOR_LEVEL - 64);
-
-
-	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 300, FLOOR_LEVEL - 75, false, true); //Enemigo brownshield prueba
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 605, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 815, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1020, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1522, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1694, FLOOR_LEVEL - 64, false, true);
 
 
 	if (App->player->position.x >= 1210) // <----- ESTO NO FUNCIONA, YA QUE ESTA EN EL START
 	{
-		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1059, FLOOR_LEVEL - 64); //Enemigo básico 5
-		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1113, FLOOR_LEVEL - 64); //Enemigo básico 6
+		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1059, FLOOR_LEVEL - 64, false, true); //Enemigo básico 5
+		App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1113, FLOOR_LEVEL - 64, false, true); //Enemigo básico 6
 	}
 
 	//Hostage

@@ -146,7 +146,7 @@ void EnemyGun::Update()
 
 	// Disparos hacia la izquierda
 		
-	if (facingLeft && (App->player->position.x + 250) > position.x && (App->player->isSecondFloor == false))
+	if (facingLeft && (App->player->position.x + 250) > position.x /*&& *//*(App->player->isSecondFloor == false)*/)
 	{
 		hasToShot = true;
 	}

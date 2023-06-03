@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModuleEnemies.h"
+#include "Enemy.h"
 #include "ModuleScene_Level1.h"
 #include "ModuleInterface.h"
 
@@ -135,12 +136,21 @@ void Enemy::Update()
 
 		if (sword && facingLeft)
 		{
-			App->particles->AddParticle(App->particles->enemySwordL, position.x, position.y - currentAnim->GetCurrentFrame().h + 80, Collider::Type::ENEMY_SWORD, 0);
+			App->particles->AddParticle(App->particles->enemySwordL, position.x, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+			if (swordSwap > 0)
+			{
+				swordSwap--;
+				if (swordSwap == 0)
+				{
+					App->particles->AddParticle(App->particles->enemySwordR, position.x, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
+					swordSwap = 50;
+				}
+			}
 		}
 
 		else if (sword && !facingLeft)
 		{
-			App->particles->AddParticle(App->particles->enemySwordR, position.x + 30, position.y - currentAnim->GetCurrentFrame().h + 80, Collider::Type::ENEMY_SWORD, 0);
+			App->particles->AddParticle(App->particles->enemySwordR, position.x + 30, position.y - currentAnim->GetCurrentFrame().h + 70, Collider::Type::ENEMY_SWORD, 0);
 		}
 		
 }

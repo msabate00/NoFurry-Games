@@ -138,7 +138,7 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1215, FLOOR_LEVEL - 180, false, true);
 
-	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 220, FLOOR_LEVEL - 75, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 210, FLOOR_LEVEL - 75, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 1665, FLOOR_LEVEL - 180, false, true);
 
 

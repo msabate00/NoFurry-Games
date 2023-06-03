@@ -66,13 +66,13 @@ bool ModuleScene_Level1_SecondFloor_Enemies::Start()
 	
 	
 	
-	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 950, FLOOR_LEVEL - 180, true);
-	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 1500, FLOOR_LEVEL - 180, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 950, FLOOR_LEVEL - 180, true, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 1500, FLOOR_LEVEL - 180, true, true);
 
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 850, FLOOR_LEVEL - 177, true); //Enemigo básico 1
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 850, FLOOR_LEVEL - 177, true, true); //Enemigo básico 1
 
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 596, FLOOR_LEVEL - 177, true); 
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1693, FLOOR_LEVEL - 177, true); 
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 596, FLOOR_LEVEL - 177, true, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1693, FLOOR_LEVEL - 177, true, true);
 
 
 	bool ret = true;

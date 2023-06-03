@@ -61,6 +61,7 @@ public:
 
 	bool isAttacking = false;
 
+	int swordSwap = 50;
 
 	int points;
 	float speed = 1;

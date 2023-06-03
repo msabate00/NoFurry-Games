@@ -29,12 +29,6 @@ EnemyBrownShield::EnemyBrownShield(int x, int y, bool secondFloor) : Enemy(x, y,
 	attackBrown.PushBack({ 314, 18, 48,73 });
 	attackBrown.PushBack({ 314, 18, 48,73 });
 	attackBrown.PushBack({ 314, 18, 48,73 });
-	attackBrown.PushBack({ 314, 18, 48,73 });
-	attackBrown.PushBack({ 314, 18, 48,73 });
-	attackBrown.PushBack({ 314, 18, 48,73 });
-	attackBrown.PushBack({ 314, 18, 48,73 });
-	attackBrown.PushBack({ 314, 18, 48,73 });
-	attackBrown.PushBack({ 314, 18, 48,73 });
 	attackBrown.PushBack({ 368, 18, 48,73 });
 	attackBrown.PushBack({ 422, 18, 48,73 });
 	attackBrown.PushBack({ 476, 18, 73,73 });
@@ -71,12 +65,12 @@ void EnemyBrownShield::Update()
 		if (facingLeft && App->player->position.x < (position.x - viewRange))
 		{
 			currentAnim = &staticAnim;
-			throwSword = 160;
+			throwSword = 80;
 		}
 		else if (!facingLeft && App->player->position.x > (position.x + viewRange))
 		{
 			currentAnim = &staticAnim;
-			throwSword = 160;
+			throwSword = 80;
 		}
 
 		// Cuando entra en el rango, se mueve
@@ -148,7 +142,7 @@ void EnemyBrownShield::Update()
 
 				if (throwSword == 0)
 				{
-					throwSword = 160;
+					throwSword = 80;
 					sword = true;
 				}
 			}
@@ -178,7 +172,7 @@ void EnemyBrownShield::Update()
 
 				if (throwSword == 0)
 				{
-					throwSword = 160;
+					throwSword = 80;
 					sword = true;
 				}
 			}
@@ -188,7 +182,7 @@ void EnemyBrownShield::Update()
 		{
 			attacksNow = false;
 			currentAnim = &staticAnim;
-			throwSword = 160;
+			throwSword = 80;
 		}
 
 
