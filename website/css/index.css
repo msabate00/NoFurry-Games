@@ -659,9 +659,9 @@ body .shell-main-image-img img:nth-child(2) {
   border: 5px solid #000;
 }
 
-body .shell-main-image-img img:nth-child(3) {
+body .shell-main-image-img img:nth-child(3), .yt_video {
   width: 600px;
-  z-index: 7;
+  z-index: 8;
   height: 400px;
   /* right: 667px; */
   transform: translate(399px, 0px);
