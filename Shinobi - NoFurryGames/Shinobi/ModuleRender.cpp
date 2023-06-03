@@ -18,6 +18,9 @@
 #include "ModuleMapaV.h"
 #include "ModuleRanking.h"
 #include "ModuleInputName.h"
+#include "ModuleScene_Intro.h"
+#include "ModuleScene_Intro2.h"
+#include "ModuleScene_MainMenu.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -65,7 +68,12 @@ bool ModuleRender::Init()
 update_status ModuleRender::PreUpdate()
 {
 	//Set the color used for drawing operations
-	if (App->mision1->IsEnabled()) {
+	if (App->scene_Intro->IsEnabled() || App->scene_Intro2->IsEnabled()) {
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	}
+	else if (App->scene_MainMenu->IsEnabled()) {
+		SDL_SetRenderDrawColor(renderer, 220, 174, 112, 255);
+	}else if (App->mision1->IsEnabled()) {
 		SDL_SetRenderDrawColor(renderer, 184, 184, 184, 255);
 	}
 	else if(App->mapa1->IsEnabled()){
