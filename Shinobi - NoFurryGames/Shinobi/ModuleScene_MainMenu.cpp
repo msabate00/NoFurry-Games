@@ -88,7 +88,7 @@ update_status ModuleScene_MainMenu::Update()
 	
 	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a_down ||pad.b_down) && App->interface_module->coinNum > 0)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->mision1, 2);
+		App->fade->FadeToBlack(this, (Module*)App->mision1, 20);
 
 	}
 
