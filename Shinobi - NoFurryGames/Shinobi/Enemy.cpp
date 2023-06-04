@@ -137,15 +137,6 @@ void Enemy::Update()
 		if (sword && facingLeft)
 		{
 			App->particles->AddParticle(App->particles->enemySwordL, position.x, position.y - currentAnim->GetCurrentFrame().h + 85, Collider::Type::ENEMY_SWORD, 0);
-			if (swordSwap > 0)
-			{
-				swordSwap--;
-				if (swordSwap == 0)
-				{
-					App->particles->AddParticle(App->particles->enemySwordR, position.x, position.y - currentAnim->GetCurrentFrame().h + 85, Collider::Type::ENEMY_SWORD, 0);
-					swordSwap = 50;
-				}
-			}
 		}
 
 		else if (sword && !facingLeft)
@@ -198,7 +189,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		{
 			
 			jumpsNow = true;
-			position.y -= 6;
+			position.y -= 5;
 		}
 	}
 	if (c2->type == Collider::Type::BOX_HELP_RIGHT)
@@ -207,9 +198,16 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		{
 			
 			jumpsNow = true;
-			position.y -= 6;
+			position.y -= 8;
 		}
 	}
+
+
+	////Colisiona con la pre-caja, para saltar
+	//if (App->player->isSecondFloor && c2->type == Collider::Type::BOX_HELP)
+	//{
+	//	c2->active = false;
+	//}
 	
 
 	//Colisiona con pared, caja, suelo
