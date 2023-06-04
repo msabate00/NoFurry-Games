@@ -771,8 +771,8 @@ update_status ModulePlayer::Update()
 	
 
 
-	collider->SetPos(position.x+ marginCollider, position.y - currentAnimation->GetCurrentFrame().h);
-	collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider*2, currentAnimation->GetCurrentFrame().h);
+	collider->SetPos(position.x+ marginCollider, position.y - currentAnimation->GetCurrentFrame().h+7);
+	collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider*2, currentAnimation->GetCurrentFrame().h-7);
 	rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
 	rangeCollider->SetSize(currentAnimation->GetCurrentFrame().w + rangeLength*2, currentAnimation->GetCurrentFrame().h);
 
