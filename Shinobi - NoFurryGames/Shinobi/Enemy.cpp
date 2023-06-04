@@ -176,6 +176,8 @@ void Enemy::Draw()
 
 }
 
+
+
 void Enemy::OnCollision(Collider* c1, Collider* c2)
 {
 	//Si no es de la segunda planta, y la colision esta inactiva, y es de tipo wall, ignora la colision
@@ -185,6 +187,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	{
 		//c muere
 		this->setHasReceivedDamage = true;
+		collider->pendingToDelete = true;
 		App->audio->PlayFx(destroyedFx);
 	}
 		
@@ -193,6 +196,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (facingLeft || currentAnim == &walkBasic)
 		{
+			
 			jumpsNow = true;
 			position.y -= 6;
 		}
@@ -201,6 +205,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	{
 		if (!facingLeft || currentAnim == &walkBasic)
 		{
+			
 			jumpsNow = true;
 			position.y -= 6;
 		}
@@ -210,20 +215,20 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 	//Colisiona con pared, caja, suelo
 	if (c2->type == Collider::Type::WALL) {
 		
-		if (c2->GetRect().x >= position.x && c2->GetRect().y + jumpSpeed + 2 <= position.y)
-		{
-			//NO SE PUEDE MOVER PARA LA DERECHA
+		
 
+		if(position.x + currentAnim->GetCurrentFrame().w < c2->GetRect().x+speed+2 && c2->GetRect().y + 2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed)
+		{
 			position.x -= speed;
+			position.y -= 1;
+			
 		}
 		else if (c2->GetRect().x + c2->GetRect().w  >= position.x && c2->GetRect().y+2 <= position.y + currentAnim->GetCurrentFrame().h + jumpSpeed) 
 		{
-		
 			position.x += speed;
+			position.y -= 1;
 			
 		}
-
-
 
 		if (c2->GetRect().y >= position.y + currentAnim->GetCurrentFrame().h - 2 + jumpSpeed && jumpSpeed <= 0) {
 			position.y = c2->GetRect().y - currentAnim->GetCurrentFrame().h + 1;

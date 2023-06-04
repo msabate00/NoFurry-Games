@@ -132,6 +132,7 @@ bool ModuleScene_Level2::Start()
 
 	//Enemies
 		
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 390, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 330, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 365, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 390, FLOOR_LEVEL - 64, false, true);
@@ -150,15 +151,15 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 210, FLOOR_LEVEL - 75, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 1665, FLOOR_LEVEL - 180, false, true);
 
-	/*App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 834, FLOOR_LEVEL - 64, false, true);*/
+	//App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 834, FLOOR_LEVEL - 64, false, true);
 
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 1215, FLOOR_LEVEL - 180, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 738, FLOOR_LEVEL - 180, false, true);
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
-	/*App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);*/
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1564, FLOOR_LEVEL - 180, false, true);
+	//App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1564, FLOOR_LEVEL - 180, false, true); 
 
 
 	//Musica
