@@ -194,7 +194,7 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 6;
+			position.y -= 8;
 		}
 	}
 	if (c2->type == Collider::Type::BOX_HELP_RIGHT)
@@ -202,9 +202,16 @@ void Enemy::OnCollision(Collider* c1, Collider* c2)
 		if (!facingLeft || currentAnim == &walkBasic)
 		{
 			jumpsNow = true;
-			position.y -= 6;
+			position.y -= 8;
 		}
 	}
+
+
+	////Colisiona con la pre-caja, para saltar
+	//if (App->player->isSecondFloor && c2->type == Collider::Type::BOX_HELP)
+	//{
+	//	c2->active = false;
+	//}
 	
 
 	//Colisiona con pared, caja, suelo
