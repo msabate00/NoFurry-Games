@@ -75,15 +75,15 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 573, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - IZQUIERDA
 	App->collisions->AddCollider({ 612, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - DERECHA
 
-	App->collisions->AddCollider({ 893, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //MONTON 1 - IZQUIERDA
-	App->collisions->AddCollider({ 957, 154, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
-	App->collisions->AddCollider({ 1021, 122, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
-	App->collisions->AddCollider({ 1117, 90 , 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 891, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //MONTON 1 - IZQUIERDA
+	App->collisions->AddCollider({ 955, 154, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1019, 122, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1115, 90 , 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
 
-	App->collisions->AddCollider({ 1376, 186, 35, 15 }, Collider::Type::BOX_HELP); //MONTON 1 - IZQUIERDA
-	App->collisions->AddCollider({ 1280, 154, 35, 15 }, Collider::Type::BOX_HELP);
-	App->collisions->AddCollider({ 1216, 122, 35, 15 }, Collider::Type::BOX_HELP);
-	App->collisions->AddCollider({ 1120, 90 , 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1381, 186, 32, 15 }, Collider::Type::BOX_HELP); //MONTON 1 - IZQUIERDA
+	App->collisions->AddCollider({ 1285, 154, 32, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1221, 122, 32, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1125, 90 , 32, 15 }, Collider::Type::BOX_HELP);
 
 	App->collisions->AddCollider({ 1565, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
 	App->collisions->AddCollider({ 1602, 122, 35, 15 }, Collider::Type::BOX_HELP);
@@ -92,6 +92,15 @@ bool ModuleScene_Level2::Start()
 
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
+	/*App->collisions->AddCollider({ 896, 183, 64, 32 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 960, 151, 64, 64 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1024, 119, 224, 96 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1120, 87, 32, 32 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1248, 151, 64, 64 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1312, 183, 96, 32 }, Collider::Type::WALL);*/
+
+
+																			  
 	App->collisions->AddCollider({ 896, 183, 512, 32 }, Collider::Type::WALL); // Fila Cajas Abajo
 	App->collisions->AddCollider({ 960, 151, 352, 32 }, Collider::Type::WALL); // Fila Cajas Medio
 	App->collisions->AddCollider({ 1024, 119, 224, 32 }, Collider::Type::WALL); // fila cajas Arriba
