@@ -312,7 +312,7 @@ update_status ModuleBoss::Update()
 		firstParticle = true;
 		if (firstParticle) {
 			currentParticlePosition = fPoint(position.x, position.y);
-			currentParticleDirection.x = particleSpeed;
+			currentParticleDirection.x = -particleSpeed;
 			currentParticleDirection.y = 0;
 			int ran = rand() % 3;
 			switch (ran) {
@@ -390,7 +390,7 @@ update_status ModuleBoss::Update()
 		if (firstParticle2) {
 			
 			currentParticlePosition2 = fPoint(position.x, position.y+20);
-			currentParticleDirection2.x = particleSpeed2;
+			currentParticleDirection2.x = -particleSpeed2;
 			currentParticleDirection2.y = 0;
 		
 			int ran = rand() % 3;

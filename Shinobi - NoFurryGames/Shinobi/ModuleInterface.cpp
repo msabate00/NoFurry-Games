@@ -135,6 +135,14 @@ update_status ModuleInterface::Update()
 		}
 	}
 
+	if (App->input->keys[SDL_SCANCODE_F8] == KEY_DOWN) {
+		App->life_num++;
+	}
+	if (App->input->keys[SDL_SCANCODE_F7] == KEY_DOWN) {
+		App->life_num--;
+	}
+
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -350,9 +358,8 @@ update_status ModuleInterface::PostUpdate()
 		App->fonts->BlitText(0, 24, App->debugFontWhite, "f4 - t00gle sh0wrect");
 		App->fonts->BlitText(0, 32, App->debugFontWhite, "f5 - l0ad mainmenu");
 		App->fonts->BlitText(0, 40, App->debugFontWhite, "f6 - hide debugmenu");
-		App->fonts->BlitText(0, 48, App->debugFontWhite, "f7 - xxxxxxx");
-		App->fonts->BlitText(0, 56, App->debugFontWhite, "f8 - xxxxxxx");
-		App->fonts->BlitText(0, 64, App->debugFontWhite, "--- in main menu ---");
+		App->fonts->BlitText(0, 48, App->debugFontWhite, "f7 - sub life");
+		App->fonts->BlitText(0, 56, App->debugFontWhite, "f8 - add life");
 		App->fonts->BlitText(0, 72, App->debugFontWhite, "f9 - l0ad level1");
 		App->fonts->BlitText(0, 80, App->debugFontWhite, "f10 - l0ad level2");
 		App->fonts->BlitText(0, 88, App->debugFontWhite, "f11 - l0ad level_b0ss");
