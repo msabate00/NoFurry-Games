@@ -204,7 +204,7 @@ void ModuleBossEndLevel::SpawnFireball() {
 			}
 
 
-			fireBall_Collider = App->collisions->AddCollider({ 0,0,20,20 }, Collider::Type::BOSS_PROYECTILE, this);
+			fireBall_Collider = App->collisions->AddCollider({ 0,0,10,10 }, Collider::Type::BOSS_PROYECTILE, this);
 			timeContador = 0;
 			firstParticle = false;
 		}
@@ -239,7 +239,7 @@ void ModuleBossEndLevel::SpawnFireball() {
 				currentParticleDirection.x = max(currentParticleDirection.x - particleAdjustmen, -particleSpeed);
 			}
 
-			fireBall_Collider->SetPos(currentParticlePosition.x + 5, currentParticlePosition.y + 5);
+			fireBall_Collider->SetPos(currentParticlePosition.x + 10, currentParticlePosition.y + 10);
 			//fireBallParticle = App->particlesBoss->AddParticle(App->particlesBoss->fireBall, currentParticlePosition.x, currentParticlePosition.y);
 			int ran = rand() % 3;
 			switch (ran) {

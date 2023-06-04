@@ -827,6 +827,11 @@ update_status ModulePlayer::Update()
 		holdingGun = !holdingGun;
 	}
 
+	if (isChangingZone) {
+		inmune = true;
+	}
+
+
 	ComprovarSOnido = true;
 	hasPlayedDeathSound = true;
 	currentAnimation->Update();
