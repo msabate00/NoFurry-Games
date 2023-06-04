@@ -148,7 +148,7 @@ void Enemy_Basic::Update()
 	if (isAttacking)
 	{
 		currentAnim = &attackAnim;
-		/*cout << "ataca" << endl;*/
+		
 
 		if (currentAnim->HasFinished())
 		{
