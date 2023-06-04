@@ -154,6 +154,9 @@ void Enemy_Basic::Update()
 		{
 			currentAnim = &walkBasic;
 			isAttacking = false;
+			if (!App->player->destroyed) {
+				attackAnim.Reset();
+			}
 		}
 	}
 	
