@@ -92,8 +92,8 @@ bool ModuleScene_Level2::Start()
 
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
-	App->collisions->AddCollider({ 896, 183, 64, 32 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 960, 151, 64, 64 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 896, 183, 64, 40 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 960, 151, 70, 64 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 1024, 119, 224, 96 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 1120, 87, 32, 32 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 1248, 151, 64, 64 }, Collider::Type::WALL);
