@@ -768,9 +768,6 @@ update_status ModulePlayer::Update()
 
 	}
 
-	
-
-
 	collider->SetPos(position.x+ marginCollider, position.y - currentAnimation->GetCurrentFrame().h+7);
 	collider->SetSize(currentAnimation->GetCurrentFrame().w - marginCollider*2, currentAnimation->GetCurrentFrame().h-7);
 	rangeCollider->SetPos(position.x - rangeLength, position.y - currentAnimation->GetCurrentFrame().h);
@@ -848,7 +845,7 @@ update_status ModulePlayer::PostUpdate()
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 >= App->render->camera.x + SCREEN_WIDTH / 2 * SCREEN_SIZE) {
 
-		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) {
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) {
 			App->render->camera.x += App->player->crouchedSpeed * SCREEN_SIZE;
 		}
 		else {
@@ -860,7 +857,7 @@ update_status ModulePlayer::PostUpdate()
 	if ((App->player->position.x * SCREEN_SIZE) +
 		App->player->currentAnimation->GetCurrentFrame().w / 2 <= App->render->camera.x + SCREEN_WIDTH / 4 * SCREEN_SIZE) {
 
-		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f) {
+		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) {
 			App->render->camera.x -= App->player->crouchedSpeed * SCREEN_SIZE;
 		}
 		else {
