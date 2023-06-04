@@ -111,11 +111,13 @@ bool ModuleScene_Level1::Start()
 
 	//Enemies ---
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 350, FLOOR_LEVEL - 64, false ,true); //Enemigo básico 1
-	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
+	//App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 380, FLOOR_LEVEL - 64, false, true); //Enemigo básico 2
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 744, FLOOR_LEVEL - 64, false, true); //Enemigo básico 3
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 790, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 830, FLOOR_LEVEL - 64, false, true); //Enemigo básico 4
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1370, FLOOR_LEVEL - 64, false, true); //Enemigo básico 1
 
-	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 820, FLOOR_LEVEL - 64, false, true); //Enemigo knife
+	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 820, FLOOR_LEVEL - 64, false, true); //Enemigo knife
 	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 840, FLOOR_LEVEL - 64); //Enemigo knife 2
 	//App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 860, FLOOR_LEVEL - 64); //Enemigo knife 3
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 1252, FLOOR_LEVEL - 64, false, true);

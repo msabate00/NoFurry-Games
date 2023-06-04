@@ -72,23 +72,23 @@ bool ModuleScene_Level2::Start()
 	App->collisions->AddCollider({ 290, 186, 35, 15 }, Collider::Type::BOX_HELP); //1 caja
 	App->collisions->AddCollider({ 283, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //1 caja
 
-	App->collisions->AddCollider({ 573, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - IZQUIERDA
-	App->collisions->AddCollider({ 612, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - DERECHA
+	App->collisions->AddCollider({ 573, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //CAJA 2 - IZQUIERDA
+	App->collisions->AddCollider({ 612, 186, 35, 15 }, Collider::Type::BOX_HELP); //CAJA 2 - DERECHA
 
-	App->collisions->AddCollider({ 893, 186, 35, 15 }, Collider::Type::BOX_HELP); //MONTON 1 - IZQUIERDA
-	App->collisions->AddCollider({ 957, 154, 35, 15 }, Collider::Type::BOX_HELP);
-	App->collisions->AddCollider({ 1021, 122, 35, 15 }, Collider::Type::BOX_HELP);
-	App->collisions->AddCollider({ 1117, 90 , 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 893, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //MONTON 1 - IZQUIERDA
+	App->collisions->AddCollider({ 957, 154, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1021, 122, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1117, 90 , 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
 
-	App->collisions->AddCollider({ 1376, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT); //MONTON 1 - IZQUIERDA
-	App->collisions->AddCollider({ 1280, 154, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
-	App->collisions->AddCollider({ 1216, 122, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
-	App->collisions->AddCollider({ 1120, 90 , 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1376, 186, 35, 15 }, Collider::Type::BOX_HELP); //MONTON 1 - IZQUIERDA
+	App->collisions->AddCollider({ 1280, 154, 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1216, 122, 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1120, 90 , 35, 15 }, Collider::Type::BOX_HELP);
 
-	App->collisions->AddCollider({ 1565, 186, 35, 15 }, Collider::Type::BOX_HELP);
-	App->collisions->AddCollider({ 1602, 122, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
-	App->collisions->AddCollider({ 1664, 154, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
-	App->collisions->AddCollider({ 1696, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1565, 186, 35, 15 }, Collider::Type::BOX_HELP_RIGHT);
+	App->collisions->AddCollider({ 1602, 122, 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1664, 154, 35, 15 }, Collider::Type::BOX_HELP);
+	App->collisions->AddCollider({ 1696, 186, 35, 15 }, Collider::Type::BOX_HELP);
 
 	App->collisions->AddCollider({ 576, 183, 64, 32 }, Collider::Type::WALL); //2 + 3 cajas
 
@@ -128,25 +128,27 @@ bool ModuleScene_Level2::Start()
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 390, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 480, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 660, FLOOR_LEVEL - 64, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 855, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1054, FLOOR_LEVEL - 180, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1090, FLOOR_LEVEL - 180, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1122, FLOOR_LEVEL - 180, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BASIC, 1530, FLOOR_LEVEL - 64, false, true);
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 650, FLOOR_LEVEL - 64, false, true);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 690, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 860, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1215, FLOOR_LEVEL - 180, false, true);
 
 	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 210, FLOOR_LEVEL - 75, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::BROWNSHIELD, 1665, FLOOR_LEVEL - 180, false, true);
 
+	/*App->enemy->AddEnemy(ENEMY_TYPE::PURPLESHIELD, 834, FLOOR_LEVEL - 64, false, true);*/
 
 	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 1215, FLOOR_LEVEL - 180, false, true);
+	App->enemy->AddEnemy(ENEMY_TYPE::KNIFE, 738, FLOOR_LEVEL - 180, false, true);
 
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 420, FLOOR_LEVEL - 64, false, true);
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 500, FLOOR_LEVEL - 64, false, true);
-	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);
+	/*App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 520, FLOOR_LEVEL - 64, false, true);*/
 	App->enemy->AddEnemy(ENEMY_TYPE::GUNSHOOTER, 1564, FLOOR_LEVEL - 180, false, true);
 
 
