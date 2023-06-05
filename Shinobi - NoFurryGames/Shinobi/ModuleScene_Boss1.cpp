@@ -120,6 +120,7 @@ bool ModuleScene_Boss1::CleanUp()
 	App->collisions->Disable();
 	App->player->Disable();
 	App->boss->Disable();
+	//App->audio->ReleaseAudio();
 
 	return true;
 }

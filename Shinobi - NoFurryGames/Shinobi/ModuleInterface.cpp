@@ -98,7 +98,7 @@ bool ModuleInterface::Start()
 	Boss_pow = App->textures->Load("Assets/Interface/Color_use/Blue/Boss/Boss.png");
 
 
-	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
+
 
 	timerPR = 0;
 	timeOver = false;
@@ -123,11 +123,11 @@ update_status ModuleInterface::Update()
 	if ((App->input->keys[SDL_SCANCODE_1] == KEY_DOWN || pad.start_down) && App->scene_MainMenu->IsEnabled()) {
 		if (coinNum <= 9) {
 			if (coinNum == 9 && !MonedaFX) {
-				App->audio->PlayFx(monedaFX);
+				App->audio->PlayFx(App->audio->monedaFX);
 				MonedaFX = true;
 			}
 			else if (coinNum != 9) {
-				App->audio->PlayFx(monedaFX);
+				App->audio->PlayFx(App->audio->monedaFX);
 				MonedaFX = true;
 			}
 		}

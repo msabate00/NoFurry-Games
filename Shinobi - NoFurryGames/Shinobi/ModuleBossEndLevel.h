@@ -59,8 +59,7 @@ public:
 
 	bool facingRight = false;
 	bool triggered = false;
-	
-	uint BoladeFuegoFX = 0;
+	bool Sonido = true;
 
 	float particleSpeed = 2.0f;
 	float particleAdjustmen = 0.03f;

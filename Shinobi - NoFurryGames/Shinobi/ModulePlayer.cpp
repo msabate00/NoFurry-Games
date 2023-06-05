@@ -254,17 +254,7 @@ bool ModulePlayer::Start()
 	///////////////////////
 	//      SONIDOS      //
 	///////////////////////
-	App->audio->SetMusicVolume(25);
-
-	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
-	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
-	efectoSaltoPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Efecto_SaltoPlataforma.wav");
-	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
-	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
-	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
-	StageClearFX = App->audio->LoadFx("Assets/Audio/Music/Stage Clear.ogg");
-	GameOverFX = App->audio->LoadFx("Assets/Audio/Music/Game_Over.ogg");
-	ULTIFX = App->audio->LoadFx("Assets/Audio/Effects/main character/ULTIFX.wav");
+	
 
 	currentAnimation = &idleAnim;
 
@@ -339,7 +329,7 @@ update_status ModulePlayer::Update()
 		if (ComprovarSOnido == true)
 		{
 			Mix_HaltMusic();
-			App->audio->PlayFx(StageClearFX);
+			App->audio->PlayFx(App->audio->StageClearFX);
 			ComprovarSOnido = false;
 		}
 
@@ -362,7 +352,7 @@ update_status ModulePlayer::Update()
 		if (ComprovarSOnido == true)
 		{
 			
-			App->audio->PlayFx(ULTIFX);
+			App->audio->PlayFx(App->audio->ULTIFX);
 			//cout << "AAAAAAAAAAA" << endl;
 			ComprovarSOnido = false;
 
@@ -448,7 +438,7 @@ update_status ModulePlayer::Update()
 		
 		
 		if (hasPlayedDeathSound == true) {
-			App->audio->PlayFx(morirFX);
+			App->audio->PlayFx(App->audio->morirFX);
 			hasPlayedDeathSound = false;
 		}
 		
@@ -485,8 +475,8 @@ update_status ModulePlayer::Update()
 		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y > 110 && App->scene_Level1->IsEnabled()) {
 		
 
-		App->audio->PlayFx(saltarPlataformaFX);
-		App->audio->PlayFx(efectoSaltoPlataformaFX);
+		App->audio->PlayFx(App->audio->saltarPlataformaFX);
+		App->audio->PlayFx(App->audio->efectoSaltoPlataformaFX);
 		currJumpForce = jumpForce * 1.6;
 		currentAnimation = &bigJumpUpAnim;
 		currentJumpAnim = &bigJumpUpAnim;
@@ -499,8 +489,8 @@ update_status ModulePlayer::Update()
 		!isJumping && !isChangingFloorF1 && !isChangingFloorF2 && position.y <= 110 && App->scene_Level1->IsEnabled()) {
 		
 		
-		App->audio->PlayFx(saltarPlataformaFX);
-		App->audio->PlayFx(efectoSaltoPlataformaFX);
+		App->audio->PlayFx(App->audio->saltarPlataformaFX);
+		App->audio->PlayFx(App->audio->efectoSaltoPlataformaFX);
 		currJumpForce = jumpForce * 1.6;
 		currentAnimation = &bigJumpDownAnim;
 		currentJumpAnim = &bigJumpDownAnim;
@@ -750,7 +740,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_DOWN || pad.a || pad.b) && !isJumping) {
-		App->audio->PlayFx(saltarFX);
+		App->audio->PlayFx(App->audio->saltarFX);
 		jumpAnim.Reset();
 		PistolajumpAnim.Reset();
 
@@ -778,11 +768,11 @@ update_status ModulePlayer::Update()
 	
 	if (App->input->keys[SDL_SCANCODE_J] == KEY_DOWN || pad.x_down) {
 		
-		App->audio->PlayFx(shurikenAtaqueFX);
+		App->audio->PlayFx(App->audio->shurikenAtaqueFX);
 		App->interface_module->spacePoint = false;
 		if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || pad.l_y > 0.2f || pad.down) {
 			isCrouchedAttacking = true;
-			App->audio->PlayFx(shurikenAtaqueFX);
+			App->audio->PlayFx(App->audio->shurikenAtaqueFX);
 		}
 		else
 		{

@@ -131,16 +131,7 @@ public:
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint destroyedCountdown = 120;
 
-	// Sounds Effects 
-	uint saltarFX = 0;
-	uint saltarPlataformaFX = 0;
-	uint shurikenAtaqueFX = 0;
-	uint ataqueFX = 0;
-	uint morirFX = 0;
-	uint efectoSaltoPlataformaFX = 0;
-	uint StageClearFX = 0;
-	uint GameOverFX = 0;
-	uint ULTIFX = 0;
+	
 	bool ComprobarataqueFX = false;
 
 	bool ComprovarSOnido = true;

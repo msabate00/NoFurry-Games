@@ -64,7 +64,7 @@ Hostage::Hostage(int x, int y, bool gun, int points, bool secondFloor, int id) :
 
 	//walkBasic.loop = true;
 
-	SalvadoFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/Rescue.wav");
+	
 
 	collider = App->collisions->AddCollider({ 0, 0,  25, 29 }, Collider::Type::HOSTAGE, (Module*)App->hostages);
 }
@@ -82,7 +82,7 @@ void Hostage::Update()
 		if (!check) {
 			position.y -= 20;
 			check = true;
-			App->audio->PlayFx(SalvadoFX);
+			App->audio->PlayFx(App->audio->SalvadoFX);
 		}
 		position.y--;
 		currentAnim = &Death;

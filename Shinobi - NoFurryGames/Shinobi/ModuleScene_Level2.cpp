@@ -247,7 +247,7 @@ bool ModuleScene_Level2::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->hostages->Disable();
-
+	//App->audio->ReleaseAudio();
 	if (App->boss_endLevel->IsEnabled()) {
 		App->boss_endLevel->Disable();
 	}

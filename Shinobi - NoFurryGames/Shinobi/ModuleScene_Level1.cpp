@@ -60,8 +60,6 @@ bool ModuleScene_Level1::Start()
 	App->enemy->Enable();
 	App->hostages->Enable();
 	App->scene_Level1_SecondFloor->Enable();
-	
-
 	bool ret = true;
 
 	stageTexture = App->textures->Load("Assets/Maps/Level1/Nivel1_solido.png");
@@ -210,6 +208,7 @@ bool ModuleScene_Level1::CleanUp()
 	App->player->Disable();
 	App->enemy->Disable();
 	App->hostages->Disable();
+	//App->audio->ReleaseAudio();
 
 	if (App->boss_endLevel->IsEnabled()) {
 		App->boss_endLevel->Disable();

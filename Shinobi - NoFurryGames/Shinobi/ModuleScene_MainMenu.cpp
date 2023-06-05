@@ -127,6 +127,7 @@ update_status ModuleScene_MainMenu::PostUpdate()
 bool ModuleScene_MainMenu::CleanUp()
 {
 	SDL_DestroyTexture(textureBackground);
+	//App->audio->ReleaseAudio();
 	SDL_DestroyTexture(textureBackground2);
 
 	return true;

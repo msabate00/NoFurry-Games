@@ -45,6 +45,29 @@ bool ModuleAudio::Init()
 		LOG("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 		ret = false;
 	}
+	App->audio->SetMusicVolume(40);
+	saltarFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Jump.wav");
+	saltarPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Plataform_Jump.wav");
+	efectoSaltoPlataformaFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Efecto_SaltoPlataforma.wav");
+	ataqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Attack.wav");
+	shurikenAtaqueFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Shuriken_Attack.wav");
+	morirFX = App->audio->LoadFx("Assets/Audio/Effects/main character/Die.wav");
+	StageClearFX = App->audio->LoadFx("Assets/Audio/Music/Stage Clear.ogg");
+	GameOverFX = App->audio->LoadFx("Assets/Audio/Music/Game_Over.ogg");
+	ULTIFX = App->audio->LoadFx("Assets/Audio/Effects/main character/ULTIFX.wav");
+	SalvadoFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/Rescue.wav");
+	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
+	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss.wav");
+	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted.wav");
+	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die.wav");
+	BoladeFuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss.wav");
+	enemyDestroyedFx = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/EnemiesDie.wav");
+	scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX.wav");
+	scoreboardFX2 = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/ScoreboardFX2.wav");
+	Music_scoreboardFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/Musica_Scoreboard.wav");
+	monedaFX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/coin.wav");
+	Mission1FX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/MISSION-1(intro).wav");
+	//hostageDestroyedFx = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Generic/EnemiesDie.wav");
 
 	return ret;
 }
@@ -168,5 +191,21 @@ void ModuleAudio::SetMusicVolume(int volume)
 {
 	Mix_VolumeMusic(volume);
 }
+/*
+bool ModuleAudio::ReleaseAudio()
+{
+	LOG("Freeing sound FX, closing Mixer and Audio subsystem");
 
+	if (music != NULL)
+	{
+		Mix_FreeMusic(music);
+	}
 
+	for (uint i = 0; i < MAX_FX; ++i)
+	{
+		if (soundFx[i] != nullptr)
+			Mix_FreeChunk(soundFx[i]);
+	}
+	return true;
+}
+*/

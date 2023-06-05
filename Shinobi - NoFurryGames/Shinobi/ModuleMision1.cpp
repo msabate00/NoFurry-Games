@@ -41,8 +41,8 @@ bool ModuleMision1::Start()
 	App->render->camera.y = 0;
 
 
-	Mission1FX = App->audio->LoadFx("Assets/Audio/Effects/Generic Sounds/Mission/MISSION-1(intro).wav");
-	App->audio->PlayFx(Mission1FX);
+	
+	App->audio->PlayFx(App->audio->Mission1FX);
 
 	SDL_SetRenderDrawColor(App->render->renderer, 128, 128, 128, 255);
 	SDL_RenderClear(App->render->renderer);
@@ -84,6 +84,7 @@ update_status ModuleMision1::PostUpdate()
 
 bool ModuleMision1::CleanUp()
 {
+	//App->audio->ReleaseAudio();
 	SDL_DestroyTexture(textureBackground);
 	return true;
 }

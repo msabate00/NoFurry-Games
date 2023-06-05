@@ -219,10 +219,7 @@ bool ModuleBoss::Start()
 	timeContador = 0;
 	timeContador2 = 0;
 
-	RecieveDamageFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted(right area).wav");
-	FuegoFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Fire_Boss.wav");
-	RecieveDamage_2FX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Get_Shooted.wav");
-	Boss_DieFX = App->audio->LoadFx("Assets/Audio/Effects/Boss/Boss_Die.wav");
+	
 
 
 	currentParticleDirection = fPoint(0, 0);
@@ -253,7 +250,7 @@ update_status ModuleBoss::Update()
 
 	if (ComprobarSonido3 == true)
 	{
-		App->audio->PlayFx(RecieveDamage_2FX);
+		App->audio->PlayFx(App->audio->RecieveDamage_2FX);
 		ComprobarSonido3 = false;
 	}
 	//App->particlesBoss->DestroyCollision(fireBallParticle);
@@ -265,7 +262,7 @@ update_status ModuleBoss::Update()
 	if (dead) {
 		if (ComprobarSonido == true)
 		{
-			App->audio->PlayFx(Boss_DieFX);
+			App->audio->PlayFx(App->audio->Boss_DieFX);
 			ComprobarSonido = false;
 		}
 
@@ -306,7 +303,7 @@ update_status ModuleBoss::Update()
 		if (attacking == -1) {
 			int ran = (rand() % 2) + 1; //1-3
 				attacking = ran;
-				App->audio->PlayFx(FuegoFX);
+				App->audio->PlayFx(App->audio->FuegoFX);
 		}
 
 		firstParticle = true;
@@ -397,15 +394,15 @@ update_status ModuleBoss::Update()
 			switch (ran) {
 			case 0:
 				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall1, currentParticlePosition2.x, currentParticlePosition2.y);
-				App->audio->PlayFx(FuegoFX);
+				App->audio->PlayFx(App->audio->FuegoFX);
 				break;
 			case 1:
 				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall2, currentParticlePosition2.x, currentParticlePosition2.y);
-				App->audio->PlayFx(FuegoFX);
+				App->audio->PlayFx(App->audio->FuegoFX);
 				break;
 			case 2:
 				fireBallParticle2 = App->particlesBoss->AddParticle(App->particlesBoss->fireBall3, currentParticlePosition2.x, currentParticlePosition2.y);
-				App->audio->PlayFx(FuegoFX);
+				App->audio->PlayFx(App->audio->FuegoFX);
 				break;
 			}
 			fireBall_Collider2 = App->collisions->AddCollider({ 0,0,10,10 }, Collider::Type::BOSS_PROYECTILE2, this);
@@ -531,7 +528,7 @@ update_status ModuleBoss::Update()
 			stunnedTime--;
 			if (ComprobarSonido2 == true)
 			{
-				App->audio->PlayFx(RecieveDamageFX);
+				App->audio->PlayFx(App->audio->RecieveDamageFX);
 				ComprobarSonido2 = false;
 			}
 
