@@ -71,7 +71,6 @@ public:
 
 
 	/*
-	
 	*/
 	SDL_Texture* SkillIcon = nullptr;
 	SDL_Texture* HostageIcon = nullptr;

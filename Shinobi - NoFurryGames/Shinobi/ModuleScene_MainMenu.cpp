@@ -124,3 +124,10 @@ update_status ModuleScene_MainMenu::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
+bool ModuleScene_MainMenu::CleanUp()
+{
+	SDL_DestroyTexture(textureBackground);
+	SDL_DestroyTexture(textureBackground2);
+
+	return true;
+}

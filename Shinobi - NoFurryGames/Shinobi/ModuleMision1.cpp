@@ -48,7 +48,7 @@ bool ModuleMision1::Start()
 	SDL_RenderClear(App->render->renderer);
 
 	mis1Jumptimer = 0;
-	dosComa = App->textures->Load("Assets/Interface/Color_use/White/Icon/DosComa.png");
+	
 	currentAnimation = &backgroundAnim;
 	timerText = 0;
 	str_cache = "";
@@ -81,6 +81,13 @@ update_status ModuleMision1::PostUpdate()
 	printMision();
 		return update_status::UPDATE_CONTINUE;
 }
+
+bool ModuleMision1::CleanUp()
+{
+	SDL_DestroyTexture(textureBackground);
+	return true;
+}
+
 
 //void ModuleMision1::printext() {
 //	

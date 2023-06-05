@@ -32,6 +32,8 @@ public:
 	update_status PostUpdate();
 
 
+	bool CleanUp() override;
+
 	void printext();
 	void printMision();
 
@@ -41,7 +43,7 @@ public:
 
 
 
-	SDL_Texture* dosComa = nullptr;
+	
 	SDL_Texture* textureBackground = nullptr;
 	SDL_Rect background;
 

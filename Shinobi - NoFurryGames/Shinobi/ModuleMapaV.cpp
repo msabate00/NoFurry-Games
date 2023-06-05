@@ -73,6 +73,15 @@ update_status ModuleMapaV::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
+bool ModuleMapaV::CleanUp()
+{
+	SDL_DestroyTexture(dosComa);
+	SDL_DestroyTexture(mapaVictoria);
+	SDL_DestroyTexture(mapaRed);
+
+	return true;
+}
+
 
 void ModuleMapaV::printMapaV() {
 	timerMapaV += App->deltaTime;

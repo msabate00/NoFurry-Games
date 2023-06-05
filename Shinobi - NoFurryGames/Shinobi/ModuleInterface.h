@@ -80,16 +80,39 @@ public:
 public:
 	
 
+	//SDL_Texture
 	//MainMenu
 
 	SDL_Texture* Letra = nullptr;
 	SDL_Texture* LogoMedio = nullptr;
-	//SDL_Texture* LogoC = nullptr;
 	SDL_Texture* LetraYear = nullptr;
 	SDL_Texture* LetraIconC = nullptr;
 	SDL_Texture* LetraNomRed = nullptr;
 	SDL_Texture* LetraNomWhite = nullptr;
-	//int texture_Year = 1987;
+	SDL_Texture** letraTrailColor = new SDL_Texture * [trailLength];
+
+	//LV1
+
+	SDL_Texture* SkillIcon = nullptr;
+	SDL_Texture* HostageIcon = nullptr;
+	SDL_Texture* LifeIcon = nullptr;
+	SDL_Texture* LetraNum = nullptr;
+	SDL_Texture* save = nullptr;
+	SDL_Texture* Time = nullptr;
+	SDL_Texture* dosPunt = nullptr;
+	SDL_Texture* Player1 = nullptr;
+	SDL_Texture* goIcon = nullptr;
+	SDL_Texture* skillPoint = nullptr;
+	SDL_Texture* gameOverRed = nullptr;
+	SDL_Texture* gameOverWhite = nullptr;
+	SDL_Texture* SkillIconAzul = nullptr;
+
+	//Boos
+	SDL_Texture* Boss_pow = nullptr;
+	SDL_Texture* Boss_life = nullptr;
+
+
+
 	bool NameColor = true;
 
 	//PrintaLetra ÈÌ
@@ -119,26 +142,8 @@ public:
 	int trailLength = 5;
 	double* letraTrailX = new double[trailLength];
 	double* letraTrailY = new double[trailLength];
-	SDL_Texture** letraTrailColor = new SDL_Texture * [trailLength];
-
-
+	
 	uint monedaFX = 0;
-
-	//LV1
-
-	SDL_Texture* SkillIcon = nullptr;
-	SDL_Texture* HostageIcon = nullptr;
-	SDL_Texture* LifeIcon = nullptr;
-	SDL_Texture* LetraNum = nullptr;
-	SDL_Texture* save = nullptr;
-	SDL_Texture* Time = nullptr;
-	SDL_Texture* dosPunt = nullptr;
-	SDL_Texture* Player1 = nullptr;
-	SDL_Texture* goIcon = nullptr;
-	SDL_Texture* skillPoint = nullptr;
-	SDL_Texture* gameOverRed = nullptr;
-	SDL_Texture* gameOverWhite = nullptr;
-	SDL_Texture* SkillIconAzul = nullptr;
 
 	int hostage_num = 0;
 	bool hostageTaken[7] = { false };
@@ -163,9 +168,7 @@ public:
 	bool resetTimeHostage = true;
 	float timeOver = 0;
 	bool spacePoint = true;
-	//Boos
-	SDL_Texture* Boss_pow = nullptr;
-	SDL_Texture* Boss_life = nullptr;
+
 
 };
 

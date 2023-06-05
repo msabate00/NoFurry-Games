@@ -252,6 +252,18 @@ bool ModuleScene_Level2::CleanUp()
 		App->boss_endLevel->Disable();
 	}
 
+
+	SDL_DestroyTexture(stageTexture);
+	SDL_DestroyTexture(stageBackgroundTexture);
+	SDL_DestroyTexture(SkillIcon);
+	SDL_DestroyTexture(HostageIcon);
+	SDL_DestroyTexture(LifeIcon);
+	SDL_DestroyTexture(LetraNum);
+	SDL_DestroyTexture(save);
+	SDL_DestroyTexture(Time);
+	SDL_DestroyTexture(dosPunt);
+	SDL_DestroyTexture(Player1);
+
 	return true;
 }
 

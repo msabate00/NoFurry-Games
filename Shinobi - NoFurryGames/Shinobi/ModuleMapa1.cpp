@@ -78,6 +78,16 @@ update_status ModuleMapa1::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
+bool ModuleMapa1::CleanUp()
+{
+	SDL_DestroyTexture(dosComa);
+	SDL_DestroyTexture(mapaWhite);
+	SDL_DestroyTexture(mapaRed);
+
+	return true;
+}
+
+
 
 void ModuleMapa1::printMapa1() {
 	timerMapa1 += App->deltaTime;

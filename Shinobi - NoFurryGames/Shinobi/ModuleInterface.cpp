@@ -380,6 +380,33 @@ update_status ModuleInterface::PostUpdate()
 
 bool ModuleInterface::CleanUp()
 {
+	SDL_DestroyTexture(Letra);
+	SDL_DestroyTexture(LogoMedio);
+	SDL_DestroyTexture(LetraYear);
+	SDL_DestroyTexture(LetraIconC);
+	SDL_DestroyTexture(LetraNomRed);
+	SDL_DestroyTexture(LetraNomWhite);
+
+
+	SDL_DestroyTexture(SkillIcon);
+	SDL_DestroyTexture(HostageIcon);
+	SDL_DestroyTexture(LifeIcon);
+	SDL_DestroyTexture(LetraNum);
+	SDL_DestroyTexture(save);
+	SDL_DestroyTexture(Time);
+	SDL_DestroyTexture(dosPunt);
+	SDL_DestroyTexture(Player1);
+	SDL_DestroyTexture(goIcon);
+	SDL_DestroyTexture(skillPoint);
+	SDL_DestroyTexture(gameOverRed);
+	SDL_DestroyTexture(gameOverWhite);
+	SDL_DestroyTexture(SkillIconAzul);
+
+	//Boos
+	SDL_DestroyTexture(Boss_pow);
+	SDL_DestroyTexture(Boss_life);
+
+
 	delete[] letraTrailX;
 	delete[] letraTrailY;
 

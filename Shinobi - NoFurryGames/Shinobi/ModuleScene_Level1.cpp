@@ -215,6 +215,9 @@ bool ModuleScene_Level1::CleanUp()
 		App->boss_endLevel->Disable();
 	}
 
+	SDL_DestroyTexture(stageTexture);
+	SDL_DestroyTexture(stageBackgroundTexture);
+
 	
 	return true;
 }

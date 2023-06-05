@@ -32,6 +32,8 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+	bool CleanUp() override;
+
 
 	void prinIcon();
 	void printTitle();
@@ -56,6 +58,8 @@ public:
 	SDL_Texture* dardosWhite = nullptr;
 	SDL_Texture* dardosRed = nullptr;
 	SDL_Texture* ED = nullptr;
+
+
 
 	SDL_Rect background;
 	Animation* currentAnimation = nullptr;

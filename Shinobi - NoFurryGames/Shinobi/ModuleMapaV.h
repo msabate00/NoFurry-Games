@@ -34,6 +34,7 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+	bool CleanUp() override;
 
 	void printMapaV();
 

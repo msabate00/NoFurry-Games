@@ -148,6 +148,20 @@ update_status ModuleRanking::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
+
+bool ModuleRanking::CleanUp()
+{
+	SDL_DestroyTexture(dosComa);
+	SDL_DestroyTexture(textureBackground);
+	SDL_DestroyTexture(*iconType);
+	SDL_DestroyTexture(ranking);
+
+
+
+	return true;
+}
+
+
 void ModuleRanking::prinIcon() {
 
 	int IconPosition1 = 20;

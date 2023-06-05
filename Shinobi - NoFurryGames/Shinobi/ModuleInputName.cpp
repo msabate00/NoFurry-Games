@@ -160,6 +160,20 @@ update_status ModuleInputName::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
+bool ModuleInputName::CleanUp()
+{
+	SDL_DestroyTexture(dosComa);
+	SDL_DestroyTexture(textureBackground);
+	SDL_DestroyTexture(*iconType);
+	SDL_DestroyTexture(ranking);
+	SDL_DestroyTexture(dardosWhite);
+	SDL_DestroyTexture(dardosRed);
+	SDL_DestroyTexture(ED);
+
+	return true;
+}
+
+
 void ModuleInputName::prinIcon() {
 
 	int IconPosition1 = 20;

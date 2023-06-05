@@ -121,3 +121,12 @@ void ModuleMapa2::printMapa2() {
 		}
 	}
 }
+
+bool ModuleMapa2::CleanUp()
+{
+	SDL_DestroyTexture(dosComa);
+	SDL_DestroyTexture(mapaWhite);
+	SDL_DestroyTexture(mapaRed);
+
+	return true;
+}

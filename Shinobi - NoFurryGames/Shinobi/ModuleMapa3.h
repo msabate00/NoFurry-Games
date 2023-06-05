@@ -33,6 +33,8 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate();
 
+	bool CleanUp() override;
+
 
 	void printMapa3();
 
@@ -45,8 +47,8 @@ public:
 	SDL_Texture* dosComa = nullptr;
 	SDL_Texture* mapaWhite = nullptr;
 	SDL_Texture* mapaRed = nullptr;
-	SDL_Rect background;
 
+	SDL_Rect background;
 
 	Animation* currentAnimation = nullptr;
 	Animation backgroundAnim;
