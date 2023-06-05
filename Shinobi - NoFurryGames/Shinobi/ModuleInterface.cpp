@@ -1,4 +1,5 @@
-﻿#include "ModuleInterface.h"
+﻿
+#include "ModuleInterface.h"
 
 #include "ModuleRender.h"
 #include <string> 
@@ -88,6 +89,7 @@ bool ModuleInterface::Start()
 	gameOverRed = App->textures->Load("Assets/Interface/Color_use/gameOver/gameoverRed.png");
 	gameOverWhite = App->textures->Load("Assets/Interface/Color_use/gameOver/gameoverWhite.png");
 
+	Letra = App->textures->Load(filename.c_str());
 
 	start_time = time(nullptr);
 
@@ -151,10 +153,6 @@ update_status ModuleInterface::PostUpdate()
 
 	//INTERFAZ COMUN PARA TODO EL JUEGO
 
-	if (App->scene_Level1->IsEnabled() || App->scene_Level2->IsEnabled() || App->scene_Boss1->IsEnabled()) {
-		//INTERFAZ PARA TODOS LOS NIVELES JUGABLES
-	
-	}
 	if (App->scene_MainMenu->IsEnabled()) {
 		
 		printYear();
@@ -487,8 +485,8 @@ void ModuleInterface::printNom() {
 
 
 void ModuleInterface::printLetra() {
-	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
-	Letra = App->textures->Load(filename.c_str());
+
+	
 
 	// 绘制拖尾效果
 	for (int i = 0; i < trailLength; i++) {

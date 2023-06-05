@@ -169,6 +169,7 @@ public:
 	float timeOver = 0;
 	bool spacePoint = true;
 
+	std::string filename = "Assets/Interface/Letra/LetraColor/Letra0.png";
 
 };
 
