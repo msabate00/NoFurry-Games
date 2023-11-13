@@ -4,7 +4,7 @@
 #include "SDL/include/SDL_rect.h"
 #define MAX_FRAMES 2500
 
-class Animation
+class Animation	
 {
 public:
 	float speed = 1.0f;
